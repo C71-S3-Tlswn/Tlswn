@@ -1,4 +1,4 @@
-package com.tlswn.C71S3Tlswndemo.bean.dao;
+package com.tlswn.C71S3Tlswndemo.dao;
 
 import com.tlswn.C71S3Tlswndemo.bean.Favorite;
 import com.tlswn.C71S3Tlswndemo.bean.FavoriteExample;

@@ -29,7 +29,7 @@
 		</sqlMapGenerator>
 
 		<javaClientGenerator type="XMLMAPPER"
-			targetPackage="com.tlswn.C71S3Tlswndemo.bean.dao" targetProject="src/main/java">
+			targetPackage="com.tlswn.C71S3Tlswndemo.dao" targetProject="src/main/java">
 		</javaClientGenerator>
 
 		<!-- % 表示所有的表 -->
