@@ -1,0 +1,34 @@
+server:
+  port: 80
+  # JSP 集成配置 不要使用tab 键输入空格
+spring:
+  mvc:
+    view:
+      prefix: WEB-INF/jsp/
+      suffix: .jsp
+  datasource:
+    url: jdbc:mysql://localhost:3306/kuang
+    username: root
+    password: a
+    driver-class-name: com.mysql.jdbc.Driver
+logging:
+  level:
+    com:
+     tlswn: debug
+# Spring Boot 如何实现自动化配置
+#     1、pom.xml
+#       SpringBoot 配置文件application*.yml
+#       springboot 默认指定了常用的版本号
+#     2、SpringBoot启动类
+#       SpringBootApplication 注解构成
+#         @SpringBootConfiguration
+#           @Configuration springIoc 容器配置注解 ====》beans.xml
+#         @ComponentScan("XXXXXX")
+#           组件扫描：springBoot 会自动扫描 启动类 所在包以及其子包
+#         @EnableAutoConfiguration
+#           @AutoConfigurationPackage 自动配置包
+#           @Import(AutoConfigurationImportSelector.class) 导入启动选择器
+#           @WebMvcAutoConfigguration
+#            @ConditionalXXXXX 条件注解
+#              @ConditionalOnClass() 判断运行环境是否有这些类
+#              @ConditionalOnMissingBean() 判断如果环境中包含该类对象，则不配置

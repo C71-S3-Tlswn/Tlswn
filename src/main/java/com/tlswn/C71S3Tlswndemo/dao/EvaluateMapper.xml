@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tlswn.C71S3Tlswndemo.bean.dao.EvaluateMapper">
+  <resultMap id="BaseResultMap" type="com.tlswn.C71S3Tlswndemo.bean.Evaluate">
+    <id column="eid" jdbcType="INTEGER" property="eid" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="eimg" jdbcType="VARCHAR" property="eimg" />
+    <result column="etime" jdbcType="TIMESTAMP" property="etime" />
+    <result column="cid" jdbcType="INTEGER" property="cid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    eid, uid, content, eimg, etime, cid
+  </sql>
+  <select id="selectByExample" parameterType="com.tlswn.C71S3Tlswndemo.bean.EvaluateExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from evaluate
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from evaluate
+    where eid = #{eid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from evaluate
+    where eid = #{eid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.tlswn.C71S3Tlswndemo.bean.EvaluateExample">
+    delete from evaluate
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.tlswn.C71S3Tlswndemo.bean.Evaluate">
+    insert into evaluate (eid, uid, content, 
+      eimg, etime, cid)
+    values (#{eid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, 
+      #{eimg,jdbcType=VARCHAR}, #{etime,jdbcType=TIMESTAMP}, #{cid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tlswn.C71S3Tlswndemo.bean.Evaluate">
+    insert into evaluate
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="eid != null">
+        eid,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="eimg != null">
+        eimg,
+      </if>
+      <if test="etime != null">
+        etime,
+      </if>
+      <if test="cid != null">
+        cid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="eid != null">
+        #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="eimg != null">
+        #{eimg,jdbcType=VARCHAR},
+      </if>
+      <if test="etime != null">
+        #{etime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cid != null">
+        #{cid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.tlswn.C71S3Tlswndemo.bean.EvaluateExample" resultType="java.lang.Long">
+    select count(*) from evaluate
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update evaluate
+    <set>
+      <if test="record.eid != null">
+        eid = #{record.eid,jdbcType=INTEGER},
+      </if>
+      <if test="record.uid != null">
+        uid = #{record.uid,jdbcType=INTEGER},
+      </if>
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eimg != null">
+        eimg = #{record.eimg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.etime != null">
+        etime = #{record.etime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.cid != null">
+        cid = #{record.cid,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update evaluate
+    set eid = #{record.eid,jdbcType=INTEGER},
+      uid = #{record.uid,jdbcType=INTEGER},
+      content = #{record.content,jdbcType=VARCHAR},
+      eimg = #{record.eimg,jdbcType=VARCHAR},
+      etime = #{record.etime,jdbcType=TIMESTAMP},
+      cid = #{record.cid,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tlswn.C71S3Tlswndemo.bean.Evaluate">
+    update evaluate
+    <set>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="eimg != null">
+        eimg = #{eimg,jdbcType=VARCHAR},
+      </if>
+      <if test="etime != null">
+        etime = #{etime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cid != null">
+        cid = #{cid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where eid = #{eid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tlswn.C71S3Tlswndemo.bean.Evaluate">
+    update evaluate
+    set uid = #{uid,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      eimg = #{eimg,jdbcType=VARCHAR},
+      etime = #{etime,jdbcType=TIMESTAMP},
+      cid = #{cid,jdbcType=INTEGER}
+    where eid = #{eid,jdbcType=INTEGER}
+  </update>
+</mapper>
