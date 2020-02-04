@@ -1,7 +1,16 @@
 <!DOCTYPE html>
-<html lang="zxx">
-
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head th:include="header::head">
+	<!-- <meta charset="UTF-8"> -->
+</head>
 <body>
+	 <div th:replace="header::.header-most-top"></div>
+	<div th:replace="header::.header-bot"></div>
+	<div th:replace="header::.mfp-hide"></div>
+	<div th:replace="header::#myModal1"></div>
+	<div th:replace="header::#myModal2"></div>
+	<div th:replace="header::.ban-top"></div>
+	<div th:replace="header::.page-head_agile_info_w3l"></div> 
 	<!-- //banner-2 -->
 	<!-- page -->
 	<div class="services-breadcrumb">
@@ -428,7 +437,9 @@
 		</div>
 	</div>
 	<!-- //special offers -->
-
+	<div th:replace="foot::.footer-top"></div>
+	<div th:replace="foot::foot"></div>
+	<div th:replace="foot::.copy-right"></div> 
 
 	<!-- js-files -->
 	<!-- jquery -->
