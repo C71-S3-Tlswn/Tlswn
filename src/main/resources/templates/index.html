@@ -10,7 +10,6 @@
 	<div th:replace="header::#myModal1"></div>
 	<div th:replace="header::#myModal2"></div>
 	<div th:replace="header::.ban-top"></div>
-	<div th:replace="header::.page-head_agile_info_w3l"></div> 
 
 	<!-- //navigation -->
 	<div class="tlinks">Collect from <a href="http://www.cssmoban.com/" >自助建站</a></div>
@@ -1126,19 +1125,20 @@
 	<!-- password-script -->
 	<script>
 		window.onload = function () {
-			document.getElementById("password1").onchange = validatePassword;
-			document.getElementById("password2").onchange = validatePassword;
+			document.getElementById("upass1").onchange = validatePassword;
+			document.getElementById("upass2").onchange = validatePassword;
 		}
 
 		function validatePassword() {
-			var pass2 = document.getElementById("password2").value;
-			var pass1 = document.getElementById("password1").value;
+			var pass2 = document.getElementById("upass1").value;
+			var pass1 = document.getElementById("upass2").value;
 			if (pass1 != pass2)
-				document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+				document.getElementById("upass2").setCustomValidity("密码不一致！");
 			else
-				document.getElementById("password2").setCustomValidity('');
+				document.getElementById("upass2").setCustomValidity('');
 			//empty string means no validation error
 		}
+		
 	</script>
 	<!-- //password-script -->
 
@@ -1186,7 +1186,54 @@
 	<!-- //for bootstrap working -->
 	<!-- //js-files -->
 
-
+	<script type="text/javascript">
+		function logind(){
+			var utel=$("#utel").val();
+			var upass=$("#upass").val();
+			alert(1);
+			$.post("login",
+					{utel: utel,
+						upass : upass},function(result){
+							if(result.code==0){
+								alert(result.msg);
+							}else if(result.code==2){
+								for(var i=0;i<result.data.length;i++){
+									if(result.data[i].field=='utel'){
+										$("#utel").text("用户名"+result.data[i].defaultMseeage);
+									}else if(result.data[i].field=='upass'){
+										$("#upass").text("密码"+result.data[i].defaultMseeage);
+									}
+								}
+							}else if(result.code==1){	
+								$('myModal1').modal('hide');	
+							}							
+			}
+		)}
+		function SingUp(){
+			var uaccount=$("#uaccount").val();
+			var utel=$("#tel").val();	
+			var upass=$("#upass1").val();
+			$.post("SingUp",
+					{uaccount:uaccount,
+						utel:utel,
+						upass:upass
+						},function(result){
+							if(result.code==0){
+								alert(result.msg);
+							}else if(result.code==2){
+								for(var i=0;i<result.data.length;i++){
+									if(result.data[i].field=='utel'){
+										$("#tel").text(result.data[i].defaultMseeage);
+									}else if(result.data[i].field=='uaccount'){
+										$("#uaccount").text(result.data[i].defaultMseeage);
+									}
+								}
+							}else if(result.code==1){	
+								$('myModal2').modal('hide');	
+							}							
+			});
+		}
+	</script>
 </body>
 
 </html>

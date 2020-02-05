@@ -530,21 +530,22 @@
 						<p>
 							加入我们! 让我们来设置你的账户！
 						</p>
-						<form action="#" method="post">
+						<form action="SingUp" method="post">
 							<div class="styled-input agile-styled-input-top">
-								<input type="text" placeholder="名字" name="Name" required="">
+								<input type="text" placeholder="请输入你的名字"  name="uaccount" id="uaccount" required="">
 							</div>
 							<div class="styled-input">
-								<input type="email" placeholder="E-mail" name="Email" required="">
+								<input type="text" placeholder="请输入你的号码" name="utel" id="tel" required="">
 							</div>
 							<div class="styled-input">
-								<input type="password" placeholder="密码" name="password" id="password1" required="">
+								<input type="password" placeholder="请输入你的密码" name="upass" id="upass1" required="">
 							</div>
 							<div class="styled-input">
-								<input type="password" placeholder="确认密码" name="Confirm Password" id="password2" required="">
+								<input type="password" placeholder="请确认密码" name="Confirm Password" id="upass2" required="">
 							</div>
-							<input type="button" value="注册" onclick="">
-						</form>
+								 <button type="button" onclick="SingUp()"> 注册</button>
+								<!-- <input type="submit" value="注册"> -->
+								</form>
 						<p>
 							<a href="#">点击这侧，即代表我同意你的条款</a>
 						</p>
@@ -554,11 +555,7 @@
 			<!-- //Modal content-->
 		</div>
 	</div>
-	
-	<!-- //Modal2 -->
-	<!-- //signup Model -->
-	<!-- //header-bot -->
-	<!-- navigation -->
+
 	<div class="ban-top">
 		<div class="container">
 			<div class="agileits-navi_search">
@@ -755,29 +752,7 @@
 	<!-- //navigation -->
 	<!-- banner-2 -->
 	<div class="page-head_agile_info_w3l"></div>
-	<script type="text/javascript">
-		function logind(){
-			var utel=$("#utel").val();
-			var upass=$("#upass").val();
-			alert(1);
-			$.post("login",
-					{utel: utel,
-						upass : upass},function(result){
-							if(result.code==0){
-								alert(result.msg);
-							}else if(result.code==2){
-								for(var i=0;i<result.data.length;i++){
-									if(result.data[i].field=='account'){
-										$("#uacccount").text("用户名"+result.data[i].defaultMseeage);
-									}else if(result.data[i].field=='pwd'){
-										$("#upass").text("密码"+result.data[i].defaultMseeage);
-									}
-								}
-							}else if(result.code==1){	
-								$('#myModal1').modal('hide');	
-							}							
-			}
-		)}	
-	</script>
+	
 </body>
+
 </html>
