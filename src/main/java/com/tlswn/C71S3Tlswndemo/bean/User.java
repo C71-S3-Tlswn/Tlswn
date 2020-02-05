@@ -1,14 +1,16 @@
 package com.tlswn.C71S3Tlswndemo.bean;
 
+import javax.validation.constraints.NotEmpty;
+
 public class User {
     private Integer uid;
 
     private String uname;
 
     private String uaccount;
-
+    @NotEmpty(message="请填写密码！")
     private String upass;
-
+    @NotEmpty(message="请填写手机号码！")
     private String utel;
 
     private String uemail;

@@ -7,13 +7,13 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="keywords" content="" />
 	<script>
-		addEventListener("load", function () {
+		 addEventListener("load", function () {
 			setTimeout(hideURLbar, 0);
 		}, false);
 
 		function hideURLbar() {
 			window.scrollTo(0, 1);
-		}
+		} 
 	</script>
 	<!--//tags -->
 	<link th:href="@{css/bootstrap.css}" rel="stylesheet" type="text/css" media="all" />
@@ -487,20 +487,20 @@
 						<span class="fa fa-envelope-o" aria-hidden="true"></span>
 					</div>
 					<div class="modal_body_left modal_body_left1">
-						<h3 class="agileinfo_sign">Sign In </h3>
+						<h3 class="agileinfo_sign">登录 </h3>
 						<p>
-							Sign In now, Let's start your Grocery Shopping. Don't have an account?
+							立即登录, 开始你的购物之旅吧. 还没有账号？
 							<a href="#" data-toggle="modal" data-target="#myModal2">
-								Sign Up Now</a>
+								立即注册</a>
 						</p>
-						<form action="#" method="post">
+						<form action="login" method="post">
 							<div class="styled-input agile-styled-input-top">
-								<input type="text" placeholder="User Name" name="Name" required="">
+								<input type="text" placeholder="请输入你电话号码" id="utel" name="uaccount" required="">
 							</div>
 							<div class="styled-input">
-								<input type="password" placeholder="Password" name="password" required="">
+								<input type="password" placeholder="请输入你的密码"  id="upass" name="upass" required="">
 							</div>
-							<input type="submit" value="Sign In">
+							<button type="button" onclick="logind()">登录</button>
 						</form>
 						<div class="clearfix"></div>
 					</div>
@@ -526,27 +526,27 @@
 						<span class="fa fa-envelope-o" aria-hidden="true"></span>
 					</div>
 					<div class="modal_body_left modal_body_left1">
-						<h3 class="agileinfo_sign">Sign Up</h3>
+						<h3 class="agileinfo_sign">注册</h3>
 						<p>
-							Come join the Grocery Shoppy! Let's set up your Account.
+							加入我们! 让我们来设置你的账户！
 						</p>
 						<form action="#" method="post">
 							<div class="styled-input agile-styled-input-top">
-								<input type="text" placeholder="Name" name="Name" required="">
+								<input type="text" placeholder="名字" name="Name" required="">
 							</div>
 							<div class="styled-input">
 								<input type="email" placeholder="E-mail" name="Email" required="">
 							</div>
 							<div class="styled-input">
-								<input type="password" placeholder="Password" name="password" id="password1" required="">
+								<input type="password" placeholder="密码" name="password" id="password1" required="">
 							</div>
 							<div class="styled-input">
-								<input type="password" placeholder="Confirm Password" name="Confirm Password" id="password2" required="">
+								<input type="password" placeholder="确认密码" name="Confirm Password" id="password2" required="">
 							</div>
-							<input type="submit" value="Sign Up">
+							<input type="button" value="注册" onclick="">
 						</form>
 						<p>
-							<a href="#">By clicking register, I agree to your terms</a>
+							<a href="#">点击这侧，即代表我同意你的条款</a>
 						</p>
 					</div>
 				</div>
@@ -755,5 +755,29 @@
 	<!-- //navigation -->
 	<!-- banner-2 -->
 	<div class="page-head_agile_info_w3l"></div>
+	<script type="text/javascript">
+		function logind(){
+			var utel=$("#utel").val();
+			var upass=$("#upass").val();
+			alert(1);
+			$.post("login",
+					{utel: utel,
+						upass : upass},function(result){
+							if(result.code==0){
+								alert(result.msg);
+							}else if(result.code==2){
+								for(var i=0;i<result.data.length;i++){
+									if(result.data[i].field=='account'){
+										$("#uacccount").text("用户名"+result.data[i].defaultMseeage);
+									}else if(result.data[i].field=='pwd'){
+										$("#upass").text("密码"+result.data[i].defaultMseeage);
+									}
+								}
+							}else if(result.code==1){	
+								$('#myModal1').modal('hide');	
+							}							
+			}
+		)}	
+	</script>
 </body>
 </html>
