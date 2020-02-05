@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.tlswn.C71S3Tlswndemo.bean.Admin">
     <id column="aaid" jdbcType="INTEGER" property="aaid" />
     <result column="accounnt" jdbcType="VARCHAR" property="accounnt" />
+    <result column="apass" jdbcType="VARCHAR" property="apass" />
     <result column="aname" jdbcType="VARCHAR" property="aname" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="tel" jdbcType="VARCHAR" property="tel" />
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    aaid, accounnt, aname, email, tel, status, photo
+    aaid, accounnt, apass, aname, email, tel, status, photo
   </sql>
   <select id="selectByExample" parameterType="com.tlswn.C71S3Tlswndemo.bean.AdminExample" resultMap="BaseResultMap">
     select
@@ -102,12 +103,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.tlswn.C71S3Tlswndemo.bean.Admin">
-    insert into admin (aaid, accounnt, aname, 
-      email, tel, status, 
-      photo)
-    values (#{aaid,jdbcType=INTEGER}, #{accounnt,jdbcType=VARCHAR}, #{aname,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{photo,jdbcType=VARCHAR})
+    insert into admin (aaid, accounnt, apass, 
+      aname, email, tel, 
+      status, photo)
+    values (#{aaid,jdbcType=INTEGER}, #{accounnt,jdbcType=VARCHAR}, #{apass,jdbcType=VARCHAR}, 
+      #{aname,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{photo,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.tlswn.C71S3Tlswndemo.bean.Admin">
     insert into admin
@@ -117,6 +118,9 @@
       </if>
       <if test="accounnt != null">
         accounnt,
+      </if>
+      <if test="apass != null">
+        apass,
       </if>
       <if test="aname != null">
         aname,
@@ -140,6 +144,9 @@
       </if>
       <if test="accounnt != null">
         #{accounnt,jdbcType=VARCHAR},
+      </if>
+      <if test="apass != null">
+        #{apass,jdbcType=VARCHAR},
       </if>
       <if test="aname != null">
         #{aname,jdbcType=VARCHAR},
@@ -173,6 +180,9 @@
       <if test="record.accounnt != null">
         accounnt = #{record.accounnt,jdbcType=VARCHAR},
       </if>
+      <if test="record.apass != null">
+        apass = #{record.apass,jdbcType=VARCHAR},
+      </if>
       <if test="record.aname != null">
         aname = #{record.aname,jdbcType=VARCHAR},
       </if>
@@ -197,6 +207,7 @@
     update admin
     set aaid = #{record.aaid,jdbcType=INTEGER},
       accounnt = #{record.accounnt,jdbcType=VARCHAR},
+      apass = #{record.apass,jdbcType=VARCHAR},
       aname = #{record.aname,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
       tel = #{record.tel,jdbcType=VARCHAR},
@@ -211,6 +222,9 @@
     <set>
       <if test="accounnt != null">
         accounnt = #{accounnt,jdbcType=VARCHAR},
+      </if>
+      <if test="apass != null">
+        apass = #{apass,jdbcType=VARCHAR},
       </if>
       <if test="aname != null">
         aname = #{aname,jdbcType=VARCHAR},
@@ -233,6 +247,7 @@
   <update id="updateByPrimaryKey" parameterType="com.tlswn.C71S3Tlswndemo.bean.Admin">
     update admin
     set accounnt = #{accounnt,jdbcType=VARCHAR},
+      apass = #{apass,jdbcType=VARCHAR},
       aname = #{aname,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       tel = #{tel,jdbcType=VARCHAR},

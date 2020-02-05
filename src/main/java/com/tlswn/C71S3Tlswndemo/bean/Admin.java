@@ -5,6 +5,8 @@ public class Admin {
 
     private String accounnt;
 
+    private String apass;
+
     private String aname;
 
     private String email;
@@ -29,6 +31,14 @@ public class Admin {
 
     public void setAccounnt(String accounnt) {
         this.accounnt = accounnt == null ? null : accounnt.trim();
+    }
+
+    public String getApass() {
+        return apass;
+    }
+
+    public void setApass(String apass) {
+        this.apass = apass == null ? null : apass.trim();
     }
 
     public String getAname() {

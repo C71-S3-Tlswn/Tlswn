@@ -5,6 +5,10 @@ public class User {
 
     private String uname;
 
+    private String uaccount;
+
+    private String upass;
+
     private String utel;
 
     private String uemail;
@@ -29,6 +33,22 @@ public class User {
 
     public void setUname(String uname) {
         this.uname = uname == null ? null : uname.trim();
+    }
+
+    public String getUaccount() {
+        return uaccount;
+    }
+
+    public void setUaccount(String uaccount) {
+        this.uaccount = uaccount == null ? null : uaccount.trim();
+    }
+
+    public String getUpass() {
+        return upass;
+    }
+
+    public void setUpass(String upass) {
+        this.upass = upass == null ? null : upass.trim();
     }
 
     public String getUtel() {

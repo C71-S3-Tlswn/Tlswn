@@ -234,6 +234,76 @@ public class AdminExample {
             return (Criteria) this;
         }
 
+        public Criteria andApassIsNull() {
+            addCriterion("apass is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andApassIsNotNull() {
+            addCriterion("apass is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andApassEqualTo(String value) {
+            addCriterion("apass =", value, "apass");
+            return (Criteria) this;
+        }
+
+        public Criteria andApassNotEqualTo(String value) {
+            addCriterion("apass <>", value, "apass");
+            return (Criteria) this;
+        }
+
+        public Criteria andApassGreaterThan(String value) {
+            addCriterion("apass >", value, "apass");
+            return (Criteria) this;
+        }
+
+        public Criteria andApassGreaterThanOrEqualTo(String value) {
+            addCriterion("apass >=", value, "apass");
+            return (Criteria) this;
+        }
+
+        public Criteria andApassLessThan(String value) {
+            addCriterion("apass <", value, "apass");
+            return (Criteria) this;
+        }
+
+        public Criteria andApassLessThanOrEqualTo(String value) {
+            addCriterion("apass <=", value, "apass");
+            return (Criteria) this;
+        }
+
+        public Criteria andApassLike(String value) {
+            addCriterion("apass like", value, "apass");
+            return (Criteria) this;
+        }
+
+        public Criteria andApassNotLike(String value) {
+            addCriterion("apass not like", value, "apass");
+            return (Criteria) this;
+        }
+
+        public Criteria andApassIn(List<String> values) {
+            addCriterion("apass in", values, "apass");
+            return (Criteria) this;
+        }
+
+        public Criteria andApassNotIn(List<String> values) {
+            addCriterion("apass not in", values, "apass");
+            return (Criteria) this;
+        }
+
+        public Criteria andApassBetween(String value1, String value2) {
+            addCriterion("apass between", value1, value2, "apass");
+            return (Criteria) this;
+        }
+
+        public Criteria andApassNotBetween(String value1, String value2) {
+            addCriterion("apass not between", value1, value2, "apass");
+            return (Criteria) this;
+        }
+
         public Criteria andAnameIsNull() {
             addCriterion("aname is null");
             return (Criteria) this;

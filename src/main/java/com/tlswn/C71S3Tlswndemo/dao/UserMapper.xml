@@ -4,6 +4,8 @@
   <resultMap id="BaseResultMap" type="com.tlswn.C71S3Tlswndemo.bean.User">
     <id column="uid" jdbcType="INTEGER" property="uid" />
     <result column="uname" jdbcType="VARCHAR" property="uname" />
+    <result column="uaccount" jdbcType="VARCHAR" property="uaccount" />
+    <result column="upass" jdbcType="VARCHAR" property="upass" />
     <result column="utel" jdbcType="VARCHAR" property="utel" />
     <result column="uemail" jdbcType="VARCHAR" property="uemail" />
     <result column="usex" jdbcType="INTEGER" property="usex" />
@@ -69,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    uid, uname, utel, uemail, usex, uphoto, ucard
+    uid, uname, uaccount, upass, utel, uemail, usex, uphoto, ucard
   </sql>
   <select id="selectByExample" parameterType="com.tlswn.C71S3Tlswndemo.bean.UserExample" resultMap="BaseResultMap">
     select
@@ -102,12 +104,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.tlswn.C71S3Tlswndemo.bean.User">
-    insert into user (uid, uname, utel, 
-      uemail, usex, uphoto, 
-      ucard)
-    values (#{uid,jdbcType=INTEGER}, #{uname,jdbcType=VARCHAR}, #{utel,jdbcType=VARCHAR}, 
-      #{uemail,jdbcType=VARCHAR}, #{usex,jdbcType=INTEGER}, #{uphoto,jdbcType=VARCHAR}, 
-      #{ucard,jdbcType=VARCHAR})
+    insert into user (uid, uname, uaccount, 
+      upass, utel, uemail, 
+      usex, uphoto, ucard
+      )
+    values (#{uid,jdbcType=INTEGER}, #{uname,jdbcType=VARCHAR}, #{uaccount,jdbcType=VARCHAR}, 
+      #{upass,jdbcType=VARCHAR}, #{utel,jdbcType=VARCHAR}, #{uemail,jdbcType=VARCHAR}, 
+      #{usex,jdbcType=INTEGER}, #{uphoto,jdbcType=VARCHAR}, #{ucard,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.tlswn.C71S3Tlswndemo.bean.User">
     insert into user
@@ -117,6 +121,12 @@
       </if>
       <if test="uname != null">
         uname,
+      </if>
+      <if test="uaccount != null">
+        uaccount,
+      </if>
+      <if test="upass != null">
+        upass,
       </if>
       <if test="utel != null">
         utel,
@@ -140,6 +150,12 @@
       </if>
       <if test="uname != null">
         #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="uaccount != null">
+        #{uaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="upass != null">
+        #{upass,jdbcType=VARCHAR},
       </if>
       <if test="utel != null">
         #{utel,jdbcType=VARCHAR},
@@ -173,6 +189,12 @@
       <if test="record.uname != null">
         uname = #{record.uname,jdbcType=VARCHAR},
       </if>
+      <if test="record.uaccount != null">
+        uaccount = #{record.uaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.upass != null">
+        upass = #{record.upass,jdbcType=VARCHAR},
+      </if>
       <if test="record.utel != null">
         utel = #{record.utel,jdbcType=VARCHAR},
       </if>
@@ -197,6 +219,8 @@
     update user
     set uid = #{record.uid,jdbcType=INTEGER},
       uname = #{record.uname,jdbcType=VARCHAR},
+      uaccount = #{record.uaccount,jdbcType=VARCHAR},
+      upass = #{record.upass,jdbcType=VARCHAR},
       utel = #{record.utel,jdbcType=VARCHAR},
       uemail = #{record.uemail,jdbcType=VARCHAR},
       usex = #{record.usex,jdbcType=INTEGER},
@@ -211,6 +235,12 @@
     <set>
       <if test="uname != null">
         uname = #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="uaccount != null">
+        uaccount = #{uaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="upass != null">
+        upass = #{upass,jdbcType=VARCHAR},
       </if>
       <if test="utel != null">
         utel = #{utel,jdbcType=VARCHAR},
@@ -233,6 +263,8 @@
   <update id="updateByPrimaryKey" parameterType="com.tlswn.C71S3Tlswndemo.bean.User">
     update user
     set uname = #{uname,jdbcType=VARCHAR},
+      uaccount = #{uaccount,jdbcType=VARCHAR},
+      upass = #{upass,jdbcType=VARCHAR},
       utel = #{utel,jdbcType=VARCHAR},
       uemail = #{uemail,jdbcType=VARCHAR},
       usex = #{usex,jdbcType=INTEGER},
