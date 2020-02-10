@@ -10,13 +10,13 @@ public class User {
     private Integer uid;
 
     private String uname;
-  /* @NotEmpty(message="请输入账号！")*/
+    /*@NotEmpty(message="请输入账号！")*/
    /* @Length(min=6,max = 12,message="账号长度必须位于6到12之间")*/
     private String uaccount;
-   /* @NotEmpty(message="请填写密码！")*/
+   @NotEmpty(message="请填写密码！")
     private String upass;
  /*  @Pattern(regexp="/^[1][3,4,5,7,8][0-9]{9}$/",message="请输入正确的手机号码")*/
-   /* @NotEmpty(message="请填写手机号码！")*/
+   @NotEmpty(message="请填写手机号码！")
     private String utel;
 
     private String uemail;
