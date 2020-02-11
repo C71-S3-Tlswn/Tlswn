@@ -937,7 +937,6 @@
 
 	<div th:replace="foot::.footer-top"></div>
 	<div th:replace="foot::foot"></div>
-	<div th:replace="foot::.copy-right"></div> 
 	
 	<!-- js-files -->
 	<!-- jquery -->
@@ -967,7 +966,7 @@
 		$('#').modal('show');
 	</script> -->
 	<!-- //popup modal (for signin & signup)-->
-
+	
 	<!-- cart-js -->
 	<script src="js/minicart.js"></script>
 	<script>
@@ -1107,54 +1106,7 @@
 	<!-- //for bootstrap working -->
 	<!-- //js-files -->
 
-	<script type="text/javascript">
-		function logind(){
-			var utel=$("#utel").val();
-			var upass=$("#upass").val();
-			alert(1);
-			$.post("login",
-					{utel: utel,
-						upass : upass},function(result){
-							if(result.code==0){
-								alert(result.msg);
-							}else if(result.code==2){
-								for(var i=0;i<result.data.length;i++){
-									if(result.data[i].field=='utel'){
-										$("#utel").text("用户名"+result.data[i].defaultMseeage);
-									}else if(result.data[i].field=='upass'){
-										$("#upass").text("密码"+result.data[i].defaultMseeage);
-									}
-								}
-							}else if(result.code==1){	
-								$('myModal1').modal('hide');	
-							}							
-			}
-		)}
-		function SingUp(){
-			var uaccount=$("#uaccount").val();
-			var utel=$("#tel").val();	
-			var upass=$("#upass1").val();
-			$.post("SingUp",
-					{uaccount:uaccount,
-						utel:utel,
-						upass:upass
-						},function(result){
-							if(result.code==0){
-								alert(result.msg);
-							}else if(result.code==2){
-								for(var i=0;i<result.data.length;i++){
-									if(result.data[i].field=='utel'){
-										$("#tel").text(result.data[i].defaultMseeage);
-									}else if(result.data[i].field=='uaccount'){
-										$("#uaccount").text(result.data[i].defaultMseeage);
-									}
-								}
-							}else if(result.code==1){	
-								$('myModal2').modal('hide');	
-							}							
-			});
-		}
-	</script>
+	
 </body>
 
 </html>

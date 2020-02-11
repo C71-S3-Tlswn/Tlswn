@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<link href="css/common.css" rel="stylesheet" type="text/css"/>
+<link href="css/login.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+	
+<div class="container login">
+		<div class="span12">
+<div class="ad">
+	<img src="images/login.jpg" width="500" height="330" alt="会员登录" title="会员登录">
+</div>		
+</div>
+		<div class="span12 last">
+			<div class="wrap">
+				<div class="main">
+					<div class="title">
+						<strong>会员登录</strong>USER LOGIN
+					</div>
+					<div class="title">
+						
+					</div>
+					<form id="loginForm" action=""  method="post" novalidate="novalidate">
+						<table>
+							<tbody><tr>
+								<th>手机号:</th>
+								<td>
+									<input type="text" id="utel" name="username" class="text" maxlength="20"/><span></span>
+								</td>
+							</tr>
+							<tr>
+								<th>密&nbsp;&nbsp;码:</th>
+								<td>
+									<input type="password" id="upass" name="password" class="text" maxlength="20" autocomplete="off"/><span></span>
+								</td>
+							</tr>
+							<tr>
+								<th>&nbsp;	
+								</th>
+								<td>
+									<label>
+										<input type="checkbox" id="isRememberUsername" name="isRememberUsername" value="true">记住用户名
+									</label>
+									<label>
+										&nbsp;&nbsp;<a href="retrieve">找回密码</a>
+									</label>
+								</td>
+							</tr>
+							<tr>
+								<th>&nbsp;
+									
+								</th>
+								<td>
+									<input type="button" class="submit" value="登 录" onclick="logind()">
+								</td>
+							</tr>
+							<tr class="register">
+								<th>&nbsp;
+									
+								</th>
+								<td>
+									<dl>
+										<dt>还没有注册账号？</dt>
+										<dd>
+											立即注册即可体验在线购物！
+											<a href="reg">立即注册</a>
+										</dd>
+									</dl>
+								</td>
+							</tr>
+						</tbody></table>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+<script src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+		function logind(){
+			var utel=$("#utel").val();
+			var upass=$("#upass").val();
+			$.post("tologin",
+					{utel: utel,
+						upass : upass},function(result){
+							console.log(result.code);
+							if(result.code==0){
+								alert(result.msg);
+							}else if(result.code==2){
+								for(var i=0;i<result.data.length;i++){
+									if(result.data[i].field=='utel'){
+										console.log(result.data[i].defaultMseeage);
+										$("#utel").text("手机号"+result.data[i].defaultMseeage);
+									}else if(result.data[i].field=='upass'){
+										console.log(1);
+										$("#upass").text("密码"+result.data[i].defaultMseeage);
+									}
+								}
+							}else if(result.code==1){	
+								window.location.href = "/index";
+							}							
+			}
+		);}
+		
+	</script>
+</body>
+</html>

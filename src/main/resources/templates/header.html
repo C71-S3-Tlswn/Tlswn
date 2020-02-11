@@ -60,11 +60,11 @@
 						<span class="fa fa-phone" aria-hidden="true"></span> 001 234 5678
 					</li>
 					<li>
-						<a href="#" data-toggle="modal" data-target="#myModal1">
+						<a href="/login">
 							<span class="fa fa-unlock-alt" aria-hidden="true"></span> 登录</a>
 					</li>
 					<li>
-						<a href="#" data-toggle="modal" data-target="#myModal2">
+						<a href="/reg" >
 							<span class="fa fa-pencil-square-o" aria-hidden="true"></span> 注册 </a>
 					</li>
 				</ul>
@@ -82,7 +82,7 @@
 				<!-- cart details -->
 				<div class="top_nav_right">
 					<div class="wthreecartaits wthreecartaits2 cart cart box_1">
-						<form action="#" method="post" class="last">
+						<form action="" method="post" class="last">
 							<input type="hidden" name="cmd" value="_cart">
 							<input type="hidden" name="display" value="1">
 							<button class="w3view-cart" type="submit" name="submit" value="">
@@ -495,10 +495,10 @@
 						</p>
 						<form action="login" method="post">
 							<div class="styled-input agile-styled-input-top">
-								<input type="text" placeholder="请输入你电话号码" id="utel" name="uaccount" required="">
+								<input type="text" placeholder="请输入你电话号码"  name="uaccount" required="">
 							</div>
 							<div class="styled-input">
-								<input type="password" placeholder="请输入你的密码"  id="upass" name="upass" required="">
+								<input type="password" placeholder="请输入你的密码"  name="upass" required="">
 							</div>
 							<button type="button" onclick="logind()">登录</button>
 						</form>
@@ -530,22 +530,21 @@
 						<p>
 							加入我们! 让我们来设置你的账户！
 						</p>
-						<form action="SingUp" method="post">
+						<form action="#" method="post">
 							<div class="styled-input agile-styled-input-top">
-								<input type="text" placeholder="请输入你的名字"  name="uaccount" id="uaccount" required="">
+								<input type="text" placeholder="名字" name="Name" required="">
 							</div>
 							<div class="styled-input">
-								<input type="text" placeholder="请输入你的号码" name="utel" id="tel" required="">
+								<input type="email" placeholder="E-mail" name="Email" required="">
 							</div>
 							<div class="styled-input">
-								<input type="password" placeholder="请输入你的密码" name="upass" id="upass1" required="">
+								<input type="password" placeholder="密码" name="password" id="password1" required="">
 							</div>
 							<div class="styled-input">
-								<input type="password" placeholder="请确认密码" name="Confirm Password" id="upass2" required="">
+								<input type="password" placeholder="确认密码" name="Confirm Password" id="password2" required="">
 							</div>
-								 <button type="button" onclick="SingUp()"> 注册</button>
-								<!-- <input type="submit" value="注册"> -->
-								</form>
+							<input type="button" value="注册" onclick="">
+						</form>
 						<p>
 							<a href="#">点击这侧，即代表我同意你的条款</a>
 						</p>
@@ -555,7 +554,11 @@
 			<!-- //Modal content-->
 		</div>
 	</div>
-
+	
+	<!-- //Modal2 -->
+	<!-- //signup Model -->
+	<!-- //header-bot -->
+	<!-- navigation -->
 	<div class="ban-top">
 		<div class="container">
 			<div class="agileits-navi_search">
@@ -752,7 +755,29 @@
 	<!-- //navigation -->
 	<!-- banner-2 -->
 	<div class="page-head_agile_info_w3l"></div>
-	
+	<script type="text/javascript">
+		function logind(){
+			var utel=$("#utel").val();
+			var upass=$("#upass").val();
+			alert(1);
+			$.post("login",
+					{utel: utel,
+						upass : upass},function(result){
+							if(result.code==0){
+								alert(result.msg);
+							}else if(result.code==2){
+								for(var i=0;i<result.data.length;i++){
+									if(result.data[i].field=='account'){
+										$("#uacccount").text("用户名"+result.data[i].defaultMseeage);
+									}else if(result.data[i].field=='pwd'){
+										$("#upass").text("密码"+result.data[i].defaultMseeage);
+									}
+								}
+							}else if(result.code==1){	
+								$('#myModal1').modal('hide');	
+							}							
+			}
+		)}	
+	</script>
 </body>
-
 </html>
