@@ -34,6 +34,10 @@ video {
   display: inline-block;
   vertical-align: baseline;
 }
+#imagess{
+	width: 130px;
+	height: 130px;
+}
 audio:not([controls]) {
   display: none;
   height: 0;

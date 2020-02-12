@@ -11,4 +11,5 @@ public class CheckAction {
 	public String Check(){
 		return "checkout";
 	}
+	
 }

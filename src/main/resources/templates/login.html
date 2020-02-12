@@ -82,7 +82,7 @@
 		function logind(){
 			var utel=$("#utel").val();
 			var upass=$("#upass").val();
-			$.post("tologin",
+			$.post("dologin",
 					{utel: utel,
 						upass : upass},function(result){
 							console.log(result.code);
@@ -91,11 +91,9 @@
 							}else if(result.code==2){
 								for(var i=0;i<result.data.length;i++){
 									if(result.data[i].field=='utel'){
-										console.log(result.data[i].defaultMseeage);
-										$("#utel").text("手机号"+result.data[i].defaultMseeage);
+										alert(result.data[i].defaultMseeage);
 									}else if(result.data[i].field=='upass'){
-										console.log(1);
-										$("#upass").text("密码"+result.data[i].defaultMseeage);
+										alert(result.data[i].defaultMseeage);
 									}
 								}
 							}else if(result.code==1){	

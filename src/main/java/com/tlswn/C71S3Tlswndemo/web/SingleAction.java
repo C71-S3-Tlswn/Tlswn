@@ -24,6 +24,10 @@ public class SingleAction {
 	public String Single(){
 		return "single";
 	}
+	@GetMapping("single2")
+	public String Single2(){
+		return "single2";
+	}
 	@GetMapping("single_{id}")
 	public String toSingle(@PathVariable("id") Integer id,Model m){
 		

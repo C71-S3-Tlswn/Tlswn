@@ -18,6 +18,7 @@ import com.tlswn.C71S3Tlswndemo.dao.UserMapper;
 import com.tlswn.C71S3Tlswndemo.vo.Result;
 
 @RestController
+@SessionAttributes("loginUser")
 public class LoginAction {
 
 
@@ -30,7 +31,7 @@ public class LoginAction {
 	public ModelAndView Login(){
 		return new ModelAndView("login");
 	}
-	@PostMapping("tologin")
+	@PostMapping("dologin")
 	public Result login(@Valid User user,Errors errors,Model m){
 		try {
 			if(errors.hasErrors()){
@@ -38,6 +39,7 @@ public class LoginAction {
 			}
 			user=ubiz.login(user);
 			m.addAttribute("loginUser", user);
+			
 			return new Result(1, "登录成功!",user);
 		} catch (BizException e) {
 			e.printStackTrace();
