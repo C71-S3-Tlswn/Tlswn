@@ -6,6 +6,8 @@ public class Type {
     private String tname;
 
     private Integer vid;
+    
+    private Variety variety;
 
     public Integer getTid() {
         return tid;
@@ -30,4 +32,14 @@ public class Type {
     public void setVid(Integer vid) {
         this.vid = vid;
     }
+
+	public Variety getVariety() {
+		return variety;
+	}
+
+	public void setVariety(Variety variety) {
+		this.variety = variety;
+	}
+
+	
 }

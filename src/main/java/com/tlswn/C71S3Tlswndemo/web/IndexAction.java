@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.tlswn.C71S3Tlswndemo.bean.CommodityExample;
+import com.tlswn.C71S3Tlswndemo.bean.CommodityExample.Criteria;
 import com.tlswn.C71S3Tlswndemo.dao.CommodityMapper;
 import com.tlswn.C71S3Tlswndemo.dao.TypeMapper;
 import com.tlswn.C71S3Tlswndemo.dao.VarietyMapper;
@@ -22,7 +24,10 @@ public class IndexAction {
 	
 	@GetMapping({"/","index","index.do"})
 	public String Index(Model m){
-		m.addAttribute("nuts", cm.selectByExample(null));
+		CommodityExample ce=new CommodityExample();
+		Criteria c=ce.createCriteria();
+		c.andTidBetween(1, 5);
+		m.addAttribute("nuts", cm.selectByExample(ce));
 		return "index";
 	}
 
