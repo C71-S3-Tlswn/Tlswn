@@ -22,6 +22,8 @@ public class Commodity {
     private Integer tid;
 
     private Integer sid;
+    
+    private Type type;
 
     public Integer getCid() {
         return cid;
@@ -102,4 +104,12 @@ public class Commodity {
     public void setSid(Integer sid) {
         this.sid = sid;
     }
+
+	public Type getType() {
+		return type;
+	}
+
+	public void setType(Type type) {
+		this.type = type;
+	}
 }

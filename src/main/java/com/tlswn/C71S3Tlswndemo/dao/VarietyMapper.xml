@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.tlswn.C71S3Tlswndemo.bean.Variety">
     <id column="vid" jdbcType="INTEGER" property="vid" />
     <result column="vname" jdbcType="VARCHAR" property="vname" />
+
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>

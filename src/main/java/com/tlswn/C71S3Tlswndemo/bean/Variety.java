@@ -4,6 +4,8 @@ public class Variety {
     private Integer vid;
 
     private String vname;
+    
+   
 
     public Integer getVid() {
         return vid;
@@ -20,4 +22,6 @@ public class Variety {
     public void setVname(String vname) {
         this.vname = vname == null ? null : vname.trim();
     }
+
+	
 }
