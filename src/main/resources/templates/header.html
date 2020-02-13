@@ -26,7 +26,47 @@
 	<link rel="stylesheet" type="text/css" th:href="@{css/jquery-ui1.css}">
 	<!-- fonts -->
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
-</head>
+ 
+ 
+ <script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/Popt.js"></script>
+<script type="text/javascript" src="js/city.json.js"></script>
+<script type="text/javascript" src="js/citySet.js"></script>
+
+<style type="text/css">
+* { -ms-word-wrap: break-word; word-wrap: break-word; }
+html { -webkit-text-size-adjust: none; text-size-adjust: none; }
+html, body {height:99%;width:99%; }
+.wrap{width:464px;height:34px;margin:20px auto;border:0;position:relative;}
+.input{position:absolute;top:0;left:0;width:457px;margin:0;padding-left:5px;height:30px;line-height:30px;font-size:12px;border:1px solid #c9cacb;}
+s{position:absolute;top:1px;right:0;width:32px;height:32px;background:url("img/arrow.png") no-repeat;}
+._citys { width: 450px; display: inline-block; border: 2px solid #eee; padding: 5px; position: relative; }
+._citys span { color: #05920a; height: 15px; width: 15px; line-height: 15px; text-align: center; border-radius: 3px; position: absolute; right: 10px; top: 10px; border: 1px solid #05920a; cursor: pointer; }
+._citys0 { width: 95%; height: 34px; line-height: 34px; display: inline-block; border-bottom: 2px solid #05920a; padding: 0px 5px; font-size:14px; font-weight:bold; margin-left:6px; }
+._citys0 li { display: inline-block; line-height: 34px; font-size: 15px; color: #888; width: 80px; text-align: center; cursor: pointer; }
+._citys1 { width: 100%; display: inline-block; padding: 10px 0; }
+._citys1 a { width: 83px; height: 35px; display: inline-block; background-color: #f5f5f5; color: #666; margin-left: 6px; margin-top: 3px; line-height: 35px; text-align: center; cursor: pointer; font-size: 12px; border-radius: 5px; overflow: hidden; }
+._citys1 a:hover { color: #fff; background-color: #05920a; }
+.AreaS { background-color: #05920a !important; color: #fff !important; }
+</style>
+ 
+ 
+ 
+ <style type="text/css">
+ dialog{
+background-color: #fdf6ec;
+border-color: #faecd8;
+color: #e6a23c;
+top: 150px;
+width: 250px;
+border-radius: 10px;
+border-width: 1px;
+transition: opacity .3s,transform .4s,-webkit-transform .4s;
+}
+
+ </style>
+ 
+ </head>
 
 <body>
 <!-- top-header -->
@@ -67,6 +107,30 @@
 						<a href="/reg" >
 							<span class="fa fa-pencil-square-o" aria-hidden="true"></span> 注册 </a>
 					</li>
+				<li class="dropdown">
+				<a href="#" class="dropdown-toggle nav-stylehead" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+				个人中心
+										<span class="caret"></span>
+									</a>
+									<ul class="dropdown-menu multi-column columns-3" id="ii">
+													<li>
+														<a href="#" >我的订单</a>
+													</li>
+													<li>
+													<a href="dizhi">完善地址</a>
+													</li>
+													<li>
+														<a href="product2.html">购物车</a>
+													</li>
+													<li>
+														<a href="product2.html">我的收藏</a>
+													</li>
+						
+													<li>
+														<a href="product2.html">退出登录</a>
+													</li>
+									</ul>
+								</li>
 				</ul>
 				<!-- //header lists -->
 				<!-- search -->
@@ -475,6 +539,12 @@
 	<!-- //shop locator (popup) -->
 	<!-- signin Model -->
 	<!-- Modal1 -->
+	<div class="modal fade" id="#commonMinDlg" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-lg">
+	<div class="modal-content"></div>
+	</div>
+	
+	</div>
 	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
@@ -554,6 +624,12 @@
 			<!-- //Modal content-->
 		</div>
 	</div>
+	
+	
+	
+<dialog id="showDialog">
+<div>您没有权限访问本页面！</div>
+</dialog>
 	
 	<!-- //Modal2 -->
 	<!-- //signup Model -->
@@ -756,7 +832,7 @@
 	<!-- banner-2 -->
 	<div class="page-head_agile_info_w3l"></div>
 	<script type="text/javascript">
-		function logind(){
+		 function logind(){
 			var utel=$("#utel").val();
 			var upass=$("#upass").val();
 			alert(1);
@@ -777,7 +853,11 @@
 								$('#myModal1').modal('hide');	
 							}							
 			}
-		)}	
+		)}
+	
+		function po(){
+		System.out.print("ssss");
+		}
 	</script>
 </body>
 </html>
