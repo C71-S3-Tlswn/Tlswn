@@ -5,6 +5,7 @@
     <id column="eid" jdbcType="INTEGER" property="eid" />
     <result column="uid" jdbcType="INTEGER" property="uid" />
     <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="egrade" jdbcType="INTEGER" property="egrade" />
     <result column="eimg" jdbcType="VARCHAR" property="eimg" />
     <result column="etime" jdbcType="TIMESTAMP" property="etime" />
     <result column="cid" jdbcType="INTEGER" property="cid" />
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    eid, uid, content, eimg, etime, cid
+    eid, uid, content, egrade, eimg, etime, cid
   </sql>
   <select id="selectByExample" parameterType="com.tlswn.C71S3Tlswndemo.bean.EvaluateExample" resultMap="BaseResultMap">
     select
@@ -102,9 +103,11 @@
   </delete>
   <insert id="insert" parameterType="com.tlswn.C71S3Tlswndemo.bean.Evaluate">
     insert into evaluate (eid, uid, content, 
-      eimg, etime, cid)
+      egrade, eimg, etime, 
+      cid)
     values (#{eid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, 
-      #{eimg,jdbcType=VARCHAR}, #{etime,jdbcType=TIMESTAMP}, #{cid,jdbcType=INTEGER})
+      #{egrade,jdbcType=INTEGER}, #{eimg,jdbcType=VARCHAR}, #{etime,jdbcType=TIMESTAMP}, 
+      #{cid,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.tlswn.C71S3Tlswndemo.bean.Evaluate">
     insert into evaluate
@@ -117,6 +120,9 @@
       </if>
       <if test="content != null">
         content,
+      </if>
+      <if test="egrade != null">
+        egrade,
       </if>
       <if test="eimg != null">
         eimg,
@@ -137,6 +143,9 @@
       </if>
       <if test="content != null">
         #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="egrade != null">
+        #{egrade,jdbcType=INTEGER},
       </if>
       <if test="eimg != null">
         #{eimg,jdbcType=VARCHAR},
@@ -167,6 +176,9 @@
       <if test="record.content != null">
         content = #{record.content,jdbcType=VARCHAR},
       </if>
+      <if test="record.egrade != null">
+        egrade = #{record.egrade,jdbcType=INTEGER},
+      </if>
       <if test="record.eimg != null">
         eimg = #{record.eimg,jdbcType=VARCHAR},
       </if>
@@ -186,6 +198,7 @@
     set eid = #{record.eid,jdbcType=INTEGER},
       uid = #{record.uid,jdbcType=INTEGER},
       content = #{record.content,jdbcType=VARCHAR},
+      egrade = #{record.egrade,jdbcType=INTEGER},
       eimg = #{record.eimg,jdbcType=VARCHAR},
       etime = #{record.etime,jdbcType=TIMESTAMP},
       cid = #{record.cid,jdbcType=INTEGER}
@@ -201,6 +214,9 @@
       </if>
       <if test="content != null">
         content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="egrade != null">
+        egrade = #{egrade,jdbcType=INTEGER},
       </if>
       <if test="eimg != null">
         eimg = #{eimg,jdbcType=VARCHAR},
@@ -218,6 +234,7 @@
     update evaluate
     set uid = #{uid,jdbcType=INTEGER},
       content = #{content,jdbcType=VARCHAR},
+      egrade = #{egrade,jdbcType=INTEGER},
       eimg = #{eimg,jdbcType=VARCHAR},
       etime = #{etime,jdbcType=TIMESTAMP},
       cid = #{cid,jdbcType=INTEGER}

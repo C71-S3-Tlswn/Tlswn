@@ -5,15 +5,18 @@
     <id column="cid" jdbcType="INTEGER" property="cid" />
     <result column="cname" jdbcType="VARCHAR" property="cname" />
     <result column="cphoto" jdbcType="VARCHAR" property="cphoto" />
+    <result column="mprice" jdbcType="DOUBLE" property="mprice" />
     <result column="cprice" jdbcType="DOUBLE" property="cprice" />
     <result column="c_btime" jdbcType="TIMESTAMP" property="cBtime" />
+    <result column="hot" jdbcType="INTEGER" property="hot" />
     <result column="c_etime" jdbcType="TIMESTAMP" property="cEtime" />
     <result column="cnum" jdbcType="INTEGER" property="cnum" />
     <result column="cdescride" jdbcType="VARCHAR" property="cdescride" />
     <result column="tid" jdbcType="INTEGER" property="tid" />
     <result column="sid" jdbcType="INTEGER" property="sid" />
-        <association property="type" column="tid" autoMapping="true" 
-			select="com.tlswn.C71S3Tlswndemo.dao.TypeMapper.selectByPrimaryKey" fetchType="lazy"></association>
+     <association property="type" column="tid" autoMapping="true" 
+			select="com.tlswn.C71S3Tlswndemo.dao.TypeMapper.selectByPrimaryKey" fetchType="lazy">
+	</association>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -74,7 +77,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    cid, cname, cphoto, cprice, c_btime, c_etime, cnum, cdescride, tid, sid
+    cid, cname, cphoto, mprice, cprice, c_btime, hot, c_etime, cnum, cdescride, tid, 
+    sid
   </sql>
   <select id="selectByExample" parameterType="com.tlswn.C71S3Tlswndemo.bean.CommodityExample" resultMap="BaseResultMap">
     select
@@ -108,13 +112,15 @@
   </delete>
   <insert id="insert" parameterType="com.tlswn.C71S3Tlswndemo.bean.Commodity">
     insert into commodity (cid, cname, cphoto, 
-      cprice, c_btime, c_etime, 
-      cnum, cdescride, tid, 
-      sid)
+      mprice, cprice, c_btime, 
+      hot, c_etime, cnum, 
+      cdescride, tid, sid
+      )
     values (#{cid,jdbcType=INTEGER}, #{cname,jdbcType=VARCHAR}, #{cphoto,jdbcType=VARCHAR}, 
-      #{cprice,jdbcType=DOUBLE}, #{cBtime,jdbcType=TIMESTAMP}, #{cEtime,jdbcType=TIMESTAMP}, 
-      #{cnum,jdbcType=INTEGER}, #{cdescride,jdbcType=VARCHAR}, #{tid,jdbcType=INTEGER}, 
-      #{sid,jdbcType=INTEGER})
+      #{mprice,jdbcType=DOUBLE}, #{cprice,jdbcType=DOUBLE}, #{cBtime,jdbcType=TIMESTAMP}, 
+      #{hot,jdbcType=INTEGER}, #{cEtime,jdbcType=TIMESTAMP}, #{cnum,jdbcType=INTEGER}, 
+      #{cdescride,jdbcType=VARCHAR}, #{tid,jdbcType=INTEGER}, #{sid,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.tlswn.C71S3Tlswndemo.bean.Commodity">
     insert into commodity
@@ -128,11 +134,17 @@
       <if test="cphoto != null">
         cphoto,
       </if>
+      <if test="mprice != null">
+        mprice,
+      </if>
       <if test="cprice != null">
         cprice,
       </if>
       <if test="cBtime != null">
         c_btime,
+      </if>
+      <if test="hot != null">
+        hot,
       </if>
       <if test="cEtime != null">
         c_etime,
@@ -160,11 +172,17 @@
       <if test="cphoto != null">
         #{cphoto,jdbcType=VARCHAR},
       </if>
+      <if test="mprice != null">
+        #{mprice,jdbcType=DOUBLE},
+      </if>
       <if test="cprice != null">
         #{cprice,jdbcType=DOUBLE},
       </if>
       <if test="cBtime != null">
         #{cBtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hot != null">
+        #{hot,jdbcType=INTEGER},
       </if>
       <if test="cEtime != null">
         #{cEtime,jdbcType=TIMESTAMP},
@@ -201,11 +219,17 @@
       <if test="record.cphoto != null">
         cphoto = #{record.cphoto,jdbcType=VARCHAR},
       </if>
+      <if test="record.mprice != null">
+        mprice = #{record.mprice,jdbcType=DOUBLE},
+      </if>
       <if test="record.cprice != null">
         cprice = #{record.cprice,jdbcType=DOUBLE},
       </if>
       <if test="record.cBtime != null">
         c_btime = #{record.cBtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.hot != null">
+        hot = #{record.hot,jdbcType=INTEGER},
       </if>
       <if test="record.cEtime != null">
         c_etime = #{record.cEtime,jdbcType=TIMESTAMP},
@@ -232,8 +256,10 @@
     set cid = #{record.cid,jdbcType=INTEGER},
       cname = #{record.cname,jdbcType=VARCHAR},
       cphoto = #{record.cphoto,jdbcType=VARCHAR},
+      mprice = #{record.mprice,jdbcType=DOUBLE},
       cprice = #{record.cprice,jdbcType=DOUBLE},
       c_btime = #{record.cBtime,jdbcType=TIMESTAMP},
+      hot = #{record.hot,jdbcType=INTEGER},
       c_etime = #{record.cEtime,jdbcType=TIMESTAMP},
       cnum = #{record.cnum,jdbcType=INTEGER},
       cdescride = #{record.cdescride,jdbcType=VARCHAR},
@@ -252,11 +278,17 @@
       <if test="cphoto != null">
         cphoto = #{cphoto,jdbcType=VARCHAR},
       </if>
+      <if test="mprice != null">
+        mprice = #{mprice,jdbcType=DOUBLE},
+      </if>
       <if test="cprice != null">
         cprice = #{cprice,jdbcType=DOUBLE},
       </if>
       <if test="cBtime != null">
         c_btime = #{cBtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hot != null">
+        hot = #{hot,jdbcType=INTEGER},
       </if>
       <if test="cEtime != null">
         c_etime = #{cEtime,jdbcType=TIMESTAMP},
@@ -280,8 +312,10 @@
     update commodity
     set cname = #{cname,jdbcType=VARCHAR},
       cphoto = #{cphoto,jdbcType=VARCHAR},
+      mprice = #{mprice,jdbcType=DOUBLE},
       cprice = #{cprice,jdbcType=DOUBLE},
       c_btime = #{cBtime,jdbcType=TIMESTAMP},
+      hot = #{hot,jdbcType=INTEGER},
       c_etime = #{cEtime,jdbcType=TIMESTAMP},
       cnum = #{cnum,jdbcType=INTEGER},
       cdescride = #{cdescride,jdbcType=VARCHAR},

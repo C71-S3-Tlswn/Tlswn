@@ -295,6 +295,66 @@ public class EvaluateExample {
             return (Criteria) this;
         }
 
+        public Criteria andEgradeIsNull() {
+            addCriterion("egrade is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEgradeIsNotNull() {
+            addCriterion("egrade is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEgradeEqualTo(Integer value) {
+            addCriterion("egrade =", value, "egrade");
+            return (Criteria) this;
+        }
+
+        public Criteria andEgradeNotEqualTo(Integer value) {
+            addCriterion("egrade <>", value, "egrade");
+            return (Criteria) this;
+        }
+
+        public Criteria andEgradeGreaterThan(Integer value) {
+            addCriterion("egrade >", value, "egrade");
+            return (Criteria) this;
+        }
+
+        public Criteria andEgradeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("egrade >=", value, "egrade");
+            return (Criteria) this;
+        }
+
+        public Criteria andEgradeLessThan(Integer value) {
+            addCriterion("egrade <", value, "egrade");
+            return (Criteria) this;
+        }
+
+        public Criteria andEgradeLessThanOrEqualTo(Integer value) {
+            addCriterion("egrade <=", value, "egrade");
+            return (Criteria) this;
+        }
+
+        public Criteria andEgradeIn(List<Integer> values) {
+            addCriterion("egrade in", values, "egrade");
+            return (Criteria) this;
+        }
+
+        public Criteria andEgradeNotIn(List<Integer> values) {
+            addCriterion("egrade not in", values, "egrade");
+            return (Criteria) this;
+        }
+
+        public Criteria andEgradeBetween(Integer value1, Integer value2) {
+            addCriterion("egrade between", value1, value2, "egrade");
+            return (Criteria) this;
+        }
+
+        public Criteria andEgradeNotBetween(Integer value1, Integer value2) {
+            addCriterion("egrade not between", value1, value2, "egrade");
+            return (Criteria) this;
+        }
+
         public Criteria andEimgIsNull() {
             addCriterion("eimg is null");
             return (Criteria) this;
