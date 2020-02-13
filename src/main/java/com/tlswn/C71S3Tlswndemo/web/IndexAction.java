@@ -1,11 +1,9 @@
 package com.tlswn.C71S3Tlswndemo.web;
 
 import javax.annotation.Resource;
-import javax.el.VariableMapper;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import com.tlswn.C71S3Tlswndemo.bean.CommodityExample;
 import com.tlswn.C71S3Tlswndemo.bean.CommodityExample.Criteria;
@@ -13,6 +11,17 @@ import com.tlswn.C71S3Tlswndemo.bean.TypeExample;
 import com.tlswn.C71S3Tlswndemo.dao.CommodityMapper;
 import com.tlswn.C71S3Tlswndemo.dao.TypeMapper;
 import com.tlswn.C71S3Tlswndemo.dao.VarietyMapper;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.tlswn.C71S3Tlswndemo.bean.Addr;
+
+import com.tlswn.C71S3Tlswndemo.bean.UserExample;
+
+import com.tlswn.C71S3Tlswndemo.dao.AddrMapper;
+import com.tlswn.C71S3Tlswndemo.dao.UserMapper;
+
 
 @Controller
 public class IndexAction {
@@ -37,5 +46,21 @@ public class IndexAction {
 		m.addAttribute("type", tm.selectByExample(te));
 		return "index";
 	}
-
+	@GetMapping({"dizhi","dizhi.do"})
+	public String dizhi(){
+		return "dizi";
+	}
+	/*@PostMapping("bh.do")
+	public String dizi( Addr addr,String uname){
+	    
+		UserExample ue=new UserExample();
+		//构建条件e
+		Criteria c=ue.createCriteria();
+		c.andUnameEqualTo(uname);
+	   Integer cc= us.selectByExample(ue).get(0).getUid();
+	   addr.setUid(cc);
+	  int v= ad.insert(addr);
+		System.out.println("........"+v);
+		return "index";
+	}*/
 }

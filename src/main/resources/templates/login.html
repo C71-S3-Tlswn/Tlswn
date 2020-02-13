@@ -23,7 +23,7 @@
 					<div class="title">
 						
 					</div>
-					<form id="loginForm" action=""  method="post" novalidate="novalidate">
+					<form id="loginForm" action="#"  method="post" novalidate="novalidate">
 						<table>
 							<tbody><tr>
 								<th>手机号:</th>
@@ -85,7 +85,6 @@
 			$.post("dologin",
 					{utel: utel,
 						upass : upass},function(result){
-							console.log(result.code);
 							if(result.code==0){
 								alert(result.msg);
 							}else if(result.code==2){
@@ -97,10 +96,10 @@
 									}
 								}
 							}else if(result.code==1){	
-								window.location.href = "/index";
+								window.location.href = "/";
 							}							
 			}
-		);}
+		)}
 		
 	</script>
 </body>

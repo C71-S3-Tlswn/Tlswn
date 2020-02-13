@@ -18,7 +18,7 @@ import com.tlswn.C71S3Tlswndemo.dao.UserMapper;
 import com.tlswn.C71S3Tlswndemo.vo.Result;
 
 @RestController
-@SessionAttributes("loginUser")
+@SessionAttributes("User")
 public class LoginAction {
 
 
@@ -36,11 +36,11 @@ public class LoginAction {
 		try {
 			if(errors.hasErrors()){
 				return new Result(2, "表单验证错误",errors.getFieldErrors());
-			}
-			user=ubiz.login(user);
-			m.addAttribute("loginUser", user);
-			
-			return new Result(1, "登录成功!",user);
+			}else{
+				user=ubiz.login(user);
+				m.addAttribute("User", user);
+				return new Result(1, "登录成功!",user);
+			}	
 		} catch (BizException e) {
 			e.printStackTrace();
 			return new Result(0, e.getMessage());
