@@ -9,6 +9,8 @@ public class Evaluate {
 
     private String content;
 
+    private Integer egrade;
+
     private String eimg;
 
     private Date etime;
@@ -37,6 +39,14 @@ public class Evaluate {
 
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
+    }
+
+    public Integer getEgrade() {
+        return egrade;
+    }
+
+    public void setEgrade(Integer egrade) {
+        this.egrade = egrade;
     }
 
     public String getEimg() {

@@ -305,6 +305,66 @@ public class CommodityExample {
             return (Criteria) this;
         }
 
+        public Criteria andMpriceIsNull() {
+            addCriterion("mprice is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMpriceIsNotNull() {
+            addCriterion("mprice is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMpriceEqualTo(Double value) {
+            addCriterion("mprice =", value, "mprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andMpriceNotEqualTo(Double value) {
+            addCriterion("mprice <>", value, "mprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andMpriceGreaterThan(Double value) {
+            addCriterion("mprice >", value, "mprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andMpriceGreaterThanOrEqualTo(Double value) {
+            addCriterion("mprice >=", value, "mprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andMpriceLessThan(Double value) {
+            addCriterion("mprice <", value, "mprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andMpriceLessThanOrEqualTo(Double value) {
+            addCriterion("mprice <=", value, "mprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andMpriceIn(List<Double> values) {
+            addCriterion("mprice in", values, "mprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andMpriceNotIn(List<Double> values) {
+            addCriterion("mprice not in", values, "mprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andMpriceBetween(Double value1, Double value2) {
+            addCriterion("mprice between", value1, value2, "mprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andMpriceNotBetween(Double value1, Double value2) {
+            addCriterion("mprice not between", value1, value2, "mprice");
+            return (Criteria) this;
+        }
+
         public Criteria andCpriceIsNull() {
             addCriterion("cprice is null");
             return (Criteria) this;
@@ -422,6 +482,66 @@ public class CommodityExample {
 
         public Criteria andCBtimeNotBetween(Date value1, Date value2) {
             addCriterion("c_btime not between", value1, value2, "cBtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andHotIsNull() {
+            addCriterion("hot is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHotIsNotNull() {
+            addCriterion("hot is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHotEqualTo(Integer value) {
+            addCriterion("hot =", value, "hot");
+            return (Criteria) this;
+        }
+
+        public Criteria andHotNotEqualTo(Integer value) {
+            addCriterion("hot <>", value, "hot");
+            return (Criteria) this;
+        }
+
+        public Criteria andHotGreaterThan(Integer value) {
+            addCriterion("hot >", value, "hot");
+            return (Criteria) this;
+        }
+
+        public Criteria andHotGreaterThanOrEqualTo(Integer value) {
+            addCriterion("hot >=", value, "hot");
+            return (Criteria) this;
+        }
+
+        public Criteria andHotLessThan(Integer value) {
+            addCriterion("hot <", value, "hot");
+            return (Criteria) this;
+        }
+
+        public Criteria andHotLessThanOrEqualTo(Integer value) {
+            addCriterion("hot <=", value, "hot");
+            return (Criteria) this;
+        }
+
+        public Criteria andHotIn(List<Integer> values) {
+            addCriterion("hot in", values, "hot");
+            return (Criteria) this;
+        }
+
+        public Criteria andHotNotIn(List<Integer> values) {
+            addCriterion("hot not in", values, "hot");
+            return (Criteria) this;
+        }
+
+        public Criteria andHotBetween(Integer value1, Integer value2) {
+            addCriterion("hot between", value1, value2, "hot");
+            return (Criteria) this;
+        }
+
+        public Criteria andHotNotBetween(Integer value1, Integer value2) {
+            addCriterion("hot not between", value1, value2, "hot");
             return (Criteria) this;
         }
 

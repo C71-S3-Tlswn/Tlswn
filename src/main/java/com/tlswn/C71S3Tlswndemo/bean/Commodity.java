@@ -9,9 +9,13 @@ public class Commodity {
 
     private String cphoto;
 
+    private Double mprice;
+
     private Double cprice;
 
     private Date cBtime;
+
+    private Integer hot;
 
     private Date cEtime;
 
@@ -22,8 +26,6 @@ public class Commodity {
     private Integer tid;
 
     private Integer sid;
-    
-    private Type type;
 
     public Integer getCid() {
         return cid;
@@ -49,6 +51,14 @@ public class Commodity {
         this.cphoto = cphoto == null ? null : cphoto.trim();
     }
 
+    public Double getMprice() {
+        return mprice;
+    }
+
+    public void setMprice(Double mprice) {
+        this.mprice = mprice;
+    }
+
     public Double getCprice() {
         return cprice;
     }
@@ -63,6 +73,14 @@ public class Commodity {
 
     public void setcBtime(Date cBtime) {
         this.cBtime = cBtime;
+    }
+
+    public Integer getHot() {
+        return hot;
+    }
+
+    public void setHot(Integer hot) {
+        this.hot = hot;
     }
 
     public Date getcEtime() {
@@ -104,12 +122,4 @@ public class Commodity {
     public void setSid(Integer sid) {
         this.sid = sid;
     }
-
-	public Type getType() {
-		return type;
-	}
-
-	public void setType(Type type) {
-		this.type = type;
-	}
 }
