@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.tlswn.C71S3Tlswndemo.bean.CommodityExample;
 import com.tlswn.C71S3Tlswndemo.bean.CommodityExample.Criteria;
+import com.tlswn.C71S3Tlswndemo.bean.TypeExample;
 import com.tlswn.C71S3Tlswndemo.dao.CommodityMapper;
 import com.tlswn.C71S3Tlswndemo.dao.TypeMapper;
 import com.tlswn.C71S3Tlswndemo.dao.VarietyMapper;
@@ -22,12 +23,18 @@ public class IndexAction {
 	@Resource
 	private TypeMapper tm;
 	
+	
 	@GetMapping({"/","index","index.do"})
 	public String Index(Model m){
 		CommodityExample ce=new CommodityExample();
 		Criteria c=ce.createCriteria();
 		c.andTidBetween(1, 5);
 		m.addAttribute("nuts", cm.selectByExample(ce));
+		m.addAttribute("variety",vm.selectByExample(null) );
+		TypeExample te=new TypeExample();
+		com.tlswn.C71S3Tlswndemo.bean.TypeExample.Criteria cr=te.createCriteria();
+		cr.andVidEqualTo(1);
+		m.addAttribute("type", tm.selectByExample(te));
 		return "index";
 	}
 
