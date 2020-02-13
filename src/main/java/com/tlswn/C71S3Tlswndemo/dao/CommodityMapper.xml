@@ -14,6 +14,9 @@
     <result column="cdescride" jdbcType="VARCHAR" property="cdescride" />
     <result column="tid" jdbcType="INTEGER" property="tid" />
     <result column="sid" jdbcType="INTEGER" property="sid" />
+     <association property="type" column="tid" autoMapping="true" 
+			select="com.tlswn.C71S3Tlswndemo.dao.TypeMapper.selectByPrimaryKey" fetchType="lazy">
+	</association>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>

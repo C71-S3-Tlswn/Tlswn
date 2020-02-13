@@ -26,8 +26,20 @@ public class Commodity {
     private Integer tid;
 
     private Integer sid;
+    
+    private Type type;
+    
+    
 
-    public Integer getCid() {
+    public Type getType() {
+		return type;
+	}
+
+	public void setType(Type type) {
+		this.type = type;
+	}
+
+	public Integer getCid() {
         return cid;
     }
 
