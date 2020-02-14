@@ -45,15 +45,7 @@
 						<ul class="slides">
 							<li data-thumb="images/si.jpg">
 								<div class="thumb-image">
-									<img src="images/si.jpg" data-imagezoom="true" class="img-responsive" alt=""> </div>
-							</li>
-							<li data-thumb="images/si2.jpg">
-								<div class="thumb-image">
-									<img src="images/si2.jpg" data-imagezoom="true" class="img-responsive" alt=""> </div>
-							</li>
-							<li data-thumb="images/si3.jpg">
-								<div class="thumb-image">
-									<img src="images/si3.jpg" data-imagezoom="true" class="img-responsive" alt=""> </div>
+									<img th:src="${commodity.cphoto}" data-imagezoom="true" class="img-responsive" alt=""> </div>
 							</li>
 						</ul>
 						<div class="clearfix"></div>
@@ -61,7 +53,7 @@
 				</div>
 			</div>
 			<div class="col-md-7 single-right-left simpleCart_shelfItem">
-				<h3>Zeeba Premium Basmati Rice - 5 KG</h3>
+				<h3 th:text="${commodity.cname}"></h3>
 				<div class="rating1">
 					<span class="starRating">
 						<input id="rating5" type="radio" name="rating" value="5">
@@ -77,34 +69,35 @@
 					</span>
 				</div>
 				<p>
-					<span class="item_price">$950.00</span>
+					
+					<span class="item_price" th:text="|￥:${commodity.cprice}"></span>
 					<del>$1300.00</del>
-					<label>Free delivery</label>
+					<label>免费送货</label>
 				</p>
 				<div class="single-infoagile">
 					<ul>
 						<li>
-							Cash on Delivery Eligible.
+							货到付款
 						</li>
 						<li>
-							Shipping Speed to Delivery.
+							极速送货
 						</li>
 						<li>
 							Sold and fulfilled by Supple Tek (3.6 out of 5 | 8 ratings).
 						</li>
 						<li>
 							1 offer from
-							<span class="item_price">$950.00</span>
+							<span class="item_price" th:text="${commodity.cprice}"></span>
 						</li>
 					</ul>
 				</div>
 				<div class="product-single-w3l">
 					<p>
-						<i class="fa fa-hand-o-right" aria-hidden="true"></i>This is a
-						<label>Vegetarian</label> product.</p>
+						<i class="fa fa-hand-o-right" aria-hidden="true"></i>这是
+						<label>Vegetarian</label> 产品</p>
 					<ul>
 						<li>
-							Best for Biryani and Pulao.
+							上市时间
 						</li>
 						<li>
 							After cooking, Zeeba Basmati rice grains attain an extra ordinary length of upto 2.4 cm/~1 inch.
@@ -112,13 +105,13 @@
 						<li>
 							Zeeba Basmati rice adheres to the highest food afety standards as your health is paramount to us.
 						</li>
-						<li>
-							Contains only the best and purest grade of basmati rice grain of Export quality.
+						<li th:text="${commodity.cdescride}">
+						
 						</li>
 					</ul>
 					<p>
-						<i class="fa fa-refresh" aria-hidden="true"></i>All food products are
-						<label>non-returnable.</label>
+						<i class="fa fa-refresh" aria-hidden="true"></i>所有商品
+						<label>均不可退货</label>
 					</p>
 				</div>
 				<div class="occasion-cart">
@@ -134,7 +127,7 @@
 								<input type="hidden" name="currency_code" value="USD" />
 								<input type="hidden" name="return" value=" " />
 								<input type="hidden" name="cancel_return" value=" " />
-								<input type="submit" name="submit" value="Add to cart" class="button" />
+								<input type="submit" name="submit" value="添加到购车" class="button" />
 							</fieldset>
 						</form>
 					</div>
@@ -150,6 +143,55 @@
 	<div class="featured-section" id="projects">
 		<div class="container">
 			<!-- tittle heading -->
+			<h3 class="tittle-w3l">评论
+				<span class="heading-style">
+					<i></i>
+					<i></i>
+					<i></i>
+				</span>
+			</h3>
+			<div class="content-bottom-in">
+				<ul id="flexiselDemo1">
+					<li>
+						<div class="w3l-specilamk">
+							<div class="speioffer-agile">
+								<a href="single.html" style="background-position: left;">
+									<img src="images/s1.jpg" class="img-responsive" height="2px" width="24px" alt="">
+								</a>
+							</div>
+							<div style="margin-left: 35px;margin-top: -29px">
+								<a>123</a>
+								
+							</div>
+							<div class="product-name-w3l">
+								<h4>
+									<a href="single.html">Aashirvaad, 5g</a>
+								</h4>
+								<div class="w3l-pricehkj">
+									<h6>$220.00</h6>
+									<p>Save $40.00</p>
+								</div>
+								<!-- <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+									<form action="#" method="post">
+										<fieldset>
+											<input type="hidden" name="cmd" value="_cart" />
+											<input type="hidden" name="add" value="1" />
+											<input type="hidden" name="business" value=" " />
+											<input type="hidden" name="item_name" value="Aashirvaad, 5g" />
+											<input type="hidden" name="amount" value="220.00" />
+											<input type="hidden" name="discount_amount" value="1.00" />
+											<input type="hidden" name="currency_code" value="USD" />
+											<input type="hidden" name="return" value=" " />
+											<input type="hidden" name="cancel_return" value=" " />
+											<input type="submit" name="submit" value="Add to cart" class="button" />
+										</fieldset>
+									</form>
+								</div> -->
+							</div>
+						</div>
+					</li>
+				</ul>
+			
 			<h3 class="tittle-w3l">Add More
 				<span class="heading-style">
 					<i></i>
@@ -439,7 +481,6 @@
 	<!-- //special offers -->
 	<div th:replace="foot::.footer-top"></div>
 	<div th:replace="foot::foot"></div>
-	<div th:replace="foot::.copy-right"></div> 
 
 	<!-- js-files -->
 	<!-- jquery -->

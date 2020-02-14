@@ -6,7 +6,8 @@
     <result column="tname" jdbcType="VARCHAR" property="tname" />
     <result column="vid" jdbcType="INTEGER" property="vid" />
     <association property="variety" column="vid" autoMapping="true" 
-			select="com.tlswn.C71S3Tlswndemo.dao.VarietyMapper.selectByPrimaryKey" fetchType="lazy"></association>
+			select="com.tlswn.C71S3Tlswndemo.dao.VarietyMapper.selectByPrimaryKey" fetchType="lazy">
+	</association>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
