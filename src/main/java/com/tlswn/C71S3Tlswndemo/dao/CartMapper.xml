@@ -7,6 +7,9 @@
     <result column="price" jdbcType="DOUBLE" property="price" />
     <result column="uid" jdbcType="INTEGER" property="uid" />
     <result column="cid" jdbcType="INTEGER" property="cid" />
+     <association property="commodity" column="cid" autoMapping="true" 
+			select="com.tlswn.C71S3Tlswndemo.dao.CommodityMapper.selectByPrimaryKey" fetchType="lazy">
+	</association>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>

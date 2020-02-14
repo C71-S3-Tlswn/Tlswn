@@ -10,8 +10,19 @@ public class Cart {
     private Integer uid;
 
     private Integer cid;
+    
+    private Commodity commodity;
+    
 
-    public Integer getCcid() {
+    public Commodity getCommodity() {
+		return commodity;
+	}
+
+	public void setCommodity(Commodity commodity) {
+		this.commodity = commodity;
+	}
+
+	public Integer getCcid() {
         return ccid;
     }
 
