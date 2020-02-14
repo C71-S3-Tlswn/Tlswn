@@ -19,6 +19,5 @@ public class CheckAction {
 	/*@ModelAttribute
 	public void init(Model m,@SessionAttribute("User") User user){
 		
-	}*/
-	
+	}*/	
 }

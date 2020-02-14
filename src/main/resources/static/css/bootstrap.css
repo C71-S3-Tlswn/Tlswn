@@ -4529,10 +4529,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-default .navbar-toggle {
   border-color: #ddd;
-}.imagess{
-  	width: 130px;
-  	height: 130px;
-  }
+}
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
   background-color: #ddd;
