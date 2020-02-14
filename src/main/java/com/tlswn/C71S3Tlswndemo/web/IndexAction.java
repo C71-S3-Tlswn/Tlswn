@@ -2,6 +2,7 @@ package com.tlswn.C71S3Tlswndemo.web;
 
 import javax.annotation.Resource;
 
+import org.springframework.format.datetime.DateFormatter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -12,7 +13,9 @@ import com.tlswn.C71S3Tlswndemo.dao.CommodityMapper;
 import com.tlswn.C71S3Tlswndemo.dao.TypeMapper;
 import com.tlswn.C71S3Tlswndemo.dao.VarietyMapper;
 
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.tlswn.C71S3Tlswndemo.bean.Addr;
@@ -63,4 +66,9 @@ public class IndexAction {
 		System.out.println("........"+v);
 		return "index";
 	}*/
+	 @InitBinder
+	  protected void initBinder(WebDataBinder binder) {
+		 //添加日期类型转换
+		 binder.addCustomFormatter(new DateFormatter("yyyy-MM-dd"));
+	 }
 }

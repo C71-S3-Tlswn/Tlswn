@@ -71,7 +71,7 @@
 				<p>
 					
 					<span class="item_price" th:text="|￥:${commodity.cprice}"></span>
-					<del>$1300.00</del>
+					<del th:text="|￥:${commodity.mprice}"></del>
 					<label>免费送货</label>
 				</p>
 				<div class="single-infoagile">
@@ -94,9 +94,9 @@
 				<div class="product-single-w3l">
 					<p>
 						<i class="fa fa-hand-o-right" aria-hidden="true"></i>这是
-						<label>Vegetarian</label> 产品</p>
+						<label th:text="${commodity.type.tname}">Vegetarian</label> 产品</p>
 					<ul>
-						<li>
+						<li th:text="${commodity.cBtime}">
 							上市时间
 						</li>
 						<li>
