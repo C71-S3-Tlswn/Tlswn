@@ -96,7 +96,7 @@
 						<i class="fa fa-hand-o-right" aria-hidden="true"></i>这是
 						<label>Vegetarian</label> 产品</p>
 					<ul>
-						<li>
+						<li th:text="${#dates.format(commodity.cBtime, 'yyyy-MM-dd HH:mm')}">
 							上市时间
 						</li>
 						<li>
@@ -151,26 +151,27 @@
 				</span>
 			</h3>
 			<div class="content-bottom-in">
-				<ul id="flexiselDemo1">
-					<li>
+				<ul id="flexiselDemo1" >
+					<li th:each="ev:${evs}>
 						<div class="w3l-specilamk">
 							<div class="speioffer-agile">
 								<a href="single.html" style="background-position: left;">
-									<img src="images/s1.jpg" class="img-responsive" height="2px" width="24px" alt="">
+									<img src="images/s2.jpg" class="img-responsive" height="2px" width="24px" alt="">
 								</a>
 							</div>
-							<div style="margin-left: 35px;margin-top: -29px">
-								<a>123</a>
-								
+							<div style="margin-left: 35px;margin-top: -18px">
+								<a style="color: black;" th:text="">123</a>
+								<label style="margin-left: 200px;font-size: 30px;color: red;" th:text="${ev.egrade}">6.0</label>
 							</div>
 							<div class="product-name-w3l">
 								<h4>
-									<a href="single.html">Aashirvaad, 5g</a>
+									<a href="" th:text="${ev.content}">Aashirvaad</a>
 								</h4>
 								<div class="w3l-pricehkj">
-									<h6>$220.00</h6>
+									
 									<p>Save $40.00</p>
 								</div>
+								<h5 style="text-align: right;" th:text="${#dates.format(ev.etime, 'yyyy-MM-dd HH:mm')}">$220.00</h5>
 								<!-- <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 									<form action="#" method="post">
 										<fieldset>
