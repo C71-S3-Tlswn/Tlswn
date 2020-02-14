@@ -83,6 +83,10 @@ sup {
 sub {
   bottom: -.25em;
 }
+#imagess{
+	width: 130px;
+	height: 130px;
+}
 img {
   border: 0;
 }

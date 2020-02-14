@@ -37,7 +37,7 @@ public class IndexAction {
 	public String Index(Model m){
 		CommodityExample ce=new CommodityExample();
 		Criteria c=ce.createCriteria();
-		c.andTidBetween(1, 5);
+		c.andTidBetween(1, 5).andCidLessThan(4);
 		m.addAttribute("nuts", cm.selectByExample(ce));
 		m.addAttribute("variety",vm.selectByExample(null) );
 		TypeExample te=new TypeExample();
