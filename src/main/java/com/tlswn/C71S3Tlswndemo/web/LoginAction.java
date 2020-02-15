@@ -1,12 +1,15 @@
 package com.tlswn.C71S3Tlswndemo.web;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,7 +20,7 @@ import com.tlswn.C71S3Tlswndemo.biz.UserBiz;
 import com.tlswn.C71S3Tlswndemo.dao.UserMapper;
 import com.tlswn.C71S3Tlswndemo.vo.Result;
 
-@RestController
+@Controller
 @SessionAttributes("User")
 public class LoginAction {
 
@@ -31,14 +34,16 @@ public class LoginAction {
 	public ModelAndView Login(){
 		return new ModelAndView("login");
 	}
+	@ResponseBody
 	@PostMapping("dologin")
-	public Result login(@Valid User user,Errors errors,Model m){
+	public Result login(@Valid User user,Errors errors,Model m,HttpSession sess){
 		try {
 			if(errors.hasErrors()){
 				return new Result(2, "表单验证错误",errors.getFieldErrors());
 			}else{
 				user=ubiz.login(user);
 				m.addAttribute("User", user);
+				sess.setAttribute("User", user);
 				return new Result(1, "登录成功!",user);
 			}	
 		} catch (BizException e) {
