@@ -27,6 +27,12 @@ public class Order {
 
     private Integer status;
 
+    private String temp;
+
+    private String temp2;
+
+    private Integer temp3;
+
     public Integer getOid() {
         return oid;
     }
@@ -121,5 +127,29 @@ public class Order {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getTemp() {
+        return temp;
+    }
+
+    public void setTemp(String temp) {
+        this.temp = temp == null ? null : temp.trim();
+    }
+
+    public String getTemp2() {
+        return temp2;
+    }
+
+    public void setTemp2(String temp2) {
+        this.temp2 = temp2 == null ? null : temp2.trim();
+    }
+
+    public Integer getTemp3() {
+        return temp3;
+    }
+
+    public void setTemp3(Integer temp3) {
+        this.temp3 = temp3;
     }
 }

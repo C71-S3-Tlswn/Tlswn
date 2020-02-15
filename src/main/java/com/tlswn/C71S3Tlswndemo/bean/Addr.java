@@ -13,6 +13,12 @@ public class Addr {
 
     private Integer astatus;
 
+    private String atemp;
+
+    private String atemp1;
+
+    private Integer atemp2;
+
     public Integer getAid() {
         return aid;
     }
@@ -59,5 +65,29 @@ public class Addr {
 
     public void setAstatus(Integer astatus) {
         this.astatus = astatus;
+    }
+
+    public String getAtemp() {
+        return atemp;
+    }
+
+    public void setAtemp(String atemp) {
+        this.atemp = atemp == null ? null : atemp.trim();
+    }
+
+    public String getAtemp1() {
+        return atemp1;
+    }
+
+    public void setAtemp1(String atemp1) {
+        this.atemp1 = atemp1 == null ? null : atemp1.trim();
+    }
+
+    public Integer getAtemp2() {
+        return atemp2;
+    }
+
+    public void setAtemp2(Integer atemp2) {
+        this.atemp2 = atemp2;
     }
 }

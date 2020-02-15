@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-import com.tlswn.C71S3Tlswndemo.bean.Addr;
 import com.tlswn.C71S3Tlswndemo.bean.AddrExample;
 import com.tlswn.C71S3Tlswndemo.bean.CartExample;
 import com.tlswn.C71S3Tlswndemo.bean.CartExample.Criteria;

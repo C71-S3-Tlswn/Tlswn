@@ -403,6 +403,136 @@ public class CartExample {
             addCriterion("cid not between", value1, value2, "cid");
             return (Criteria) this;
         }
+
+        public Criteria andCtempIsNull() {
+            addCriterion("ctemp is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCtempIsNotNull() {
+            addCriterion("ctemp is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCtempEqualTo(String value) {
+            addCriterion("ctemp =", value, "ctemp");
+            return (Criteria) this;
+        }
+
+        public Criteria andCtempNotEqualTo(String value) {
+            addCriterion("ctemp <>", value, "ctemp");
+            return (Criteria) this;
+        }
+
+        public Criteria andCtempGreaterThan(String value) {
+            addCriterion("ctemp >", value, "ctemp");
+            return (Criteria) this;
+        }
+
+        public Criteria andCtempGreaterThanOrEqualTo(String value) {
+            addCriterion("ctemp >=", value, "ctemp");
+            return (Criteria) this;
+        }
+
+        public Criteria andCtempLessThan(String value) {
+            addCriterion("ctemp <", value, "ctemp");
+            return (Criteria) this;
+        }
+
+        public Criteria andCtempLessThanOrEqualTo(String value) {
+            addCriterion("ctemp <=", value, "ctemp");
+            return (Criteria) this;
+        }
+
+        public Criteria andCtempLike(String value) {
+            addCriterion("ctemp like", value, "ctemp");
+            return (Criteria) this;
+        }
+
+        public Criteria andCtempNotLike(String value) {
+            addCriterion("ctemp not like", value, "ctemp");
+            return (Criteria) this;
+        }
+
+        public Criteria andCtempIn(List<String> values) {
+            addCriterion("ctemp in", values, "ctemp");
+            return (Criteria) this;
+        }
+
+        public Criteria andCtempNotIn(List<String> values) {
+            addCriterion("ctemp not in", values, "ctemp");
+            return (Criteria) this;
+        }
+
+        public Criteria andCtempBetween(String value1, String value2) {
+            addCriterion("ctemp between", value1, value2, "ctemp");
+            return (Criteria) this;
+        }
+
+        public Criteria andCtempNotBetween(String value1, String value2) {
+            addCriterion("ctemp not between", value1, value2, "ctemp");
+            return (Criteria) this;
+        }
+
+        public Criteria andCtemp2IsNull() {
+            addCriterion("ctemp2 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCtemp2IsNotNull() {
+            addCriterion("ctemp2 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCtemp2EqualTo(Integer value) {
+            addCriterion("ctemp2 =", value, "ctemp2");
+            return (Criteria) this;
+        }
+
+        public Criteria andCtemp2NotEqualTo(Integer value) {
+            addCriterion("ctemp2 <>", value, "ctemp2");
+            return (Criteria) this;
+        }
+
+        public Criteria andCtemp2GreaterThan(Integer value) {
+            addCriterion("ctemp2 >", value, "ctemp2");
+            return (Criteria) this;
+        }
+
+        public Criteria andCtemp2GreaterThanOrEqualTo(Integer value) {
+            addCriterion("ctemp2 >=", value, "ctemp2");
+            return (Criteria) this;
+        }
+
+        public Criteria andCtemp2LessThan(Integer value) {
+            addCriterion("ctemp2 <", value, "ctemp2");
+            return (Criteria) this;
+        }
+
+        public Criteria andCtemp2LessThanOrEqualTo(Integer value) {
+            addCriterion("ctemp2 <=", value, "ctemp2");
+            return (Criteria) this;
+        }
+
+        public Criteria andCtemp2In(List<Integer> values) {
+            addCriterion("ctemp2 in", values, "ctemp2");
+            return (Criteria) this;
+        }
+
+        public Criteria andCtemp2NotIn(List<Integer> values) {
+            addCriterion("ctemp2 not in", values, "ctemp2");
+            return (Criteria) this;
+        }
+
+        public Criteria andCtemp2Between(Integer value1, Integer value2) {
+            addCriterion("ctemp2 between", value1, value2, "ctemp2");
+            return (Criteria) this;
+        }
+
+        public Criteria andCtemp2NotBetween(Integer value1, Integer value2) {
+            addCriterion("ctemp2 not between", value1, value2, "ctemp2");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
