@@ -354,13 +354,100 @@
 					<!-- //second section (nuts special) -->
 					<!-- third section (oils) -->
 					<div class="product-sec1">
-						<h3 class="heading-tittle">Oils</h3>	
+						<h3 class="heading-tittle">Oils</h3>
+						<div class="col-md-4 product-men" th:each="wo:${women}">
+							<div class="men-pro-item simpleCart_shelfItem">
+								<div class="men-thumb-item">
+									<img th:src="${wo.cphoto}" alt="" id="imagess">
+									<div class="men-cart-pro">
+										<div class="inner-men-cart-pro">
+											<a th:href="|single_${wo.cid}" class="link-product-add-cart">快速访问</a>
+										</div>
+									</div>
+									<span class="product-new-top" th:text="${wo.type.variety.vname}"></span>
+								</div>
+								<div class="item-info-product ">
+									<h4>
+
+										<a th:href="|single_${wo.type.tid}" th:text="${wo.type.variety.vname}">Almonds, 100g</a>
+
+										<a th:href="|single_${wo.cid}" th:text="${wo.cname}"></a>
+
+									</h4>
+									<div class="info-product-price">
+										<span class="item_price" th:text="|￥:${wo.cprice}"></span>
+										<del>$280.00</del>
+									</div>
+									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+										<form action="" method="post">
+											<fieldset>
+												<input type="hidden" name="cmd" value="_cart" />
+												<input type="hidden" name="add" value="1" />
+												<input type="hidden" name="business" value=" " />
+												<input type="hidden" name="item_name" value="Almonds, 100g" />
+												<input type="hidden" name="amount" value="149.00" />
+												<input type="hidden" name="discount_amount" value="1.00" />
+												<input type="hidden" name="currency_code" value="USD" />
+												<input type="hidden" name="return" value=" " />
+												<input type="hidden" name="cancel_return" value=" " />
+												<input type="submit" name="submit" value="添加购物车" class="button" />
+											</fieldset>
+										</form>
+									</div>
+
+								</div>
+							</div>
+						</div>
+							
 						<div class="clearfix"></div>
 					</div>
 					<!-- //third section (oils) -->
 					<!-- fourth section (noodles) -->
 					<div class="product-sec1">
-						<h3 class="heading-tittle">Pasta & Noodles</h3>		
+						<h3 class="heading-tittle">Pasta & Noodles</h3>	
+						<div class="col-md-4 product-men" th:each="ce:${ce3}">
+							<div class="men-pro-item simpleCart_shelfItem">
+								<div class="men-thumb-item">
+									<img th:src="${ce.cphoto}" alt="" id="imagess">
+									<div class="men-cart-pro">
+										<div class="inner-men-cart-pro">
+											<a th:href="|single_${ce.cid}" class="link-product-add-cart">快速访问</a>
+										</div>
+									</div>
+									<span class="product-new-top" th:text="${ce.type.variety.vname}"></span>
+								</div>
+								<div class="item-info-product ">
+									<h4>
+
+										<a th:href="|single_${ce.type.tid}" th:text="${ce.type.variety.vname}">Almonds, 100g</a>
+
+										<a th:href="|single_${ce.cid}" th:text="${ce.cname}"></a>
+
+									</h4>
+									<div class="info-product-price">
+										<span class="item_price" th:text="|￥:${ce.cprice}"></span>
+										<del>$280.00</del>
+									</div>
+									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+										<form action="" method="post">
+											<fieldset>
+												<input type="hidden" name="cmd" value="_cart" />
+												<input type="hidden" name="add" value="1" />
+												<input type="hidden" name="business" value=" " />
+												<input type="hidden" name="item_name" value="Almonds, 100g" />
+												<input type="hidden" name="amount" value="149.00" />
+												<input type="hidden" name="discount_amount" value="1.00" />
+												<input type="hidden" name="currency_code" value="USD" />
+												<input type="hidden" name="return" value=" " />
+												<input type="hidden" name="cancel_return" value=" " />
+												<input type="submit" name="submit" value="添加购物车" class="button" />
+											</fieldset>
+										</form>
+									</div>
+
+								</div>
+							</div>
+						</div>	
 					
 						<div class="clearfix"></div>
 					</div>

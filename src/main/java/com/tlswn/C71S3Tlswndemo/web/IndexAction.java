@@ -37,8 +37,16 @@ public class IndexAction {
 	public String Index(Model m){
 		CommodityExample ce=new CommodityExample();
 		Criteria c=ce.createCriteria();
-		c.andTidBetween(1, 5).andCidLessThan(4);
+		c.andTidBetween(1, 5);
 		m.addAttribute("nuts", cm.selectByExample(ce));
+		CommodityExample ce2=new CommodityExample();
+		Criteria c1=ce2.createCriteria();
+		c1.andTidBetween(7, 11);
+		m.addAttribute("women", cm.selectByExample(ce2));
+		CommodityExample ce3=new CommodityExample();
+		Criteria c2=ce3.createCriteria();
+		c2.andTidBetween(12, 15).andCidLessThan(28);
+		m.addAttribute("ce3", cm.selectByExample(ce3));
 		m.addAttribute("variety",vm.selectByExample(null) );
 		TypeExample te=new TypeExample();
 		com.tlswn.C71S3Tlswndemo.bean.TypeExample.Criteria cr=te.createCriteria();
