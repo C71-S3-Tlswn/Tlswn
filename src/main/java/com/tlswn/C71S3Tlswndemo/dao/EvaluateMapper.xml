@@ -9,6 +9,9 @@
     <result column="eimg" jdbcType="VARCHAR" property="eimg" />
     <result column="etime" jdbcType="TIMESTAMP" property="etime" />
     <result column="cid" jdbcType="INTEGER" property="cid" />
+    <association property="user" column="uid" autoMapping="true" 
+			select="com.tlswn.C71S3Tlswndemo.dao.UserMapper.selectByPrimaryKey" fetchType="lazy">
+	</association>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>

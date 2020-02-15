@@ -152,26 +152,27 @@
 			</h3>
 			<div class="content-bottom-in">
 				<ul id="flexiselDemo1" >
-					<li th:each="ev:${evs}>
+					<li th:each="ev:${evs}">
 						<div class="w3l-specilamk">
 							<div class="speioffer-agile">
 								<a href="single.html" style="background-position: left;">
-									<img src="images/s2.jpg" class="img-responsive" height="2px" width="24px" alt="">
+									<img src="images/u1.jpg" th:src="${ev.user.uphoto}" class="img-responsive" height="2px" width="24px" alt="">
 								</a>
 							</div>
 							<div style="margin-left: 35px;margin-top: -18px">
-								<a style="color: black;" th:text="">123</a>
-								<label style="margin-left: 200px;font-size: 30px;color: red;" th:text="${ev.egrade}">6.0</label>
+								<a style="color: black;" th:text="${ev.user.uaccount}">123</a>
 							</div>
+							<!-- <label style="text-align: right;" th:text="${ev.egrade}">6.0</label> -->
+							<h5 id="egrade" style="text-align: right;font-size: 25px;margin-top: -13px;color: red;font-weight: bold;"  th:text="${ev.egrade}+'分'">8.0</h5>
 							<div class="product-name-w3l">
 								<h4>
-									<a href="" th:text="${ev.content}">Aashirvaad</a>
+									<a th:text="${ev.content}" style="font-size: 14px;">Aashirvaad</a>
 								</h4>
 								<div class="w3l-pricehkj">
 									
-									<p>Save $40.00</p>
+									<p>评论一下......</p>
 								</div>
-								<h5 style="text-align: right;" th:text="${#dates.format(ev.etime, 'yyyy-MM-dd HH:mm')}">$220.00</h5>
+								<h5 style="text-align: right;" th:text="${#dates.format(ev.etime, 'yyyy-MM-dd HH:mm:ss')}">$220.00</h5>
 								<!-- <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 									<form action="#" method="post">
 										<fieldset>

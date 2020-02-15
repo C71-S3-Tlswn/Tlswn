@@ -16,8 +16,19 @@ public class Evaluate {
     private Date etime;
 
     private Integer cid;
+    
+    private User user;
+    
+    
+	public User getUser() {
+		return user;
+	}
 
-    public Integer getEid() {
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Integer getEid() {
         return eid;
     }
 
