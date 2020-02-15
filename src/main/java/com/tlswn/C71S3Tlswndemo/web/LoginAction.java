@@ -22,7 +22,6 @@ import com.tlswn.C71S3Tlswndemo.util.Md5;
 import com.tlswn.C71S3Tlswndemo.vo.Result;
 
 @Controller
-@SessionAttributes("User")
 public class LoginAction {
 
 

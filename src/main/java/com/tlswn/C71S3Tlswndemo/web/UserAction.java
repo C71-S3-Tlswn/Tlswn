@@ -25,22 +25,5 @@ public class UserAction {
 	private UserMapper um;
 	
 	
-	@PostMapping("SingUp")
-	public Result SingUp(@Valid User user,Errors errors) throws BizException{
-		try {
-			if(errors.hasErrors()){
-				return new Result(2, "表单验证错误",errors.getFieldErrors());
-			}
-			user.setUpass(Md5.getMD5(user.getUpass()));
-			int i=um.insert(user);
-			if(i>0){
-				return new Result(1, "注册成功!");
-			}else{
-				return new Result(0,"业务繁忙，稍后再试");
-			}
-		} catch (RuntimeException e){
-			e.printStackTrace();
-			return new Result(0,"业务繁忙，稍后再试");
-		}
-	}
+	
 }

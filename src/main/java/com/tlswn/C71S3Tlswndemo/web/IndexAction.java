@@ -58,10 +58,7 @@ public class IndexAction {
 		m.addAttribute("type", tm.selectByExample(te));
 		return "index";
 	}
-	@GetMapping({"dizhi","dizhi.do"})
-	public String dizhi(){
-		return "dizi";
-	}
+	
 	/*@PostMapping("bh.do")
 	public String dizi( Addr addr,String uname){
 	    
