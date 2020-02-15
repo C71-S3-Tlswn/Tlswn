@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class AdminIndexAction {
 	
-	@GetMapping({"adminindex","adminindex.do"})
+	@GetMapping("back/adminindex")
 	public String Index(){
-		return "adminindex";
+		return "back/adminindex";
 	}
 
 }

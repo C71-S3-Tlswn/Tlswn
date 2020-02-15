@@ -18,6 +18,7 @@ import com.tlswn.C71S3Tlswndemo.bean.User;
 import com.tlswn.C71S3Tlswndemo.biz.BizException;
 import com.tlswn.C71S3Tlswndemo.biz.UserBiz;
 import com.tlswn.C71S3Tlswndemo.dao.UserMapper;
+import com.tlswn.C71S3Tlswndemo.util.Md5;
 import com.tlswn.C71S3Tlswndemo.vo.Result;
 
 @Controller
@@ -41,6 +42,7 @@ public class LoginAction {
 			if(errors.hasErrors()){
 				return new Result(2, "表单验证错误",errors.getFieldErrors());
 			}else{
+				user.setUpass(Md5.getMD5(user.getUpass()));
 				user=ubiz.login(user);
 				m.addAttribute("User", user);
 				sess.setAttribute("User", user);
