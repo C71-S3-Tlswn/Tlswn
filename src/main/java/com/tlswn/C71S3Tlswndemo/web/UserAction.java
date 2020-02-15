@@ -13,6 +13,7 @@ import com.tlswn.C71S3Tlswndemo.bean.User;
 import com.tlswn.C71S3Tlswndemo.biz.BizException;
 import com.tlswn.C71S3Tlswndemo.biz.UserBiz;
 import com.tlswn.C71S3Tlswndemo.dao.UserMapper;
+import com.tlswn.C71S3Tlswndemo.util.Md5;
 import com.tlswn.C71S3Tlswndemo.vo.Result;
 
 @RestController
@@ -30,6 +31,7 @@ public class UserAction {
 			if(errors.hasErrors()){
 				return new Result(2, "表单验证错误",errors.getFieldErrors());
 			}
+			user.setUpass(Md5.getMD5(user.getUpass()));
 			int i=um.insert(user);
 			if(i>0){
 				return new Result(1, "注册成功!");

@@ -1,6 +1,7 @@
 package com.tlswn.C71S3Tlswndemo.web;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tlswn.C71S3Tlswndemo.bean.Admin;
@@ -24,10 +26,9 @@ public class AdminAction {
 	@Resource
 	private AdminMapper am;
 	
-	
-	@GetMapping("adminLogin")
+	@GetMapping("back/adminLogin")
 	public String login(){
-		return "adminlogin";
+		return "back/adminlogin";
 	}
 	
 	@ResponseBody
@@ -39,6 +40,7 @@ public class AdminAction {
 			}
 			admin=abiz.login(admin);
 			m.addAttribute("loginUser", admin);
+			//hs.setAttribute("admin", admin);
 			return new Result(1, "登录成功!",admin);
 		} catch (BizException e) {
 			e.printStackTrace();
