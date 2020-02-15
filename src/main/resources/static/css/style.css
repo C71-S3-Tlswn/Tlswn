@@ -2309,9 +2309,10 @@ table.timetable_sub {
 	border:1px solid #CDCDCD;
 }
 td.invert-image a img {
-    width:30%;
+    width:20%;
     margin: 0 auto;
 }
+
 .rem{
 	position:relative;
 }
@@ -2321,7 +2322,7 @@ td.invert-image a img {
     width: 28px;
     height: 28px;
     position: absolute;
-    right: 15px;
+    right: 0px;
     top: -13px;
     -webkit-transition: color 0.2s ease-in-out;
     -moz-transition: color 0.2s ease-in-out;

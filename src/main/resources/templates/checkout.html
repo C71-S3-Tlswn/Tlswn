@@ -41,27 +41,26 @@
 			<!-- //tittle heading -->
 			<div class="checkout-right">
 				<h4>您的购物车包含:
-					<span>3 款产品</span>
+					<span>1 款产品</span>
 				</h4>
 				<div class="table-responsive">
 					<table class="timetable_sub">
 						<thead>
 							<tr>
-								<th>商品数量</th>
+								<th>编号</th>
 								<th>商品</th>
 								<th>数量</th>
 								<th>商品名</th>
-
 								<th>价格</th>
 								<th>取消</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="rem1">
+							<tr class="rem1" th:each="c:${cart}">
 								<td class="invert">1</td>
 								<td class="invert-image">
-									<a href="single2">
-										<img src="images/a7.jpg" alt=" " class="img-responsive">
+									<a th:href="|single_${c.cid}">
+										<img th:src="${c.commodity.cphoto}" alt=" " class="img-responsive">
 									</a>
 								</td>
 								<td class="invert">
@@ -75,8 +74,8 @@
 										</div>
 									</div>
 								</td>
-								<td class="invert">Spotzero Spin Mop</td>
-								<td class="invert">$888.00</td>
+								<td class="invert" th:text="${c.commodity.cname}"></td>
+								<td class="invert" th:text="|￥:${c.price}"></td>
 								<td class="invert">
 									<div class="rem">
 										<div class="close1"> </div>
@@ -90,17 +89,17 @@
 			<div class="checkout-left">
 				<div class="address_form_agile">
 					<h4>收货地址</h4>
-					<form action="payment.html" method="post" class="creditly-card-form agileinfo_form">
+					<form action="payment" method="post" class="creditly-card-form agileinfo_form">
 						<div class="creditly-wrapper wthree, w3_agileits_wrapper">
 							<div class="information-wrapper">
 								<div class="first-row">
 									<div class="controls">
-										<input class="billing-address-name" type="text" name="name" placeholder="Full Name" required="">
+										<input   class="billing-address-name" type="text" name="name" placeholder="收货名" required="" >
 									</div>
 									<div class="w3_agileits_card_number_grids">
 										<div class="w3_agileits_card_number_grid_left">
 											<div class="controls">
-												<input type="text" placeholder="Mobile Number" name="number" required="">
+												<input   type="text" placeholder="联系电话" name="number" required="">
 											</div>
 										</div>
 										<div class="w3_agileits_card_number_grid_right">
@@ -111,13 +110,13 @@
 										<div class="clear"> </div>
 									</div>
 									<div class="controls">
-										<input type="text" placeholder="Town/City" name="city" required="">
+										<input  type="text" placeholder="Town/City" name="city" required="" >
 									</div>
 									<div class="controls">
 										<select class="option-w3ls">
-											<option>Select Address type</option>
-											<option>Office</option>
-											<option>Home</option>
+											<option>选择地址类型</option>
+											<option>公司</option>
+											<option>家</option>
 											<option>Commercial</option>
 
 										</select>
@@ -141,7 +140,6 @@
 	<!-- newsletter -->
 	<div th:replace="foot::.footer-top"></div>
 	<div th:replace="foot::foot"></div>
-	<div th:replace="foot::.copy-right"></div> 
 	<!-- js-files -->
 	<!-- jquery -->
 	<script src="js/jquery-2.1.4.min.js"></script>
@@ -210,34 +208,17 @@
 		});
 	</script>
 	<!--quantity-->
+	<!-- 取消购物车 -->
 	<script>
 		$(document).ready(function (c) {
 			$('.close1').on('click', function (c) {
-				$('.rem1').fadeOut('slow', function (c) {
+				
+				/* $('.rem1').fadeOut('slow', function (c) {
 					$('.rem1').remove();
-				});
+				} */);
 			});
 		});
 	</script>
-	<script>
-		$(document).ready(function (c) {
-			$('.close2').on('click', function (c) {
-				$('.rem2').fadeOut('slow', function (c) {
-					$('.rem2').remove();
-				});
-			});
-		});
-	</script>
-	<script>
-		$(document).ready(function (c) {
-			$('.close3').on('click', function (c) {
-				$('.rem3').fadeOut('slow', function (c) {
-					$('.rem3').remove();
-				});
-			});
-		});
-	</script>
-	<!--//quantity-->
 
 	<!-- password-script -->
 	<script>
