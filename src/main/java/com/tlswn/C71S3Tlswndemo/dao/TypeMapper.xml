@@ -5,6 +5,9 @@
     <id column="tid" jdbcType="INTEGER" property="tid" />
     <result column="tname" jdbcType="VARCHAR" property="tname" />
     <result column="vid" jdbcType="INTEGER" property="vid" />
+    <result column="temp" jdbcType="VARCHAR" property="temp" />
+    <result column="temp2" jdbcType="VARCHAR" property="temp2" />
+    <result column="temp3" jdbcType="INTEGER" property="temp3" />
     <association property="variety" column="vid" autoMapping="true" 
 			select="com.tlswn.C71S3Tlswndemo.dao.VarietyMapper.selectByPrimaryKey" fetchType="lazy">
 	</association>
@@ -68,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    tid, tname, vid
+    tid, tname, vid, temp, temp2, temp3
   </sql>
   <select id="selectByExample" parameterType="com.tlswn.C71S3Tlswndemo.bean.TypeExample" resultMap="BaseResultMap">
     select
@@ -101,10 +104,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.tlswn.C71S3Tlswndemo.bean.Type">
-    insert into type (tid, tname, vid
-      )
-    values (#{tid,jdbcType=INTEGER}, #{tname,jdbcType=VARCHAR}, #{vid,jdbcType=INTEGER}
-      )
+    insert into type (tid, tname, vid, 
+      temp, temp2, temp3)
+    values (#{tid,jdbcType=INTEGER}, #{tname,jdbcType=VARCHAR}, #{vid,jdbcType=INTEGER}, 
+      #{temp,jdbcType=VARCHAR}, #{temp2,jdbcType=VARCHAR}, #{temp3,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.tlswn.C71S3Tlswndemo.bean.Type">
     insert into type
@@ -118,6 +121,15 @@
       <if test="vid != null">
         vid,
       </if>
+      <if test="temp != null">
+        temp,
+      </if>
+      <if test="temp2 != null">
+        temp2,
+      </if>
+      <if test="temp3 != null">
+        temp3,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="tid != null">
@@ -128,6 +140,15 @@
       </if>
       <if test="vid != null">
         #{vid,jdbcType=INTEGER},
+      </if>
+      <if test="temp != null">
+        #{temp,jdbcType=VARCHAR},
+      </if>
+      <if test="temp2 != null">
+        #{temp2,jdbcType=VARCHAR},
+      </if>
+      <if test="temp3 != null">
+        #{temp3,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -149,6 +170,15 @@
       <if test="record.vid != null">
         vid = #{record.vid,jdbcType=INTEGER},
       </if>
+      <if test="record.temp != null">
+        temp = #{record.temp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.temp2 != null">
+        temp2 = #{record.temp2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.temp3 != null">
+        temp3 = #{record.temp3,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -158,7 +188,10 @@
     update type
     set tid = #{record.tid,jdbcType=INTEGER},
       tname = #{record.tname,jdbcType=VARCHAR},
-      vid = #{record.vid,jdbcType=INTEGER}
+      vid = #{record.vid,jdbcType=INTEGER},
+      temp = #{record.temp,jdbcType=VARCHAR},
+      temp2 = #{record.temp2,jdbcType=VARCHAR},
+      temp3 = #{record.temp3,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -172,13 +205,25 @@
       <if test="vid != null">
         vid = #{vid,jdbcType=INTEGER},
       </if>
+      <if test="temp != null">
+        temp = #{temp,jdbcType=VARCHAR},
+      </if>
+      <if test="temp2 != null">
+        temp2 = #{temp2,jdbcType=VARCHAR},
+      </if>
+      <if test="temp3 != null">
+        temp3 = #{temp3,jdbcType=INTEGER},
+      </if>
     </set>
     where tid = #{tid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.tlswn.C71S3Tlswndemo.bean.Type">
     update type
     set tname = #{tname,jdbcType=VARCHAR},
-      vid = #{vid,jdbcType=INTEGER}
+      vid = #{vid,jdbcType=INTEGER},
+      temp = #{temp,jdbcType=VARCHAR},
+      temp2 = #{temp2,jdbcType=VARCHAR},
+      temp3 = #{temp3,jdbcType=INTEGER}
     where tid = #{tid,jdbcType=INTEGER}
   </update>
 </mapper>

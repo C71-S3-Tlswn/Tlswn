@@ -10,13 +10,15 @@
     <result column="c_btime" jdbcType="TIMESTAMP" property="cBtime" />
     <result column="hot" jdbcType="INTEGER" property="hot" />
     <result column="c_etime" jdbcType="TIMESTAMP" property="cEtime" />
+    <result column="csize" jdbcType="VARCHAR" property="csize" />
     <result column="cnum" jdbcType="INTEGER" property="cnum" />
     <result column="cdescride" jdbcType="VARCHAR" property="cdescride" />
     <result column="tid" jdbcType="INTEGER" property="tid" />
     <result column="sid" jdbcType="INTEGER" property="sid" />
-     <association property="type" column="tid" autoMapping="true" 
+    <result column="temp" jdbcType="VARCHAR" property="temp" />
+    <result column="temp2" jdbcType="INTEGER" property="temp2" />
+    <association property="type" column="tid" autoMapping="true" 
 			select="com.tlswn.C71S3Tlswndemo.dao.TypeMapper.selectByPrimaryKey" fetchType="lazy">
-	</association>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -77,8 +79,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    cid, cname, cphoto, mprice, cprice, c_btime, hot, c_etime, cnum, cdescride, tid, 
-    sid
+    cid, cname, cphoto, mprice, cprice, c_btime, hot, c_etime, csize, cnum, cdescride, 
+    tid, sid, temp, temp2
   </sql>
   <select id="selectByExample" parameterType="com.tlswn.C71S3Tlswndemo.bean.CommodityExample" resultMap="BaseResultMap">
     select
@@ -113,14 +115,14 @@
   <insert id="insert" parameterType="com.tlswn.C71S3Tlswndemo.bean.Commodity">
     insert into commodity (cid, cname, cphoto, 
       mprice, cprice, c_btime, 
-      hot, c_etime, cnum, 
-      cdescride, tid, sid
-      )
+      hot, c_etime, csize, 
+      cnum, cdescride, tid, 
+      sid, temp, temp2)
     values (#{cid,jdbcType=INTEGER}, #{cname,jdbcType=VARCHAR}, #{cphoto,jdbcType=VARCHAR}, 
       #{mprice,jdbcType=DOUBLE}, #{cprice,jdbcType=DOUBLE}, #{cBtime,jdbcType=TIMESTAMP}, 
-      #{hot,jdbcType=INTEGER}, #{cEtime,jdbcType=TIMESTAMP}, #{cnum,jdbcType=INTEGER}, 
-      #{cdescride,jdbcType=VARCHAR}, #{tid,jdbcType=INTEGER}, #{sid,jdbcType=INTEGER}
-      )
+      #{hot,jdbcType=INTEGER}, #{cEtime,jdbcType=TIMESTAMP}, #{csize,jdbcType=VARCHAR}, 
+      #{cnum,jdbcType=INTEGER}, #{cdescride,jdbcType=VARCHAR}, #{tid,jdbcType=INTEGER}, 
+      #{sid,jdbcType=INTEGER}, #{temp,jdbcType=VARCHAR}, #{temp2,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.tlswn.C71S3Tlswndemo.bean.Commodity">
     insert into commodity
@@ -149,6 +151,9 @@
       <if test="cEtime != null">
         c_etime,
       </if>
+      <if test="csize != null">
+        csize,
+      </if>
       <if test="cnum != null">
         cnum,
       </if>
@@ -160,6 +165,12 @@
       </if>
       <if test="sid != null">
         sid,
+      </if>
+      <if test="temp != null">
+        temp,
+      </if>
+      <if test="temp2 != null">
+        temp2,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -187,6 +198,9 @@
       <if test="cEtime != null">
         #{cEtime,jdbcType=TIMESTAMP},
       </if>
+      <if test="csize != null">
+        #{csize,jdbcType=VARCHAR},
+      </if>
       <if test="cnum != null">
         #{cnum,jdbcType=INTEGER},
       </if>
@@ -198,6 +212,12 @@
       </if>
       <if test="sid != null">
         #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="temp != null">
+        #{temp,jdbcType=VARCHAR},
+      </if>
+      <if test="temp2 != null">
+        #{temp2,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -234,6 +254,9 @@
       <if test="record.cEtime != null">
         c_etime = #{record.cEtime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.csize != null">
+        csize = #{record.csize,jdbcType=VARCHAR},
+      </if>
       <if test="record.cnum != null">
         cnum = #{record.cnum,jdbcType=INTEGER},
       </if>
@@ -245,6 +268,12 @@
       </if>
       <if test="record.sid != null">
         sid = #{record.sid,jdbcType=INTEGER},
+      </if>
+      <if test="record.temp != null">
+        temp = #{record.temp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.temp2 != null">
+        temp2 = #{record.temp2,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -261,10 +290,13 @@
       c_btime = #{record.cBtime,jdbcType=TIMESTAMP},
       hot = #{record.hot,jdbcType=INTEGER},
       c_etime = #{record.cEtime,jdbcType=TIMESTAMP},
+      csize = #{record.csize,jdbcType=VARCHAR},
       cnum = #{record.cnum,jdbcType=INTEGER},
       cdescride = #{record.cdescride,jdbcType=VARCHAR},
       tid = #{record.tid,jdbcType=INTEGER},
-      sid = #{record.sid,jdbcType=INTEGER}
+      sid = #{record.sid,jdbcType=INTEGER},
+      temp = #{record.temp,jdbcType=VARCHAR},
+      temp2 = #{record.temp2,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -293,6 +325,9 @@
       <if test="cEtime != null">
         c_etime = #{cEtime,jdbcType=TIMESTAMP},
       </if>
+      <if test="csize != null">
+        csize = #{csize,jdbcType=VARCHAR},
+      </if>
       <if test="cnum != null">
         cnum = #{cnum,jdbcType=INTEGER},
       </if>
@@ -304,6 +339,12 @@
       </if>
       <if test="sid != null">
         sid = #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="temp != null">
+        temp = #{temp,jdbcType=VARCHAR},
+      </if>
+      <if test="temp2 != null">
+        temp2 = #{temp2,jdbcType=INTEGER},
       </if>
     </set>
     where cid = #{cid,jdbcType=INTEGER}
@@ -317,10 +358,13 @@
       c_btime = #{cBtime,jdbcType=TIMESTAMP},
       hot = #{hot,jdbcType=INTEGER},
       c_etime = #{cEtime,jdbcType=TIMESTAMP},
+      csize = #{csize,jdbcType=VARCHAR},
       cnum = #{cnum,jdbcType=INTEGER},
       cdescride = #{cdescride,jdbcType=VARCHAR},
       tid = #{tid,jdbcType=INTEGER},
-      sid = #{sid,jdbcType=INTEGER}
+      sid = #{sid,jdbcType=INTEGER},
+      temp = #{temp,jdbcType=VARCHAR},
+      temp2 = #{temp2,jdbcType=INTEGER}
     where cid = #{cid,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -605,6 +605,76 @@ public class CommodityExample {
             return (Criteria) this;
         }
 
+        public Criteria andCsizeIsNull() {
+            addCriterion("csize is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCsizeIsNotNull() {
+            addCriterion("csize is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCsizeEqualTo(String value) {
+            addCriterion("csize =", value, "csize");
+            return (Criteria) this;
+        }
+
+        public Criteria andCsizeNotEqualTo(String value) {
+            addCriterion("csize <>", value, "csize");
+            return (Criteria) this;
+        }
+
+        public Criteria andCsizeGreaterThan(String value) {
+            addCriterion("csize >", value, "csize");
+            return (Criteria) this;
+        }
+
+        public Criteria andCsizeGreaterThanOrEqualTo(String value) {
+            addCriterion("csize >=", value, "csize");
+            return (Criteria) this;
+        }
+
+        public Criteria andCsizeLessThan(String value) {
+            addCriterion("csize <", value, "csize");
+            return (Criteria) this;
+        }
+
+        public Criteria andCsizeLessThanOrEqualTo(String value) {
+            addCriterion("csize <=", value, "csize");
+            return (Criteria) this;
+        }
+
+        public Criteria andCsizeLike(String value) {
+            addCriterion("csize like", value, "csize");
+            return (Criteria) this;
+        }
+
+        public Criteria andCsizeNotLike(String value) {
+            addCriterion("csize not like", value, "csize");
+            return (Criteria) this;
+        }
+
+        public Criteria andCsizeIn(List<String> values) {
+            addCriterion("csize in", values, "csize");
+            return (Criteria) this;
+        }
+
+        public Criteria andCsizeNotIn(List<String> values) {
+            addCriterion("csize not in", values, "csize");
+            return (Criteria) this;
+        }
+
+        public Criteria andCsizeBetween(String value1, String value2) {
+            addCriterion("csize between", value1, value2, "csize");
+            return (Criteria) this;
+        }
+
+        public Criteria andCsizeNotBetween(String value1, String value2) {
+            addCriterion("csize not between", value1, value2, "csize");
+            return (Criteria) this;
+        }
+
         public Criteria andCnumIsNull() {
             addCriterion("cnum is null");
             return (Criteria) this;
@@ -852,6 +922,136 @@ public class CommodityExample {
 
         public Criteria andSidNotBetween(Integer value1, Integer value2) {
             addCriterion("sid not between", value1, value2, "sid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTempIsNull() {
+            addCriterion("temp is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTempIsNotNull() {
+            addCriterion("temp is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTempEqualTo(String value) {
+            addCriterion("temp =", value, "temp");
+            return (Criteria) this;
+        }
+
+        public Criteria andTempNotEqualTo(String value) {
+            addCriterion("temp <>", value, "temp");
+            return (Criteria) this;
+        }
+
+        public Criteria andTempGreaterThan(String value) {
+            addCriterion("temp >", value, "temp");
+            return (Criteria) this;
+        }
+
+        public Criteria andTempGreaterThanOrEqualTo(String value) {
+            addCriterion("temp >=", value, "temp");
+            return (Criteria) this;
+        }
+
+        public Criteria andTempLessThan(String value) {
+            addCriterion("temp <", value, "temp");
+            return (Criteria) this;
+        }
+
+        public Criteria andTempLessThanOrEqualTo(String value) {
+            addCriterion("temp <=", value, "temp");
+            return (Criteria) this;
+        }
+
+        public Criteria andTempLike(String value) {
+            addCriterion("temp like", value, "temp");
+            return (Criteria) this;
+        }
+
+        public Criteria andTempNotLike(String value) {
+            addCriterion("temp not like", value, "temp");
+            return (Criteria) this;
+        }
+
+        public Criteria andTempIn(List<String> values) {
+            addCriterion("temp in", values, "temp");
+            return (Criteria) this;
+        }
+
+        public Criteria andTempNotIn(List<String> values) {
+            addCriterion("temp not in", values, "temp");
+            return (Criteria) this;
+        }
+
+        public Criteria andTempBetween(String value1, String value2) {
+            addCriterion("temp between", value1, value2, "temp");
+            return (Criteria) this;
+        }
+
+        public Criteria andTempNotBetween(String value1, String value2) {
+            addCriterion("temp not between", value1, value2, "temp");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemp2IsNull() {
+            addCriterion("temp2 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemp2IsNotNull() {
+            addCriterion("temp2 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemp2EqualTo(Integer value) {
+            addCriterion("temp2 =", value, "temp2");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemp2NotEqualTo(Integer value) {
+            addCriterion("temp2 <>", value, "temp2");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemp2GreaterThan(Integer value) {
+            addCriterion("temp2 >", value, "temp2");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemp2GreaterThanOrEqualTo(Integer value) {
+            addCriterion("temp2 >=", value, "temp2");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemp2LessThan(Integer value) {
+            addCriterion("temp2 <", value, "temp2");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemp2LessThanOrEqualTo(Integer value) {
+            addCriterion("temp2 <=", value, "temp2");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemp2In(List<Integer> values) {
+            addCriterion("temp2 in", values, "temp2");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemp2NotIn(List<Integer> values) {
+            addCriterion("temp2 not in", values, "temp2");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemp2Between(Integer value1, Integer value2) {
+            addCriterion("temp2 between", value1, value2, "temp2");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemp2NotBetween(Integer value1, Integer value2) {
+            addCriterion("temp2 not between", value1, value2, "temp2");
             return (Criteria) this;
         }
     }

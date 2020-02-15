@@ -6,6 +6,9 @@
     <result column="sname" jdbcType="VARCHAR" property="sname" />
     <result column="slogo" jdbcType="VARCHAR" property="slogo" />
     <result column="aaid" jdbcType="INTEGER" property="aaid" />
+    <result column="temp" jdbcType="VARCHAR" property="temp" />
+    <result column="temp2" jdbcType="VARCHAR" property="temp2" />
+    <result column="temp3" jdbcType="INTEGER" property="temp3" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    sid, sname, slogo, aaid
+    sid, sname, slogo, aaid, temp, temp2, temp3
   </sql>
   <select id="selectByExample" parameterType="com.tlswn.C71S3Tlswndemo.bean.StoreExample" resultMap="BaseResultMap">
     select
@@ -100,9 +103,11 @@
   </delete>
   <insert id="insert" parameterType="com.tlswn.C71S3Tlswndemo.bean.Store">
     insert into store (sid, sname, slogo, 
-      aaid)
+      aaid, temp, temp2, 
+      temp3)
     values (#{sid,jdbcType=INTEGER}, #{sname,jdbcType=VARCHAR}, #{slogo,jdbcType=VARCHAR}, 
-      #{aaid,jdbcType=INTEGER})
+      #{aaid,jdbcType=INTEGER}, #{temp,jdbcType=VARCHAR}, #{temp2,jdbcType=VARCHAR}, 
+      #{temp3,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.tlswn.C71S3Tlswndemo.bean.Store">
     insert into store
@@ -119,6 +124,15 @@
       <if test="aaid != null">
         aaid,
       </if>
+      <if test="temp != null">
+        temp,
+      </if>
+      <if test="temp2 != null">
+        temp2,
+      </if>
+      <if test="temp3 != null">
+        temp3,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="sid != null">
@@ -132,6 +146,15 @@
       </if>
       <if test="aaid != null">
         #{aaid,jdbcType=INTEGER},
+      </if>
+      <if test="temp != null">
+        #{temp,jdbcType=VARCHAR},
+      </if>
+      <if test="temp2 != null">
+        #{temp2,jdbcType=VARCHAR},
+      </if>
+      <if test="temp3 != null">
+        #{temp3,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -156,6 +179,15 @@
       <if test="record.aaid != null">
         aaid = #{record.aaid,jdbcType=INTEGER},
       </if>
+      <if test="record.temp != null">
+        temp = #{record.temp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.temp2 != null">
+        temp2 = #{record.temp2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.temp3 != null">
+        temp3 = #{record.temp3,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -166,7 +198,10 @@
     set sid = #{record.sid,jdbcType=INTEGER},
       sname = #{record.sname,jdbcType=VARCHAR},
       slogo = #{record.slogo,jdbcType=VARCHAR},
-      aaid = #{record.aaid,jdbcType=INTEGER}
+      aaid = #{record.aaid,jdbcType=INTEGER},
+      temp = #{record.temp,jdbcType=VARCHAR},
+      temp2 = #{record.temp2,jdbcType=VARCHAR},
+      temp3 = #{record.temp3,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -183,6 +218,15 @@
       <if test="aaid != null">
         aaid = #{aaid,jdbcType=INTEGER},
       </if>
+      <if test="temp != null">
+        temp = #{temp,jdbcType=VARCHAR},
+      </if>
+      <if test="temp2 != null">
+        temp2 = #{temp2,jdbcType=VARCHAR},
+      </if>
+      <if test="temp3 != null">
+        temp3 = #{temp3,jdbcType=INTEGER},
+      </if>
     </set>
     where sid = #{sid,jdbcType=INTEGER}
   </update>
@@ -190,7 +234,10 @@
     update store
     set sname = #{sname,jdbcType=VARCHAR},
       slogo = #{slogo,jdbcType=VARCHAR},
-      aaid = #{aaid,jdbcType=INTEGER}
+      aaid = #{aaid,jdbcType=INTEGER},
+      temp = #{temp,jdbcType=VARCHAR},
+      temp2 = #{temp2,jdbcType=VARCHAR},
+      temp3 = #{temp3,jdbcType=INTEGER}
     where sid = #{sid,jdbcType=INTEGER}
   </update>
 </mapper>

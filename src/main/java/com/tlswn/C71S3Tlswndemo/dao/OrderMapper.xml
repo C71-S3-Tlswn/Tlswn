@@ -14,6 +14,9 @@
     <result column="oprice" jdbcType="DOUBLE" property="oprice" />
     <result column="pstatus" jdbcType="INTEGER" property="pstatus" />
     <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="temp" jdbcType="VARCHAR" property="temp" />
+    <result column="temp2" jdbcType="VARCHAR" property="temp2" />
+    <result column="temp3" jdbcType="INTEGER" property="temp3" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -75,7 +78,7 @@
   </sql>
   <sql id="Base_Column_List">
     oid, uid, cid, oaddr, otel, ordertime, delivetime, arrivetime, ps, oprice, pstatus, 
-    status
+    status, temp, temp2, temp3
   </sql>
   <select id="selectByExample" parameterType="com.tlswn.C71S3Tlswndemo.bean.OrderExample" resultMap="BaseResultMap">
     select
@@ -111,13 +114,13 @@
     insert into order (oid, uid, cid, 
       oaddr, otel, ordertime, 
       delivetime, arrivetime, ps, 
-      oprice, pstatus, status
-      )
+      oprice, pstatus, status, 
+      temp, temp2, temp3)
     values (#{oid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, 
       #{oaddr,jdbcType=VARCHAR}, #{otel,jdbcType=VARCHAR}, #{ordertime,jdbcType=TIMESTAMP}, 
       #{delivetime,jdbcType=TIMESTAMP}, #{arrivetime,jdbcType=TIMESTAMP}, #{ps,jdbcType=VARCHAR}, 
-      #{oprice,jdbcType=DOUBLE}, #{pstatus,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}
-      )
+      #{oprice,jdbcType=DOUBLE}, #{pstatus,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{temp,jdbcType=VARCHAR}, #{temp2,jdbcType=VARCHAR}, #{temp3,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.tlswn.C71S3Tlswndemo.bean.Order">
     insert into order
@@ -158,6 +161,15 @@
       <if test="status != null">
         status,
       </if>
+      <if test="temp != null">
+        temp,
+      </if>
+      <if test="temp2 != null">
+        temp2,
+      </if>
+      <if test="temp3 != null">
+        temp3,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="oid != null">
@@ -195,6 +207,15 @@
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
+      </if>
+      <if test="temp != null">
+        #{temp,jdbcType=VARCHAR},
+      </if>
+      <if test="temp2 != null">
+        #{temp2,jdbcType=VARCHAR},
+      </if>
+      <if test="temp3 != null">
+        #{temp3,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -243,6 +264,15 @@
       <if test="record.status != null">
         status = #{record.status,jdbcType=INTEGER},
       </if>
+      <if test="record.temp != null">
+        temp = #{record.temp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.temp2 != null">
+        temp2 = #{record.temp2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.temp3 != null">
+        temp3 = #{record.temp3,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -261,7 +291,10 @@
       ps = #{record.ps,jdbcType=VARCHAR},
       oprice = #{record.oprice,jdbcType=DOUBLE},
       pstatus = #{record.pstatus,jdbcType=INTEGER},
-      status = #{record.status,jdbcType=INTEGER}
+      status = #{record.status,jdbcType=INTEGER},
+      temp = #{record.temp,jdbcType=VARCHAR},
+      temp2 = #{record.temp2,jdbcType=VARCHAR},
+      temp3 = #{record.temp3,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -302,6 +335,15 @@
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
       </if>
+      <if test="temp != null">
+        temp = #{temp,jdbcType=VARCHAR},
+      </if>
+      <if test="temp2 != null">
+        temp2 = #{temp2,jdbcType=VARCHAR},
+      </if>
+      <if test="temp3 != null">
+        temp3 = #{temp3,jdbcType=INTEGER},
+      </if>
     </set>
     where oid = #{oid,jdbcType=INTEGER}
   </update>
@@ -317,7 +359,10 @@
       ps = #{ps,jdbcType=VARCHAR},
       oprice = #{oprice,jdbcType=DOUBLE},
       pstatus = #{pstatus,jdbcType=INTEGER},
-      status = #{status,jdbcType=INTEGER}
+      status = #{status,jdbcType=INTEGER},
+      temp = #{temp,jdbcType=VARCHAR},
+      temp2 = #{temp2,jdbcType=VARCHAR},
+      temp3 = #{temp3,jdbcType=INTEGER}
     where oid = #{oid,jdbcType=INTEGER}
   </update>
 </mapper>

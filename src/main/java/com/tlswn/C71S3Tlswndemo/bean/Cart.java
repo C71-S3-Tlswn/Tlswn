@@ -10,19 +10,12 @@ public class Cart {
     private Integer uid;
 
     private Integer cid;
-    
-    private Commodity commodity;
-    
 
-    public Commodity getCommodity() {
-		return commodity;
-	}
+    private String ctemp;
 
-	public void setCommodity(Commodity commodity) {
-		this.commodity = commodity;
-	}
+    private Integer ctemp2;
 
-	public Integer getCcid() {
+    public Integer getCcid() {
         return ccid;
     }
 
@@ -60,5 +53,21 @@ public class Cart {
 
     public void setCid(Integer cid) {
         this.cid = cid;
+    }
+
+    public String getCtemp() {
+        return ctemp;
+    }
+
+    public void setCtemp(String ctemp) {
+        this.ctemp = ctemp == null ? null : ctemp.trim();
+    }
+
+    public Integer getCtemp2() {
+        return ctemp2;
+    }
+
+    public void setCtemp2(Integer ctemp2) {
+        this.ctemp2 = ctemp2;
     }
 }

@@ -11,6 +11,9 @@
     <result column="usex" jdbcType="INTEGER" property="usex" />
     <result column="uphoto" jdbcType="VARCHAR" property="uphoto" />
     <result column="ucard" jdbcType="VARCHAR" property="ucard" />
+    <result column="temp" jdbcType="VARCHAR" property="temp" />
+    <result column="temp2" jdbcType="VARCHAR" property="temp2" />
+    <result column="temp3" jdbcType="INTEGER" property="temp3" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -71,7 +74,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    uid, uname, uaccount, upass, utel, uemail, usex, uphoto, ucard
+    uid, uname, uaccount, upass, utel, uemail, usex, uphoto, ucard, temp, temp2, temp3
   </sql>
   <select id="selectByExample" parameterType="com.tlswn.C71S3Tlswndemo.bean.UserExample" resultMap="BaseResultMap">
     select
@@ -106,12 +109,12 @@
   <insert id="insert" parameterType="com.tlswn.C71S3Tlswndemo.bean.User">
     insert into user (uid, uname, uaccount, 
       upass, utel, uemail, 
-      usex, uphoto, ucard
-      )
+      usex, uphoto, ucard, 
+      temp, temp2, temp3)
     values (#{uid,jdbcType=INTEGER}, #{uname,jdbcType=VARCHAR}, #{uaccount,jdbcType=VARCHAR}, 
       #{upass,jdbcType=VARCHAR}, #{utel,jdbcType=VARCHAR}, #{uemail,jdbcType=VARCHAR}, 
-      #{usex,jdbcType=INTEGER}, #{uphoto,jdbcType=VARCHAR}, #{ucard,jdbcType=VARCHAR}
-      )
+      #{usex,jdbcType=INTEGER}, #{uphoto,jdbcType=VARCHAR}, #{ucard,jdbcType=VARCHAR}, 
+      #{temp,jdbcType=VARCHAR}, #{temp2,jdbcType=VARCHAR}, #{temp3,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.tlswn.C71S3Tlswndemo.bean.User">
     insert into user
@@ -143,6 +146,15 @@
       <if test="ucard != null">
         ucard,
       </if>
+      <if test="temp != null">
+        temp,
+      </if>
+      <if test="temp2 != null">
+        temp2,
+      </if>
+      <if test="temp3 != null">
+        temp3,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="uid != null">
@@ -171,6 +183,15 @@
       </if>
       <if test="ucard != null">
         #{ucard,jdbcType=VARCHAR},
+      </if>
+      <if test="temp != null">
+        #{temp,jdbcType=VARCHAR},
+      </if>
+      <if test="temp2 != null">
+        #{temp2,jdbcType=VARCHAR},
+      </if>
+      <if test="temp3 != null">
+        #{temp3,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -210,6 +231,15 @@
       <if test="record.ucard != null">
         ucard = #{record.ucard,jdbcType=VARCHAR},
       </if>
+      <if test="record.temp != null">
+        temp = #{record.temp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.temp2 != null">
+        temp2 = #{record.temp2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.temp3 != null">
+        temp3 = #{record.temp3,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -225,7 +255,10 @@
       uemail = #{record.uemail,jdbcType=VARCHAR},
       usex = #{record.usex,jdbcType=INTEGER},
       uphoto = #{record.uphoto,jdbcType=VARCHAR},
-      ucard = #{record.ucard,jdbcType=VARCHAR}
+      ucard = #{record.ucard,jdbcType=VARCHAR},
+      temp = #{record.temp,jdbcType=VARCHAR},
+      temp2 = #{record.temp2,jdbcType=VARCHAR},
+      temp3 = #{record.temp3,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -257,6 +290,15 @@
       <if test="ucard != null">
         ucard = #{ucard,jdbcType=VARCHAR},
       </if>
+      <if test="temp != null">
+        temp = #{temp,jdbcType=VARCHAR},
+      </if>
+      <if test="temp2 != null">
+        temp2 = #{temp2,jdbcType=VARCHAR},
+      </if>
+      <if test="temp3 != null">
+        temp3 = #{temp3,jdbcType=INTEGER},
+      </if>
     </set>
     where uid = #{uid,jdbcType=INTEGER}
   </update>
@@ -269,7 +311,10 @@
       uemail = #{uemail,jdbcType=VARCHAR},
       usex = #{usex,jdbcType=INTEGER},
       uphoto = #{uphoto,jdbcType=VARCHAR},
-      ucard = #{ucard,jdbcType=VARCHAR}
+      ucard = #{ucard,jdbcType=VARCHAR},
+      temp = #{temp,jdbcType=VARCHAR},
+      temp2 = #{temp2,jdbcType=VARCHAR},
+      temp3 = #{temp3,jdbcType=INTEGER}
     where uid = #{uid,jdbcType=INTEGER}
   </update>
 </mapper>

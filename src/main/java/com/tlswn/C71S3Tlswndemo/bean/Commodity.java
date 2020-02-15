@@ -19,6 +19,8 @@ public class Commodity {
 
     private Date cEtime;
 
+    private String csize;
+
     private Integer cnum;
 
     private String cdescride;
@@ -26,9 +28,12 @@ public class Commodity {
     private Integer tid;
 
     private Integer sid;
+
+    private String temp;
+
+    private Integer temp2;
     
     private Type type;
-    
     
 
     public Type getType() {
@@ -103,6 +108,14 @@ public class Commodity {
         this.cEtime = cEtime;
     }
 
+    public String getCsize() {
+        return csize;
+    }
+
+    public void setCsize(String csize) {
+        this.csize = csize == null ? null : csize.trim();
+    }
+
     public Integer getCnum() {
         return cnum;
     }
@@ -133,5 +146,21 @@ public class Commodity {
 
     public void setSid(Integer sid) {
         this.sid = sid;
+    }
+
+    public String getTemp() {
+        return temp;
+    }
+
+    public void setTemp(String temp) {
+        this.temp = temp == null ? null : temp.trim();
+    }
+
+    public Integer getTemp2() {
+        return temp2;
+    }
+
+    public void setTemp2(Integer temp2) {
+        this.temp2 = temp2;
     }
 }

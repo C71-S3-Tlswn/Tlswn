@@ -16,7 +16,6 @@ import com.tlswn.C71S3Tlswndemo.dao.UserMapper;
 import com.tlswn.C71S3Tlswndemo.vo.Result;
 
 @RestController
-
 public class UserAction {
 	
 	@Resource

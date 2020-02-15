@@ -1,17 +1,14 @@
 package com.tlswn.C71S3Tlswndemo.bean;
 
-import javax.validation.constraints.NotEmpty;
-
 public class User {
     private Integer uid;
 
     private String uname;
-    
+
     private String uaccount;
-    
-    @NotEmpty(message="请填写密码！")
+
     private String upass;
-    @NotEmpty(message="请填写号码!")
+
     private String utel;
 
     private String uemail;
@@ -21,6 +18,12 @@ public class User {
     private String uphoto;
 
     private String ucard;
+
+    private String temp;
+
+    private String temp2;
+
+    private Integer temp3;
 
     public Integer getUid() {
         return uid;
@@ -92,5 +95,29 @@ public class User {
 
     public void setUcard(String ucard) {
         this.ucard = ucard == null ? null : ucard.trim();
+    }
+
+    public String getTemp() {
+        return temp;
+    }
+
+    public void setTemp(String temp) {
+        this.temp = temp == null ? null : temp.trim();
+    }
+
+    public String getTemp2() {
+        return temp2;
+    }
+
+    public void setTemp2(String temp2) {
+        this.temp2 = temp2 == null ? null : temp2.trim();
+    }
+
+    public Integer getTemp3() {
+        return temp3;
+    }
+
+    public void setTemp3(Integer temp3) {
+        this.temp3 = temp3;
     }
 }
