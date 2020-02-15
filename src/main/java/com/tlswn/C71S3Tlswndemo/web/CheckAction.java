@@ -36,8 +36,7 @@ public class CheckAction {
 		Criteria c=ce.createCriteria();
 		User user= (User) ht.getAttribute("User");
 		c.andUidEqualTo(user.getUid());
-		m.addAttribute("cart", cm.selectByExample(ce));
-		
+		m.addAttribute("cart", cm.selectByExample(ce));	
 		AddrExample ae=new AddrExample();
 		com.tlswn.C71S3Tlswndemo.bean.AddrExample.Criteria cr=ae.createCriteria();
 		cr.andUidEqualTo(user.getUid());
