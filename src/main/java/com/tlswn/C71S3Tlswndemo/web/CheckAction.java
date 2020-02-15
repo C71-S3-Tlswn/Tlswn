@@ -1,6 +1,7 @@
 package com.tlswn.C71S3Tlswndemo.web;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -29,11 +30,11 @@ public class CheckAction {
 		return "checkout";
 	}
 	@ModelAttribute
-	public void init(Model m,HttpSession sess){
+	public void init(Model m,HttpServletRequest ht){
 		
 		CartExample ce=new CartExample();
 		Criteria c=ce.createCriteria();
-		User user= (User) sess.getAttribute("User");
+		User user= (User) ht.getAttribute("User");
 		c.andUidEqualTo(user.getUid());
 		m.addAttribute("cart", cm.selectByExample(ce));
 		
