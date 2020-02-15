@@ -19,7 +19,7 @@
     <result column="temp2" jdbcType="INTEGER" property="temp2" />
     <association property="type" column="tid" autoMapping="true" 
 			select="com.tlswn.C71S3Tlswndemo.dao.TypeMapper.selectByPrimaryKey" fetchType="lazy">
-</association>
+			</association>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
