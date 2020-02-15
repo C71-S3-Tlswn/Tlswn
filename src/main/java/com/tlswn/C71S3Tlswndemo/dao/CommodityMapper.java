@@ -17,6 +17,7 @@ public interface CommodityMapper {
     int insertSelective(Commodity record);
 
     List<Commodity> selectByExample(CommodityExample example);
+    List<Commodity> selectBythree(CommodityExample example);
 
     Commodity selectByPrimaryKey(Integer cid);
 
