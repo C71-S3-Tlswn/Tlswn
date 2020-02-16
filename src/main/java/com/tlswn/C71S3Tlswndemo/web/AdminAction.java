@@ -16,6 +16,7 @@ import com.tlswn.C71S3Tlswndemo.bean.Admin;
 import com.tlswn.C71S3Tlswndemo.biz.AdminBiz;
 import com.tlswn.C71S3Tlswndemo.biz.BizException;
 import com.tlswn.C71S3Tlswndemo.dao.AdminMapper;
+import com.tlswn.C71S3Tlswndemo.util.Md5;
 import com.tlswn.C71S3Tlswndemo.vo.Result;
 
 @Controller
@@ -38,7 +39,8 @@ public class AdminAction {
 			if(errors.hasErrors()){
 				return new Result(2, "表单验证错误",errors.getFieldErrors());
 			}
-			System.out.println(admin.getAccounnt());
+			admin.setApass(Md5.getMD5(admin.getApass()));
+			System.out.println(admin.getApass());
 			admin=abiz.login(admin);
 			m.addAttribute("admin", admin);
 			hs.setAttribute("admin", admin);
