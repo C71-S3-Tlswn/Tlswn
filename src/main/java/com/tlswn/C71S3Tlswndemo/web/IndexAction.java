@@ -33,7 +33,7 @@ public class IndexAction {
 	private TypeMapper tm;
 	
 	
-	/*@GetMapping({"/","index","index.do"})
+	@GetMapping({"/","index","index.do"})
 	public String Index(Model m){
 		CommodityExample ce=new CommodityExample();
 		Criteria c=ce.createCriteria();
@@ -58,7 +58,7 @@ public class IndexAction {
 		m.addAttribute("type", tm.selectByExample(te));
 		return "index";
 	}
-	*/
+	
 	/*@PostMapping("bh.do")
 	public String dizi( Addr addr,String uname){
 	    
