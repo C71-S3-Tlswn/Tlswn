@@ -22,8 +22,18 @@ public class Evaluate {
     private String temp2;
 
     private Integer temp3;
+    
+    private User user;
+    
+    public User getUser() {
+		return user;
+	}
 
-    public Integer getEid() {
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Integer getEid() {
         return eid;
     }
 
