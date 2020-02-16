@@ -113,18 +113,17 @@
 							}else if(result.code==2){
 								for(var i=0;i<result.data.length;i++){
 									if(result.data[i].field=='accounnt'){
-										console.log(result.data[i].defaultMseeage);
-										$("#ausername").text("用户号"+result.data[i].defaultMseeage);
+									alert(result.data[i].defaultMseeage);
+										 
 									}else if(result.data[i].field=='apass'){
 										console.log(1);
-										$("#apass").text("密码"+result.data[i].defaultMseeage);
+										alert(result.data[i].defaultMseeage);
 									}
 								}
 							}else if(result.code==1){
-								window.location.href = "back/adminindex";
+								window.location.href ="/back/adminindex";
 							}							
 			}
 		);}
-		
 	</script>
 </html>

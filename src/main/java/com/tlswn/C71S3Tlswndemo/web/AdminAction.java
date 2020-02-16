@@ -26,21 +26,22 @@ public class AdminAction {
 	@Resource
 	private AdminMapper am;
 	
-	@GetMapping("back/adminLogin")
+	@GetMapping("back/adminlogin")
 	public String login(){
 		return "back/adminlogin";
 	}
 	
 	@ResponseBody
-	@PostMapping("toadminlogin")
-	public Result login(@Valid Admin admin,Errors errors,Model m){
+	@PostMapping("back/toadminlogin")
+	public Result login(@Valid Admin admin,Errors errors,Model m,HttpSession hs){
 		try {
 			if(errors.hasErrors()){
 				return new Result(2, "表单验证错误",errors.getFieldErrors());
 			}
+			System.out.println(admin.getAccounnt());
 			admin=abiz.login(admin);
-			m.addAttribute("loginUser", admin);
-			//hs.setAttribute("admin", admin);
+			m.addAttribute("admin", admin);
+			hs.setAttribute("admin", admin);
 			return new Result(1, "登录成功!",admin);
 		} catch (BizException e) {
 			e.printStackTrace();
