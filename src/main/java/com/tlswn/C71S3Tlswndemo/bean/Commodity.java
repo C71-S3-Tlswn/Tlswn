@@ -34,7 +34,6 @@ public class Commodity {
     private Integer temp2;
     
     private Type type;
-    
 
     public Type getType() {
 		return type;
