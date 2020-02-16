@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tlswn.C71S3Tlswndemo.dao.EvaluateMapper">
-  <resultMap id="BaseResultMap" type="com.tlswn.C71S3Tlswndemo.bean.Evaluate">
-    <id column="eid" jdbcType="INTEGER" property="eid" />
-    <result column="uid" jdbcType="INTEGER" property="uid" />
-    <result column="content" jdbcType="VARCHAR" property="content" />
-    <result column="egrade" jdbcType="INTEGER" property="egrade" />
-    <result column="eimg" jdbcType="VARCHAR" property="eimg" />
-    <result column="etime" jdbcType="TIMESTAMP" property="etime" />
+<mapper namespace="com.tlswn.C71S3Tlswndemo.dao.StockMapper">
+  <resultMap id="BaseResultMap" type="com.tlswn.C71S3Tlswndemo.bean.Stock">
+    <id column="stid" jdbcType="INTEGER" property="stid" />
+    <result column="color" jdbcType="VARCHAR" property="color" />
+    <result column="specs" jdbcType="VARCHAR" property="specs" />
+    <result column="num" jdbcType="INTEGER" property="num" />
     <result column="cid" jdbcType="INTEGER" property="cid" />
     <result column="temp" jdbcType="VARCHAR" property="temp" />
     <result column="temp2" jdbcType="VARCHAR" property="temp2" />
     <result column="temp3" jdbcType="INTEGER" property="temp3" />
+    <association property="commodity" column="cid" autoMapping="true" 
+			select="com.tlswn.C71S3Tlswndemo.dao.CommodityMapper.selectByPrimaryKey" fetchType="lazy">
+	</association>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -72,15 +73,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    eid, uid, content, egrade, eimg, etime, cid, temp, temp2, temp3
+    stid, color, specs, num, cid, temp, temp2, temp3
   </sql>
-  <select id="selectByExample" parameterType="com.tlswn.C71S3Tlswndemo.bean.EvaluateExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.tlswn.C71S3Tlswndemo.bean.StockExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from evaluate
+    from stock
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -91,49 +92,41 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from evaluate
-    where eid = #{eid,jdbcType=INTEGER}
+    from stock
+    where stid = #{stid,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from evaluate
-    where eid = #{eid,jdbcType=INTEGER}
+    delete from stock
+    where stid = #{stid,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.tlswn.C71S3Tlswndemo.bean.EvaluateExample">
-    delete from evaluate
+  <delete id="deleteByExample" parameterType="com.tlswn.C71S3Tlswndemo.bean.StockExample">
+    delete from stock
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.tlswn.C71S3Tlswndemo.bean.Evaluate">
-    insert into evaluate (eid, uid, content, 
-      egrade, eimg, etime, 
-      cid, temp, temp2, temp3
-      )
-    values (#{eid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, 
-      #{egrade,jdbcType=INTEGER}, #{eimg,jdbcType=VARCHAR}, #{etime,jdbcType=TIMESTAMP}, 
-      #{cid,jdbcType=INTEGER}, #{temp,jdbcType=VARCHAR}, #{temp2,jdbcType=VARCHAR}, #{temp3,jdbcType=INTEGER}
-      )
+  <insert id="insert" parameterType="com.tlswn.C71S3Tlswndemo.bean.Stock">
+    insert into stock (stid, color, specs, 
+      num, cid, temp, temp2, 
+      temp3)
+    values (#{stid,jdbcType=INTEGER}, #{color,jdbcType=VARCHAR}, #{specs,jdbcType=VARCHAR}, 
+      #{num,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, #{temp,jdbcType=VARCHAR}, #{temp2,jdbcType=VARCHAR}, 
+      #{temp3,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.tlswn.C71S3Tlswndemo.bean.Evaluate">
-    insert into evaluate
+  <insert id="insertSelective" parameterType="com.tlswn.C71S3Tlswndemo.bean.Stock">
+    insert into stock
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="eid != null">
-        eid,
+      <if test="stid != null">
+        stid,
       </if>
-      <if test="uid != null">
-        uid,
+      <if test="color != null">
+        color,
       </if>
-      <if test="content != null">
-        content,
+      <if test="specs != null">
+        specs,
       </if>
-      <if test="egrade != null">
-        egrade,
-      </if>
-      <if test="eimg != null">
-        eimg,
-      </if>
-      <if test="etime != null">
-        etime,
+      <if test="num != null">
+        num,
       </if>
       <if test="cid != null">
         cid,
@@ -149,23 +142,17 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="eid != null">
-        #{eid,jdbcType=INTEGER},
+      <if test="stid != null">
+        #{stid,jdbcType=INTEGER},
       </if>
-      <if test="uid != null">
-        #{uid,jdbcType=INTEGER},
+      <if test="color != null">
+        #{color,jdbcType=VARCHAR},
       </if>
-      <if test="content != null">
-        #{content,jdbcType=VARCHAR},
+      <if test="specs != null">
+        #{specs,jdbcType=VARCHAR},
       </if>
-      <if test="egrade != null">
-        #{egrade,jdbcType=INTEGER},
-      </if>
-      <if test="eimg != null">
-        #{eimg,jdbcType=VARCHAR},
-      </if>
-      <if test="etime != null">
-        #{etime,jdbcType=TIMESTAMP},
+      <if test="num != null">
+        #{num,jdbcType=INTEGER},
       </if>
       <if test="cid != null">
         #{cid,jdbcType=INTEGER},
@@ -181,32 +168,26 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.tlswn.C71S3Tlswndemo.bean.EvaluateExample" resultType="java.lang.Long">
-    select count(*) from evaluate
+  <select id="countByExample" parameterType="com.tlswn.C71S3Tlswndemo.bean.StockExample" resultType="java.lang.Long">
+    select count(*) from stock
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update evaluate
+    update stock
     <set>
-      <if test="record.eid != null">
-        eid = #{record.eid,jdbcType=INTEGER},
+      <if test="record.stid != null">
+        stid = #{record.stid,jdbcType=INTEGER},
       </if>
-      <if test="record.uid != null">
-        uid = #{record.uid,jdbcType=INTEGER},
+      <if test="record.color != null">
+        color = #{record.color,jdbcType=VARCHAR},
       </if>
-      <if test="record.content != null">
-        content = #{record.content,jdbcType=VARCHAR},
+      <if test="record.specs != null">
+        specs = #{record.specs,jdbcType=VARCHAR},
       </if>
-      <if test="record.egrade != null">
-        egrade = #{record.egrade,jdbcType=INTEGER},
-      </if>
-      <if test="record.eimg != null">
-        eimg = #{record.eimg,jdbcType=VARCHAR},
-      </if>
-      <if test="record.etime != null">
-        etime = #{record.etime,jdbcType=TIMESTAMP},
+      <if test="record.num != null">
+        num = #{record.num,jdbcType=INTEGER},
       </if>
       <if test="record.cid != null">
         cid = #{record.cid,jdbcType=INTEGER},
@@ -226,13 +207,11 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update evaluate
-    set eid = #{record.eid,jdbcType=INTEGER},
-      uid = #{record.uid,jdbcType=INTEGER},
-      content = #{record.content,jdbcType=VARCHAR},
-      egrade = #{record.egrade,jdbcType=INTEGER},
-      eimg = #{record.eimg,jdbcType=VARCHAR},
-      etime = #{record.etime,jdbcType=TIMESTAMP},
+    update stock
+    set stid = #{record.stid,jdbcType=INTEGER},
+      color = #{record.color,jdbcType=VARCHAR},
+      specs = #{record.specs,jdbcType=VARCHAR},
+      num = #{record.num,jdbcType=INTEGER},
       cid = #{record.cid,jdbcType=INTEGER},
       temp = #{record.temp,jdbcType=VARCHAR},
       temp2 = #{record.temp2,jdbcType=VARCHAR},
@@ -241,23 +220,17 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.tlswn.C71S3Tlswndemo.bean.Evaluate">
-    update evaluate
+  <update id="updateByPrimaryKeySelective" parameterType="com.tlswn.C71S3Tlswndemo.bean.Stock">
+    update stock
     <set>
-      <if test="uid != null">
-        uid = #{uid,jdbcType=INTEGER},
+      <if test="color != null">
+        color = #{color,jdbcType=VARCHAR},
       </if>
-      <if test="content != null">
-        content = #{content,jdbcType=VARCHAR},
+      <if test="specs != null">
+        specs = #{specs,jdbcType=VARCHAR},
       </if>
-      <if test="egrade != null">
-        egrade = #{egrade,jdbcType=INTEGER},
-      </if>
-      <if test="eimg != null">
-        eimg = #{eimg,jdbcType=VARCHAR},
-      </if>
-      <if test="etime != null">
-        etime = #{etime,jdbcType=TIMESTAMP},
+      <if test="num != null">
+        num = #{num,jdbcType=INTEGER},
       </if>
       <if test="cid != null">
         cid = #{cid,jdbcType=INTEGER},
@@ -272,19 +245,17 @@
         temp3 = #{temp3,jdbcType=INTEGER},
       </if>
     </set>
-    where eid = #{eid,jdbcType=INTEGER}
+    where stid = #{stid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.tlswn.C71S3Tlswndemo.bean.Evaluate">
-    update evaluate
-    set uid = #{uid,jdbcType=INTEGER},
-      content = #{content,jdbcType=VARCHAR},
-      egrade = #{egrade,jdbcType=INTEGER},
-      eimg = #{eimg,jdbcType=VARCHAR},
-      etime = #{etime,jdbcType=TIMESTAMP},
+  <update id="updateByPrimaryKey" parameterType="com.tlswn.C71S3Tlswndemo.bean.Stock">
+    update stock
+    set color = #{color,jdbcType=VARCHAR},
+      specs = #{specs,jdbcType=VARCHAR},
+      num = #{num,jdbcType=INTEGER},
       cid = #{cid,jdbcType=INTEGER},
       temp = #{temp,jdbcType=VARCHAR},
       temp2 = #{temp2,jdbcType=VARCHAR},
       temp3 = #{temp3,jdbcType=INTEGER}
-    where eid = #{eid,jdbcType=INTEGER}
+    where stid = #{stid,jdbcType=INTEGER}
   </update>
 </mapper>
