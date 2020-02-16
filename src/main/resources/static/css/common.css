@@ -199,8 +199,69 @@ div.container .span11 {
 	width: 430px;
 }
 
+.login-header{
+	width: 66%;
+	height: 100px;
+	margin-left: 300px;
+
+}
+.login-center{
+	width: 60%;
+	height: 40px;
+	margin-left: 320px;
+	
+}
+.login-u{
+	width: 100%;
+	height: 40px;
+	float: left;
+	margin-top: 0px;
+	background-color: black;
+}
+.login-center-button{
+	width: 120px;
+	height: 28px;
+	line-height:28px;
+	font-size:22px;
+	display: inline;
+	float: left;
+	color: white;
+	text-align: center;
+	margin-top: 8px;
+	
+}
+.login-left{
+width: 400px;
+height: 100px;
+text-align: center;
+float: left;
+
+}
+.login-right{
+width:390px;
+height:30px;
+float: right;
+margin-top: 10px;
+}
+.login-right ul li{
+	margin: 0;
+	padding: 0;
+	display: inline;
+	font-size: 18px;
+	margin-left: 18px;
+}
+.login-header-foot{
+	width:390px;
+	float: right;
+	height: 30px;
+}
+.login-header-foot p{
+	text-align: center;
+	color: red;
+	margin-top: 15px;
+}
 div.container .span12 {
-	width: 470px;
+	width: 455px;
 }
 
 div.container .span13 {
