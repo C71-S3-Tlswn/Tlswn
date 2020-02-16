@@ -91,9 +91,19 @@
 						</li>
 					</ul>
 				</div>
-				请选择规格<select class="kuang_txt phone">
-                                                    <option th:text="${commodity.csize}"></option>
-                </select></br>
+				<form action="selectNum" method="get" id="myform">
+				请选择规格<select class="kuang_txt phone" onchange="submitForm();" name="specs">
+                          <option th:each="siz:${size}" th:value="${siz.specs}" th:text="${siz.specs}"></option>
+                </select>
+                </form>
+                                          请选择数量(最大限购五份)<select class="kuang_txt num" >
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                </select><br/>
+                <!-- <input type="text" th:text="${num.num}"> -->
 				<div class="product-single-w3l">
 					<p>
 						<i class="fa fa-hand-o-right" aria-hidden="true"></i>这是
@@ -490,6 +500,14 @@
 	<!-- js-files -->
 	<!-- jquery -->
 	<script src="js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript">
+	//表单提交
+	function submitForm(){
+	    var form = document.getElementById("myform");
+	    form.submit();
+	    alert(1);
+	}
+	</script>
 	<!-- //jquery -->
 
 	<!-- popup modal (for signin & signup)-->
