@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tlswn.C71S3Tlswndemo.bean.Commodity;
 import com.tlswn.C71S3Tlswndemo.bean.CommodityExample;
@@ -21,6 +22,7 @@ import com.tlswn.C71S3Tlswndemo.bean.StockExample.Criterion;
 import com.tlswn.C71S3Tlswndemo.dao.CommodityMapper;
 import com.tlswn.C71S3Tlswndemo.dao.EvaluateMapper;
 import com.tlswn.C71S3Tlswndemo.dao.StockMapper;
+import com.tlswn.C71S3Tlswndemo.vo.Result;
 
 @Controller
 public class SingleAction {
@@ -41,14 +43,16 @@ public class SingleAction {
 		return "single2";
 	}
 	/*@GetMapping("selectNum")
-	public int findNum(String specs,Model m){
+	@ResponseBody
+	public Result findNum(String specs,Integer cid,Model m){
 		StockExample st=new StockExample();
-		st.createCriteria().andSpecsEqualTo(specs);
-		m.addAttribute("num",sm.selectByExample(st) );
-		return 1;
+		st.createCriteria().andCidEqualTo(cid).andSpecsEqualTo(specs);
+		List<Stock> snum=sm.selectByExample(st);
+		m.addAttribute("num",snum );
+		return new Result(1, null,snum );
 	}*/
 	@GetMapping("single_{id}")
-	public String toSingle(@PathVariable("id") Integer id,Model m){
+	public String toSingle(@PathVariable("id") Integer id,String specs,Model m){
 		EvaluateExample eve=new EvaluateExample();
 		eve.createCriteria().andCidEqualTo(id);
 		List<Evaluate> evs=em.selectByExample(eve);

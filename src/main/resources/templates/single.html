@@ -91,19 +91,27 @@
 						</li>
 					</ul>
 				</div>
-				<form action="selectNum" method="get" id="myform">
-				请选择规格<select class="kuang_txt phone" onchange="submitForm();" name="specs">
+				
+				action="selectNum"<form  method="get" id="myform">
+				<input type="hidden" name="cid" th:value="${commodity.cid}">
+				请选择规格<select class="kuang_txt phone" id="txt_sp" onchange="submitForm();" name="specs">
+				          <option></option>
                           <option th:each="siz:${size}" th:value="${siz.specs}" th:text="${siz.specs}"></option>
                 </select>
                 </form>
-                                          请选择数量(最大限购五份)<select class="kuang_txt num" >
+                                           请选择颜色<select class="kuang" id="txt_color" name="color">
+				          <option></option>
+                          <option th:each="siz:${size}" th:value="${siz.color}" th:text="${siz.color}"></option>
+                </select><br>
+                                          请选择数量(最大限购五份)<select class="kuang_txt num" id="txt_num">
+                                          <option></option>
                           <option>1</option>
                           <option>2</option>
                           <option>3</option>
                           <option>4</option>
                           <option>5</option>
                 </select><br/>
-                <!-- <input type="text" th:text="${num.num}"> -->
+                                           库存<input  type="text" > 
 				<div class="product-single-w3l">
 					<p>
 						<i class="fa fa-hand-o-right" aria-hidden="true"></i>这是
@@ -112,12 +120,12 @@
 						<li th:text="${#dates.format(commodity.cBtime, 'yyyy-MM-dd HH:mm')}">
 							上市时间
 						</li>
-						<li>
+						<!-- <li>
 							After cooking, Zeeba Basmati rice grains attain an extra ordinary length of upto 2.4 cm/~1 inch.
 						</li>
 						<li>
 							Zeeba Basmati rice adheres to the highest food afety standards as your health is paramount to us.
-						</li>
+						</li> -->
 						<li th:text="${commodity.cdescride}">
 						
 						</li>
@@ -129,7 +137,7 @@
 				</div>
 				<div class="occasion-cart">
 					<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-						<form action="#" method="post">
+						<form action="addcart" method="post">
 							<fieldset>
 								<input type="hidden" name="cmd" value="_cart" />
 								<input type="hidden" name="add" value="1" />
@@ -502,11 +510,26 @@
 	<script src="js/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript">
 	//表单提交
-	function submitForm(){
+	/*  function submitForm(){
 	    var form = document.getElementById("myform");
-	    form.submit();
-	    alert(1);
-	}
+	    form.submit(function(){
+	    	alert(1);
+	    });
+	}  */
+	$(".button").on('click',function(){
+		var specs=$("#txt_sp option:selected").text();
+		var count=$("#txt_num option:selected").text();
+		var color=$("#txt_color option:selected").text();
+		var id=window.location.pathname;
+		var cid=id.substring(8);
+		console.log(specs,count,cid);
+		if(count==null){
+			alert(请选择数量);
+		}
+		/* $.post("addcart"{cid:cid,count:count,specs:specs,color:color},function(){
+			
+		}) */
+	})
 	</script>
 	<!-- //jquery -->
 
