@@ -1,10 +1,15 @@
 package com.tlswn.C71S3Tlswndemo.bean;
 
+import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
+public class Stock implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 5017349684028654739L;
 
-public class Stock {
-   
-	
 	private Integer stid;
 
     private String color;

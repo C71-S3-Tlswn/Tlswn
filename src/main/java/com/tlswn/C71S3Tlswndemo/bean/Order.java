@@ -1,9 +1,17 @@
 package com.tlswn.C71S3Tlswndemo.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Order {
-    private Integer oid;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
+public class Order implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1486452116732701434L;
+
+	private Integer oid;
 
     private Integer uid;
 

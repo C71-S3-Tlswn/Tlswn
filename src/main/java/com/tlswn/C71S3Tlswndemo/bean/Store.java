@@ -1,7 +1,16 @@
 package com.tlswn.C71S3Tlswndemo.bean;
 
-public class Store {
-    private Integer sid;
+import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
+public class Store implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 3193906232675603469L;
+
+	private Integer sid;
 
     private String sname;
 

@@ -1,7 +1,17 @@
 package com.tlswn.C71S3Tlswndemo.bean;
 
-public class Cart {
-    private Integer ccid;
+import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
+public class Cart implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -1603630310338762706L;
+
+	private Integer ccid;
 
     private Integer count;
 
@@ -14,8 +24,28 @@ public class Cart {
     private String ctemp;
 
     private Integer ctemp2;
+    
+    private Commodity commodity;
+    
+    private User user;
+    
+    public User getUser() {
+		return user;
+	}
 
-    public Integer getCcid() {
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Commodity getCommodity() {
+		return commodity;
+	}
+
+	public void setCommodity(Commodity commodity) {
+		this.commodity = commodity;
+	}
+
+	public Integer getCcid() {
         return ccid;
     }
 

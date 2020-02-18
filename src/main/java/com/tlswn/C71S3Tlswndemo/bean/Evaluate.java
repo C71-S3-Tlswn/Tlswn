@@ -1,9 +1,17 @@
 package com.tlswn.C71S3Tlswndemo.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Evaluate {
-    private Integer eid;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
+public class Evaluate implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -1247260538949525705L;
+
+	private Integer eid;
 
     private Integer uid;
 
