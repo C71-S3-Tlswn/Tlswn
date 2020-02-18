@@ -70,8 +70,8 @@
 				</div>
 				<p>
 					
-					<span class="item_price" th:text="|￥:${commodity.cprice}"></span>
-					<del th:text="|￥:${commodity.mprice}">$1300.00</del>
+					<span id="item_price" class="item_price" th:text="|￥:${commodity.cprice}"></span>
+					<del id="price" th:text="|￥:${commodity.mprice}">$1300.00</del>
 					<label>免费送货</label>
 				</p>
 				<div class="single-infoagile">
@@ -92,13 +92,13 @@
 					</ul>
 				</div>
 				
-				action="selectNum"<form  method="get" id="myform">
+		
 				<input type="hidden" name="cid" th:value="${commodity.cid}">
-				请选择规格<select class="kuang_txt phone" id="txt_sp" onchange="submitForm();" name="specs">
+				请选择规格<select class="kuang_txt phone" id="txt_sp" onchange="selectNum()" name="specs">
 				          <option></option>
                           <option th:each="siz:${size}" th:value="${siz.specs}" th:text="${siz.specs}"></option>
                 </select>
-                </form>
+               
                                            请选择颜色<select class="kuang" id="txt_color" name="color">
 				          <option></option>
                           <option th:each="siz:${size}" th:value="${siz.color}" th:text="${siz.color}"></option>
@@ -111,7 +111,7 @@
                           <option>4</option>
                           <option>5</option>
                 </select><br/>
-                                           库存<input  type="text" > 
+                                           库存<span id="store"></span>
 				<div class="product-single-w3l">
 					<p>
 						<i class="fa fa-hand-o-right" aria-hidden="true"></i>这是
@@ -510,25 +510,39 @@
 	<script src="js/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript">
 	//表单提交
-	/*  function submitForm(){
-	    var form = document.getElementById("myform");
-	    form.submit(function(){
-	    	alert(1);
-	    });
-	}  */
+	 function selectNum(){
+	    //alert(1);
+	    var id=window.location.pathname;
+		var cid=id.substring(8);
+		var specs=$("#txt_sp option:selected").text();
+	    $("#store").load("/selectNum",{cid: cid,specs: specs},function(result){
+	    	if(result.code==1){
+	    		alert(result.data);
+	    	}
+	    })
+	}  
 	$(".button").on('click',function(){
 		var specs=$("#txt_sp option:selected").text();
 		var count=$("#txt_num option:selected").text();
 		var color=$("#txt_color option:selected").text();
+		var price1=$("#item_price").text();
+		var price=price1.substring(2);
 		var id=window.location.pathname;
 		var cid=id.substring(8);
-		console.log(specs,count,cid);
-		if(count==null){
-			alert(请选择数量);
-		}
-		/* $.post("addcart"{cid:cid,count:count,specs:specs,color:color},function(){
-			
-		}) */
+		 console.log(specs,count,cid,price);
+		 $.post("addcart",{cid:cid,price:price,count:count,ctemp:specs},
+				 function(result){
+			if(result.code==3){
+				alert(result.msg);
+			}else if(result.code==2){
+				alert(result.msg);
+				window.location.href="/";
+			}else if(result.code==0){
+				alert(result.msg);
+			}else if(result.code==1){
+				alert("result.msg");
+			}
+		})  
 	})
 	</script>
 	<!-- //jquery -->

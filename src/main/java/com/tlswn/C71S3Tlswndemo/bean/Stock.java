@@ -1,7 +1,11 @@
 package com.tlswn.C71S3Tlswndemo.bean;
 
+
+
 public class Stock {
-    private Integer stid;
+   
+	
+	private Integer stid;
 
     private String color;
 

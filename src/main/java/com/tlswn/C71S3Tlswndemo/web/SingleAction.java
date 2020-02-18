@@ -42,7 +42,7 @@ public class SingleAction {
 	public String Single2(){
 		return "single2";
 	}
-	/*@GetMapping("selectNum")
+	@PostMapping("/selectNum")
 	@ResponseBody
 	public Result findNum(String specs,Integer cid,Model m){
 		StockExample st=new StockExample();
@@ -50,7 +50,7 @@ public class SingleAction {
 		List<Stock> snum=sm.selectByExample(st);
 		m.addAttribute("num",snum );
 		return new Result(1, null,snum );
-	}*/
+	}
 	@GetMapping("single_{id}")
 	public String toSingle(@PathVariable("id") Integer id,String specs,Model m){
 		EvaluateExample eve=new EvaluateExample();
