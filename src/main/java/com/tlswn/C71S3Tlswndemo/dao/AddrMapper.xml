@@ -11,6 +11,9 @@
     <result column="atemp" jdbcType="VARCHAR" property="atemp" />
     <result column="atemp1" jdbcType="VARCHAR" property="atemp1" />
     <result column="atemp2" jdbcType="INTEGER" property="atemp2" />
+    <association property="user" column="uid" autoMapping="true" 
+			select="com.tlswn.C71S3Tlswndemo.dao.UserMapper.selectByPrimaryKey" fetchType="lazy">
+	</association>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>

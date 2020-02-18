@@ -13,6 +13,7 @@ import com.tlswn.C71S3Tlswndemo.dao.TypeMapper;
 import com.tlswn.C71S3Tlswndemo.dao.VarietyMapper;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.tlswn.C71S3Tlswndemo.bean.Addr;
@@ -51,7 +52,7 @@ public class IndexAction {
 		Criteria c3=ce4.createCriteria();
 		c3.andTidBetween(22, 27);
 		m.addAttribute("ce4", cm.selectBythree(ce4));
-		m.addAttribute("variety",vm.selectByExample(null) );
+		
 		TypeExample te=new TypeExample();
 		com.tlswn.C71S3Tlswndemo.bean.TypeExample.Criteria cr=te.createCriteria();
 		cr.andVidEqualTo(1);
@@ -72,4 +73,8 @@ public class IndexAction {
 		System.out.println("........"+v);
 		return "index";
 	}*/
+	@ModelAttribute
+	public void init(Model m){
+		m.addAttribute("variety",vm.selectByExample(null) );
+	}
 }

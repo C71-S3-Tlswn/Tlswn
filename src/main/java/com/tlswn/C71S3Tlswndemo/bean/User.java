@@ -1,7 +1,16 @@
 package com.tlswn.C71S3Tlswndemo.bean;
 
-public class User {
-    private Integer uid;
+import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
+public class User implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7453478479849398877L;
+
+	private Integer uid;
 
     private String uname;
 

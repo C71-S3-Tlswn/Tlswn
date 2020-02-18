@@ -1,9 +1,17 @@
 package com.tlswn.C71S3Tlswndemo.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Commodity {
-    private Integer cid;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
+public class Commodity implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 5986373755732201220L;
+
+	private Integer cid;
 
     private String cname;
 

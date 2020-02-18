@@ -1,7 +1,16 @@
 package com.tlswn.C71S3Tlswndemo.bean;
 
-public class Admin {
-    private Integer aaid;
+import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
+public class Admin implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4887601963211234768L;
+
+	private Integer aaid;
 
     private String accounnt;
 
