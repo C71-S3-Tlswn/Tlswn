@@ -1,9 +1,17 @@
 package com.tlswn.C71S3Tlswndemo.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Privilege {
-    private Integer pid;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
+public class Privilege implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1589450501994841991L;
+
+	private Integer pid;
 
     private Double price;
 

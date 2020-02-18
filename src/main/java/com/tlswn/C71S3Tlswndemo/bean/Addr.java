@@ -1,7 +1,16 @@
 package com.tlswn.C71S3Tlswndemo.bean;
 
-public class Addr {
-    private Integer aid;
+import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
+public class Addr implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 5991224230782161494L;
+
+	private Integer aid;
 
     private Integer uid;
 
@@ -18,8 +27,19 @@ public class Addr {
     private String atemp1;
 
     private Integer atemp2;
+    
+    private User user;
+    
 
-    public Integer getAid() {
+    public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Integer getAid() {
         return aid;
     }
 

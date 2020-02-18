@@ -1,7 +1,16 @@
 package com.tlswn.C71S3Tlswndemo.bean;
 
-public class Favorite {
-    private Integer fid;
+import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
+public class Favorite implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -6921493997057486767L;
+
+	private Integer fid;
 
     private Integer uid;
 

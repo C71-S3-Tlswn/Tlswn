@@ -9,6 +9,12 @@
     <result column="cid" jdbcType="INTEGER" property="cid" />
     <result column="ctemp" jdbcType="VARCHAR" property="ctemp" />
     <result column="ctemp2" jdbcType="INTEGER" property="ctemp2" />
+     <association property="user" column="uid" autoMapping="true" 
+			select="com.tlswn.C71S3Tlswndemo.dao.UserMapper.selectByPrimaryKey" fetchType="lazy">
+	</association>
+	 <association property="commodity" column="cid" autoMapping="true" 
+			select="com.tlswn.C71S3Tlswndemo.dao.CommodityMapper.selectByPrimaryKey" fetchType="lazy">
+	</association>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>

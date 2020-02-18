@@ -1,7 +1,16 @@
 package com.tlswn.C71S3Tlswndemo.bean;
 
-public class Variety {
-    private Integer vid;
+import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
+public class Variety implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 6067473780941163029L;
+
+	private Integer vid;
 
     private String vname;
 
