@@ -183,15 +183,34 @@
 							<div style="margin-left: 35px;margin-top: -18px">
 								<a style="color: black;" th:text="${ev.user.uaccount}">123</a>
 							</div>
+							<!-- <div style="background-color:red; height: 10px;width: 300px;margin-top: 50px;">
+								
+							</div> -->
 							<!-- <label style="text-align: right;" th:text="${ev.egrade}">6.0</label> -->
 							<h5 id="egrade" style="text-align: right;font-size: 25px;margin-top: -13px;color: red;font-weight: bold;"  th:text="${ev.egrade}+'分'">8.0</h5>
-							<div class="product-name-w3l" style="height: 180px">
-								<h4 style="height: 80px;">
+							<div class="product-name-w3l" style="height: 250px">
+								
+								<!-- <label th:text="${ev.content}" style="font-size: 14px; margin-top: 50px;"></label> -->
+								<h4 style="height: 75px;">
 									<a th:text="${ev.content}" style="font-size: 14px;">Aashirvaad</a>
 								</h4>
+								<img alt="" src="images/c1_1.jpg" style="height: 80px;width: 85px;">
+
+								<!-- <div style="height: 60px;width: 250px;">
+									<ul style="list-style: none;margin-left:0px; display: inline;">
+										<li><img src="images/tu.png" style="height: 60px;width: 83px;"></li>
+										<li><img src="images/tu.png" style="height: 60px;width: 83px;"></li>
+										<li><img src="images/tu.png" style="height: 60px;width: 83px;"></li>
+										<li><img src="images/tu.png" style="height: 60px;width: 83px;"></li>
+										<li><img src="images/tu.png" style="height: 60px;width: 83px;"></li>
+										<li><img src="images/tu.png" style="height: 60px;width: 83px;"></li>
+									</ul>
+								
+								</div> -->
+								
 								<div class="w3l-pricehkj">
 									
-									<p>评论一下......</p>
+									<input type="text" placeholder="  评论一下......" style="height: 40px;width: 275px;"/>
 								</div>
 								<h5 style="text-align: right;" th:text="${#dates.format(ev.etime, 'yyyy-MM-dd HH:mm:ss')}">$220.00</h5>
 								<!-- <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
@@ -214,7 +233,7 @@
 						</div>
 					</li>
 				</ul>
-			
+			</div>
 			<h3 class="tittle-w3l" style="margin-top: 30px;">Add More
 				<span class="heading-style">
 					<i></i>
@@ -702,7 +721,7 @@
 	<script src="js/bootstrap.js"></script>
 	<!-- //for bootstrap working -->
 	<!-- //js-files -->
-
+	
 </body>
 
 </html>

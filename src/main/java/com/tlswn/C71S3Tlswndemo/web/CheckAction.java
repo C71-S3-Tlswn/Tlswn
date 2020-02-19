@@ -1,5 +1,6 @@
 package com.tlswn.C71S3Tlswndemo.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -36,20 +37,7 @@ public class CheckAction {
 	public String Check(){
 		return "checkout";
 	}
-	/*@ModelAttribute
-	public void init(Model m,HttpServletRequest ht){	
-		User user= (User) ht.getSession().getAttribute("User");	
-		AddrExample ae=new AddrExample();
-		CartExample ce=new CartExample();
-		Criteria c=ce.createCriteria();
-		c.andUidEqualTo(user.getUid());
-		List<Cart> list=cm.selectByExample(ce);
-		m.addAttribute("cart", list);
-		com.tlswn.C71S3Tlswndemo.bean.AddrExample.Criteria cr=ae.createCriteria();
-		cr.andUidEqualTo(user.getUid());
-		cr.andAstatusEqualTo(1);
-		m.addAttribute("addr", am.selectByExample(ae));	
-	}*/
+	//取消商品
 	@ResponseBody
 	@PostMapping("dodelet")
 	public Result delet(Integer cid){
@@ -63,6 +51,7 @@ public class CheckAction {
 			return new Result(0, "取消失败，稍后再试！");
 		}
 	}
+	//显示购物车
 	@ResponseBody
 	@GetMapping("docart")
 	public Result Cart(Model m,HttpServletRequest ht){
@@ -74,15 +63,30 @@ public class CheckAction {
 			Criteria c=ce.createCriteria();
 			c.andUidEqualTo(user.getUid());
 			List<Cart> list=cm.selectByExample(ce);
-			m.addAttribute("count", cm.countByExample(ce));
+			/*m.addAttribute("count", cm.countByExample(ce));
+			System.out.println(cm.countByExample(ce));
 			AddrExample ae=new AddrExample();
 			com.tlswn.C71S3Tlswndemo.bean.AddrExample.Criteria cr=ae.createCriteria();
 			cr.andUidEqualTo(user.getUid());
 			cr.andAstatusEqualTo(1);
-			m.addAttribute("addr", am.selectByExample(ae));	
+			m.addAttribute("addr", am.selectByExample(ae));	*/
+		
 			return new Result(1,"",list);	
+			
 		}
 	}
-	
+	@ModelAttribute
+	public void init(Model m,HttpServletRequest ht){	
+		User user= (User) ht.getSession().getAttribute("User");	
+		AddrExample ae=new AddrExample();
+		CartExample ce=new CartExample();
+		Criteria c=ce.createCriteria();
+		c.andUidEqualTo(user.getUid());
+		m.addAttribute("count", cm.countByExample(ce));
+		com.tlswn.C71S3Tlswndemo.bean.AddrExample.Criteria cr=ae.createCriteria();
+		cr.andUidEqualTo(user.getUid());
+		cr.andAstatusEqualTo(1);
+		m.addAttribute("addr", am.selectByExample(ae));	
+	}
 	
 }
