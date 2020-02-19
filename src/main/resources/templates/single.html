@@ -194,8 +194,7 @@
 								<h4 style="height: 75px;">
 									<a th:text="${ev.content}" style="font-size: 14px;">Aashirvaad</a>
 								</h4>
-								<img alt="" src="images/c1_1.jpg" style="height: 80px;width: 85px;">
-
+								<img alt="" src="images/tu.png" th:src="${ev.eimg}!=null?${ev.eimg}:'images/tu.png'" style="height: 80px;width: 85px;">
 								<!-- <div style="height: 60px;width: 250px;">
 									<ul style="list-style: none;margin-left:0px; display: inline;">
 										<li><img src="images/tu.png" style="height: 60px;width: 83px;"></li>
@@ -724,7 +723,6 @@
 	<script src="js/bootstrap.js"></script>
 	<!-- //for bootstrap working -->
 	<!-- //js-files -->
-	
 </body>
 
 </html>
