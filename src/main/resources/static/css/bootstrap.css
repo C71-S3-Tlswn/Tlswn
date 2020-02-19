@@ -87,6 +87,19 @@ sub {
 	width: 130px;
 	height: 130px;
 }
+.page{
+	width: 800px;
+	height: 30px;
+	margin-top: px;
+}
+.page ul {
+	width: 200px;
+	height: 30px;
+	margin: 0 auto;
+}
+.page ul li{
+	display: inline;
+}
 img {
   border: 0;
 }
