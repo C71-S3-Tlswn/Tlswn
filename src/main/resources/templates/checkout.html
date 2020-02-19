@@ -198,90 +198,10 @@
 	<!-- //cart-js -->
 
 	<!--quantity-->
-	<script>
-		$('.value-plus').on('click', function () {
-			var divUpd = $(this).parent().find('.value'),
-				newVal = parseInt(divUpd.text(), 10) + 1;
-			divUpd.text(newVal);
-		});
-
-		$('.value-minus').on('click', function () {
-			var divUpd = $(this).parent().find('.value'),
-				newVal = parseInt(divUpd.text(), 10) - 1;
-			if (newVal >= 1) divUpd.text(newVal);
-		});
-	</script>
+	
 	<!--quantity-->
-	<!-- 显示购物车 -->
-	<script type="text/javascript">
-		$(function(){
-			//查看购物车数据
-			alert(1);
-			showCart();
-		});
-		function showCart(){
-			$.get("docart",null,function(data){
-				if(2==data){
-					alert('请先登录');
-					window.location.href='login';
-				}else if(null==data ||data.length==0){
-					alert('购物车为空，请浏览商品');
-					window.location.href="index";
-				}else{
-					showCartTable(data);
-				}
-			});
-		}
-		//显示购物车数据
-		function showCartTable(arr){
-			$('.table-responsive table tbody').html('');
-			var str='';
-			var totalprice=0;
-			for(var i=0;i<arr.length;i++){
-				totalprice+=arr[i].count*arr[i].price; 
-				str+='<tr class="rem1"><td class="invert">1</td>'
-					+'<td class="invert-image"><a href="single_'+arr[i].cid+'">'
-					+'<img src="'+arr[i].commodity.cphoto+'" alt="" class="img-responsive"></a></td>'
-					+'<td class="invert"><div class="quantity">'
-					+'<div class="quantity-select">'
-					+'<div class="entry value-minus">&nbsp;</div>'
-					+'<div class="entry value"><span id="num">'+arr[i].count+'</span></div>'
-					+'<div class="entry value-plus active">&nbsp;</div>'
-					+'</div></div></td><td class="invert" >'+arr[i].commodity.cname+'</td>'
-					+'<td class="invert" id="cprice">'+arr[i].commodity.cprice+'</td>'
-					+'<td class="invert"><div class="rem">'
-					+'<div class="close1"></div></div></td>'
-					+'<td  style="visibility: hidden;">'+arr[i].cid+'</td></tr>';
-			}
-			$('.table-responsive table tbody').html(str);
-			 $('.table-responsive table tbody tr').each(function(i){                   
-				    	   var num=$(this).find('td:eq(3)').text();
-				    	   var price=$(this).find('td:eq(5)').text();
-				    	   totalprice+=num*price;
-				   });
-			 var total="总价格:";
-			$('.price').html(total+totalprice); 
-		}
-	</script>
 	<!-- 取消购物车 -->
-	<script type="text/javascript">
-		 $(document).ready(function () {
-			$('.close1').on('click', function () {
-				if(confirm("确认取消该商品？")){
-					 var id=$(this).closest("tr");
-					 var cid=id.find('td:eq(6)').text();
-					$.post("dodelet",{cid:cid},
-							function(result){
-								if(result.code==0){
-									alert(result.msg);
-								}else{
-									alert(result.msg);
-								}
-					});
-				}
-			});
-		});  
-	</script>
+	
 
 	<!-- password-script -->
 	<script>
@@ -332,8 +252,8 @@
 				easingType: 'linear' 
 			};
 			*/
-				//查看购物车数据
-				showCart();
+			//查看购物车数据
+			showCart();
 			function showCart(){
 				$.get("docart",null,function(data){
 					if(2==data){
@@ -344,39 +264,90 @@
 						window.location.href="index";
 					}else{
 						showCartTable(data);
-						console.log(data);
+						
 					}
-				},'json');
+				});
 			}
+			//显示购物车
 			function showCartTable(arr){
 				$('.table-responsive table tbody').html('');
 				var str='';
 				var totalprice=0;
-				for(var i=0;i<arr.length;i++){
-					totalprice+=arr[i].count*arr[i].price; 
-					str+='<tr class="rem1"><td class="invert">1</td>'
-						+'<td class="invert-image"><a href="single_'+arr[i].cid+'">'
-						+'<img src="'+arr[i].commodity.cphoto+'" alt="" class="img-responsive"></a></td>'
+				var num=1;
+				for(var i=0;i<arr.data.length;i++){
+					str+='<tr class="rem1"><td class="invert">'+(num++)+'</td>'
+						+'<td class="invert-image"><a href="single_'+arr.data[i].cid+'">'
+						+'<img src="'+arr.data[i].commodity.cphoto+'" alt="" class="img-responsive"></a></td>'
 						+'<td class="invert"><div class="quantity">'
 						+'<div class="quantity-select">'
 						+'<div class="entry value-minus">&nbsp;</div>'
-						+'<div class="entry value"><span id="num">'+arr[i].count+'</span></div>'
+						+'<div class="entry value"><span id="num">'+arr.data[i].count+'</span></div>'
 						+'<div class="entry value-plus active">&nbsp;</div>'
-						+'</div></div></td><td class="invert" >'+arr[i].commodity.cname+'</td>'
-						+'<td class="invert" id="cprice">'+arr[i].commodity.cprice+'</td>'
+						+'</div></div></td><td class="invert" >'+arr.data[i].commodity.cname+'</td>'
+						+'<td class="invert" id="cprice">'+arr.data[i].commodity.cprice+'</td>'
 						+'<td class="invert"><div class="rem">'
 						+'<div class="close1"></div></div></td>'
-						+'<td  style="visibility: hidden;">'+arr[i].cid+'</td></tr>';
-				}
-				$('.table-responsive table tbody').html(str);
-				 $('.table-responsive table tbody tr').each(function(i){                   
-					    	   var num=$(this).find('td:eq(3)').text();
-					    	   var price=$(this).find('td:eq(5)').text();
-					    	   totalprice+=num*price;
-					   });
-				 var total="总价格:";
-				$('.price').html(total+totalprice); 
+						+'<td style="visibility: hidden;">'+arr.data[i].cid+'</td></tr>';
 			}
+				$('.table-responsive table tbody').html(str);
+				//显示总价格
+				$('.table-responsive table tbody tr').each(function(i){ //遍历tr                   
+			    	   var num=$(this).find('td:eq(2)').text();
+			    	   var price=$(this).find('td:eq(4)').text();
+			   	  	   totalprice+=num*price;
+			  		});
+				var total="总价格:￥ ";
+				$('.price').html(total+totalprice); 
+						
+				//取消购物车
+				$('.close1').on('click', function () {
+					if(confirm("确认取消该商品？")){
+						 var id=$(this).closest("tr");
+						 var cid=id.find('td:eq(6)').text();
+						$.post("dodelet",{cid:cid},
+								function(result){
+									if(result.code==0){
+										alert(result.msg);
+									}else{
+										alert(result.msg);
+										window.location.reload();
+									}
+						});
+					}
+				});
+				//数量添加
+				$('.value-plus').on('click', function () {
+					var divUpd = $(this).parent().find('.value'),
+						newVal = parseInt(divUpd.text(), 10) + 1;
+					divUpd.text(newVal);
+					var totalprice=0;
+					 $('.table-responsive table tbody tr').each(function(i){ //遍历tr                   
+				    	   var num=$(this).find('td:eq(2)').text();
+				    	   var price=$(this).find('td:eq(4)').text();
+				   	  	   totalprice+=num*price;
+				   });
+					 var total="总价格:￥ ";
+						$('.price').html(total+totalprice); 
+					
+				});
+				//数量减少
+				$('.value-minus').on('click', function () {
+					var divUpd = $(this).parent().find('.value'),
+						newVal = parseInt(divUpd.text(), 10) - 1;
+					if (newVal >= 1) divUpd.text(newVal);
+					var totalprice=0;
+					 $('.table-responsive table tbody tr').each(function(i){ //遍历tr                   
+				    	   var num=$(this).find('td:eq(2)').text();
+				    	   var price=$(this).find('td:eq(4)').text();
+				   	  	   totalprice+=num*price;
+				   });
+					 var total="总价格:￥ ";
+						$('.price').html(total+totalprice); 
+				});
+				
+				
+			} 
+			
 			$().UItoTop({
 				easingType: 'easeOutQuart'
 			});
