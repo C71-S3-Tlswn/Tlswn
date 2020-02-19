@@ -170,6 +170,22 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+  <update id="updateByExampleNum" parameterType="map">
+    update cart
+    <set>
+     <if test="record.count != null">
+      count = count+#{count,jdbcType=INTEGER},
+      </if>
+     </set> 
+    <!--  where
+      uid = #{uid,jdbcType=INTEGER},
+      cid = #{cid,jdbcType=INTEGER},
+      ctemp = #{ctemp,jdbcType=VARCHAR},
+      ctemp2 = #{ctemp2,jdbcType=INTEGER} -->
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
   <update id="updateByExampleSelective" parameterType="map">
     update cart
     <set>
@@ -212,6 +228,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  
   <update id="updateByPrimaryKeySelective" parameterType="com.tlswn.C71S3Tlswndemo.bean.Cart">
     update cart
     <set>
