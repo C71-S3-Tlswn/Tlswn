@@ -39,7 +39,7 @@
 				</span>
 			</h3>
 			<!-- //tittle heading -->
-			<div class="col-md-5 single-right-left ">
+			<!-- <div class="col-md-5 single-right-left ">
 				<div class="grid images_3_of_2">
 					<div class="flexslider">
 						<ul class="slides">
@@ -56,7 +56,14 @@
 				<h3 th:text="${commodity.cname}"></h3>
 				
 
+			</div> -->
+			<div id="comment_div">
+				<ul id="comment_div_ul">
+					<li><img th:src="${commodity.cphoto}" id="comment_li_img"></li>
+					<li><h3 th:text="${commodity.cname}" id="comment_li_h3"></h3></li>
+				</ul>
 			</div>
+			
 			<div class="clearfix"> </div>
 		</div>
 	</div>
