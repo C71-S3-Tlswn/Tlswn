@@ -47,9 +47,8 @@ public class SingleAction {
 	public Result findNum(String specs,Integer cid,Model m){
 		StockExample st=new StockExample();
 		st.createCriteria().andCidEqualTo(cid).andSpecsEqualTo(specs);
-		List<Stock> snum=sm.selectByExample(st);
-		m.addAttribute("num",snum );
-		return new Result(1, null,snum );
+		m.addAttribute("num",sm.selectByExample(st) );
+		return new Result(1, null,sm.selectByExample(st) );
 	}
 	@GetMapping("single_{id}")
 	public String toSingle(@PathVariable("id") Integer id,String specs,Model m){

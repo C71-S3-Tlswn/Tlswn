@@ -256,7 +256,7 @@
 			showCart();
 			function showCart(){
 				$.get("docart",null,function(data){
-					if(2==data){
+					if(2==data.code){
 						alert('请先登录');
 						window.location.href='login';
 					}else if(null==data ||data.length==0){
@@ -310,7 +310,8 @@
 										alert(result.msg);
 									}else{
 										alert(result.msg);
-										window.location.reload();
+										/* window.location.reload(); */
+										showCart();
 									}
 						});
 					}

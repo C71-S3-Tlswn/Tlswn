@@ -99,7 +99,7 @@
                           <option th:each="siz:${size}" th:value="${siz.specs}" th:text="${siz.specs}"></option>
                 </select>
                
-                                           请选择颜色<select class="kuang" id="txt_color" name="color">
+                                           请选择颜色<select class="kuang"  onchange="selectNum()" id="txt_color" name="color">
 				          <option></option>
                           <option th:each="siz:${size}" th:value="${siz.color}" th:text="${siz.color}"></option>
                 </select><br>
@@ -532,12 +532,9 @@
 	    //alert(1);
 	    var id=window.location.pathname;
 		var cid=id.substring(8);
+		var color=$("#txt_color option:selected").text();
 		var specs=$("#txt_sp option:selected").text();
-	    $("#store").load("/selectNum",{cid: cid,specs: specs},function(result){
-	    	if(result.code==1){
-	    		alert(result.data);
-	    	}
-	    })
+	    $("#store").load("/selectNum",{cid: cid,specs: specs,color:color})
 	}  
 	$(".button").on('click',function(){
 		var specs=$("#txt_sp option:selected").text();
@@ -548,7 +545,7 @@
 		var id=window.location.pathname;
 		var cid=id.substring(8);
 		 console.log(specs,count,cid,price);
-		 $.post("addcart",{cid:cid,price:price,count:count,ctemp:specs},
+		 $.post("/addcart",{cid:cid,price:price,count:count,ctemp:specs},
 				 function(result){
 			if(result.code==3){
 				alert(result.msg);
@@ -558,7 +555,7 @@
 			}else if(result.code==0){
 				alert(result.msg);
 			}else if(result.code==1){
-				alert("result.msg");
+				alert(result.msg);
 			}
 		})  
 	})
