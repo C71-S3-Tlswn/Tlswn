@@ -24,6 +24,7 @@ public interface CartMapper {
 
     int updateByExample(@Param("record") Cart record, @Param("example") CartExample example);
 
+    int updateByExampleNum(@Param("record") Integer count,@Param("example") CartExample example);
     int updateByPrimaryKeySelective(Cart record);
 
     int updateByPrimaryKey(Cart record);

@@ -18,4 +18,8 @@ public class CartBiz {
 	public void add(Cart cart){
 		cm.insert(cart);
 	}
+	
+	public void update(Cart cart){
+		
+	}
 }
