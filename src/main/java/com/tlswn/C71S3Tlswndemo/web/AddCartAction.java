@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.tlswn.C71S3Tlswndemo.bean.Cart;
@@ -27,9 +28,10 @@ public class AddCartAction {
 	private CartMapper cm;
 
 	@PostMapping("/addcart")
+	@ResponseBody
 	public Result addcart(Cart cart,
 			@SessionAttribute("User") User user,
-			Error error,Model m){
+			Error error,Model m,int count){
 		CartExample ce=new CartExample();
 		ce.createCriteria().andCidEqualTo(cart.getCid()).andCtempEqualTo(cart.getCtemp()).andUidEqualTo(user.getUid());
 		List<Cart> old= cm.selectByExample(ce);
@@ -52,7 +54,7 @@ public class AddCartAction {
 			CartExample ce2=new CartExample();
 			ce2.createCriteria().andUidEqualTo(user.getUid()).
 			andCtempEqualTo(cart.getCtemp()).andCidEqualTo(cart.getCid());
-			/*cm.updateByExampleNum(count, ce2);*/
+		    cm.updateByExampleSelective(cart, ce2);
 			return new Result(1, "添加成功");
 		}
 			

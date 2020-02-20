@@ -177,11 +177,6 @@
       count = count+#{count,jdbcType=INTEGER},
       </if>
      </set> 
-    <!--  where
-      uid = #{uid,jdbcType=INTEGER},
-      cid = #{cid,jdbcType=INTEGER},
-      ctemp = #{ctemp,jdbcType=VARCHAR},
-      ctemp2 = #{ctemp2,jdbcType=INTEGER} -->
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -193,7 +188,7 @@
         ccid = #{record.ccid,jdbcType=INTEGER},
       </if>
       <if test="record.count != null">
-        count = #{record.count,jdbcType=INTEGER},
+        count = count+#{record.count,jdbcType=INTEGER},
       </if>
       <if test="record.price != null">
         price = #{record.price,jdbcType=DOUBLE},
