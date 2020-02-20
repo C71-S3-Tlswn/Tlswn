@@ -1,17 +1,14 @@
 package com.tlswn.C71S3Tlswndemo.web;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -62,15 +59,7 @@ public class CheckAction {
 			CartExample ce=new CartExample();
 			Criteria c=ce.createCriteria();
 			c.andUidEqualTo(user.getUid());
-			List<Cart> list=cm.selectByExample(ce);
-			/*m.addAttribute("count", cm.countByExample(ce));
-			System.out.println(cm.countByExample(ce));
-			AddrExample ae=new AddrExample();
-			com.tlswn.C71S3Tlswndemo.bean.AddrExample.Criteria cr=ae.createCriteria();
-			cr.andUidEqualTo(user.getUid());
-			cr.andAstatusEqualTo(1);
-			m.addAttribute("addr", am.selectByExample(ae));	*/
-		
+			List<Cart> list=cm.selectByExample(ce);		
 			return new Result(1,"",list);	
 			
 		}
@@ -78,6 +67,9 @@ public class CheckAction {
 	@ModelAttribute
 	public void init(Model m,HttpServletRequest ht){	
 		User user= (User) ht.getSession().getAttribute("User");	
+		if(null==user){
+			return ;
+		}else{
 		AddrExample ae=new AddrExample();
 		CartExample ce=new CartExample();
 		Criteria c=ce.createCriteria();
@@ -87,6 +79,7 @@ public class CheckAction {
 		cr.andUidEqualTo(user.getUid());
 		cr.andAstatusEqualTo(1);
 		m.addAttribute("addr", am.selectByExample(ae));	
+		}
 	}
 	
 }
