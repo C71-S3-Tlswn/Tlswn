@@ -63,7 +63,15 @@
 					<li><h3 th:text="${commodity.cname}" id="comment_li_h3"></h3></li>
 				</ul>
 			</div>
-			
+			<div>
+				<label>描述相符</label><input type="text" value="0" id="comment_input1"/><span style="color: red;font-weight: bold;">分</span>
+				<input id="slide1" type="range" value="0">
+			</div>
+			<div style="margin-left: 300px; margin-top: -35px;">
+				<label>服务态度</label><input type="text" value="0" id="comment_input2"/><span style="color: red;font-weight: bold;">分</span>
+				<input id="slide2" type="range" value="0">
+			</div>
+			<input type="text"/>
 			<div class="clearfix"> </div>
 		</div>
 	</div>
@@ -244,7 +252,25 @@
 	<script src="js/bootstrap.js"></script>
 	<!-- //for bootstrap working -->
 	<!-- //js-files -->
-
+	 <script type="text/javascript"src="js/RangeSlider.js"></script>
+	 <script type="text/javascript">
+		 var change = function($input) {
+	         /*内容可自行定义*/
+	         $("#comment_input1").attr("value",$input);
+	         console.log("123"); 
+	     }
+		 $("#slide1").RangeSlider({ min: 0,   max: 5,  step: 1,  callback: change});
+		 
+	 </script>
+	 <script type="text/javascript">
+		 var change = function($input) {
+	         /*内容可自行定义*/
+	         $("#comment_input2").attr("value",$input);
+	         console.log("123"); 
+	     }
+		 $("#slide2").RangeSlider({ min: 0,   max: 5,  step: 1,  callback: change});
+		 
+	 </script>
 </body>
 
 </html>
