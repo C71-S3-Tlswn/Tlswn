@@ -6774,5 +6774,19 @@ button.close {
     display: none !important;
   }
 }
-
+#comment_div_ul{
+	list-style: none;
+	display: inline;
+}
+#comment_li_img{
+	height: 120px;
+	width: 120px;
+}
+#comment_li_h3{
+	margin-left: 130px;
+	margin-top: -120px;
+}
+#comment_div{
+	height: 140px;
+}
 /*# sourceMappingURL=bootstrap.css.map */
