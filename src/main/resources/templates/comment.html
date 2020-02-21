@@ -256,8 +256,7 @@
 	 <script type="text/javascript">
 		 var change = function($input) {
 	         /*内容可自行定义*/
-	         $("#comment_input1").attr("value",$input);
-	         console.log("123"); 
+	         $("#comment_input1").attr("value",$input.value);
 	     }
 		 $("#slide1").RangeSlider({ min: 0,   max: 5,  step: 1,  callback: change});
 		 
@@ -265,8 +264,7 @@
 	 <script type="text/javascript">
 		 var change = function($input) {
 	         /*内容可自行定义*/
-	         $("#comment_input2").attr("value",$input);
-	         console.log("123"); 
+	         $("#comment_input2").attr("value",$input.value);
 	     }
 		 $("#slide2").RangeSlider({ min: 0,   max: 5,  step: 1,  callback: change});
 		 

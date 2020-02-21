@@ -22,7 +22,7 @@ $.fn.RangeSlider = function(cfg){
         $input.css( 'background-size', this.value*20 + '% 100%' );
  
         if ($.isFunction(callback)) {
-            callback(this.value);
+            callback(this);
         }
     });
 };
