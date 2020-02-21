@@ -71,10 +71,6 @@ public class CheckAction {
 			return ;
 		}else{
 		AddrExample ae=new AddrExample();
-		CartExample ce=new CartExample();
-		Criteria c=ce.createCriteria();
-		c.andUidEqualTo(user.getUid());
-		m.addAttribute("count", cm.countByExample(ce));
 		com.tlswn.C71S3Tlswndemo.bean.AddrExample.Criteria cr=ae.createCriteria();
 		cr.andUidEqualTo(user.getUid());
 		cr.andAstatusEqualTo(1);

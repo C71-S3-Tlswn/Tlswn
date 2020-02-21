@@ -40,8 +40,8 @@
 			</h3>
 			<!-- //tittle heading -->
 			<div class="checkout-right">
-				<h4>您的购物车包含:
-					<span th:text="${count}+' 款产品'">1 款产品</span>
+				<h4>您的购物车如下:
+					<!-- <span  id="procount"> 款产品</span> -->
 				</h4>
 				<div class="table-responsive">
 					<table class="timetable_sub">
@@ -255,13 +255,13 @@
 			//查看购物车数据
 			showCart();
 			function showCart(){
-				$.get("docart",null,function(data){
-					if(2==data.code){
+				$.get("docart",null,function(arr){
+					if(2==arr.code){
 						alert('请先登录');
 						window.location.href='login';
-					}else if(null==data ||data.length==0){
+					}else if(null==arr.data||arr.data.length==0){
 						alert('购物车为空，请浏览商品');
-						window.location.href="index";
+						/* window.location.href="index"; */
 					}else{
 						showCartTable(data);
 						
@@ -312,6 +312,7 @@
 										alert(result.msg);
 										/* window.location.reload(); */
 										showCart();
+										
 									}
 						});
 					}

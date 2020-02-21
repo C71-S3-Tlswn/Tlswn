@@ -90,7 +90,10 @@ sub {
 .page{
 	width: 800px;
 	height: 30px;
-	margin-top: px;
+	position: absolute;
+	left: 600px;
+	top: 2110px;
+	
 }
 .page ul {
 	width: 200px;

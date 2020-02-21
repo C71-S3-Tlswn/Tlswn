@@ -216,6 +216,19 @@
 						</li>
 					</ul>
 				</div>
+				<div class="deal-leftmk left-side">
+					<h3 class="agileits-sear-head">特别优惠</h3>
+					<div class="special-sec1">
+						<div class="col-xs-4 img-deals">
+							<img src="images/d3.jpg" alt="">
+						</div>
+						<div class="col-xs-8 img-deal1">
+							<h3>Cadbury Dairy Milk</h3>
+							<a href="single.html">$149.00</a>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
 			</div>
 			<!-- //product left -->
 			<!-- product right -->
@@ -240,8 +253,8 @@
 										<a th:href="|single_${c.cid}" th:text="${c.cname}"></a>
 									</h4>
 									<div class="info-product-price">
-										<span class="item_price" th:text="${c.cprice}"></span>
-										<del  th:text="${c.mprice}">$280.00</del>
+										<span class="item_price" th:text="|￥:${c.cprice}"></span>
+										<del  th:text="|￥:${c.mprice}">$280.00</del>
 									</div>
 									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 										<form action="" method="post">
@@ -265,18 +278,17 @@
 						</div>
 
 						<div class="clearfix"></div>
-					</div>	
-									
-			</div>
-			<div class="page">
-						<ul>
-							<li><a href="food_1">首页</a></li>
-							<li><a href="">上一页</a></li>
-							<li><a href="?next">下一页</a></li>
-							<li><a href="">尾页</a></li>
-						</ul>
-					</div>		
+					</div>										
+			</div>	
 		</div>
+		<div class="page">
+						<ul>
+							<li><a href="?page=1" class="paging">首页</a></li>
+							<li><a th:href="|?page=${page-1}" class="paging">上一页</a></li>
+							<li><a th:href="|?page=${page}" class="paging">下一页</a></li>
+							<li><a href="" class="paging">尾页</a></li>
+						</ul>
+			</div>	
 			<!-- //product right -->
 		</div>
 	</div>
@@ -407,6 +419,11 @@
 				easingType: 'easeOutQuart'
 			});
 
+		});
+	</script>
+	<script type="text/javascript">
+		$(".paging").click(function(){
+			$('.product-sec1').load("food_{id}");
 		});
 	</script>
 	<!-- //smooth-scrolling-of-move-up -->
