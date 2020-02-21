@@ -2,17 +2,14 @@ package com.tlswn.C71S3Tlswndemo.web;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
-import javax.websocket.server.PathParam;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.tlswn.C71S3Tlswndemo.bean.Commodity;
@@ -24,27 +21,22 @@ import com.tlswn.C71S3Tlswndemo.dao.CommodityMapper;
 import com.tlswn.C71S3Tlswndemo.dao.TypeMapper;
 
 @Controller
-public class FoodAction {
+public class WemenAction {
 	
 	private final static int Page_index=9;
-	
+
 	@Resource
 	private CommodityMapper cm;
 	
 	@Resource
 	private TypeMapper tm;
 	
-	/*
-	@GetMapping("food")
-	public String index(){
-		return "food";
-	}*/
 	//分页查询
-	@GetMapping("food")
-	public String Page(/*@PathVariable("id")*/ Integer page,Model m){
+	@GetMapping("women")
+	public String Women(Integer page,Model m){
 		TypeExample te=new TypeExample();
 		Criteria c=te.createCriteria();
-		c.andVidEqualTo(1);
+		c.andVidEqualTo(3);
 		List<Type> list=tm.selectByExample(te);
 		List<Integer> tlist=new ArrayList<Integer>(); 
 		for(int i=0;i<list.size();i++){
@@ -57,9 +49,9 @@ public class FoodAction {
 		if(page==null|| page<=1){
 			page=1;
 		}
-		PageHelper.startPage(page, Page_index);
-		List<Commodity> clist=cm.selectByExample(ce);
-		PageInfo<Commodity> pageInfo=new PageInfo<>(clist);
+		PageHelper.startPage(page, Page_index);	
+		List<Commodity> plist=cm.selectByExample(ce);
+		PageInfo<Commodity> pageInfo=new PageInfo<>(plist);
 		 //当前页
 		 int pagenum=pageInfo.getPageNum();
 		 //总页数
@@ -82,9 +74,9 @@ public class FoodAction {
 			m.addAttribute("nextpage", pagenum+1);
 		}
 		//总页数
-		m.addAttribute("pages",pages);
-		m.addAttribute("clist", clist);
-		return "food";
+		m.addAttribute("pages",pages );
+		m.addAttribute("wlist", plist);
+		return "women";
 	}
 
 }
