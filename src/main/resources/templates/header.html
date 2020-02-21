@@ -660,7 +660,9 @@ margin-left: -60px;
 				<form action="dofind" method="post">
 					<select id="agileinfo-nav_search" name="agileinfo_search" required="" >
 						<option >全部分类</option>
-						<option th:each="var:${variety}" th:value="${var.vid}" th:text="${var.vname}"></option>
+						<option th:each="var:${variety}" th:value="${var.vid}" th:text="${var.vname}">
+						
+						</option>
 					</select>
 				</form>
 			</div>

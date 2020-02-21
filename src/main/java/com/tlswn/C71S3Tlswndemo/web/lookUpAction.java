@@ -23,6 +23,7 @@ public class lookUpAction {
 		return "lookup";
 	}
 	
+	//查询商品
 	@PostMapping("dofind")
 	public String  Find(Model m,String search){
 		System.out.println(search);
@@ -32,5 +33,6 @@ public class lookUpAction {
 		c.andCnameLike(cname);
 		m.addAttribute("lookUp",cm.selectByExample(ce));
 		return "lookup";
+		
 	}
 }

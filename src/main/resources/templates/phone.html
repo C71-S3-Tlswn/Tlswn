@@ -235,26 +235,26 @@
 			<div class="agileinfo-ads-display col-md-9">
 				<div class="wrapper">
 					<div class="product-sec1">
-						<h3 class="heading-tittle" >Foods</h3>
-						<div class="col-md-4 product-men" th:each="c:${clist}">
+						<h3 class="heading-tittle" >智能品牌系列</h3>
+						<div class="col-md-4 product-men" th:each="p:${plist}">
 							<div class="men-pro-item simpleCart_shelfItem">
 								<div class="men-thumb-item">
-									<img th:src="${c.cphoto}" alt="" id="imagess">
+									<img th:src="${p.cphoto}" alt="" id="imagess">
 									<div class="men-cart-pro">
 										<div class="inner-men-cart-pro">
-											<a th:href="|single_${c.cid}" class="link-product-add-cart">快速访问</a>
+											<a th:href="|single_${p.cid}" class="link-product-add-cart">快速访问</a>
 										</div>
 									</div>
 									<span class="product-new-top" >热卖</span>
 								</div>
 								<div class="item-info-product ">
 									<h4>
-										<a  th:text="${c.type.tname}">Almonds, 100g</a>
-										<a th:href="|single_${c.cid}" th:text="${c.cname}"></a>
+										<a  th:text="${p.type.tname}">Almonds, 100g</a>
+										<a th:href="|single_${p.cid}" th:text="${p.cname}"></a>
 									</h4>
 									<div class="info-product-price">
-										<span class="item_price" th:text="|￥:${c.cprice}"></span>
-										<del  th:text="|￥:${c.mprice}">$280.00</del>
+										<span class="item_price" th:text="|￥:${p.cprice}"></span>
+										<del  th:text="|￥:${p.mprice}">$280.00</del>
 									</div>
 									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 										<form action="" method="post">
@@ -288,6 +288,7 @@
 							<li><a th:href="|?page=${nextpage}" class="paging">下一页</a></li>
 							<li><a th:href="|?page=${pages}" class="paging">尾页</a></li>
 						</ul>
+
 			</div>	
 			<!-- //product right -->
 		</div>
