@@ -475,62 +475,72 @@ public class CartExample {
         }
 
         public Criteria andCtemp2IsNull() {
-            addCriterion("ctemp2 is null");
+            addCriterion("ctemp is null");
             return (Criteria) this;
         }
 
         public Criteria andCtemp2IsNotNull() {
-            addCriterion("ctemp2 is not null");
+            addCriterion("ctemp is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCtemp2EqualTo(Integer value) {
-            addCriterion("ctemp2 =", value, "ctemp2");
+        public Criteria andCtemp2EqualTo(String value) {
+            addCriterion("ctemp =", value, "ctemp");
             return (Criteria) this;
         }
 
-        public Criteria andCtemp2NotEqualTo(Integer value) {
-            addCriterion("ctemp2 <>", value, "ctemp2");
+        public Criteria andCtemp2NotEqualTo(String value) {
+            addCriterion("ctemp <>", value, "ctemp");
             return (Criteria) this;
         }
 
-        public Criteria andCtemp2GreaterThan(Integer value) {
-            addCriterion("ctemp2 >", value, "ctemp2");
+        public Criteria andCtemp2GreaterThan(String value) {
+            addCriterion("ctemp >", value, "ctemp");
             return (Criteria) this;
         }
 
-        public Criteria andCtemp2GreaterThanOrEqualTo(Integer value) {
-            addCriterion("ctemp2 >=", value, "ctemp2");
+        public Criteria andCtemp2GreaterThanOrEqualTo(String value) {
+            addCriterion("ctemp >=", value, "ctemp");
             return (Criteria) this;
         }
 
-        public Criteria andCtemp2LessThan(Integer value) {
-            addCriterion("ctemp2 <", value, "ctemp2");
+        public Criteria andCtemp2LessThan(String value) {
+            addCriterion("ctemp <", value, "ctemp");
             return (Criteria) this;
         }
 
-        public Criteria andCtemp2LessThanOrEqualTo(Integer value) {
-            addCriterion("ctemp2 <=", value, "ctemp2");
+        public Criteria andCtemp2LessThanOrEqualTo(String value) {
+            addCriterion("ctemp <=", value, "ctemp");
             return (Criteria) this;
         }
 
-        public Criteria andCtemp2In(List<Integer> values) {
-            addCriterion("ctemp2 in", values, "ctemp2");
+        public Criteria andCtemp2Like(String value) {
+            addCriterion("ctemp like", value, "ctemp");
             return (Criteria) this;
         }
 
-        public Criteria andCtemp2NotIn(List<Integer> values) {
-            addCriterion("ctemp2 not in", values, "ctemp2");
+        public Criteria andCtemp2NotLike(String value) {
+            addCriterion("ctemp not like", value, "ctemp");
             return (Criteria) this;
         }
 
-        public Criteria andCtemp2Between(Integer value1, Integer value2) {
-            addCriterion("ctemp2 between", value1, value2, "ctemp2");
+        public Criteria andCtemp2In(List<String> values) {
+            addCriterion("ctemp in", values, "ctemp");
             return (Criteria) this;
         }
 
-        public Criteria andCtemp2NotBetween(Integer value1, Integer value2) {
-            addCriterion("ctemp2 not between", value1, value2, "ctemp2");
+        public Criteria andCtemp2NotIn(List<String> values) {
+            addCriterion("ctemp not in", values, "ctemp");
+            return (Criteria) this;
+        }
+
+        public Criteria andCtemp2Between(String value1, String value2) {
+            addCriterion("ctemp between", value1, value2, "ctemp");
+            return (Criteria) this;
+        }
+
+        public Criteria andCtemp2NotBetween(String value1, String value2) {
+            addCriterion("ctemp not between", value1, value2, "ctemp");
             return (Criteria) this;
         }
     }

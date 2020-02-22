@@ -8,7 +8,7 @@
     <result column="uid" jdbcType="INTEGER" property="uid" />
     <result column="cid" jdbcType="INTEGER" property="cid" />
     <result column="ctemp" jdbcType="VARCHAR" property="ctemp" />
-    <result column="ctemp2" jdbcType="INTEGER" property="ctemp2" />
+    <result column="ctemp2" jdbcType="VARCHAR" property="ctemp2" />
      <association property="user" column="uid" autoMapping="true" 
 			select="com.tlswn.C71S3Tlswndemo.dao.UserMapper.selectByPrimaryKey" fetchType="lazy">
 	</association>
@@ -112,7 +112,7 @@
       uid, cid, ctemp, ctemp2
       )
     values (#{ccid,jdbcType=INTEGER}, #{count,jdbcType=INTEGER}, #{price,jdbcType=DOUBLE}, 
-      #{uid,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, #{ctemp,jdbcType=VARCHAR}, #{ctemp2,jdbcType=INTEGER}
+      #{uid,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, #{ctemp,jdbcType=VARCHAR}, #{ctemp2,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.tlswn.C71S3Tlswndemo.bean.Cart">
@@ -160,7 +160,7 @@
         #{ctemp,jdbcType=VARCHAR},
       </if>
       <if test="ctemp2 != null">
-        #{ctemp2,jdbcType=INTEGER},
+        #{ctemp2,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -203,7 +203,7 @@
         ctemp = #{record.ctemp,jdbcType=VARCHAR},
       </if>
       <if test="record.ctemp2 != null">
-        ctemp2 = #{record.ctemp2,jdbcType=INTEGER},
+        ctemp2 = #{record.ctemp2,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -218,7 +218,7 @@
       uid = #{record.uid,jdbcType=INTEGER},
       cid = #{record.cid,jdbcType=INTEGER},
       ctemp = #{record.ctemp,jdbcType=VARCHAR},
-      ctemp2 = #{record.ctemp2,jdbcType=INTEGER}
+      ctemp2 = #{record.ctemp2,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -243,7 +243,7 @@
         ctemp = #{ctemp,jdbcType=VARCHAR},
       </if>
       <if test="ctemp2 != null">
-        ctemp2 = #{ctemp2,jdbcType=INTEGER},
+        ctemp2 = #{ctemp2,jdbcType=VARCHAR},
       </if>
     </set>
     where ccid = #{ccid,jdbcType=INTEGER}
@@ -255,7 +255,7 @@
       uid = #{uid,jdbcType=INTEGER},
       cid = #{cid,jdbcType=INTEGER},
       ctemp = #{ctemp,jdbcType=VARCHAR},
-      ctemp2 = #{ctemp2,jdbcType=INTEGER}
+      ctemp2 = #{ctemp2,jdbcType=VARCHAR}
     where ccid = #{ccid,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -44,11 +44,11 @@ public class SingleAction {
 	}
 	@PostMapping("/selectNum")
 	@ResponseBody
-	public Result findNum(String specs,Integer cid,Model m){
+	public Result findNum(String color,String specs,Integer cid,Model m){
 		StockExample st=new StockExample();
-		st.createCriteria().andCidEqualTo(cid).andSpecsEqualTo(specs);
-		m.addAttribute("num",sm.selectByExample(st) );
-		return new Result(1, null,sm.selectByExample(st) );
+		st.createCriteria().andCidEqualTo(cid).andSpecsEqualTo(specs).andColorEqualTo(color);
+		List<Stock> list= sm.selectByExample(st);
+		return new Result(1, null,list );
 	}
 	@GetMapping("single_{id}")
 	public String toSingle(@PathVariable("id") Integer id,String specs,Model m){
