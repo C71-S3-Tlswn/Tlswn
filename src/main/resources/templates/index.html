@@ -102,7 +102,7 @@
 					<h3 class="agileits-sear-head">在这里搜索...</h3>
 					<form action="#" method="post">
 						<input type="search" placeholder="请输入商品名字..." name="search" required="">
-						<input type="submit" value=" ">
+							<input type="button"  onclick="find()" value=" ">
 					</form>
 				</div>
 				<!-- price range -->
@@ -110,7 +110,6 @@
 					<h3 class="agileits-sear-head">价格范围</h3>
 					<ul class="dropdown-menu6">
 						<li>
-
 							<div id="slider-range"></div>
 							<input type="text" id="amount" style="border: 0; color: #ffffff; font-weight: normal;" />
 						</li>
@@ -119,15 +118,15 @@
 				<!-- //price range -->
 				<!-- food preference -->
 				<div class="left-side">
-					<h3 class="agileits-sear-head">食物偏好</h3>
+						<h3 class="agileits-sear-head">优惠区</h3>
 					<ul>
 						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">素食主义者</span>
+							<input type="checkbox" name="new" class="checked" value="new">
+							<span class="span">新品推介</span>
 						</li>
 						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">非素食主义者</span>
+							<input type="checkbox" name="hot" class="checked" value="1">
+							<span class="span">热卖商品</span>
 						</li>
 					</ul>
 				</div>
@@ -220,53 +219,7 @@
 					</ul>
 				</div>
 				<!-- //reviews -->
-				<!-- cuisine -->
-				<div class="left-side">
-					<h3 class="agileits-sear-head">Cuisine</h3>
-					<ul>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">South American</span>
-						</li>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">French</span>
-						</li>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">Greek</span>
-						</li>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">Chinese</span>
-						</li>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">Japanese</span>
-						</li>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">Italian</span>
-						</li>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">Mexican</span>
-						</li>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">Thai</span>
-						</li>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">Indian</span>
-						</li>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span"> Spanish </span>
-						</li>
-					</ul>
-				</div>
-				<!-- //cuisine -->
+
 				<!-- deals -->
 				<div class="deal-leftmk left-side">
 					<h3 class="agileits-sear-head">特别优惠</h3>
@@ -289,7 +242,7 @@
 				<div class="wrapper">
 					<!-- first section (nuts) -->
 					<div class="product-sec1">
-						<h3 class="heading-tittle" >Nuts</h3>
+						<h3 class="heading-tittle" >Food</h3>
 						<!-- th:text="${nuts.type.variety.vname}" -->
 						<div class="col-md-4 product-men" th:each="nut:${nuts}">
 							<div class="men-pro-item simpleCart_shelfItem">
@@ -476,7 +429,7 @@
 									</h4>
 									<div class="info-product-price">
 										<span class="item_price" th:text="|￥:${ce4.cprice}"></span>
-										<del>$280.00</del>
+										<del th:text="|￥:${ce4.mprice}">$280.00</del>
 									</div>
 									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 										<form action="" method="post">
@@ -623,10 +576,7 @@
 								</div>
 							</div>
 						</div>
-					</li>
-					
-					
-					
+					</li>					
 				</ul>
 			</div>
 		</div>
@@ -689,11 +639,21 @@
 		});
 	</script>
 	<!-- //cart-js -->
+	
+	<script type="text/javascript">
+		$('#agileinfo-nav_search').change(function(){
+			 var option = $(this).val(); 
+			 window.location.href=option;
+			 
+		});
+	
+	</script>
 
 	<!-- price range (top products) -->
 	<script src="js/jquery-ui.js"></script>
 	<script>
-		//<![CDATA[ 
+		var bprice=0;
+		var eprice=0;
 		$(window).load(function () {
 			$("#slider-range").slider({
 				range: true,
@@ -701,12 +661,25 @@
 				max: 9000,
 				values: [50, 6000],
 				slide: function (event, ui) {
-					$("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-				}
+					 $("#amount").val("￥" + ui.values[0] + " - ￥" + ui.values[1]);
+					bprice=ui.values[0];
+					eprice=ui.values[1];				
+				}		
 			});
-			$("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
-
-		}); //]]>
+			 $("#amount").val("￥" + $("#slider-range").slider("values", 0) + " - ￥" + $("#slider-range").slider("values", 1));
+			 
+		}); 
+		function find(){
+			var search=$("input[name='search']").val();
+			var newpro= $("input[name='new']:checked").val();
+			var hot= $("input[name='hot']:checked").val();
+			 console.log(newpro);
+			 console.log(hot);
+			$.post("lookup",{newpro:newpro,hot:hot,search:search,bprice:bprice,eprice,eprice},
+					function(date){
+						 $('.agileinfo-ads-display').html(date);
+			});
+		}
 	</script>
 	<!-- //price range (top products) -->
 
@@ -739,27 +712,7 @@
 
 		});
 	</script>
-	<!-- //flexisel (for special offers) -->
-
-	<!-- password-script -->
-	<script>
-		window.onload = function () {
-			document.getElementById("upass1").onchange = validatePassword;
-			document.getElementById("upass2").onchange = validatePassword;
-		}
-
-		function validatePassword() {
-			var pass2 = document.getElementById("upass1").value;
-			var pass1 = document.getElementById("upass2").value;
-			if (pass1 != pass2)
-				document.getElementById("upass2").setCustomValidity("密码不一致！");
-			else
-				document.getElementById("upass2").setCustomValidity('');
-			//empty string means no validation error
-		}
-		
-	</script>
-	<!-- //password-script -->
+	<!-- //flexisel (for special offers) -->	
 
 	<!-- smoothscroll -->
 	<script src="js/SmoothScroll.min.js"></script>
@@ -784,14 +737,7 @@
 	<!-- smooth-scrolling-of-move-up -->
 	<script>
 		$(document).ready(function () {
-			/*
-			var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 1200,
-				easingType: 'linear' 
-			};
-			*/
+	
 			$().UItoTop({
 				easingType: 'easeOutQuart'
 			});

@@ -60,8 +60,7 @@ public class CheckAction {
 			Criteria c=ce.createCriteria();
 			c.andUidEqualTo(user.getUid());
 			List<Cart> list=cm.selectByExample(ce);		
-			return new Result(1,"",list);	
-			
+			return new Result(1,"",list);			
 		}
 	}
 	@ModelAttribute

@@ -803,7 +803,7 @@ button.w3view-cart {
   font-size: 13px;
   color: #c4c4c4;
 }
-.search-hotel form input[type="submit"]{
+.search-hotel form input[type="button"]{
   background: url(../images/search.png) no-repeat 13px 11px #1accfd;
   width: 44px;
   height: 39px;
@@ -932,7 +932,7 @@ h3.heading-tittle {
     text-align: center;
 }
 .item-info-product {
-    margin-top: 40px;
+    margin-top: 15px;
     text-align: center;
 }
 .item-info-product h4 a {

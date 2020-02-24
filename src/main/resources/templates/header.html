@@ -659,12 +659,11 @@ margin-left: -60px;
 			<div class="agileits-navi_search">
 				<form action="dofind" method="post">
 					<select id="agileinfo-nav_search" name="agileinfo_search" required="" >
-						<option >全部分类</option>
-						<option th:each="var:${variety}" th:value="${var.vid}" th:text="${var.vname}">
-						
+						<option id= >全部分类</option>
+						<option th:each="var:${variety}" th:value="${var.temp}" th:text="${var.vname}" class="se-options">
 						</option>
 					</select>
-				</form>
+				</form> 
 			</div>
 			<div class="top_nav_left">
 				<nav class="navbar navbar-default">
