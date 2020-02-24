@@ -545,7 +545,7 @@
 		var id=window.location.pathname;
 		var cid=id.substring(8);
 		 console.log(specs,count,cid,price);
-		 $.post("/addcart",{cid:cid,price:price,count:count,ctemp:specs},
+		 $.post("/addcart",{cid:cid,price:price,count:count,ctemp:specs,ctemp2:color},
 				 function(result){
 			if(result.code==3){
 				alert(result.msg);

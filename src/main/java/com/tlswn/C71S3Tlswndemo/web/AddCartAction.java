@@ -33,20 +33,20 @@ public class AddCartAction {
 			@SessionAttribute("User") User user,
 			Error error,Model m,int count){
 		CartExample ce=new CartExample();
-		ce.createCriteria().andCidEqualTo(cart.getCid()).andCtempEqualTo(cart.getCtemp()).andUidEqualTo(user.getUid());
+		ce.createCriteria().andCidEqualTo(cart.getCid()).andCtempEqualTo(cart.getCtemp()).andCtemp2EqualTo(cart.getCtemp2()).andUidEqualTo(user.getUid());
 		List<Cart> old= cm.selectByExample(ce);
 		if(old==null || old.isEmpty()){
-			cart.setUid(user.getUid());
 			
-			m.addAttribute("cart", cart);
-			if(cart.getUid()==null&&cart.getUid().equals("")){
+			if(user.getUid()==null&&user.getUid().equals("")){
 				return new Result(3, "您尚未登录，请登录");
 			}else if(cart.getCount()==null&&cart.getCount().equals("")){
 				return new Result(2,"添加失败，请选择数量");
 			}else if(cart.getCtemp()==null&&cart.getCtemp().equals("")){
 				return new Result(0, "您没有选择尺码，请选择尺码");
 			}else{
+				cart.setUid(user.getUid());
 				cbiz.add(cart);
+				m.addAttribute("cart", cart);
 			return new Result(1, "添加成功", cart);
 			}
 			

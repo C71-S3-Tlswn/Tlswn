@@ -6787,12 +6787,13 @@ button.close {
 }
 #comment_li_h3{
 	margin-left: 130px;
-	margin-top: -120px;
+	margin: 0px;
 }
 #comment_div{
 	height: 140px;
+	text-align: center;
 }
-#comment_input1{
+#comment_slide1_input1{
 	height: 20px;
 	width: 20PX;
 	margin-left: 37px;
@@ -6801,7 +6802,7 @@ button.close {
 	font-weight: bold;
 	border-style: none;
 }
-#comment_input2{
+#comment_slide2_input2{
 	height: 20px;
 	width: 20PX;
 	margin-left: 37px;
@@ -6809,6 +6810,11 @@ button.close {
 	color: red;
 	font-weight: bold;
 	border-style: none;
+}
+#comment_input{
+	margin-top: 15px;
+	width: 44%;
+	height: 80%;
 }
 
 input[type=range] {

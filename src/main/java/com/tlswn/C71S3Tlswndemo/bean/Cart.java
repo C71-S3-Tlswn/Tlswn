@@ -23,7 +23,7 @@ public class Cart implements Serializable{
 
     private String ctemp;
 
-    private Integer ctemp2;
+    private String ctemp2;
     
     private Commodity commodity;
     
@@ -93,11 +93,13 @@ public class Cart implements Serializable{
         this.ctemp = ctemp == null ? null : ctemp.trim();
     }
 
-    public Integer getCtemp2() {
-        return ctemp2;
-    }
+	public String getCtemp2() {
+		return ctemp2;
+	}
 
-    public void setCtemp2(Integer ctemp2) {
-        this.ctemp2 = ctemp2;
-    }
+	public void setCtemp2(String ctemp2) {
+		this.ctemp2 = ctemp2 == null ? null : ctemp2.trim();
+	}
+
+  
 }
