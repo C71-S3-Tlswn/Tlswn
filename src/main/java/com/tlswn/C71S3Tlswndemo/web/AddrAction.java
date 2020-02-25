@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+import javax.validation.Valid;
 
 import org.apache.catalina.core.ApplicationContext;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,16 +23,25 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.tlswn.C71S3Tlswndemo.bean.Addr;
+import com.tlswn.C71S3Tlswndemo.bean.Commodity;
+import com.tlswn.C71S3Tlswndemo.bean.CommodityExample;
+import com.tlswn.C71S3Tlswndemo.bean.Favorite;
+import com.tlswn.C71S3Tlswndemo.bean.FavoriteExample;
 import com.tlswn.C71S3Tlswndemo.bean.User;
 import com.tlswn.C71S3Tlswndemo.bean.UserExample;
 import com.tlswn.C71S3Tlswndemo.dao.AddrMapper;
+import com.tlswn.C71S3Tlswndemo.dao.CommodityMapper;
+import com.tlswn.C71S3Tlswndemo.dao.FavoriteMapper;
 import com.tlswn.C71S3Tlswndemo.dao.UserMapper;
+import com.tlswn.C71S3Tlswndemo.vo.Result;
 
 
 @Controller
@@ -38,7 +50,10 @@ public class AddrAction {
 	private UserMapper us;
 	@Resource
 	private AddrMapper ad;
-	
+	@Resource
+	private FavoriteMapper fa;
+	@Resource
+	private CommodityMapper cm;
 	@GetMapping({"addr","addr.do"})
 	public String dizhi(){
 		return "addr";
@@ -171,9 +186,40 @@ public class AddrAction {
 	System.out.println(k);
 		return "index";
 	}
-	@GetMapping("order")
-	 public String order(HttpSession hs){
-		User use=(User) hs.getAttribute("User");
-		 return "order";
+	@GetMapping("favorite")
+	 public String favorite(HttpSession hs,Model model){
+		FavoriteExample fac=new FavoriteExample();
+		CommodityExample co=new CommodityExample();
+		List<Favorite> list=new ArrayList<Favorite>();
+		List<Commodity> li=new ArrayList<Commodity>();
+		User user=(User) hs.getAttribute("User");
+		if(user==null){
+			return "login";
+		}
+		com.tlswn.C71S3Tlswndemo.bean.FavoriteExample.Criteria c=fac.createCriteria();
+		c.andUidEqualTo(user.getUid());
+		list=fa.selectByExample(fac);
+		for(int i=0;i<list.size();i++){
+			int cid=0;
+			cid=list.get(i).getTemp3();
+			li.add(i, cm.selectByPrimaryKey(cid));//根据 id查商品
+			li.get(i).setCid(cid);
+		}
+		model.addAttribute("li", li);
+		 return "favorite";
 	 }
+	@ResponseBody
+	@GetMapping("dele.do")
+	public Result dele(@Valid Commodity com,Model m) throws IOException{
+	FavoriteExample fac=new FavoriteExample();
+	com.tlswn.C71S3Tlswndemo.bean.FavoriteExample.Criteria c=fac.createCriteria();
+	c.andTemp3EqualTo(com.getCid());
+	System.out.println(com.getCid());
+	int cs=fa.deleteByExample(fac);
+	if(cs==1){
+			return new Result(1, "删除成功");
+	}else{
+		return new Result(0, "删除失败");
+	}
+	}
 }
