@@ -48,7 +48,8 @@ public class SingleAction {
 		StockExample st=new StockExample();
 		st.createCriteria().andCidEqualTo(cid).andSpecsEqualTo(specs).andColorEqualTo(color);
 		List<Stock> list= sm.selectByExample(st);
-		return new Result(1, null,list );
+		System.out.println(list);
+		return new Result( list );
 	}
 	@GetMapping("single_{id}")
 	public String toSingle(@PathVariable("id") Integer id,String specs,Model m){

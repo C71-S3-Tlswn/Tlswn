@@ -52,6 +52,9 @@ public class Result {
 		this.msg = msg;
 		Data = data;
 	}
-	
+	public Result( Object data) {
+		super();
+		Data = data;
+	}
 
 }
