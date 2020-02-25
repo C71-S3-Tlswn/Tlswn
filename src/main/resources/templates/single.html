@@ -534,8 +534,19 @@
 		var cid=id.substring(8);
 		var color=$("#txt_color option:selected").text();
 		var specs=$("#txt_sp option:selected").text();
-	    $("#store").load("/selectNum",{cid: cid,specs: specs,color:color})
+	    $("#store").load("/selectNum",{cid: cid,specs: specs,color:color},function(data){
+	    	console.log(data);
+	    	 $("#store").append("<h3>"+data.list[0].num+"</h3>"); 
+	    })
 	}  
+	 /* function show(arr){
+		$("#store").html('');
+		var str='';
+		for(var i=0;i<arr.length;i++){
+		str+='<p>'+arr[i].num+'</p>'
+		}
+		$("#store").html(str);
+	}  */
 	$(".button").on('click',function(){
 		var specs=$("#txt_sp option:selected").text();
 		var count=$("#txt_num option:selected").text();
