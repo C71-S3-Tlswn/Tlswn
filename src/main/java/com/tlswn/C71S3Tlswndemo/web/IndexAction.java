@@ -7,8 +7,11 @@ import org.springframework.ui.Model;
 
 import com.tlswn.C71S3Tlswndemo.bean.CommodityExample;
 import com.tlswn.C71S3Tlswndemo.bean.CommodityExample.Criteria;
+import com.tlswn.C71S3Tlswndemo.bean.Order;
 import com.tlswn.C71S3Tlswndemo.bean.TypeExample;
+import com.tlswn.C71S3Tlswndemo.bean.User;
 import com.tlswn.C71S3Tlswndemo.dao.CommodityMapper;
+import com.tlswn.C71S3Tlswndemo.dao.OrderMapper;
 import com.tlswn.C71S3Tlswndemo.dao.TypeMapper;
 import com.tlswn.C71S3Tlswndemo.dao.VarietyMapper;
 
@@ -32,6 +35,7 @@ public class IndexAction {
 	private VarietyMapper vm;
 	@Resource
 	private TypeMapper tm;
+	
 	
 	
 	@GetMapping({"/","index","index.do"})
@@ -77,4 +81,6 @@ public class IndexAction {
 	public void init(Model m){
 		m.addAttribute("variety",vm.selectByExample(null) );
 	}
+	
+	
 }

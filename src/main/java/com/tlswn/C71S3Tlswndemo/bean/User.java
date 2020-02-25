@@ -2,6 +2,8 @@ package com.tlswn.C71S3Tlswndemo.bean;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotEmpty;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
 public class User implements Serializable{
@@ -15,9 +17,9 @@ public class User implements Serializable{
     private String uname;
 
     private String uaccount;
-
+    @NotEmpty(message="密码不能为空")
     private String upass;
-
+    @NotEmpty(message="手机号不能为空")
     private String utel;
 
     private String uemail;

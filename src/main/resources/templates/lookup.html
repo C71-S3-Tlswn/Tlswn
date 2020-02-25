@@ -7,82 +7,7 @@
 	<div th:replace="header::.header-most-top"></div>
 	<div th:replace="header::.header-bot"></div>
 	<div th:replace="header::.mfp-hide"></div>
-	<div th:replace="header::#myModal1"></div>
-	<div th:replace="header::#myModal2"></div>
 	<div th:replace="header::.ban-top"></div>
-
-	<!-- //navigation -->
-	<div class="tlinks">Collect from <a href="http://www.cssmoban.com/" >自助建站</a></div>
-	<!-- banner -->
-	<div id="myCarousel" class="carousel slide" data-ride="carousel">
-		<!-- Indicators-->
-		<ol class="carousel-indicators">
-			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-			<li data-target="#myCarousel" data-slide-to="1" class=""></li>
-			<li data-target="#myCarousel" data-slide-to="2" class=""></li>
-			<li data-target="#myCarousel" data-slide-to="3" class=""></li>
-		</ol>
-		<div class="carousel-inner" role="listbox">
-			<div class="item active">
-				<div class="container">
-					<div class="carousel-caption">
-						<h3>Big
-							<span>Save</span>
-						</h3>
-						<p>Get flat
-							<span>10%</span> Cashback</p>
-						<a class="button2" href="product.html">Shop Now </a>
-					</div>
-				</div>
-			</div>
-			<div class="item item2">
-				<div class="container">
-					<div class="carousel-caption">
-						<h3>Healthy
-							<span>Saving</span>
-						</h3>
-						<p>Get Upto
-							<span>30%</span> Off</p>
-						<a class="button2" href="product.html">Shop Now </a>
-					</div>
-				</div>
-			</div>
-			<div class="item item3">
-				<div class="container">
-					<div class="carousel-caption">
-						<h3>Big
-							<span>Deal</span>
-						</h3>
-						<p>Get Best Offer Upto
-							<span>20%</span>
-						</p>
-						<a class="button2" href="product.html">Shop Now </a>
-					</div>
-				</div>
-			</div>
-			<div class="item item4">
-				<div class="container">
-					<div class="carousel-caption">
-						<h3>Today
-							<span>Discount</span>
-						</h3>
-						<p>Get Now
-							<span>40%</span> Discount</p>
-						<a class="button2" href="product.html">Shop Now </a>
-					</div>
-				</div>
-			</div>
-		</div>
-		<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-			<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-			<span class="sr-only">Previous</span>
-		</a>
-		<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-			<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-			<span class="sr-only">Next</span>
-		</a>
-	</div>
-	<!-- //banner -->
 
 	<!-- top Products -->
 	<div class="ads-grid">
@@ -102,7 +27,7 @@
 					<h3 class="agileits-sear-head">在这里搜索...</h3>
 					<form action="dofind" method="post" >
 						<input type="search" placeholder="请输入商品名字..." name="search" required="">
-						<input type="submit" value=" ">
+						<input type="button"  onclick="find()" value=" ">
 					</form>
 				</div>
 				<!-- price range -->
@@ -110,7 +35,6 @@
 					<h3 class="agileits-sear-head">价格范围</h3>
 					<ul class="dropdown-menu6">
 						<li>
-
 							<div id="slider-range"></div>
 							<input type="text" id="amount" style="border: 0; color: #ffffff; font-weight: normal;" />
 						</li>
@@ -119,15 +43,15 @@
 				<!-- //price range -->
 				<!-- food preference -->
 				<div class="left-side">
-					<h3 class="agileits-sear-head">食物偏好</h3>
+					<h3 class="agileits-sear-head">优惠区</h3>
 					<ul>
 						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">素食主义者</span>
+							<input type="checkbox" name="new" class="checked" value="new">
+							<span class="span">新品推介</span>
 						</li>
 						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">非素食主义者</span>
+							<input type="checkbox" name="hot" class="checked" value="1">
+							<span class="span">热卖商品</span>
 						</li>
 					</ul>
 				</div>
@@ -237,11 +161,11 @@
 			</div>
 			<!-- //product left -->
 			<!-- product right -->
-			<div class="agileinfo-ads-display col-md-9">
-				<div class="wrapper">
-					<div class="product-sec1">
+			<div class="agileinfo-ads-display col-md-9"  >
+				<div class="wrapper" th:fragment="wrapper">
+					<div class="product-sec1" >
 						<h3 class="heading-tittle" >Nuts</h3>
-						<div class="col-md-4 product-men" th:each="l:${lookUp}">
+						<div class="col-md-4 product-men"  th:each="l:${lookUp}">
 							<div class="men-pro-item simpleCart_shelfItem">
 								<div class="men-thumb-item">
 									<img th:src="${l.cphoto}" alt="" id="imagess">
@@ -289,135 +213,9 @@
 					</div>							
 			</div>
 		</div>
-			<!-- //product right -->
 		</div>
 	</div>
-	<!-- //top products -->
-	<!-- special offers -->
-	<div class="featured-section" id="projects">
-		<div class="container">
-			<!-- tittle heading -->
-			<h3 class="tittle-w3l">特别优惠
-				<span class="heading-style">
-					<i></i>
-					<i></i>
-					<i></i>
-				</span>
-			</h3>
-			<!-- //tittle heading -->
-			<div class="content-bottom-in">
-				<ul id="flexiselDemo1">
-					<li>
-						<div class="w3l-specilamk">
-							<div class="speioffer-agile">
-								<a href="single.html">
-									<img src="images/s1.jpg" alt="">
-								</a>
-							</div>
-							<div class="product-name-w3l">
-								<h4>
-									<a href="single.html">Aashirvaad, 5g</a>
-								</h4>
-								<div class="w3l-pricehkj">
-									<h6>$220.00</h6>
-									<p>Save $40.00</p>
-								</div>
-								<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-									<form action="#" method="post">
-										<fieldset>
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" />
-											<input type="hidden" name="business" value=" " />
-											<input type="hidden" name="item_name" value="Aashirvaad, 5g" />
-											<input type="hidden" name="amount" value="220.00" />
-											<input type="hidden" name="discount_amount" value="1.00" />
-											<input type="hidden" name="currency_code" value="USD" />
-											<input type="hidden" name="return" value=" " />
-											<input type="hidden" name="cancel_return" value=" " />
-											<input type="submit" name="submit" value="添加到购车" class="button" />
-										</fieldset>
-									</form>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="w3l-specilamk">
-							<div class="speioffer-agile">
-								<a href="single.html">
-									<img src="images/s4.jpg" alt="">
-								</a>
-							</div>
-							<div class="product-name-w3l">
-								<h4>
-									<a href="single.html">Kissan Tomato Ketchup, 950g</a>
-								</h4>
-								<div class="w3l-pricehkj">
-									<h6>$99.00</h6>
-									<p>Save $20.00</p>
-								</div>
-								<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-									<form action="#" method="post">
-										<fieldset>
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" />
-											<input type="hidden" name="business" value=" " />
-											<input type="hidden" name="item_name" value="Kissan Tomato Ketchup, 950g" />
-											<input type="hidden" name="amount" value="99.00" />
-											<input type="hidden" name="discount_amount" value="1.00" />
-											<input type="hidden" name="currency_code" value="USD" />
-											<input type="hidden" name="return" value=" " />
-											<input type="hidden" name="cancel_return" value=" " />
-											<input type="submit" name="submit" value="添加到购车" class="button" />
-										</fieldset>
-									</form>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="w3l-specilamk">
-							<div class="speioffer-agile">
-								<a href="single.html">
-									<img src="images/s2.jpg" alt="">
-								</a>
-							</div>
-							<div class="product-name-w3l">
-								<h4>
-									<a href="single.html">Madhur Pure Sugar, 1g</a>
-								</h4>
-								<div class="w3l-pricehkj">
-									<h6>$69.00</h6>
-									<p>Save $20.00</p>
-								</div>
-								<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-									<form action="#" method="post">
-										<fieldset>
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" />
-											<input type="hidden" name="business" value=" " />
-											<input type="hidden" name="item_name" value="Madhur Pure Sugar, 1g" />
-											<input type="hidden" name="amount" value="69.00" />
-											<input type="hidden" name="discount_amount" value="1.00" />
-											<input type="hidden" name="currency_code" value="USD" />
-											<input type="hidden" name="return" value=" " />
-											<input type="hidden" name="cancel_return" value=" " />
-											<input type="submit" name="submit" value="添加到购车" class="button" />
-										</fieldset>
-									</form>
-								</div>
-							</div>
-						</div>
-					</li>
-					
-					
-					
-				</ul>
-			</div>
-		</div>
-	</div>
-	<!-- //special offers -->
-	<!-- newsletter -->
+	
 
 	<div th:replace="foot::.footer-top"></div>
 	<div th:replace="foot::foot"></div>
@@ -429,56 +227,12 @@
 
 	<!-- popup modal (for signin & signup)-->
 	<script src="js/jquery.magnific-popup.js"></script>
-	<script>
-		$(document).ready(function () {
-			$('.popup-with-zoom-anim').magnificPopup({
-				type: 'inline',
-				fixedContentPos: false,
-				fixedBgPos: true,
-				overflowY: 'auto',
-				closeBtnInside: true,
-				preloader: false,
-				midClick: true,
-				removalDelay: 300,
-				mainClass: 'my-mfp-zoom-in'
-			});
-
-		});
-	</script>
-	<!-- Large modal -->
-	<!-- <script>
-		$('#').modal('show');
-	</script> -->
-	<!-- //popup modal (for signin & signup)-->
-	
-	<!-- cart-js -->
-	<script src="js/minicart.js"></script>
-	<script>
-		paypalm.minicartk.render(); //use only unique class names other than paypalm.minicartk.Also Replace same class name in css and minicart.min.js
-
-		paypalm.minicartk.cart.on('checkout', function (evt) {
-			var items = this.items(),
-				len = items.length,
-				total = 0,
-				i;
-
-			// Count the number of each item in the cart
-			for (i = 0; i < len; i++) {
-				total += items[i].get('quantity');
-			}
-
-			if (total < 3) {
-				alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
-				evt.preventDefault();
-			}
-		});
-	</script>
-	<!-- //cart-js -->
 
 	<!-- price range (top products) -->
 	<script src="js/jquery-ui.js"></script>
 	<script>
-		//<![CDATA[ 
+		var bprice=0;
+		var eprice=0;
 		$(window).load(function () {
 			$("#slider-range").slider({
 				range: true,
@@ -486,12 +240,27 @@
 				max: 9000,
 				values: [50, 6000],
 				slide: function (event, ui) {
-					$("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+					 $("#amount").val("￥" + ui.values[0] + " - ￥" + ui.values[1]);
+					bprice=ui.values[0];
+					eprice=ui.values[1];
+					
 				}
+			
 			});
-			$("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
-
-		}); //]]>
+			 $("#amount").val("￥" + $("#slider-range").slider("values", 0) + " - ￥" + $("#slider-range").slider("values", 1));
+			 
+		}); 
+		function find(){
+			var search=$("input[name='search']").val();
+			var newpro= $("input[name='new']:checked").val();
+			var hot= $("input[name='hot']:checked").val();
+			 console.log(newpro);
+			 console.log(hot);
+			$.post("dofind",{newpro:newpro,hot:hot,search:search,bprice:bprice,eprice,eprice},
+					function(date){
+						 $('.wrapper').html(date);
+			});
+		}
 	</script>
 	<!-- //price range (top products) -->
 
@@ -524,27 +293,7 @@
 
 		});
 	</script>
-	<!-- //flexisel (for special offers) -->
 
-	<!-- password-script -->
-	<script>
-		window.onload = function () {
-			document.getElementById("upass1").onchange = validatePassword;
-			document.getElementById("upass2").onchange = validatePassword;
-		}
-
-		function validatePassword() {
-			var pass2 = document.getElementById("upass1").value;
-			var pass1 = document.getElementById("upass2").value;
-			if (pass1 != pass2)
-				document.getElementById("upass2").setCustomValidity("密码不一致！");
-			else
-				document.getElementById("upass2").setCustomValidity('');
-			//empty string means no validation error
-		}
-		
-	</script>
-	<!-- //password-script -->
 
 	<!-- smoothscroll -->
 	<script src="js/SmoothScroll.min.js"></script>
@@ -569,14 +318,7 @@
 	<!-- smooth-scrolling-of-move-up -->
 	<script>
 		$(document).ready(function () {
-			/*
-			var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 1200,
-				easingType: 'linear' 
-			};
-			*/
+	
 			$().UItoTop({
 				easingType: 'easeOutQuart'
 			});
@@ -587,10 +329,9 @@
 
 	<!-- for bootstrap working -->
 	<script src="js/bootstrap.js"></script>
-	<!-- //for bootstrap working -->
-	<!-- //js-files -->
-
-	
+	<script type="text/javascript">
+		
+	</script>
 </body>
 
 </html>

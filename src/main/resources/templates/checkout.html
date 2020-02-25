@@ -98,23 +98,23 @@
 							<div class="information-wrapper">
 								<div class="first-row">
 									<div class="controls">
-										<input   class="billing-address-name" th:value="${a.aname}" type="text"  placeholder="收货名"  >
+										<input   class="billing-address-name" name="aname" th:value="${a.aname}" type="text"  placeholder="收货名"  >
 									</div>
 									<div class="w3_agileits_card_number_grids">
 										<div class="w3_agileits_card_number_grid_left">
 											<div class="controls">
-												<input   type="text" th:value="${a.atel}" placeholder="联系电话"   >
+												<input   type="text" name="atel" th:value="${a.atel}" placeholder="联系电话"   >
 											</div>
 										</div>
 										<div class="w3_agileits_card_number_grid_right">
 											<div class="controls">
-												<input type="text"  th:value="${a.addr}" placeholder="Landmark"  >
+												<input type="text"  name="addr" th:value="${a.addr}" placeholder="Landmark"  >
 											</div>
 										</div>
 										<div class="clear"> </div>
 									</div>
 									<div class="controls">
-										<input  type="text"  placeholder="城镇/乡村" th:value="${a.atemp}" >
+										<input  type="text"  placeholder="城镇/乡村" name="temp" th:value="${a.atemp}" >
 									</div>
 									<div class="controls">
 										<select class="option-w3ls">
@@ -131,7 +131,7 @@
 						</div>
 					</form>
 					<div class="checkout-right-basket">
-						<a href="payment">去支付
+						<a href="javascript:void(0)" class="pay">去支付
 							<span class="fa fa-hand-o-right" aria-hidden="true"></span>
 						</a>
 					</div>
@@ -203,24 +203,6 @@
 	<!-- 取消购物车 -->
 	
 
-	<!-- password-script -->
-	<script>
-		window.onload = function () {
-			document.getElementById("password1").onchange = validatePassword;
-			document.getElementById("password2").onchange = validatePassword;
-		}
-
-		function validatePassword() {
-			var pass2 = document.getElementById("password2").value;
-			var pass1 = document.getElementById("password1").value;
-			if (pass1 != pass2)
-				document.getElementById("password2").setCustomValidity("Passwords Don't Match");
-			else
-				document.getElementById("password2").setCustomValidity('');
-			//empty string means no validation error
-		}
-	</script>
-	<!-- //password-script -->
 
 	<!-- smoothscroll -->
 	<script src="js/SmoothScroll.min.js"></script>
@@ -263,7 +245,7 @@
 						alert('购物车为空，请浏览商品');
 						/* window.location.href="index"; */
 					}else{
-						showCartTable(data);
+						showCartTable(arr);
 						
 					}
 				});
@@ -326,6 +308,7 @@
 					 $('.table-responsive table tbody tr').each(function(i){ //遍历tr                   
 				    	   var num=$(this).find('td:eq(2)').text();
 				    	   var price=$(this).find('td:eq(4)').text();
+				    	   
 				   	  	   totalprice+=num*price;
 				   });
 					 var total="总价格:￥ ";
@@ -349,14 +332,42 @@
 				
 				
 			} 
-			
+			//生成订单
+			$('.pay').click(function(){
+				var atel=$("input[name='atel'] ").val();
+				var addr=$("input[name='addr'] ").val();
+				var temp=$("input[name='temp'] ").val();
+				if(confirm("确认去支付？")){
+					var num;
+					var price;
+					var cid;
+					 $('.table-responsive table tbody tr').each(function(i){ //遍历tr                   
+				    	    num=parseInt($(this).find('td:eq(2)').text());
+				    	    price=parseInt($(this).find('td:eq(4)').text());
+				    	    cid=parseInt($(this).find('td:eq(6)').text());
+				    	    $.post("doorder", {otel:atel,oaddr:addr,temp:temp,temp3:num,
+					    		   oprice:price,cid:cid},function(data){
+					    			   if(data.code==1){
+					    				   window.location.href ="payment";
+					    			   }else{
+					    				   alert("服务繁忙，稍后再试！");
+					    			   }
+					    		   });	   
+				   });	
+				}
+			});
 			$().UItoTop({
 				easingType: 'easeOutQuart'
 			});
 
 		});
 	</script>
-	<!-- //smooth-scrolling-of-move-up -->
+	
+	<script type="text/javascript">
+		
+	
+	</script>
+	
 	<!-- for bootstrap working -->
 	<script src="js/bootstrap.js"></script>
 	<!-- //for bootstrap working -->
