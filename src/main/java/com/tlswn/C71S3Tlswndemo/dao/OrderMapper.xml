@@ -111,7 +111,7 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.tlswn.C71S3Tlswndemo.bean.Order">
-    insert into order (oid, uid, cid, 
+    insert into orders (oid, uid, cid, 
       oaddr, otel, ordertime, 
       delivetime, arrivetime, ps, 
       oprice, pstatus, status, 

@@ -1,5 +1,7 @@
 package com.tlswn.C71S3Tlswndemo.web;
 
+
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -19,6 +21,7 @@ import com.tlswn.C71S3Tlswndemo.bean.User;
 import com.tlswn.C71S3Tlswndemo.bean.Cart;
 import com.tlswn.C71S3Tlswndemo.dao.AddrMapper;
 import com.tlswn.C71S3Tlswndemo.dao.CartMapper;
+import com.tlswn.C71S3Tlswndemo.dao.OrderMapper;
 import com.tlswn.C71S3Tlswndemo.vo.Result;
 
 
@@ -29,6 +32,8 @@ public class CheckAction {
 	private CartMapper cm;
 	@Resource 
 	private AddrMapper am;
+	@Resource
+	private OrderMapper om;
 	
 	@GetMapping("checkout")
 	public String Check(){
@@ -75,6 +80,28 @@ public class CheckAction {
 		cr.andAstatusEqualTo(1);
 		m.addAttribute("addr", am.selectByExample(ae));	
 		}
+	}
+	
+	//生成订单
+	@PostMapping("doorder")
+	@ResponseBody
+	public Result Order(com.tlswn.C71S3Tlswndemo.bean.Order ord,HttpServletRequest ht){
+		User user= (User) ht.getSession().getAttribute("User");
+		ord.setUid(user.getUid()); 
+		 ord.setOrdertime(new Date());// new Date()为获取当前系统时间
+		 ord.setStatus(0);	
+		int i=om.insert(ord);
+		CartExample ce=new CartExample();
+		Criteria cr=ce.createCriteria();
+		cr.andUidEqualTo(user.getUid());
+		cr.andCidEqualTo(ord.getCid());
+		int a=cm.deleteByExample(ce);
+		if(i>0&&a>0){
+			return new Result(1,"");
+		}else{
+			return new Result(0,"");
+		}
+		
 	}
 	
 }
