@@ -91,13 +91,13 @@
       <include refid="Example_Where_Clause" />
     </if>
     <if test="orderByClause != null">
-      order by ${orderByClause}
+      orders by ${orderByClause}
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from order
+    from orders
     where oid = #{oid,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -123,7 +123,7 @@
       #{temp,jdbcType=VARCHAR}, #{temp2,jdbcType=VARCHAR}, #{temp3,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.tlswn.C71S3Tlswndemo.bean.Order">
-    insert into order
+    insert into orders
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="oid != null">
         oid,
@@ -220,13 +220,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.tlswn.C71S3Tlswndemo.bean.OrderExample" resultType="java.lang.Long">
-    select count(*) from order
+    select count(*) from orders
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update order
+    update orders
     <set>
       <if test="record.oid != null">
         oid = #{record.oid,jdbcType=INTEGER},
@@ -279,7 +279,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update order
+    update orders
     set oid = #{record.oid,jdbcType=INTEGER},
       uid = #{record.uid,jdbcType=INTEGER},
       cid = #{record.cid,jdbcType=INTEGER},
@@ -300,7 +300,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.tlswn.C71S3Tlswndemo.bean.Order">
-    update order
+    update orders
     <set>
       <if test="uid != null">
         uid = #{uid,jdbcType=INTEGER},
@@ -348,7 +348,7 @@
     where oid = #{oid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.tlswn.C71S3Tlswndemo.bean.Order">
-    update order
+    update orders
     set uid = #{uid,jdbcType=INTEGER},
       cid = #{cid,jdbcType=INTEGER},
       oaddr = #{oaddr,jdbcType=VARCHAR},
