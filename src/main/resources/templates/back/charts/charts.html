@@ -1,22 +1,45 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="www.thymeleaf.org">
-<head th:include="../back/headers::head">
+	<head >
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Azzara Bootstrap 4 Admin Dashboard</title>
+	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+	<link rel="icon" href="../../assets/img/icon.ico" type="image/x-icon"/>
+
+	<!-- Fonts and icons -->
+	<script src="../../assets/js/plugin/webfont/webfont.min.js"></script>
+	<script>
+		WebFont.load({
+			google: {"families":["Open+Sans:300,400,600,700"]},
+			custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands"], urls: ['../assets/css/fonts.css']},
+			active: function() {
+				sessionStorage.fonts = true;
+			}
+		});
+	</script>
+
+	<!-- CSS Files -->
+	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/azzara.min.css">
+
+	<!-- CSS Just for demo purpose, don't include it in your project -->
+	<link rel="stylesheet" href="../../assets/css/demo.css">
 </head>
 <body>
 	<div class="wrapper">
 		<!--
 			Tip 1: You can change the background color of the main header using: data-background-color="blue | purple | light-blue | green | orange | red"
 		-->
-		<div th:replace="../back/headers::.main-header"></div>
-		<div th:replace="../back/headers::.sidebar"></div>
+		<div th:replace="back/headers::.main-header"></div>
+		<div th:replace="back/headers::.sidebar"></div> 
 		<div class="main-panel">
 			<div class="content">
 				<div class="page-inner">
 					<h4 class="page-title">Chart.js</h4>
 					<div class="page-category">Simple yet flexible JavaScript charting for designers & developers. Please checkout their <a href="http://www.chartjs.org/" target="_blank">full documentation</a>.</div>
 					<div class="row">
-						<div class="col-md-6">
-							<div class="card">
+						<div id="col-md-5">
+							<!-- <div class="card">
 								<div class="card-header">
 									<div class="card-title">Line Chart</div>
 								</div>
@@ -25,7 +48,7 @@
 										<canvas id="lineChart"></canvas>
 									</div>
 								</div>
-							</div>
+							</div> -->
 						</div>
 						<div class="col-md-6">
 							<div class="card">
@@ -167,7 +190,7 @@
 		<!-- End Custom template -->
 	</div>
 	<!--   Core JS Files   -->
-	<script src="../../assets/js/core/jquery.3.2.1.min.js"></script>
+	<script src="../../js/jquery-2.1.4.min.js"></script>
 	<script src="../../assets/js/core/popper.min.js"></script>
 	<script src="../../assets/js/core/bootstrap.min.js"></script>
 	<!-- jQuery UI -->
@@ -183,6 +206,9 @@
 	<script src="../../assets/js/ready.min.js"></script>
 	<!-- Azzara DEMO methods, don't include it in your project! -->
 	<script src="../../assets/js/setting-demo.js"></script>
+	
+	
+	
 	<script>
 		var lineChart = document.getElementById('lineChart').getContext('2d'),
 		barChart = document.getElementById('barChart').getContext('2d'),
@@ -194,7 +220,7 @@
 		multipleBarChart = document.getElementById('multipleBarChart').getContext('2d'),
 		htmlLegendsChart = document.getElementById('htmlLegendsChart').getContext('2d');
 
-		var myLineChart = new Chart(lineChart, {
+		/* var myLineChart = new Chart(lineChart, {
 			type: 'line',
 			data: {
 				labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
@@ -236,7 +262,7 @@
 					padding:{left:15,right:15,top:15,bottom:15}
 				}
 			}
-		});
+		}); */
 
 		var myBarChart = new Chart(barChart, {
 			type: 'bar',
@@ -646,6 +672,25 @@
 
 	</script>
 
+	<script src="https://cdn.bootcss.com/echarts/3.7.1/echarts.min.js"></script>
 
+       <script type="text/javascript">
+       $(document).ready(function () {
+    	   alert(1);
+    	   var MyChart = echarts.init(document.getElementById("col-md-5"));
+    	   /* var option = {
+    	            // 定义样式和数据
+    	   } */
+			 var option = null;
+    	   $.post("showorder",null,function(data){
+    		   console.log(data);
+			option = data;
+			if (option && typeof option === "object") {
+		  	  MyChart.setOption(option, true);
+			}
+    	   });
+       })
+      </script>
+	
 </body>
 </html>

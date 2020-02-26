@@ -27,9 +27,9 @@ public class AdminAction {
 	@Resource
 	private AdminMapper am;
 	
-	@GetMapping("back/adminlogin")
+	@GetMapping("back/login")
 	public String login(){
-		return "back/adminlogin";
+		return "back/login";
 	}
 	
 	@ResponseBody

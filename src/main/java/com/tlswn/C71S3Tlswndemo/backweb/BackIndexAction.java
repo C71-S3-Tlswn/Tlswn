@@ -4,14 +4,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class IndexAction {
+public class BackIndexAction {
 	
-	@GetMapping("back/adminindex")
-	public String BackIndex(){
-		return "back/adminindex";
-	}
 	@GetMapping("back/index")
-	public String index(){
+	public String BackIndex(){
+		
 		return "back/index";
 	}
 
