@@ -237,6 +237,7 @@ public class AddrAction {
 		OrderExample or=new OrderExample();
 		com.tlswn.C71S3Tlswndemo.bean.OrderExample.Criteria c=or.createCriteria();
 		 c.andUidEqualTo(user.getUid());
+		 c.andTemp2EqualTo("1");
 		System.out.println("-------------------------------------------------------------------------------------");
       list= om.selectByExample(or);
 		System.out.println("=======================================================================================");
@@ -256,8 +257,9 @@ public class AddrAction {
 	OrderExample or=new OrderExample();
 	com.tlswn.C71S3Tlswndemo.bean.OrderExample.Criteria c=or.createCriteria();
 	c.andOidEqualTo(ord.getOid());
+	ord.setTemp2("0");
 	System.out.println(ord.getOid());
-	int cs=om.deleteByExample(or);
+	int cs=om.updateByExampleSelective(ord, or);
 	if(cs==1){
 			return new Result(1, "删除成功");
 	}else{
