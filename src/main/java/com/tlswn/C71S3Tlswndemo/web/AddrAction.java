@@ -35,13 +35,17 @@ import com.tlswn.C71S3Tlswndemo.bean.Commodity;
 import com.tlswn.C71S3Tlswndemo.bean.CommodityExample;
 import com.tlswn.C71S3Tlswndemo.bean.Favorite;
 import com.tlswn.C71S3Tlswndemo.bean.FavoriteExample;
+import com.tlswn.C71S3Tlswndemo.bean.Order;
+import com.tlswn.C71S3Tlswndemo.bean.OrderExample;
 import com.tlswn.C71S3Tlswndemo.bean.User;
 import com.tlswn.C71S3Tlswndemo.bean.UserExample;
 import com.tlswn.C71S3Tlswndemo.dao.AddrMapper;
 import com.tlswn.C71S3Tlswndemo.dao.CommodityMapper;
 import com.tlswn.C71S3Tlswndemo.dao.FavoriteMapper;
+import com.tlswn.C71S3Tlswndemo.dao.OrderMapper;
 import com.tlswn.C71S3Tlswndemo.dao.UserMapper;
 import com.tlswn.C71S3Tlswndemo.vo.Result;
+import com.tlswn.C71S3Tlswndemo.vo.Showorder;
 
 
 @Controller
@@ -54,6 +58,8 @@ public class AddrAction {
 	private FavoriteMapper fa;
 	@Resource
 	private CommodityMapper cm;
+	@Resource
+	private OrderMapper om;
 	@GetMapping({"addr","addr.do"})
 	public String dizhi(){
 		return "addr";
@@ -220,6 +226,42 @@ public class AddrAction {
 			return new Result(1, "删除成功");
 	}else{
 		return new Result(0, "删除失败");
+	}}
+	
+	
+	@GetMapping("order")
+	public String order(HttpSession hs,Model m){
+		List<Commodity> cmc=new ArrayList<Commodity>();
+		List<Order> list=new ArrayList<Order>();
+		User user=(User) hs.getAttribute("User");
+		OrderExample or=new OrderExample();
+		com.tlswn.C71S3Tlswndemo.bean.OrderExample.Criteria c=or.createCriteria();
+		 c.andUidEqualTo(user.getUid());
+		System.out.println("-------------------------------------------------------------------------------------");
+      list= om.selectByExample(or);
+		System.out.println("=======================================================================================");
+		for(int i=0;i<list.size();i++){
+
+   list.get(i).setTemp(cm.selectByPrimaryKey(list.get(i).getCid()).getCname());
+   list.get(i).setTemp2(cm.selectByPrimaryKey(list.get(i).getCid()).getCphoto());
+	m.addAttribute("li", list);
+		}
+		
+		return "order";
 	}
-	}
+	
+	@ResponseBody
+	@GetMapping("shan")
+	public Result shan(@Valid Order ord,Model m) throws IOException{
+	OrderExample or=new OrderExample();
+	com.tlswn.C71S3Tlswndemo.bean.OrderExample.Criteria c=or.createCriteria();
+	c.andOidEqualTo(ord.getOid());
+	System.out.println(ord.getOid());
+	int cs=om.deleteByExample(or);
+	if(cs==1){
+			return new Result(1, "删除成功");
+	}else{
+		return new Result(0, "删除失败");
+	}}
+	
 }
