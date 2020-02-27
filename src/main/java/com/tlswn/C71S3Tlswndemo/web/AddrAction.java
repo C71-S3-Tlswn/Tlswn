@@ -45,7 +45,6 @@ import com.tlswn.C71S3Tlswndemo.dao.FavoriteMapper;
 import com.tlswn.C71S3Tlswndemo.dao.OrderMapper;
 import com.tlswn.C71S3Tlswndemo.dao.UserMapper;
 import com.tlswn.C71S3Tlswndemo.vo.Result;
-import com.tlswn.C71S3Tlswndemo.vo.Showorder;
 
 
 @Controller

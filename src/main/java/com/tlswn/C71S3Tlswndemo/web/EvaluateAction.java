@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -15,23 +16,29 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.tlswn.C71S3Tlswndemo.bean.Commodity;
+import com.tlswn.C71S3Tlswndemo.bean.Evaluate;
+import com.tlswn.C71S3Tlswndemo.bean.User;
+import com.tlswn.C71S3Tlswndemo.biz.BizException;
+import com.tlswn.C71S3Tlswndemo.biz.EvaluateBiz;
 import com.tlswn.C71S3Tlswndemo.dao.CommodityMapper;
 @Controller
-public class CommentAction {
+public class EvaluateAction {
 	
 	@Resource
 	private CommodityMapper cm;
+	@Resource
+	private EvaluateBiz eb;
 	
-	@GetMapping("comment")
+	@GetMapping("evaluate")
 	public String comment(){
-		return "comment";
+		return "evaluate";
 	}
 	
-	@GetMapping("comment_{id}")
+	@GetMapping("evaluate_{id}")
 	public String toSingle(@PathVariable("id") Integer id,Model m){
 	    Commodity comm=	cm.selectByPrimaryKey(id);
 	    m.addAttribute("commodity", comm);
-		return "comment";
+		return "evaluate";
 		
 	}
 	@ResponseBody
@@ -52,5 +59,18 @@ public class CommentAction {
 			e.printStackTrace();
 		}
 		return fileName;
+	}
+	
+	@ResponseBody
+	@PostMapping("publish")
+	public int publish(Evaluate ev,HttpSession sess){
+		int re=0;
+		try {
+			re = eb.publish(ev, sess);
+		} catch (BizException e) {
+			e.printStackTrace();
+		}
+		return re;
+		
 	}
 }

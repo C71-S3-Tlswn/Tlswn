@@ -177,10 +177,10 @@
 						<div class="w3l-specilamk">
 							<div class="speioffer-agile">
 								<a href="single.html" style="background-position: left;">
-									<img src="images/u1.jpg" th:src="${ev.user.uphoto}" class="img-responsive" height="2px" width="24px" alt="">
+									<img src="images/u1.jpg" th:src="${ev.user.uphoto}!=null?${ev.user.uphoto}:'images/motou.png'" class="img-responsive" height="2px" width="24px" alt="">
 								</a>
 							</div>
-							<div style="margin-left: 35px;margin-top: -18px">
+							<div style="margin-left: 35px;margin-top: -10px">
 								<a style="color: black;" th:text="${ev.user.uaccount}">123</a>
 							</div>
 							<!-- <div style="background-color:red; height: 10px;width: 300px;margin-top: 50px;">

@@ -6811,10 +6811,14 @@ button.close {
 	font-weight: bold;
 	border-style: none;
 }
-#comment_input{
+.comment_input{
 	margin-top: 15px;
 	width: 44%;
 	height: 80%;
+	resize:none;
+	margin-left: 320px;
+	margin-top: 10px;
+	outline:none;"
 }
 
 input[type=range] {
