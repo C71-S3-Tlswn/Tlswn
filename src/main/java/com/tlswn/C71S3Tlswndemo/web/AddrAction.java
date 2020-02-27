@@ -179,7 +179,7 @@ public class AddrAction {
 	public Result shoucang(@Valid Commodity com,HttpSession hs){
 		Favorite faa=new Favorite();
 		User use=(User) hs.getAttribute("User");
-		FavoriteExample fac=new FavoriteExample();
+		FavoriteExample fac=new FavoriteExample(); 
 		List<Favorite> lis=new ArrayList<Favorite>();
 		if(use==null){
 			return new Result(3, "请登录");
