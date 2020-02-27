@@ -86,7 +86,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from order
+    from orders
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -101,11 +101,11 @@
     where oid = #{oid,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from order
+    delete from orders
     where oid = #{oid,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.tlswn.C71S3Tlswndemo.bean.OrderExample">
-    delete from order
+    delete from orders
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -349,7 +349,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.tlswn.C71S3Tlswndemo.bean.Order">
     update orders
-    set uid = #{uid,jdbcType=INTEGER},
+    set uid = #{uid,jdbcType=INTEGER}, 
       cid = #{cid,jdbcType=INTEGER},
       oaddr = #{oaddr,jdbcType=VARCHAR},
       otel = #{otel,jdbcType=VARCHAR},
