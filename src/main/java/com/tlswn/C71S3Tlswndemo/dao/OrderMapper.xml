@@ -349,7 +349,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.tlswn.C71S3Tlswndemo.bean.Order">
     update orders
-    set uid = #{uid,jdbcType=INTEGER},
+    set uid = #{uid,jdbcType=INTEGER}, 
       cid = #{cid,jdbcType=INTEGER},
       oaddr = #{oaddr,jdbcType=VARCHAR},
       otel = #{otel,jdbcType=VARCHAR},
