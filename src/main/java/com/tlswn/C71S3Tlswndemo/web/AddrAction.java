@@ -137,42 +137,67 @@ public class AddrAction {
 	}*/
 	
 	//测试
+	@ResponseBody
 	@PostMapping("upload.do")
-	public void saveGoodsPage(@RequestParam(value="file") MultipartFile file,HttpServletResponse response,HttpSession hs){
+	public Result saveGoodsPage(MultipartFile file,@Value("${user.file.path}") String filePath,HttpSession hs){
+		User user=new User();
+		User use=(User) hs.getAttribute("User");
+		UserExample ue=new UserExample();
+		
+		String fileName=null;
+		try {
+			// 保存图片
+			/*File file = new File(filePath + img.getOriginalFilename());*/
+			File files=new File(filePath);
+			if(!files.exists()){
+				files.mkdirs();
+			}
+			fileName=file.getOriginalFilename();
+			files=new File(filePath + fileName);
+			
+			file.transferTo(files);
+			user.setUphoto(fileName);
+			com.tlswn.C71S3Tlswndemo.bean.UserExample.Criteria c=ue.createCriteria();
+			c.andUidEqualTo(use.getUid());
+			int cl=us.updateByExampleSelective(user, ue);
+			if(cl==1){
+				return new Result(1, "更改成功");
+			}else{
+				return new Result(0, "更改失败");
+				
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			return new Result(0, "更改失败");
+		}
+	       
+		
+	}
 	
-		if (!file.isEmpty()) {
-	        try {
-	        	User user=new User();
-	    		User use=(User) hs.getAttribute("User");
-	    		UserExample ue=new UserExample();
-	    		
-	    		
-	        	String name=file.getOriginalFilename();
-	            BufferedOutputStream out = new BufferedOutputStream(
-	                    new FileOutputStream(new File("src/main/resources/static/images/" + name)));//保存图片到目录下
-	            out.write(file.getBytes());
-	          
-	            out.flush();
-	            out.close();
-	            String filename = "images/" + name;
-	            
-	            //存数据库
-	            user.setUphoto(filename);
-	            com.tlswn.C71S3Tlswndemo.bean.UserExample.Criteria c=ue.createCriteria();
-	    		c.andUidEqualTo(use.getUid());
-	    		int cl=us.updateByExampleSelective(user, ue);
-	            response.getWriter().append("success");
-	            /*user.setTupian(filename);
-	            //userRepository.save(user);//增加用户*/
-	        } catch (FileNotFoundException e) {
-	            e.printStackTrace();
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
-	    }
-	        //...其他操作
-		
-		
+	@ResponseBody
+	@PostMapping("shoucang")
+	public Result shoucang(@Valid Commodity com,HttpSession hs){
+		Favorite faa=new Favorite();
+		User use=(User) hs.getAttribute("User");
+		FavoriteExample fac=new FavoriteExample(); 
+		List<Favorite> lis=new ArrayList<Favorite>();
+		if(use==null){
+			return new Result(3, "请登录");
+		}
+		faa.setUid(use.getUid());
+		faa.setTemp3(com.getCid());
+		com.tlswn.C71S3Tlswndemo.bean.FavoriteExample.Criteria c=fac.createCriteria();
+		c.andTemp3EqualTo(com.getCid());
+		lis=fa.selectByExample(fac);
+		if(!lis.isEmpty()){
+			return new Result(4, "您已收藏过该商品");
+		}
+		int cv=fa.insertSelective(faa);
+		if(cv==1){
+			return new Result(1, "收藏成功");
+	}else{
+		return new Result(0, "收藏失败");
+	}
 	}
 	
 	
