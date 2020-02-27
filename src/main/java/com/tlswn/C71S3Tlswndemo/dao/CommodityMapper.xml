@@ -20,6 +20,9 @@
     <association property="type" column="tid" autoMapping="true" 
 			select="com.tlswn.C71S3Tlswndemo.dao.TypeMapper.selectByPrimaryKey" fetchType="lazy">
 	</association>
+	<!-- <collection property="stockit" column="cid" autoMapping="true" 
+	select="com.tlswn.C71S3Tlswndemo.dao.StockMapper.selectByExample">
+	</collection> -->
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
