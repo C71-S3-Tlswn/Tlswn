@@ -174,6 +174,32 @@ public class AddrAction {
 		
 	}
 	
+	@ResponseBody
+	@PostMapping("shoucang")
+	public Result shoucang(@Valid Commodity com,HttpSession hs){
+		Favorite faa=new Favorite();
+		User use=(User) hs.getAttribute("User");
+		FavoriteExample fac=new FavoriteExample();
+		List<Favorite> lis=new ArrayList<Favorite>();
+		if(use==null){
+			return new Result(3, "请登录");
+		}
+		faa.setUid(use.getUid());
+		faa.setTemp3(com.getCid());
+		com.tlswn.C71S3Tlswndemo.bean.FavoriteExample.Criteria c=fac.createCriteria();
+		c.andTemp3EqualTo(com.getCid());
+		lis=fa.selectByExample(fac);
+		if(!lis.isEmpty()){
+			return new Result(4, "您已收藏过该商品");
+		}
+		int cv=fa.insertSelective(faa);
+		if(cv==1){
+			return new Result(1, "收藏成功");
+	}else{
+		return new Result(0, "收藏失败");
+	}
+	}
+	
 	
 	@PostMapping("change")
 	public String change(User user,String sex,HttpServletRequest request,HttpSession hs) throws IOException, ServletException{
