@@ -10,6 +10,9 @@
     <result column="temp" jdbcType="VARCHAR" property="temp" />
     <result column="temp2" jdbcType="VARCHAR" property="temp2" />
     <result column="temp3" jdbcType="INTEGER" property="temp3" />
+     <association property="commodity" column="cid" autoMapping="true" 
+			select="com.tlswn.C71S3Tlswndemo.dao.CommodityMapper.selectByPrimaryKey" fetchType="lazy">
+	</association>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -255,4 +258,5 @@
       temp3 = #{temp3,jdbcType=INTEGER}
     where otid = #{otid,jdbcType=INTEGER}
   </update>
+ 
 </mapper>

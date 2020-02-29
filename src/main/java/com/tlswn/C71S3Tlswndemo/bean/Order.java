@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
 public class Order implements Serializable{
     /**
 	 * 
