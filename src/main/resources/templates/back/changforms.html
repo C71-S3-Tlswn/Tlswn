@@ -39,48 +39,34 @@
 						<form action="add" method="post" id="add">
 							<div class="card">
 								<div class="card-header">
-									<div class="card-title">商品添加</div>
+									<div class="card-title">商品更改</div>
 								</div>
 								<div class="card-body">
 									<div class="form-group">
 										<label for="largeInput">商品名</label>
-										<input type="text" name="cname" class="form-control form-control-lg"  placeholder="Large Input">
+										<input type="text" name="cname"  class="form-control form-control-lg"  th:placeholder="${change.cname}">
 									</div>
 									<div class="form-group">
 										<label for="largeInput">商品进价</label>
-										<input type="text"  name="cprice" class="form-control form-control" id="cprice" placeholder="Default Input">
+										<input type="text"  name="cprice" class="form-control form-control" id="cprice" th:placeholder="${change.cprice}">
 									</div>
 									<div class="form-group">
 										<label for="largeInput">商品售价</label>
-										<input type="text" name="mprice" class="form-control form-control" id="mprice" placeholder="Default Input">
+										<input type="text" name="mprice" class="form-control form-control" id="mprice" th:placeholder="${change.mprice}">
 									</div>
 									<div class="form-group">
 										<label for="smallInput">商品描述</label>
-										<input type="text"  name="cdescride" class="form-control form-control-sm" id="cdescride" placeholder="Small Input">
+										<input type="text"  name="cdescride" class="form-control form-control-sm" id="cdescride" th:placeholder="${change.cdescride}">
 									</div>
-									<div class="form-group">
+									<!-- <div class="form-group">
 										<label for="smallInput">到货时间</label>
-										<input type="text" name="c_btime" class="form-control form-control-sm" id="c_etime" placeholder="Small Input">
-									</div>
-									<div class="form-group">
+										<input type="text" name="c_etime" class="form-control form-control-sm" id="c_etime" th:placeholder="${change.c_btime}">
+									</div> -->
+									<!-- <div class="form-group">
 										<label for="exampleFormControlFile1">选择图片</label>
 										<input type="file" name="cphoto" class="form-control-file" id="cphoto">
-									</div>
-									<div class="form-group">
-										<label for="largeSelect">选择大类</label>
-										<select class="form-control form-control-lg" id="vname" name="vname">
-										    <option></option>
-											<option  th:each="var:${vari}" th:text="${var.vname}" th:value="${var.vname}">1</option>
-										</select>
-									</div>
-									<div class="form-group">
-										<label for="defaultSelect">选择小类</label>
-										<select class="form-control form-control" id="tname" name="tname">
-											<option></option>
-											<option th:each="tap:${type}" th:text="${tap.tname}" th:value="${tap.tname}">2</option>
-											
-										</select>
-									</div>
+									</div> -->
+									
 									<div class="form-group">
 										<label for="defaultSelect">是否热卖</label>
 										<select class="form-control form-control" id="tname" name="hot">
@@ -160,18 +146,12 @@
 	<!-- Azzara DEMO methods, don't include it in your project! -->
 	<script src="../../assets/js/setting-demo.js"></script>
 	<script type="text/javascript">
-	 
-	  /*  var cname=$("#cname").val();
-	   var cprice=$("#cprice").val();
-	   var mprice=$("#mprice").val();
-	   var cdescride=$("#cdescride").val();
-	   var c_etime=$("#c_etime").val();
-	   var cphoto=$("#cphoto").val(); */
+	
 	   $("#submit").on('click',function (){
 		   var formData=new FormData(add);
 		   console.log(formData);
 		   $.ajax({
-				url:'../add',
+				url:'../change',
 				type:'post',
 				data:formData,
 				contentType:false,
