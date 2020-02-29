@@ -23,7 +23,7 @@ public class UserprofileBiz {
 		
 	}
 	
-	public String update(MultipartFile img, String filePath){
+	public String save(MultipartFile img, String filePath){
 		String fileName=null;
 		try {
 			// 保存图片
@@ -41,4 +41,10 @@ public class UserprofileBiz {
 		return fileName;
 	}
 	
+	public int update(Admin admin,HttpSession sess){
+		int aid=((Admin) sess.getAttribute("admin")).getAaid();
+		admin.setAaid(aid);
+		int re=am.updateByPrimaryKeySelective(admin);
+		return re;
+	}
 }

@@ -31,8 +31,15 @@ public class UserprofileAction {
 	
 	@ResponseBody
 	@PostMapping("save")
-	public String update(MultipartFile img,@Value("${user.file.path}") String filePath) {
-		String fileName=ub.update(img, filePath);
+	public String save(MultipartFile img,@Value("${user.file.path}") String filePath) {
+		String fileName=ub.save(img, filePath);
 		return fileName;
+	}
+	
+	@ResponseBody
+	@PostMapping("update")
+	public int update(Admin admin,HttpSession sess) {
+		int result=ub.update(admin, sess);
+		return result;
 	}
 }

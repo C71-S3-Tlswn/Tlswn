@@ -39,13 +39,13 @@
 										<div class="col-md-6">
 											<div class="form-group form-group-default">
 												<label>名字</label>
-												<input type="text" class="form-control" name="name" placeholder="Name" th:value="${admin.aname}">
+												<input type="text" id="aname" class="form-control" name="name" placeholder="Name" th:value="${admin.aname}">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group form-group-default">
 												<label>邮箱</label>
-												<input type="email" class="form-control" name="email" placeholder="Name" th:value="${admin.email}">
+												<input type="email" id="email" class="form-control" name="email" placeholder="Name" th:value="${admin.email}">
 											</div>
 										</div>
 									</div>
@@ -70,7 +70,7 @@
 										<div class="col-md-6">
 											<div class="form-group form-group-default" >
 												<label>电话</label>
-												<input type="text" class="form-control" th:value="${admin.tel}" name="phone" placeholder="Phone">
+												<input type="text" id="tel" class="form-control" th:value="${admin.tel}" name="phone" placeholder="Phone">
 											</div>
 										</div>
 									</div>
@@ -78,7 +78,7 @@
 										<div class="col-md-12">
 											<div class="form-group form-group-default">
 												<label>地址</label>
-												<input type="text" class="form-control" th:value="${admin.temp2}" name="address" placeholder="Address">
+												<input type="text" id="temp2" class="form-control" th:value="${admin.temp2}" name="address" placeholder="Address">
 											</div>
 										</div>
 									</div>
@@ -91,8 +91,8 @@
 										</div>
 									</div> -->
 									<div class="text-right mt-3 mb-3">
-										<button class="btn btn-success">保存</button>
-										<!-- <button class="btn btn-danger">Reset</button> -->
+										<button class="btn btn-success" onclick="save()">保存</button>
+										<button class="btn btn-danger" onclick="returnindex()">取消</button>
 									</div>
 								</div>
 							</div>
@@ -232,13 +232,38 @@
 	 		        if (data!=null) {
 	 		        	alert("上传成功");
 	 		        	$("#getimg").attr("src",data);
-	 		        	$("#fu").attr("src",data);
+	 		        	/* $("#fu").attr("src",data);
+	 		        	$("#h1").attr("src",data);
+	 		        	$("#h2").attr("src",data); */
 	 		        }else{
 	 		        	alert("上传失败");
 	 		        }
 
 	 		    }
 	 		});
+	 	}
+	 </script>
+	 <script type="text/javascript">
+	 	function returnindex(){
+	 		window.location.href ="/back/index";
+	 	}
+	 </script>
+	 <script type="text/javascript">
+	 	function save(){
+	 		var photo=$("#getimg").attr("src");
+	 		var aname=$("#aname").val();
+	 		var email=$("#email").val();
+	 		var temp=$("#gender").val();
+	 		var tel=$("#tel").val();
+	 		var temp2=$("#temp2").val();
+	 		$.post("update",{photo:photo,aname:aname,email:email,temp:temp,tel:tel,temp2:temp2},function(result){
+				if(result==1){
+					alert("保存成功");
+					window.location.href = "/profile";
+				}else{
+					alert("保存失败");
+				}	
+			})
 	 	}
 	 </script>
 </body>
