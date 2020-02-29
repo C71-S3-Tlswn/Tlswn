@@ -10,7 +10,9 @@ public class Commodity implements Serializable{
     /**
 	 * 
 	 */
-	private static final long serialVersionUID = 5986373755732201220L;
+	private static final long serialVersionUID = 1L;
+
+	
 
 	private Integer cid;
 

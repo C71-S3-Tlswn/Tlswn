@@ -13,11 +13,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.tlswn.C71S3Tlswndemo.bean.Commodity;
 import com.tlswn.C71S3Tlswndemo.bean.CommodityExample;
 import com.tlswn.C71S3Tlswndemo.bean.Stock;
+import com.tlswn.C71S3Tlswndemo.bean.StockExample;
 import com.tlswn.C71S3Tlswndemo.bean.Type;
 import com.tlswn.C71S3Tlswndemo.bean.TypeExample;
 import com.tlswn.C71S3Tlswndemo.bean.Variety;
@@ -81,32 +83,89 @@ public class GoodAction {
 	}
 	
 	@PostMapping("back/add")
-	public Result adds(String cname, String tname,String vname,Commodity comm,Stock stock,
+	@ResponseBody
+	public Result adds(String cname, String tname,String vname,
+			Commodity comm,Stock stock,
 			MultipartFile file, String filePath){
 		TypeExample te=new TypeExample();
 		CommodityExample ce=new CommodityExample();
 		List<Commodity> commodity=new ArrayList<Commodity>();
 		List<Type> type=new ArrayList<Type>();
-		
+		//comm.setCnum(num);
+		String fileName=null;
+		try {
+			File files=new File(filePath);
+			if(!files.exists()){
+				files.mkdirs();
+			}
+			fileName=file.getOriginalFilename();
+			files=new File(filePath + fileName);
+			
+			file.transferTo(files);
+			comm.setCphoto(fileName);
 		ce.createCriteria().andCnameEqualTo(cname);
 		commodity=cm.selectByExample(ce);
-		for(int i=0;i<commodity.size();i++){
-			stock.setCid(commodity.get(i).getCid());
-		}
 		te.createCriteria().andTnameEqualTo(tname);
 		type=tm.selectByExample(te);
 		for(int i=0;i<type.size();i++){
 			comm.setTid(type.get(i).getTid());
 		}
+		/*for(int i=0;i<commodity.size();i++){
+			stock.setCid(commodity.get(i).getCid());
+		}*/
+		comm.setCnum(0);
 		int cl=cm.insertSelective(comm);
-		int sl=sm.insertSelective(stock);
-		if(cl==1&&sl==1){
+		//int sl=sm.insertSelective(stock);
+		if(cl==1){
 			return new Result(1, "添加成功");
 		}else{
 			return new Result(0,"shibai");
 		}
+		}catch (IOException e) {
+			e.printStackTrace();
+			return new Result(0, "更改失败");
+		}
 		 
 	
+	}
+	
+	
+	@PostMapping("back/change")
+	@ResponseBody
+	public Result change(Commodity com,Stock st,String cname){
+		CommodityExample ce=new CommodityExample();
+		CommodityExample ce2=new CommodityExample();
+		StockExample se=new StockExample();
+		ce.createCriteria().andCnameEqualTo(cname);
+		
+		//cm.updateByExampleSelective(com, ce);
+		List<Commodity> list=new ArrayList<>();
+		List<Stock> stock=new ArrayList<>();
+		ce2.createCriteria().andCnameEqualTo(cname);
+		list=cm.selectByExample(ce2);
+		int cid=0;
+		for (int i = 0; i <list.size(); i++) {
+			cid=list.get(i).getCid();
+		}
+		if(st.getColor()==null&&st.getSpecs()==null){
+			cm.updateByExampleSelective(com, ce);
+		}else{
+		se.createCriteria().andSpecsEqualTo(st.getSpecs())
+		.andColorEqualTo(st.getColor()).andCidEqualTo(cid);
+		stock=sm.selectByExample(se);
+		if(stock.isEmpty()){
+			
+			st.setCid(cid);
+			sm.insert(st);
+			com.setCnum(st.getNum());
+			cm.updateByExampleSelective(com, ce);
+		}else{
+			sm.updateByExampleSelective(st, se);
+			com.setCnum(st.getNum());
+			cm.updateByExampleSelective(com, ce);
+		}
+		}
+		return new Result(1, "11212");
 	}
 	
 
@@ -115,7 +174,7 @@ public class GoodAction {
 	File files=new File(filePath);
 	if(!files.exists()){
 		files.mkdirs();
-	}@Value("${commodity.file.path}")
+	}
 	fileName=file.getOriginalFilename();
 	files=new File(filePath + fileName);
 	

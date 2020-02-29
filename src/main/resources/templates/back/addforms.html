@@ -89,18 +89,21 @@
 											
 										</select>
 									</div>
-									<div class="form-group">
+									<!-- <div class="form-group">
 										<label for="largeInput">商品尺码</label>
 										<input type="text"  name="specs" class="form-control form-control" id="specs"  placeholder="Default Input">
 									</div>
 									<div class="form-group">
+										<label for="largeInput">商品颜色</label>
+										<input type="text"  name="color" class="form-control form-control" id="specs"  placeholder="Default Input">
+									</div>
+									<div class="form-group">
 										<label for="largeInput">商品数量</label>
 										<input type="text" name="num" class="form-control form-control" id="num" placeholder="Default Input">
-									</div>
+									</div> -->
 								</div>
 								<div class="card-action">
-								<input type="submit" class="btn btn-success" value="submit">
-									<button class="btn btn-success" id="submit">Submit</button>
+									<button type="button" class="btn btn-success" id="submit">Submit</button>
 									<button class="btn btn-danger">Cancel</button>
 								</div>
 							</div>
@@ -171,7 +174,7 @@
 		   var formData=new FormData(add);
 		   console.log(formData);
 		   $.ajax({
-				url:'../add',
+				url:'add',
 				type:'post',
 				data:formData,
 				contentType:false,

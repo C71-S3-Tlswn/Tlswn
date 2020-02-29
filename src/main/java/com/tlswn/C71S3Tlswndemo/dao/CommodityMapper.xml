@@ -274,7 +274,7 @@
         csize = #{record.csize,jdbcType=VARCHAR},
       </if>
       <if test="record.cnum != null">
-        cnum = #{record.cnum,jdbcType=INTEGER},
+        cnum = cnum+#{record.cnum,jdbcType=INTEGER},
       </if>
       <if test="record.cdescride != null">
         cdescride = #{record.cdescride,jdbcType=VARCHAR},

@@ -187,7 +187,7 @@
         specs = #{record.specs,jdbcType=VARCHAR},
       </if>
       <if test="record.num != null">
-        num = #{record.num,jdbcType=INTEGER},
+        num =num+ #{record.num,jdbcType=INTEGER},
       </if>
       <if test="record.cid != null">
         cid = #{record.cid,jdbcType=INTEGER},
