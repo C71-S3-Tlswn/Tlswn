@@ -25,8 +25,18 @@ public class Orderitem implements Serializable{
     private String temp2;
 
     private Integer temp3;
+    private Commodity commodity;
+    
 
-    public Integer getOtid() {
+    public Commodity getCommodity() {
+		return commodity;
+	}
+
+	public void setCommodity(Commodity commodity) {
+		this.commodity = commodity;
+	}
+
+	public Integer getOtid() {
         return otid;
     }
 

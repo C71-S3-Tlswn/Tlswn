@@ -58,10 +58,7 @@
 
 			</div> -->
 			<div id="comment_div">
-				<!-- <ul id="comment_div_ul">
-					<li><img th:src="${commodity.cphoto}" id="comment_li_img"></li>
-					<li style="text-align: center;"><h3 th:text="${commodity.cname}" id="comment_li_h3"></h3></li>
-				</ul> -->
+				<input type="hidden" id="cid" th:value="${commodity.cid}">
 				<img th:src="${commodity.cphoto}" id="comment_li_img">
 				<h3 th:text="${commodity.cname}" id="comment_li_h3"></h3>
 			</div>
@@ -69,14 +66,22 @@
 				<label>描述相符</label><input type="text" value="0" id="comment_slide1_input1"/><span style="color: red;font-weight: bold;">分</span>
 				<input id="slide1" type="range" value="0">
 			</div>
-			<div style="margin-left: 620px; margin-top: -35px;">
+			<div style="margin-left: 620px; margin-top: -39px;">
 				<label>服务态度</label><input type="text" value="0" id="comment_slide2_input2"/><span style="color: red;font-weight: bold;">分</span>
 				<input id="slide2" type="range" value="0">
 			</div>
-			<div>
-				<textarea rows="8" cols="3" id="comment_input" placeholder="" style="margin-left: 320px;border: none;outline:none;"></textarea>
-				<input type="file"/>
+			<div style="margin-top: 10px;">
+				<textarea id="content" rows="5" cols="3" class="comment_input" placeholder="宝贝满足你的期待吗?说说你的使用心得，分享给想买的他们吧"></textarea>
+				<!-- <input type="file"/> margin-top: 130px;margin-left: -505px;margin: 130px 0px 0px -505px;" onerror="this.style.display='none'-->
+				<img id="getimg" src="">
+    			<form id="ff" action="upload" method="post" enctype="multipart/form-data">
+        			<input type="file" name="img" id="img" style="margin-left: 320px;width: 200px;margin-top: 5px;">
+        			<input type="button" value="上传" onclick="doimg()" style="margin-left: 530px;margin-top: -27px;float: left;"/>
+    			</form>
 			</div>
+			<button style="width: 65px; margin-left: -42px;margin-top: 50px;" onclick="publish()">
+				<img alt="" src="images/fb.png">发表
+			</button>
 			<div class="clearfix"> </div>
 		</div>
 	</div>
@@ -98,7 +103,57 @@
 	}
 	</script>
 	<!-- //jquery -->
+	<script src="js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript">
+	 	function doimg(){
+	 		var formData = new FormData(ff);
+	 		$.ajax({
+	 		    url:'upload',
+	 		    type:'POST',
+	 		    data: formData,
+	 		    processData : false, // 使数据不做处理
+	 		    contentType : false, // 不要设置Content-Type请求头
+	 		    success: function(data){
+	 		        if (data!=null) {
+	 		        	alert("上传成功");
+	 		        	$("#getimg").attr({src:data,height:"92px",width:"210px"});
+	 		        	$("#getimg").css({"margin-top": "102px", "margin-left": "-505px" });
+	 		        }else{
+	 		        	alert("上传失败");
+	 		        }
 
+	 		    }
+	 		});
+	 	}
+	 </script>
+	 <script type="text/javascript">
+	 	function publish(){
+	 		var cid=$("#cid").val();
+	 		var content=$("#content").val();
+	 		var eimg=$("#getimg").attr("src");
+	 		var mgrade=$("#comment_slide1_input1").val();
+	 		var fgrade=$("#comment_slide2_input2").val();
+	 		var egrade=parseInt(mgrade)+parseInt(fgrade);
+	 		$.post("publish",{cid:cid,content:content,eimg:eimg,egrade:egrade},function(result){
+				if(result==1){
+					alert("发表成功");
+					window.location.href = "/evaluate_"+cid;
+					/* $("#content").attr("value","");
+					$("#getimg").attr({src:"",height:"",width:""});
+					$("#getimg").css({"margin-top": "", "margin-left": ""});
+					$("#comment_slide1_input1").attr("value","0");
+					$("#comment_slide2_input2").attr("value","0");
+					$("#slide1").attr("value","0");
+					$("#slide1").css("background-size", "0% 100%");
+					$("#slide2").attr("value","0");
+					$("#slide2").css("background-size", "0% 100%"); */
+					
+				}else{
+					alert("发表失败");
+				}	
+			})
+	 	}
+	 </script>
 	<!-- popup modal (for signin & signup)-->
 	<script src="js/jquery.magnific-popup.js"></script>
 	<script>
@@ -274,6 +329,7 @@
 		 $("#slide2").RangeSlider({ min: 0,   max: 5,  step: 1,  callback: change});
 		 
 	 </script>
+	 
 </body>
 
 </html>

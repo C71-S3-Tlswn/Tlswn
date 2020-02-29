@@ -2,6 +2,7 @@ package com.tlswn.C71S3Tlswndemo.bean;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
@@ -42,6 +43,8 @@ public class Commodity implements Serializable{
     private Integer temp2;
     
     private Type type;
+    
+    private List<Stock> stockit;
 
     public Type getType() {
 		return type;
@@ -170,4 +173,12 @@ public class Commodity implements Serializable{
     public void setTemp2(Integer temp2) {
         this.temp2 = temp2;
     }
+
+	public List<Stock> getStockit() {
+		return stockit;
+	}
+
+	public void setStockit(List<Stock> stockit) {
+		this.stockit = stockit;
+	}
 }

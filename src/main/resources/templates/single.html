@@ -132,9 +132,10 @@
 					</ul>
 					<p>
 						<i class="fa fa-refresh" aria-hidden="true"></i>所有商品
-						<label>均不可退货</label>
+						<label>均不可退货</label> 	<a href="javascript:;"  th:onclick="|javascript:postData('${commodity.cid}')|" style="margin-left: 9px"><img src="images/ccmo.jpg" width="20px" height="20px">收藏</a>
 					</p>
 				</div>
+				
 				<div class="occasion-cart">
 					<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 						<form action="addcart" method="post">
@@ -151,6 +152,7 @@
 								<input type="submit" name="submit" value="添加到购车" class="button" />
 							</fieldset>
 						</form>
+					
 					</div>
 
 				</div>
@@ -177,10 +179,10 @@
 						<div class="w3l-specilamk">
 							<div class="speioffer-agile">
 								<a href="single.html" style="background-position: left;">
-									<img src="images/u1.jpg" th:src="${ev.user.uphoto}" class="img-responsive" height="2px" width="24px" alt="">
+									<img src="images/u1.jpg" th:src="${ev.user.uphoto}!=null?${ev.user.uphoto}:'images/motou.png'" class="img-responsive" height="2px" width="24px" alt="">
 								</a>
 							</div>
-							<div style="margin-left: 35px;margin-top: -18px">
+							<div style="margin-left: 35px;margin-top: -10px">
 								<a style="color: black;" th:text="${ev.user.uaccount}">123</a>
 							</div>
 							<!-- <div style="background-color:red; height: 10px;width: 300px;margin-top: 50px;">
@@ -518,7 +520,7 @@
 				</ul>
 			</div>
 		</div>
-	</div>
+	</div> 
 	<!-- //special offers -->
 	<div th:replace="foot::.footer-top"></div>
 	<div th:replace="foot::foot"></div>
@@ -526,6 +528,22 @@
 	<!-- js-files -->
 	<!-- jquery -->
 	<script src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+function postData(id){
+		$.post("shoucang",{cid:id},function(result){
+			if(result.code==1){
+				alert(result.msg);
+			}else if(result.code==3){
+				alert(result.msg);
+				window.location.href="login";
+			}else if(result.code==4){
+				alert(result.msg);
+			}else{
+				alert(result.msg);
+			}
+		});
+	}
+</script>
 	<script type="text/javascript">
 	//表单提交
 	 function selectNum(){
