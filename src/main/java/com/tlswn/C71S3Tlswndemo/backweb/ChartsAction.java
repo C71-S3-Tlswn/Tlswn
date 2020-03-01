@@ -1,5 +1,6 @@
 package com.tlswn.C71S3Tlswndemo.backweb;
 
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -264,11 +265,9 @@ public class ChartsAction {
 		List<NearWeekVo> list=orm.selectStatistics();
 		Map<String,Object> legend=new HashMap<>();
 		Map<String,Object> tooltip=new HashMap<>();
-		Map<String,Object> axisPointerInner=new HashMap<>();
 		Map<String,Object> ret=new HashMap<>();
 		
 		tooltip.put("trigger", "item");
-		/*tooltip.put("formatter", "{a} <br/>{b}: {c} ({d}%)");*/
 		DateFormat df2 = new SimpleDateFormat("dd");
 		
 		List<String> data=new ArrayList<>();
@@ -333,6 +332,48 @@ public class ChartsAction {
 		String r=gson.toJson(ret);
 		return r;
 	}
-	
+	@ResponseBody
+	@GetMapping("back/charts/YearTotal")
+	public List<NearWeekVo> YearTotal(){
+		
+		List<NearWeekVo> list=new ArrayList<>();
+		
+		NearWeekVo near=null;
+		List<Order> olist=null;
+		OrderExample oe=null;
+
+		Date d=new Date();
+		Calendar calendar=Calendar.getInstance();
+		int year=calendar.get(Calendar.YEAR);
+		calendar.set(year, 0,1);
+		calendar.add(Calendar.YEAR, -5);
+		d=calendar.getTime();
+		Date time1=null;
+		Date time2=null;
+		int count=0;
+		for(int n=5;n>=0;n--){
+			olist=new ArrayList<>();
+			near=new NearWeekVo();
+			oe=new OrderExample();
+			time1=new Timestamp(d.getTime());
+			calendar.add(Calendar.YEAR, +1);
+			d=calendar.getTime();
+			time2=new Timestamp(d.getTime());
+			oe.createCriteria().andOrdertimeBetween(time1, time2);
+			olist=orm.selectByExample(oe);
+			if(olist!=null||olist.size()>=0){
+			for(int i=0;i<olist.size();i++){
+				if(olist.get(i).getTemp3()!=null){
+				count+=olist.get(i).getTemp3();
+					}
+				}
+			}
+			near.setCount(count);
+			count=0;		
+			near.setOrdertimes(time1);
+			list.add(near);		
+		}	
+		return list;
+	}
 
 }

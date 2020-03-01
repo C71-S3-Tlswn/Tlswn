@@ -5,7 +5,8 @@ import java.util.Date;
 
 public class NearWeekVo implements Serializable {
 	
-	 /**
+	
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -1714102668723310120L;
@@ -44,7 +45,11 @@ public class NearWeekVo implements Serializable {
 		this.count = count;
 	}
 	
-	 
+	 @Override
+		public String toString() {
+			return "NearWeekVo [ordertimes=" + ordertimes + ", count=" + count + ", price=" + price + ", vname=" + vname
+					+ "]";
+		}
 	 
 
 }

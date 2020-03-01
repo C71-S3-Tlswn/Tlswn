@@ -1,6 +1,9 @@
 package com.tlswn.C71S3Tlswndemo.backweb;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,9 +18,13 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.tlswn.C71S3Tlswndemo.bean.Order;
+import com.tlswn.C71S3Tlswndemo.bean.OrderExample;
 import com.tlswn.C71S3Tlswndemo.bean.Variety;
+import com.tlswn.C71S3Tlswndemo.dao.CommodityMapper;
 import com.tlswn.C71S3Tlswndemo.dao.OrderMapper;
 import com.tlswn.C71S3Tlswndemo.dao.OrderitemMapper;
+import com.tlswn.C71S3Tlswndemo.dao.TypeMapper;
 import com.tlswn.C71S3Tlswndemo.dao.VarietyMapper;
 import com.tlswn.C71S3Tlswndemo.vo.NearWeekVo;
 import com.tlswn.C71S3Tlswndemo.vo.StatisticsVo;
@@ -32,6 +39,12 @@ public class SparklineAction {
 	
 	@Resource
 	private OrderMapper orm;
+	
+	@Resource
+	private TypeMapper tm;
+	
+	@Resource
+	private CommodityMapper cm;
 	
 	@GetMapping("back/charts/sparkline")
 	public String Sparkline(){
@@ -106,7 +119,6 @@ public class SparklineAction {
 		series.add(seriesInner);
 		Gson gson=new Gson();
 		String r=gson.toJson(ret);
-		System.out.println(r);
 		return r;
 		
 	}
@@ -193,7 +205,55 @@ public class SparklineAction {
 		return list;
 	}
 	
-	
+	@ResponseBody
+	@GetMapping("back/charts/YearSales")
+	public List<NearWeekVo> YearSales(){
+		
+		List<NearWeekVo> list=new ArrayList<>();
+		
+		NearWeekVo near=null;
+		List<Order> olist=null;
+		OrderExample oe=null;
+
+		Date d=new Date();
+		Calendar calendar=Calendar.getInstance();
+		int year=calendar.get(Calendar.YEAR);
+		calendar.set(year, 0,1);
+		calendar.add(Calendar.YEAR, -5);
+		d=calendar.getTime();
+		Date time1=null;
+		Date time2=null;
+		Double price=0.0;
+		for(int n=5;n>=0;n--){
+			olist=new ArrayList<>();
+			near=new NearWeekVo();
+			oe=new OrderExample();
+			time1=new Timestamp(d.getTime());
+			calendar.add(Calendar.YEAR, +1);
+			d=calendar.getTime();
+			time2=new Timestamp(d.getTime());
+			System.out.println(time1);
+			System.out.println(time2);
+			oe.createCriteria().andOrdertimeBetween(time1, time2);
+			olist=orm.selectByExample(oe);
+			if(olist!=null||olist.size()>=0){
+			for(int i=0;i<olist.size();i++){
+				if(olist.get(i).getOprice()!=null){
+				price+=olist.get(i).getOprice();
+					}
+				}
+			}
+			near.setPrice(price);
+			price=0.0;		
+			near.setOrdertimes(time1);
+			list.add(near);
+			
+		}
+		
+		System.out.println(list);	
+		
+		return list;
+	}
 	@InitBinder
 	  protected void initBinder(WebDataBinder binder) {
 		 //添加日期类型转换

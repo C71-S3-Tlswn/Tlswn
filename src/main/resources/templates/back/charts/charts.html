@@ -542,110 +542,28 @@
 					<div class="page-category">Simple yet flexible JavaScript charting for designers & developers. Please checkout their <a href="http://www.chartjs.org/" target="_blank">full documentation</a>.</div>
 					<div class="row">
 						<div id=show>
-							<h3 style="color: red">销量总额</h3>
+							<h3 style="color: red">销量总额<span style="color: green;">点击查看详情</span></h3>
 						<div id="show1"  >
 						</div>
 						<div id="show4">
 						</div>
 						</div>
 						<div id=show>
-						<h3 style="color: blue">近七天销量</h3>
+						<h3 style="color: blue">近七天销量    <span style="color: green;">点击查看详情</span></h3>
 						<div id="show2" >
 						</div>
 						<div id="show3">
 						</div>
 						</div>
 						<div id=show>
+							<div id="show6" >
+						</div>
+						<div id="show5">
+						</div>
+						</div>
 						
-						</div>
-						<div class="col-md-5">
-							<div class="card">
-								<div class="card-header">
-									<div class="card-title">Pie Chart</div>
-								</div>
-								<div class="card-body">
-									<div class="chart-container">
-										<canvas id="pieChart" style="width: 50%; height: 50%"></canvas>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="card">
-								<div class="card-header">
-									<div class="card-title">Doughnut Chart</div>
-								</div>
-								<div class="card-body">
-									<div class="chart-container">
-										<canvas id="doughnutChart" style="width: 50%; height: 50%"></canvas>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="card">
-								<div class="card-header">
-									<div class="card-title">Radar Chart</div>
-								</div>
-								<div class="card-body">
-									<div class="chart-container">
-										<canvas id="radarChart"></canvas>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="card">
-								<div class="card-header">
-									<div class="card-title">Bubble Chart</div>
-								</div>
-								<div class="card-body">
-									<div class="chart-container">
-										<canvas id="bubbleChart"></canvas>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="card">
-								<div class="card-header">
-									<div class="card-title">Multiple Line Chart</div>
-								</div>
-								<div class="card-body">
-									<div class="chart-container">
-										<canvas id="multipleLineChart"></canvas>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="card">
-								<div class="card-header">
-									<div class="card-title">Multiple Bar Chart</div>
-								</div>
-								<div class="card-body">
-									<div class="chart-container">
-										<canvas id="multipleBarChart"></canvas>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="card">
-								<div class="card-header">
-									<div class="card-title">Chart with HTML Legends</div>
-								</div>
-								<div class="card-body">
-									<div class="card-sub">
-										Sometimes you need a very complex legend. In these cases, it makes sense to generate an HTML legend. Charts provide a generateLegend() method on their prototype that returns an HTML string for the legend.
-									</div>
-									<div class="chart-container">
-										<canvas id="htmlLegendsChart"></canvas>
-									</div>
-									<div id="myChartLegend"></div>
-								</div>
-							</div>
-						</div>
+						
+						
 					</div>
 				</div>
 			</div>
@@ -735,6 +653,163 @@
     	   },'json');
        });
        		
+       
+      </script>
+        <script type="text/javascript">
+       $(document).ready(function () {
+    	   var MyChart =echarts.init(document.getElementById("show6"));
+			 var arr1=[];
+			  var arr2=[];
+    	   $.get("YearTotal",null,function(data){
+    		   for(var i=0;i<data.length;i++){
+    	           arr1.push(data[i].ordertimes.substring(0,4));
+    	            arr2.push(data[i].count);
+    	        }
+    		   option = {
+    				   title: {
+    			        	text: '近七年销售量'
+    			   		 },
+    				    tooltip: {
+    				        trigger: 'axis',
+    				        axisPointer: {            
+    				            type: 'shadow'      
+    				        }
+    				    },
+    				    legend: {
+    				        data: '销售量'
+    				    },
+    				    grid: {
+    				        left: '3%',
+    				        right: '4%',
+    				        bottom: '9%',
+    				        containLabel: true
+    				    },
+    				    xAxis: {
+    				    	name:'件',
+    				        type: 'value'
+    				    },
+    				    yAxis: {
+    				    	name:'年',
+    				        type: 'category',
+    				        data: arr1
+    				    },
+    				    series: [
+    				        {
+    				            name: '销售量',
+    				            type: 'bar',
+    				            stack: '总量',
+    				            label: {
+    				                show: true,
+    				                position: 'insideRight'
+    				            },
+    				            data: arr2
+    				        }
+    				    ]
+    				};
+    		  
+   			if (option && typeof option === "object") {
+   		  	  MyChart.setOption(option, true);
+   			} 
+    	   });
+       });
+       		
+       
+      </script>
+        <script type="text/javascript">
+        $(document).ready(function () {
+     	   var MyChart =echarts.init(document.getElementById("show5"));
+ 			 var arr1=[];
+ 			  var arr2=[];
+     	   $.get("YearTotal",null,function(data){
+     		   for(var i=0;i<data.length;i++){
+     	           arr1.push(data[i].ordertimes.substring(0,4));
+     	            arr2.push(data[i].count);
+     	        }
+     		  option = {
+     				
+     				    tooltip: {
+     				        trigger: 'item',
+     				        formatter: '{a} <br/>{b}: {c} ({d}%)'
+     				    },
+     				    legend: {
+     				        orient: 'vertical',
+     				        left: 10,
+     				        data:arr1
+     				    },
+     				    series: [
+     				        {
+     				            name: '销售量',
+     				            type: 'pie',
+     				            selectedMode: 'single',
+     				            radius: [0, '30%'],
+
+     				            label: {
+     				                position: 'inner'
+     				            },
+     				            labelLine: {
+     				                show: false
+     				            },
+     				            data: [
+     				                {value: arr2[0], name:arr1[0], selected: true},
+     				                {value: arr2[1], name: arr1[1]},
+     				                {value: arr2[2], name: arr1[2]}
+     				            ]
+     				        },
+     				        {
+     				            name: '销售量',
+     				            type: 'pie',
+     				            radius: ['40%', '55%'],
+     				            label: {
+     				                formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+     				                backgroundColor: '#eee',
+     				                borderColor: '#aaa',
+     				                borderWidth: 1,
+     				                borderRadius: 4,
+     				               
+     				                rich: {
+     				                    a: {
+     				                        color: '#999',
+     				                        lineHeight: 22,
+     				                        align: 'center'
+     				                    },
+     				                  
+     				                    hr: {
+     				                        borderColor: '#aaa',
+     				                        width: '100%',
+     				                        borderWidth: 0.5,
+     				                        height: 0
+     				                    },
+     				                    b: {
+     				                        fontSize: 16,
+     				                        lineHeight: 33
+     				                    },
+     				                    per: {
+     				                        color: '#eee',
+     				                        backgroundColor: '#334455',
+     				                        padding: [2, 4],
+     				                        borderRadius: 2
+     				                    }
+     				                }
+     				            },
+     				            data: [
+     				                {value: arr2[0], name: arr1[0]},
+     				                {value: arr2[1], name: arr1[1]},
+     				                {value: arr2[2], name: arr1[2]},
+     				                {value: arr2[3], name: arr1[3]},
+     				                {value: arr2[4], name: arr1[4]},
+     				                {value: arr2[5], name: arr1[5]},
+     				                {value: arr2[6], name: arr1[6]}
+     				                
+     				            ]
+     				        }
+     				    ]
+     				};
+    			if (option && typeof option === "object") {
+    		  	  MyChart.setOption(option, true);
+    			} 
+     	   });
+        });
+        		
        
       </script>
 	
