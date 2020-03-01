@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head th:include="back/headers::head">
+</head>
+<body>
+<div class="wrapper">
+		<!--
+			Tip 1: You can change the background color of the main header using: data-background-color="blue | purple | light-blue | green | orange | red"
+		-->
+		<div th:replace="back/headers::.main-header"></div>
+		<div th:replace="back/headers::.sidebar"></div>
+		<div class="main-panel">
+			<div class="content">
+				<div class="page-inner">
+					<div class="page-header">
+						<h4 class="page-title">查看订单</h4>
+						<ul class="breadcrumbs">
+							<li class="nav-home">
+								<a href="#">
+									<i class="flaticon-home"></i>
+								</a>
+							</li>
+							<li class="separator">
+								<i class="flaticon-right-arrow"></i>
+							</li>
+							<li class="nav-item">
+								<a href="#">查看订单</a>
+							</li>
+							<li class="separator">
+								<i class="flaticon-right-arrow"></i>
+							</li>
+							<li class="nav-item">
+								<a href="#">订单详情</a>
+							</li>
+						</ul>
+					</div>
+					<div class="row" style="text-align: center;">
+						<div>
+							<div class="card">
+								<div class="card-header">
+									<div class="card-title"><b style="color: orange;">未发货订单</b></div>
+								</div>
+								<div class="card-body" >
+									<div class="card-sub">									
+										已支付，并未发货的订单:
+									</div>
+									<table class="table mt-3">
+										<thead>
+											<tr>
+												<th scope="col" style="width: 80px">姓名</th>
+												<th scope="col">商品名</th>
+												<th scope="col">收货地址</th>
+												<th scope="col">联系电话</th>
+												<th scope="col">下单时间</th>
+												<th scope="col">价格</th>
+												<th scope="col">是否使用优惠券</th>
+												<th scope="col">数目</th>
+												<th scope="col">备注</th>
+												<th scope="col" style="width: 80px">操作</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="user:${li2}">
+												<td th:text="${user.temp}"></td>
+												<td th:text="${user.temp2}"></td>
+												<td th:text="${user.oaddr}"></td>
+												<td th:text="${user.otel}"></td>
+												<td th:text="${#dates.format(user.ordertime,'yyyy-MM-dd HH:mm:ss')}"></td>
+												<td th:text="${user.oprice}"></td>
+												<td th:text="${user.pstatus}==1?'是':'否'"></td>
+												<td th:text="${user.temp3}"></td>
+												<td th:text="${user.ps}"></td>
+												<td><a href="javascript:;"  th:onclick="|javascript:postData('${user.oid}')|">商品发货</a></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="card">
+								<div class="card-header">
+									<div class="card-title"><b style="color: orange;">已发订单</b></div>
+								</div>
+								<div class="card-body">
+									<div class="card-sub">											
+										已经发货的订单
+									</div>
+									<table class="table mt-3">
+										<thead>
+											<tr>
+												<th scope="col" style="width: 80px">姓名</th>
+												<th scope="col">商品名</th>
+												<th scope="col">收货地址</th>
+												<th scope="col">联系电话</th>
+												<th scope="col">下单时间</th>
+												<th scope="col">价格</th>
+												<th scope="col">是否使用优惠券</th>
+												<th scope="col">发货时间</th>
+												<th scope="col">数目</th>
+												<th scope="col">备注</th>
+												<th scope="col" style="width: 80px">操作</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="users:${li3}">
+												<td th:text="${users.temp}"></td>
+												<td th:text="${users.temp2}"></td>
+												<td th:text="${users.oaddr}"></td>
+												<td th:text="${users.otel}"></td>
+												<td th:text="${#dates.format(users.ordertime,'yyyy-MM-dd HH:mm:ss')}"></td>
+												<td th:text="${users.oprice}"></td>
+												<td th:text="${users.pstatus}==1?'是':'否'"></td>
+												<td th:text="${#dates.format(users.delivetime,'yyyy-MM-dd HH:mm:ss')}"></td>
+												<td th:text="${users.temp3}"></td>
+												<td th:text="${users.ps}"></td>
+												<td><a href="javascript:;"  th:onclick="|javascript:shouhuo('${users.oid}')|">确认收货</a></td>
+											</tr>
+										</tbody>
+									</table>
+									</div>
+									<div class="card-header">
+									<div class="card-title"><b style="color: orange;">完成订单</b></div>
+								</div>
+									<div class="card-body">
+									<div class="card-sub">									
+										已完成的订单
+									</div>
+									<table  class="table mt-3">
+										<thead>
+											<tr>
+												<th scope="col" style="width: 80px">姓名</th>
+												<th scope="col">商品名</th>
+												<th scope="col">收货地址</th>
+												<th scope="col">联系电话</th>
+												<th scope="col">下单时间</th>
+												<th scope="col">价格</th>
+												<th scope="col">是否使用优惠券</th>
+												<th scope="col">发货时间</th>
+												<th scope="col">收货时间</th>
+												<th scope="col">数目</th>
+												<th scope="col">备注</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="use:${li4}">
+												<td th:text="${use.temp}"></td>
+												<td th:text="${use.temp2}"></td>
+												<td th:text="${use.oaddr}"></td>
+												<td th:text="${use.otel}"></td>
+												<td th:text="${#dates.format(use.ordertime,'yyyy-MM-dd HH:mm:ss')}"></td>
+												<td th:text="${use.oprice}"></td>
+												<td th:text="${use.pstatus}==1?'是':'否'"></td>
+												<td th:text="${#dates.format(use.delivetime,'yyyy-MM-dd HH:mm:ss')}"></td>
+												<td th:text="${#dates.format(use.arrivetime,'yyyy-MM-dd HH:mm:ss')}"></td>
+												<td th:text="${use.temp3}"></td>
+												<td th:text="${use.ps}"></td>
+											</tr>
+										</tbody>
+									</table>
+									</div>
+									
+									
+								<div class="card-header">
+								<div class="card-title"><b style="color: orange;">未支付订单</b></div>
+								</div>
+									<div class="card-body">
+									<div class="card-sub">									
+										未支付，未完成的订单
+									</div>
+									<table  class="table mt-3">
+										<thead>
+											<tr>
+												<th scope="col" style="width: 80px">姓名</th>
+												<th scope="col">商品名</th>
+												<th scope="col">收货地址</th>
+												<th scope="col">联系电话</th>
+												<th scope="col">价格</th>
+												<th scope="col">是否使用优惠券</th>
+											   <th scope="col">是否支付</th>
+												<th scope="col">数目</th>
+												<th scope="col">备注</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="usem:${li5}">
+												<td th:text="${usem.temp}"></td>
+												<td th:text="${usem.temp2}"></td>
+												<td th:text="${usem.oaddr}"></td>
+												<td th:text="${usem.otel}"></td>
+												<td th:text="${usem.oprice}"></td>
+												<td th:text="${usem.pstatus}==1?'是':'否'"></td>	
+												<td th:text="${usem.status}==1?'是':'否'"></td>	
+												<td th:text="${usem.temp3}"></td>
+												<td th:text="${usem.ps}"></td>
+											</tr>
+										</tbody>
+									</table>
+									</div>
+								
+		
+		<!-- Custom template | don't include it in your project! -->
+		<div class="custom-template">
+				<div class="title">Settings</div>
+				<div class="custom-content">
+					<div class="switcher">
+						<div class="switch-block">
+							<h4>Topbar</h4>
+							<div class="btnSwitch">
+								<button type="button" class="changeMainHeaderColor" data-color="blue"></button>
+								<button type="button" class="selected changeMainHeaderColor" data-color="purple"></button>
+								<button type="button" class="changeMainHeaderColor" data-color="light-blue"></button>
+								<button type="button" class="changeMainHeaderColor" data-color="green"></button>
+								<button type="button" class="changeMainHeaderColor" data-color="orange"></button>
+								<button type="button" class="changeMainHeaderColor" data-color="red"></button>
+							</div>
+						</div>
+						<div class="switch-block">
+							<h4>Background</h4>
+							<div class="btnSwitch">
+								<button type="button" class="changeBackgroundColor" data-color="bg2"></button>
+								<button type="button" class="changeBackgroundColor selected" data-color="bg1"></button>
+								<button type="button" class="changeBackgroundColor" data-color="bg3"></button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="custom-toggle">
+					<i class="flaticon-settings"></i>
+				</div>
+			</div>
+		<!-- End Custom template -->
+	</div>
+
+	<!--   Core JS Files   -->
+	<script src="../../assets/js/core/jquery.3.2.1.min.js"></script>
+	<script src="../../assets/js/core/popper.min.js"></script>
+	<script src="../../assets/js/core/bootstrap.min.js"></script>
+	<!-- jQuery UI -->
+	<script src="../../assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+	<script src="../../assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+	<!-- Bootstrap Toggle -->
+	<script src="../../assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+	<!-- jQuery Scrollbar -->
+	<script src="../../assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+	<!-- Azzara JS -->
+	<script src="../../assets/js/ready.min.js"></script>
+	<!-- Azzara DEMO methods, don't include it in your project! -->
+	<script src="../../assets/js/setting-demo.js"></script>
+	<script>
+		$('#displayNotif').on('click', function(){
+			var placementFrom = $('#notify_placement_from option:selected').val();
+			var placementAlign = $('#notify_placement_align option:selected').val();
+			var state = $('#notify_state option:selected').val();
+			var style = $('#notify_style option:selected').val();
+			var content = {};
+
+			content.message = 'Turning standard Bootstrap alerts into "notify" like notifications';
+			content.title = 'Bootstrap notify';
+			if (style == "withicon") {
+				content.icon = 'fa fa-bell';
+			} else {
+				content.icon = 'none';
+			}
+			content.url = 'index.html';
+			content.target = '_blank';
+
+			$.notify(content,{
+				type: state,
+				placement: {
+					from: placementFrom,
+					align: placementAlign
+				},
+				time: 1000,
+			});
+		});
+	</script>
+	<script src="../../assets/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+
+	function postData(id){
+		$.get("fa.do",{oid:id},function(result){
+			if(result.code==1){
+				alert(result.msg);
+				window.location.reload();
+			}else{
+				alert(result.msg);
+			}
+		});
+	}
+</script>
+<script type="text/javascript">
+
+	function shouhuo(id){
+		$.get("shou.do",{oid:id},function(result){
+			if(result.code==1){
+				alert(result.msg);
+				window.location.reload();
+			}else{
+				alert(result.msg);
+			}
+		});
+	}
+</script>
+</body>
+
+	</html>
