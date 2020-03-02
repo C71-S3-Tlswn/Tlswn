@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.tlswn.C71S3Tlswndemo.backbiz.AdminBiz;
 import com.tlswn.C71S3Tlswndemo.bean.Admin;
-import com.tlswn.C71S3Tlswndemo.biz.AdminBiz;
 import com.tlswn.C71S3Tlswndemo.biz.BizException;
 import com.tlswn.C71S3Tlswndemo.dao.AdminMapper;
 import com.tlswn.C71S3Tlswndemo.util.Md5;
@@ -40,7 +40,7 @@ public class AdminAction {
 				return new Result(2, "表单验证错误",errors.getFieldErrors());
 			}
 			admin.setApass(Md5.getMD5(admin.getApass()));
-			System.out.println(admin.getApass());
+			System.out.println(admin.getTel());
 			admin=abiz.login(admin);
 			m.addAttribute("admin", admin);
 			hs.setAttribute("admin", admin);
