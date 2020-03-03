@@ -132,17 +132,12 @@ margin-left: -60px;
 				</div>
 				<!-- //search -->
 				<!-- cart details -->
+				
 				<div class="top_nav_right">
-					<div class="wthreecartaits wthreecartaits2 cart cart box_1">
-						<form action="" method="post" class="last">
-							<input type="hidden" name="cmd" value="_cart">
-							<input type="hidden" name="display" value="1">
-							<a class="w3view-cart" href="checkout">
-								<i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+							<a class="w3view-cart" href="checkout" id="checkout">
+								<img src="images/checkout.jpg" style="width: 70px;height: 70px;">
 							</a>
-						</form>
-					</div>
-				</div>
+				</div> 
 				<!-- //cart details -->
 				<div class="clearfix"></div>
 			</div>
@@ -708,63 +703,14 @@ margin-left: -60px;
 									</ul>
 								</li>
 								<li class="dropdown">
-									<a href="#" class="dropdown-toggle nav-stylehead" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">家电
+									<a href="house" class="dropdown-toggle nav-stylehead" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">家电
 										<span class="caret"></span>
 									</a>
-									<ul class="dropdown-menu multi-column columns-3">
-										<div class="agile_inner_drop_nav_info">
-											<div class="col-sm-6 multi-gd-img">
-												<ul class="multi-column-dropdown">
-													<li>
-														<a href="product2.html">Kitchen & Dining</a>
-													</li>
-													<li>
-														<a href="product2.html">Detergents</a>
-													</li>
-													<li>
-														<a href="product2.html">Utensil Cleaners</a>
-													</li>
-													<li>
-														<a href="product2.html">Floor & Other Cleaners</a>
-													</li>
-													<li>
-														<a href="product2.html">Disposables, Garbage Bag</a>
-													</li>
-													<li>
-														<a href="product2.html">Repellents & Fresheners</a>
-													</li>
-													<li>
-														<a href="product2.html"> Dishwash</a>
-													</li>
-												</ul>
-											</div>
-											<div class="col-sm-6 multi-gd-img">
-												<ul class="multi-column-dropdown">
-													<li>
-														<a href="product2.html">Pet Care</a>
-													</li>
-													<li>
-														<a href="product2.html">Cleaning Accessories</a>
-													</li>
-													<li>
-														<a href="product2.html">Pooja Needs</a>
-													</li>
-													<li>
-														<a href="product2.html">Crackers</a>
-													</li>
-													<li>
-														<a href="product2.html">Festive Decoratives</a>
-													</li>
-													<li>
-														<a href="product2.html">Plasticware</a>
-													</li>
-													<li>
-														<a href="product2.html">Home Care</a>
-													</li>
-												</ul>
-											</div>
-											<div class="clearfix"></div>
-										</div>
+									<ul class="dropdown-menu agile_short_dropdown" >
+										
+										<li th:each="t:${types}">
+											<a href="house" th:text="${t.tname}">Typography</a>
+										</li>
 									</ul>
 								</li>
 								

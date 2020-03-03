@@ -54,7 +54,7 @@ text-align:center;
 </tr></thead>
 <tr th:each="user:${li}">
 <td th:text="${user.cname}" style="text-align:center;" height="80px"></td>
-<td height="80px" style="text-align:center;"> <img th:src="${user.cphoto}" width="140px" height="74px" ></td>
+<td height="80px" style="text-align:center;"> <a th:href="|single_${user.cid}" style="width: 140px; height:74px;"><img th:src="${user.cphoto}" width="140px" height="74px" ></a></td>
 <td th:text="${user.mprice}" style="text-align:center;" height="80px"></td>
 <td th:text="${user.cdescride}" style="text-align:center;" height="80px"></td>
 <td style="text-align:center;" height="80px" th:value="${user.cid}" id="df"><a href="javascript:;"  th:onclick="|javascript:postData('${user.cid}')|" >删除</a></td>

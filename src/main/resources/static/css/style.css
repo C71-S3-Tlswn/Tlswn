@@ -12,6 +12,14 @@ body a {
 	-o-transition:0.5s all;
 	-ms-transition:0.5s all;
 }
+#checkout{
+	width: 30px;
+	height: 80px;
+}
+.fa-cart-arrow-down {
+	width: 100px;
+	height: 30px;
+}
 a:hover{
  text-decoration:none;
 }
@@ -335,6 +343,7 @@ ul.multi-column-dropdown li a:hover{
 .top_nav_right {
     float: right;
     width: 20%;
+    height: 50px;
 }
 .box_1 {
     text-align: center;
