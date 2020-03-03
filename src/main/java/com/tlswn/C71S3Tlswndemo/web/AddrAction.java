@@ -149,10 +149,13 @@ public class AddrAction {
 			// 保存图片
 			/*File file = new File(filePath + img.getOriginalFilename());*/
 			File files=new File(filePath);
+			System.out.println(filePath);
 			if(!files.exists()){
 				files.mkdirs();
 			}
+			System.out.println(files);
 			fileName=file.getOriginalFilename();
+			System.out.println(fileName);
 			files=new File(filePath + fileName);
 			
 			file.transferTo(files);
