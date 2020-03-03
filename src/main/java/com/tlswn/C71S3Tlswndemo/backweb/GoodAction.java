@@ -175,6 +175,19 @@ public class GoodAction {
 		return new Result(1, "11212");
 	}
 	
+	@PostMapping("back/sale")
+	@ResponseBody
+	public Result sale(Commodity commm){
+		CommodityExample ce=new CommodityExample();
+		ce.createCriteria().andCnameEqualTo(commm.getCname());
+		int a=cm.updateByExampleSelective(commm, ce);
+		if(a==1){
+			return new Result(1, "修改成功");
+		}else{
+			return new Result(0, "修改失败");
+		}
+		
+	}
 
 /*String fileName=null;
  * try {

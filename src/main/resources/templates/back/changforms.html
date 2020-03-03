@@ -95,7 +95,32 @@
 							</div>
 							</form>
 						</div>
+						<div class="col-md-6">
+						<form action="sale" method="post" id="sale">
+							<div class="card">
+								<div class="card-header">
+									<div class="card-title">设置折扣</div>
+								</div>
+								<div class="card-body">
+									<div class="form-group">
+										<label for="largeInput">商品名</label>
+										<input type="text" name="cname"  class="form-control form-control-lg"  th:value="${change.cname}" th:placeholder="${change.cname}">
+									</div>
+									<div class="form-group">
+										<label for="largeInput">折扣设置<h2>(%)</h2></label>
+										<input type="text" name="temp2" class="form-control form-control" id="num" placeholder="Default Input">
+									</div>
+								</div>
+								<div class="card-action">
+									<button type="button" class="btn btn-success" id="submit2">Submit</button>
+									<button class="btn btn-danger">Cancel</button>
+								</div>
+							</div>
+							</form>
+						</div>
 					</div>
+					
+							
 				</div>
 			</div>
 			
@@ -169,11 +194,33 @@
 						alert(result.msg);
 					}
 				}
+			}) 
+	   })  
+	    $("#submit2").on('click',function (){
+		   var form2=new FormData(sale);
+		   var id=window.location.pathname;
+			var cid=id.substring(17);
+		   $.ajax({
+				url:'sale',
+				type:'post',
+				data:form2,
+				cid:cid,
+				contentType:false,
+				processData:false,
+				success:function(result){
+					if(result.code==1){
+						alert(result.msg);
+						window.location.reload();
+					}else{
+						alert(result.msg);
+					}
+				}
 			})
 		   
 		   
 		  
 	   })  
+	   
 	</script>
 </body>
 </html>
