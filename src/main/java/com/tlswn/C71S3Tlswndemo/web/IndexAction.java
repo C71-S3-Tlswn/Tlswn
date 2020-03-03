@@ -57,10 +57,12 @@ public class IndexAction {
 		c3.andTidBetween(22, 27);
 		m.addAttribute("ce4", cm.selectBythree(ce4));
 		
-		TypeExample te=new TypeExample();
-		com.tlswn.C71S3Tlswndemo.bean.TypeExample.Criteria cr=te.createCriteria();
-		cr.andVidEqualTo(1);
-		m.addAttribute("type", tm.selectByExample(te));
+		
+		m.addAttribute("ce5",cm.selectBySix(null));
+		
+		m.addAttribute("ce6",cm.selectBythree(null));
+		System.out.println(cm.selectBythree(null));
+		
 		return "index";
 	}
 	
@@ -80,6 +82,14 @@ public class IndexAction {
 	@ModelAttribute
 	public void init(Model m){
 		m.addAttribute("variety",vm.selectByExample(null) );
+		
+		TypeExample te=new TypeExample();
+		te.createCriteria().andVidEqualTo(1);
+		m.addAttribute("type", tm.selectByExample(te));
+		
+		TypeExample t=new TypeExample();
+		t.createCriteria().andVidEqualTo(5);
+		m.addAttribute("types", tm.selectByExample(t));
 	}
 	
 	

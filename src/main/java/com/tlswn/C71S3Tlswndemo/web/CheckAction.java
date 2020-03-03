@@ -22,6 +22,7 @@ import com.tlswn.C71S3Tlswndemo.bean.Cart;
 import com.tlswn.C71S3Tlswndemo.dao.AddrMapper;
 import com.tlswn.C71S3Tlswndemo.dao.CartMapper;
 import com.tlswn.C71S3Tlswndemo.dao.OrderMapper;
+import com.tlswn.C71S3Tlswndemo.dao.VarietyMapper;
 import com.tlswn.C71S3Tlswndemo.vo.Result;
 
 
@@ -34,6 +35,9 @@ public class CheckAction {
 	private AddrMapper am;
 	@Resource
 	private OrderMapper om;
+	@Resource
+	private VarietyMapper vm;
+	
 	
 	@GetMapping("checkout")
 	public String Check(){
@@ -100,8 +104,10 @@ public class CheckAction {
 			return new Result(1,"");
 		}else{
 			return new Result(0,"");
-		}
-		
+		}		
 	}
-	
+	@ModelAttribute
+	public void init(Model m){
+		m.addAttribute("variety",vm.selectByExample(null) );
+	}
 }

@@ -18,6 +18,8 @@ public interface CommodityMapper {
 
     List<Commodity> selectByExample(CommodityExample example);
     List<Commodity> selectBythree(CommodityExample example);
+    
+    List<Commodity> selectBySix(CommodityExample example);
 
     Commodity selectByPrimaryKey(Integer cid);
 

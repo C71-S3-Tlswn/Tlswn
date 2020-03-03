@@ -27,17 +27,20 @@
 					<h3 class="agileits-sear-head">在这里搜索...</h3>
 					<form action="dofind" method="post" >
 						<input type="search" placeholder="请输入商品名字..." name="search" required="">
-						<input type="submit" value=" ">
+						<input type="button"  onclick="find()" value=" ">
 					</form>
 				</div>
 				<!-- price range -->
-				<div class="range">
-					<h3 class="agileits-sear-head">价格范围</h3>
-					<ul class="dropdown-menu6">
+				<div class="left-side">
+					<h3 class="agileits-sear-head">优惠区</h3>
+					<ul>
 						<li>
-
-							<div id="slider-range"></div>
-							<input type="text" id="amount" style="border: 0; color: #ffffff; font-weight: normal;" />
+							<input type="checkbox" name="new" class="checked" value="new">
+							<span class="span">新品推介</span>
+						</li>
+						<li>
+							<input type="checkbox" name="hot" class="checked" value="1">
+							<span class="span">热卖商品</span>
 						</li>
 					</ul>
 				</div>
@@ -275,7 +278,8 @@
 	<!-- price range (top products) -->
 	<script src="js/jquery-ui.js"></script>
 	<script>
-		//<![CDATA[ 
+		var bprice=0;
+		var eprice=0;
 		$(window).load(function () {
 			$("#slider-range").slider({
 				range: true,
@@ -283,12 +287,27 @@
 				max: 9000,
 				values: [50, 6000],
 				slide: function (event, ui) {
-					$("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+					 $("#amount").val("￥" + ui.values[0] + " - ￥" + ui.values[1]);
+					bprice=ui.values[0];
+					eprice=ui.values[1];
+					
 				}
+			
 			});
-			$("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
-
-		}); //]]>
+			 $("#amount").val("￥" + $("#slider-range").slider("values", 0) + " - ￥" + $("#slider-range").slider("values", 1));
+			 
+		}); 
+		function find(){
+			var search=$("input[name='search']").val();
+			var newpro= $("input[name='new']:checked").val();
+			var hot= $("input[name='hot']:checked").val();
+			 console.log(newpro);
+			 console.log(hot);
+			$.post("dofind",{newpro:newpro,hot:hot,search:search,bprice:bprice,eprice,eprice},
+					function(date){
+						 $('.wrapper').html(date);
+			});
+		}
 	</script>
 	<!-- //price range (top products) -->
 

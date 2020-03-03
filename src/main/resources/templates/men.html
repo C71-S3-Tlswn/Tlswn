@@ -27,7 +27,7 @@
 					<h3 class="agileits-sear-head">在这里搜索...</h3>
 					<form action="dofind" method="post" >
 						<input type="search" placeholder="请输入商品名字..." name="search" required="">
-						<input type="submit" value=" ">
+						<input type="button"  onclick="find()" value=" ">
 					</form>
 				</div>
 				<!-- price range -->
@@ -44,15 +44,15 @@
 				<!-- //price range -->
 				<!-- food preference -->
 				<div class="left-side">
-					<h3 class="agileits-sear-head">食物偏好</h3>
+					<h3 class="agileits-sear-head">优惠区</h3>
 					<ul>
 						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">素食主义者</span>
+							<input type="checkbox" name="new" class="checked" value="new">
+							<span class="span">新品推介</span>
 						</li>
 						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">非素食主义者</span>
+							<input type="checkbox" name="hot" class="checked" value="1">
+							<span class="span">热卖商品</span>
 						</li>
 					</ul>
 				</div>
@@ -251,24 +251,36 @@
 	</script>
 	<script src="js/minicart.js"></script>
 	<script>
-		paypalm.minicartk.render(); //use only unique class names other than paypalm.minicartk.Also Replace same class name in css and minicart.min.js
-
-		paypalm.minicartk.cart.on('checkout', function (evt) {
-			var items = this.items(),
-				len = items.length,
-				total = 0,
-				i;
-
-			// Count the number of each item in the cart
-			for (i = 0; i < len; i++) {
-				total += items[i].get('quantity');
-			}
-
-			if (total < 3) {
-				alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
-				evt.preventDefault();
-			}
-		});
+		var bprice=0;
+		var eprice=0;
+		$(window).load(function () {
+			$("#slider-range").slider({
+				range: true,
+				min: 0,
+				max: 9000,
+				values: [50, 6000],
+				slide: function (event, ui) {
+					 $("#amount").val("￥" + ui.values[0] + " - ￥" + ui.values[1]);
+					bprice=ui.values[0];
+					eprice=ui.values[1];
+					
+				}
+			
+			});
+			 $("#amount").val("￥" + $("#slider-range").slider("values", 0) + " - ￥" + $("#slider-range").slider("values", 1));
+			 
+		}); 
+		function find(){
+			var search=$("input[name='search']").val();
+			var newpro= $("input[name='new']:checked").val();
+			var hot= $("input[name='hot']:checked").val();
+			 console.log(newpro);
+			 console.log(hot);
+			$.post("dofind",{newpro:newpro,hot:hot,search:search,bprice:bprice,eprice,eprice},
+					function(date){
+						 $('.wrapper').html(date);
+			});
+		}
 	</script>
 	<!-- //cart-js -->
 

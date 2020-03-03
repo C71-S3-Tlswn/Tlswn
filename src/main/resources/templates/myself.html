@@ -151,7 +151,8 @@ function postData(){
 	<!-- price range (top products) -->
 	<script src="js/jquery-ui.js"></script>
 	<script>
-		//<![CDATA[ 
+		var bprice=0;
+		var eprice=0;
 		$(window).load(function () {
 			$("#slider-range").slider({
 				range: true,
@@ -159,12 +160,27 @@ function postData(){
 				max: 9000,
 				values: [50, 6000],
 				slide: function (event, ui) {
-					$("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+					 $("#amount").val("￥" + ui.values[0] + " - ￥" + ui.values[1]);
+					bprice=ui.values[0];
+					eprice=ui.values[1];
+					
 				}
+			
 			});
-			$("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
-
-		}); //]]>
+			 $("#amount").val("￥" + $("#slider-range").slider("values", 0) + " - ￥" + $("#slider-range").slider("values", 1));
+			 
+		}); 
+		function find(){
+			var search=$("input[name='search']").val();
+			var newpro= $("input[name='new']:checked").val();
+			var hot= $("input[name='hot']:checked").val();
+			 console.log(newpro);
+			 console.log(hot);
+			$.post("dofind",{newpro:newpro,hot:hot,search:search,bprice:bprice,eprice,eprice},
+					function(date){
+						 $('.wrapper').html(date);
+			});
+		}
 	</script>
 	<!-- //price range (top products) -->
 

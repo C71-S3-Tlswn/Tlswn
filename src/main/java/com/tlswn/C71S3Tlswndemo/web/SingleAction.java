@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,10 +19,13 @@ import com.tlswn.C71S3Tlswndemo.bean.Evaluate;
 import com.tlswn.C71S3Tlswndemo.bean.EvaluateExample;
 import com.tlswn.C71S3Tlswndemo.bean.Stock;
 import com.tlswn.C71S3Tlswndemo.bean.StockExample;
+import com.tlswn.C71S3Tlswndemo.bean.TypeExample;
 import com.tlswn.C71S3Tlswndemo.bean.StockExample.Criterion;
 import com.tlswn.C71S3Tlswndemo.dao.CommodityMapper;
 import com.tlswn.C71S3Tlswndemo.dao.EvaluateMapper;
 import com.tlswn.C71S3Tlswndemo.dao.StockMapper;
+import com.tlswn.C71S3Tlswndemo.dao.TypeMapper;
+import com.tlswn.C71S3Tlswndemo.dao.VarietyMapper;
 import com.tlswn.C71S3Tlswndemo.vo.Result;
 
 @Controller
@@ -33,6 +37,11 @@ public class SingleAction {
 	private EvaluateMapper em;
 	@Resource
 	private StockMapper sm;
+	@Resource
+	private TypeMapper tm;
+	
+	@Resource
+	private VarietyMapper vm;
 	
 	@GetMapping("single")
 	public String Single(){
@@ -67,4 +76,17 @@ public class SingleAction {
 		return "single";
 		
 	}
+	@ModelAttribute
+	public void init(Model m){
+		m.addAttribute("variety",vm.selectByExample(null) );
+		
+		TypeExample te=new TypeExample();
+		te.createCriteria().andVidEqualTo(1);
+		m.addAttribute("type", tm.selectByExample(te));
+		
+		TypeExample t=new TypeExample();
+		t.createCriteria().andVidEqualTo(5);
+		m.addAttribute("types", tm.selectByExample(t));
+	}
+	
 }
