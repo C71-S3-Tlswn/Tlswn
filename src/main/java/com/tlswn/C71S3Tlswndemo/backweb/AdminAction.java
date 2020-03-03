@@ -54,4 +54,10 @@ public class AdminAction {
 		}
 		
 	}
+	
+	@GetMapping("logout")
+	public String loginOut(HttpSession sess){
+		sess.removeAttribute("admin");
+		return "back/login";
+	}
 }
