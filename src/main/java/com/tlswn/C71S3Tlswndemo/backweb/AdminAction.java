@@ -40,7 +40,6 @@ public class AdminAction {
 				return new Result(2, "表单验证错误",errors.getFieldErrors());
 			}
 			admin.setApass(Md5.getMD5(admin.getApass()));
-			System.out.println(admin.getTel());
 			admin=abiz.login(admin);
 			m.addAttribute("admin", admin);
 			hs.setAttribute("admin", admin);
@@ -53,5 +52,11 @@ public class AdminAction {
 			return new Result(0,"业务繁忙，稍后再试");
 		}
 		
+	}
+	
+	@GetMapping("logout")
+	public String loginOut(HttpSession sess){
+		sess.removeAttribute("admin");
+		return "back/login";
 	}
 }

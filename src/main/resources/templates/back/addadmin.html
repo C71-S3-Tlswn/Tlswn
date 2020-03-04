@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head th:include="back/headers::head">
+</head>
+<body>
+	<div class="wrapper">
+		<!--
+			Tip 1: You can change the background color of the main header using: data-background-color="blue | purple | light-blue | green | orange | red"
+		-->
+		<div th:replace="back/headers::.main-header"></div>
+		<div th:replace="back/headers::.sidebar"></div>
+		<div class="main-panel">
+			<div class="content">
+				<div class="page-inner">
+					<h4 class="page-title">管理员添加</h4>
+					<div class="row" style="width: 1800px;">
+						<div class="col-md-8" >
+							<div class="card card-with-nav">
+								<!-- <div class="card-header">
+									<div class="row row-nav-line">
+										<ul class="nav nav-tabs nav-line nav-color-secondary" role="tablist">
+											<li class="nav-item"> <a class="nav-link active show" data-toggle="tab" href="#home" role="tab" aria-selected="true">Timeline</a> </li>
+											<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-selected="false">Profile</a> </li>
+											<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#settings" role="tab" aria-selected="false">Settings</a> </li>
+										</ul>
+									</div>
+								</div> -->
+								<div class="card-body" >
+									<div class="row mt-3">
+										<img alt="" id="getimg" src="motou.png" class="avatar-img rounded-circle" style="height: 100px;width: 100px;position: relative;left: 15px;">
+									</div>
+									<!-- <div class="row mt-3">
+										<form id="ff" action="upload" method="post" enctype="multipart/form-data" style="position: absolute;top: 135px;left: 25px;">
+        									<input type="file" name="img" id="img" style="width: 170px;">
+        									<input type="button" value="上传" onclick="doimg()"/>
+    									</form>
+									</div> -->
+									<div class="row mt-3">
+										<div class="col-md-6">
+											<div class="form-group form-group-default">
+												<label>名字</label>
+												<input type="text" id="aname" class="form-control" name="name" placeholder="Name">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group form-group-default">
+												<label>邮箱</label>
+												<input type="email" id="email" class="form-control" name="email" placeholder="Email">
+											</div>
+										</div>
+									</div>
+									<div class="row mt-3">
+										<!-- <div class="col-md-4">
+											<div class="form-group form-group-default">
+												<label>Birth Date</label>
+												<input type="text" class="form-control" id="datepicker" name="datepicker" value="03/21/1998" placeholder="Birth Date">
+											</div>
+										</div> -->
+										<div class="col-md-6">
+											<div class="form-group form-group-default" >
+												<label>性别</label>
+												<select class="form-control" id="gender" >
+													<option id="nan" value="1">男</option>
+													<option id="nv"  value="2">女</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group form-group-default" >
+												<label><span style="color: red;">*</span>电话</label>
+												<input type="text" id="tel" class="form-control" name="phone" placeholder="Phone">
+											</div>
+										</div>
+									</div>
+									<div class="row mt-3">
+										<div class="col-md-12">
+											<div class="form-group form-group-default">
+												<label>地址</label>
+												<input type="text" id="temp2" class="form-control" name="address" placeholder="Address">
+											</div>
+										</div>
+									</div>
+									<!-- <div class="row mt-3 mb-1">
+										<div class="col-md-12">
+											<div class="form-group form-group-default">
+												<label>About Me</label>
+												<textarea class="form-control" name="about" placeholder="About Me" rows="3">A man who hates loneliness</textarea>
+											</div>
+										</div>
+									</div> -->
+									<div class="text-right mt-3 mb-3">
+										<button class="btn btn-success" onclick="insert()">添加</button>
+										<button class="btn btn-danger" onclick="returnindex()">取消</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- <div class="col-md-4">
+							<div class="card card-profile card-secondary">
+								<div class="card-header" style="background-image: url('../assets/img/blogpost.jpg')">
+									<div class="profile-picture">
+										<div class="avatar avatar-xl">
+											<img id="fu" src="../assets/img/profile.jpg" th:src="${admin.photo}!=null?${admin.photo}:'images/motou.png'" alt="..." class="avatar-img rounded-circle">
+										</div>
+									</div>
+								</div>
+								<div class="card-body">
+									<div class="user-profile text-center">
+										<div class="name">Hizrian</div>
+										<div class="job">Frontend Developer</div>
+										<div class="desc">A man who hates loneliness</div>
+										<div class="social-media">
+											<a class="btn btn-info btn-twitter btn-sm btn-link" href="#"> 
+												<span class="btn-label just-icon"><i class="flaticon-twitter"></i> </span>
+											</a>
+											<a class="btn btn-danger btn-sm btn-link" rel="publisher" href="#"> 
+												<span class="btn-label just-icon"><i class="flaticon-google-plus"></i> </span> 
+											</a>
+											<a class="btn btn-primary btn-sm btn-link" rel="publisher" href="#"> 
+												<span class="btn-label just-icon"><i class="flaticon-facebook"></i> </span> 
+											</a>
+											<a class="btn btn-danger btn-sm btn-link" rel="publisher" href="#"> 
+												<span class="btn-label just-icon"><i class="flaticon-dribbble"></i> </span> 
+											</a>
+										</div>
+										<div class="view-profile">
+											<a href="#" class="btn btn-secondary btn-block">View Full Profile</a>
+										</div>
+									</div>
+								</div>
+								<div class="card-footer">
+									<div class="row user-stats text-center">
+										<div class="col">
+											<div class="number">125</div>
+											<div class="title">Post</div>
+										</div>
+										<div class="col">
+											<div class="number">25K</div>
+											<div class="title">Followers</div>
+										</div>
+										<div class="col">
+											<div class="number">134</div>
+											<div class="title">Following</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div> -->
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		
+		<!-- Custom template | don't include it in your project! -->
+		<!-- <div class="custom-template">
+				<div class="title">Settings</div>
+				<div class="custom-content">
+					<div class="switcher">
+						<div class="switch-block">
+							<h4>Topbar</h4>
+							<div class="btnSwitch">
+								<button type="button" class="changeMainHeaderColor" data-color="blue"></button>
+								<button type="button" class="selected changeMainHeaderColor" data-color="purple"></button>
+								<button type="button" class="changeMainHeaderColor" data-color="light-blue"></button>
+								<button type="button" class="changeMainHeaderColor" data-color="green"></button>
+								<button type="button" class="changeMainHeaderColor" data-color="orange"></button>
+								<button type="button" class="changeMainHeaderColor" data-color="red"></button>
+							</div>
+						</div>
+						<div class="switch-block">
+							<h4>Background</h4>
+							<div class="btnSwitch">
+								<button type="button" class="changeBackgroundColor" data-color="bg2"></button>
+								<button type="button" class="changeBackgroundColor selected" data-color="bg1"></button>
+								<button type="button" class="changeBackgroundColor" data-color="bg3"></button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="custom-toggle">
+					<i class="flaticon-settings"></i>
+				</div>
+			</div> -->
+		<!-- End Custom template -->
+	</div>
+	<!--   Core JS Files   -->
+	<script src="../assets/js/core/jquery.3.2.1.min.js"></script>
+	<script src="../assets/js/core/popper.min.js"></script>
+	<script src="../assets/js/core/bootstrap.min.js"></script>
+	<!-- jQuery UI -->
+	<script src="../assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+	<script src="../assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+	<!-- Moment JS -->
+	<script src="../assets/js/plugin/moment/moment.min.js"></script><!-- DateTimePicker -->
+	<script src="../assets/js/plugin/datepicker/bootstrap-datetimepicker.min.js"></script>
+	<!-- Bootstrap Toggle -->
+	<script src="../assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+	<!-- jQuery Scrollbar -->
+	<script src="../assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+	<!-- Azzara JS -->
+	<script src="../assets/js/ready.min.js"></script>
+	<!-- Azzara DEMO methods, don't include it in your project! -->
+	<script src="../assets/js/setting-demo.js"></script>
+	<!-- <script>
+		$('#datepicker').datetimepicker({
+			format: 'MM/DD/YYYY',
+		});
+	</script> -->
+	<!-- <script type="text/javascript">
+	$(function() {
+		var gender=$("#tig").val();
+		if(gender==1){
+			$("#nan").attr("selected","selected");
+		}else{
+			$("#nv").attr("selected","selected");
+		}
+	});
+	</script> -->
+	<!-- <script type="text/javascript">
+	 	function doimg(){
+	 		var formData = new FormData(ff);
+	 		$.ajax({
+	 		    url:'save',
+	 		    type:'POST',
+	 		    data: formData,
+	 		    processData : false, // 使数据不做处理
+	 		    contentType : false, // 不要设置Content-Type请求头
+	 		    success: function(data){
+	 		        if (data!=null) {
+	 		        	alert("上传成功");
+	 		        	$("#getimg").attr("src",data);
+	 		        	/* $("#fu").attr("src",data);
+	 		        	$("#h1").attr("src",data);
+	 		        	$("#h2").attr("src",data); */
+	 		        }else{
+	 		        	alert("上传失败");
+	 		        }
+
+	 		    }
+	 		});
+	 	}
+	 </script> -->
+	 <script type="text/javascript">
+	 	function returnindex(){
+	 		window.location.href ="/back/index";
+	 	}
+	 </script>
+	 <script type="text/javascript">
+	 	function insert(){
+	 		var photo=$("#getimg").attr("src");
+	 		var aname=$("#aname").val();
+	 		var email=$("#email").val();
+	 		var temp=$("#gender").val();
+	 		var tel=$("#tel").val();
+	 		var temp2=$("#temp2").val();
+	 		$.post("insert",{photo:photo,aname:aname,email:email,temp:temp,tel:tel,temp2:temp2},function(result){
+				if(result==1){
+					alert("添加成功");
+					window.location.href = "/add";
+				}else{
+					alert("添加失败");
+				}	
+			})
+	 	}
+	 </script>
+</body>
+</html>

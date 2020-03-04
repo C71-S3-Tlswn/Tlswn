@@ -12,7 +12,12 @@ spring:
     static-path-pattern: /**
   resources:
     static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${user.file.path}
+                      
   
+  
+  
+    
+    
   servlet:
     multipart:
       max-file-size: -1  
@@ -26,6 +31,10 @@ logging:
 user:
   file:
     path: F:/Tlswn_img/
+    
+##commodity:
+  ##file:
+   ## path: F:/Tlswn_img/
 # Spring Boot 如何实现自动化配置
 #     1、pom.xml
 #       SpringBoot 配置文件application*.yml

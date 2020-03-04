@@ -8,11 +8,13 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -82,26 +84,31 @@ public class GoodAction {
 		return "back/changforms";
 	}
 	
-	@PostMapping("back/add")
 	@ResponseBody
+	@PostMapping("back/add")
 	public Result adds(String cname, String tname,String vname,
 			Commodity comm,Stock stock,
-			MultipartFile file, String filePath){
+			MultipartFile file, @Value("${user.file.path}")String filePath){
 		TypeExample te=new TypeExample();
 		CommodityExample ce=new CommodityExample();
 		List<Commodity> commodity=new ArrayList<Commodity>();
 		List<Type> type=new ArrayList<Type>();
 		//comm.setCnum(num);
-		String fileName=null;
+		
 		try {
 			File files=new File(filePath);
+			System.out.println(filePath);
 			if(!files.exists()){
 				files.mkdirs();
 			}
-			fileName=file.getOriginalFilename();
+			System.out.println(files);
+			//System.out.println(cphoto);
+			String fileName=file.getOriginalFilename();
+			System.out.println(fileName);
 			files=new File(filePath + fileName);
 			
 			file.transferTo(files);
+			//System.out.println(filePath);
 			comm.setCphoto(fileName);
 		ce.createCriteria().andCnameEqualTo(cname);
 		commodity=cm.selectByExample(ce);
@@ -168,6 +175,19 @@ public class GoodAction {
 		return new Result(1, "11212");
 	}
 	
+	@PostMapping("back/sale")
+	@ResponseBody
+	public Result sale(Commodity commm){
+		CommodityExample ce=new CommodityExample();
+		ce.createCriteria().andCnameEqualTo(commm.getCname());
+		int a=cm.updateByExampleSelective(commm, ce);
+		if(a==1){
+			return new Result(1, "修改成功");
+		}else{
+			return new Result(0, "修改失败");
+		}
+		
+	}
 
 /*String fileName=null;
  * try {
