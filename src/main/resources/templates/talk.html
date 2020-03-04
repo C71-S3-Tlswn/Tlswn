@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+    <link rel="stylesheet" href="css/chat.css">
+    <script src="js/jquery-2.1.4.min.js"></script>
+    
+    <script type="text/javascript">
+   
+    	
+    	var account =$("input[name='account']").val();
+    	var admin =$("input[name='admin']").val();
+		//创建webcocket 对象
+		var websocket;
+	
+		websocket=new WebSocket("ws://localhost/websocket/"+account);
+		//连接发生错误的回调方法
+		websocket.onerror=function(event){
+			console.info("-------onerror------");
+		}
+		//连接成功建立的回调方法
+		websocket.onopen=function(event){
+			alert("连接成功！")
+			console.info("-------onopen------"+event);
+		}
+		//接收到消息的回调方法
+		websocket.onmessage=function(event){
+			text.innerHTML+=event.data+"<br>"
+			console.info("-------onmessage------"+msg);
+		}
+		//连接关闭的回调方法
+		 websocket.onclose=function(event){
+			console.info("-------onclose------");
+		} 
+		
+		//关闭连接
+		function closeWebSocket(){
+			websocket.close();
+		} 
+		//发送消息
+		function send(){
+			var msg=$('#text').val();
+			console.log(msg);
+		
+			
+			var message = {
+		            "message":msg,
+		            "username":account,
+		            "to":admin
+		        };
+			websocket.send(message);
+		}
+		
+	
+</script>
+</head>
+<body lang="zh">
+
+    <div class="abs cover contaniner">
+        <div class="abs cover pnl">
+            <div class="top pnl-head"></div>
+            <div class="abs cover pnl-body" id="pnlBody">
+                <div class="abs cover pnl-left">
+                    <div class="abs cover pnl-msgs scroll" id="show">
+                        <div class="msg min time" id="histStart">加载历史消息</div>
+                        <div class="pnl-list" id="hists">
+                            <!-- 历史消息 -->
+                        </div>
+                        <div class="pnl-list" id="msgs">
+                            <div class="msg robot">
+                                <div class="msg-left" worker="在线客服">
+                                    <div class="msg-host photo" style="background-image: url(images/timg.jpg)"></div>
+                                    <div class="msg-ball" title="今天 17:52:06">你好，请问有什么能帮助你的吗                <br><br>您是想要了解哪些方面呢？</div>
+                                </div>
+                            </div>
+                            <div class="msg guest">
+                               
+                            </div>
+                        </div>
+                        <div class="pnl-list hide" id="unreadLine">
+                            <div class="msg min time unread">未读消息</div>
+                        </div>
+                    </div>
+                    <div class="abs bottom pnl-text">
+                        <div class="abs cover pnl-input">
+                            <textarea class="scroll" id="text" wrap="hard" placeholder="在此输入文字信息..."></textarea>
+                            <div class="abs atcom-pnl scroll hide" id="atcomPnl">
+                                <ul class="atcom" id="atcom"></ul>
+                            </div>
+                        </div>
+                        <input type="hidden" name="admin"  value="account">
+                        <input type="hidden" name="account"  th:value="${session.User.uaccount}">
+                        <div class="abs br pnl-btn" id="submit" style="background-color: rgb(32, 196, 202); color: rgb(255, 255, 255);">
+                        <input type="button" onclick="send()" value="发送">
+                        		</div>
+                       
+                    </div>
+                </div>
+                <div class="abs right pnl-right">
+                    <div class="slider-container hide"></div>
+                    <div class="pnl-right-content">
+                        <div class="pnl-tabs">
+                            <div class="tab-btn active" id="hot-tab">常见问题</div>
+                                                  </div>
+                        <div class="pnl-hot">
+                            <ul class="rel-list unselect" id="hots">
+                                <li class="rel-item">这是一个问题，这是一个问题？</li> 
+                            </ul>
+                        </div>
+                        	
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

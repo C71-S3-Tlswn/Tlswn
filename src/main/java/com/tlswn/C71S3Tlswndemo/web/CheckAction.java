@@ -94,6 +94,8 @@ public class CheckAction {
 		ord.setUid(user.getUid()); 
 		 ord.setOrdertime(new Date());// new Date()为获取当前系统时间
 		 ord.setStatus(0);	
+		 String temps=String.valueOf(System.currentTimeMillis());
+		 ord.setTemp2(temps);
 		int i=om.insert(ord);
 		CartExample ce=new CartExample();
 		Criteria cr=ce.createCriteria();

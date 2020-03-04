@@ -21,6 +21,7 @@ public interface CommodityMapper {
     
     List<Commodity> selectBySix(CommodityExample example);
 
+    List<Commodity>  selectByHot();
     Commodity selectByPrimaryKey(Integer cid);
 
     int updateByExampleSelective(@Param("record") Commodity record, @Param("example") CommodityExample example);

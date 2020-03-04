@@ -112,6 +112,9 @@
     </if>
     order by  rand() limit 3
   </select>
+   <select id="selectByHot" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select * from commodity where hot=1 order by  rand() limit 3
+  </select>
   
   <select id="selectBySix" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
