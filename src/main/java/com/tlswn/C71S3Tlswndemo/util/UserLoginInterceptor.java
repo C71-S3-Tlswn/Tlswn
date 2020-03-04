@@ -16,7 +16,7 @@ public class UserLoginInterceptor implements HandlerInterceptor {
 	@Override
     //这个方法是在访问接口之前执行的，我们只需要在这里写验证登陆状态的业务逻辑，就可以在用户调用指定接口之前验证登陆状态了
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-    	User user=(User) request.getSession().getAttribute("user");
+    	User user=(User) request.getSession().getAttribute("User");
         if (user== null){
             //这个方法返回false表示忽略当前请求，如果一个用户调用了需要登陆才能使用的接口，如果他没有登陆这里会直接忽略掉
             //当然你可以利用response给用户返回一些提示信息，告诉他没登陆
