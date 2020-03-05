@@ -1,6 +1,7 @@
 package com.tlswn.C71S3Tlswndemo.web;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -86,26 +87,37 @@ public class CheckAction {
 		}
 	}
 	
-	//生成订单
-	@PostMapping("doorder")
-	@ResponseBody
-	public Result Order(com.tlswn.C71S3Tlswndemo.bean.Order ord,HttpServletRequest ht){
-		User user= (User) ht.getSession().getAttribute("User");
-		ord.setUid(user.getUid()); 
-		 ord.setOrdertime(new Date());// new Date()为获取当前系统时间
-		 ord.setStatus(0);	
-		int i=om.insert(ord);
-		CartExample ce=new CartExample();
-		Criteria cr=ce.createCriteria();
-		cr.andUidEqualTo(user.getUid());
-		cr.andCidEqualTo(ord.getCid());
-		int a=cm.deleteByExample(ce);
-		if(i>0&&a>0){
-			return new Result(1,"");
-		}else{
-			return new Result(0,"");
+
+	
+		List<String> list=new ArrayList<>();
+		//生成订单
+		@PostMapping("doorder")
+		@ResponseBody
+		public Result Order(com.tlswn.C71S3Tlswndemo.bean.Order ord,HttpServletRequest ht,String temps){
+			User user= (User) ht.getSession().getAttribute("User");
+			ord.setUid(user.getUid()); 
+			 ord.setOrdertime(new Date());// new Date()为获取当前系统时间
+			 ord.setStatus(0);	
+			// String temps=String.valueOf(System.currentTimeMillis()+new Random().nextInt(1000));
+			 ord.setTemp2(temps);
+			list.add(temps);
+			int i=om.insert(ord);
+			CartExample ce=new CartExample();
+			Criteria cr=ce.createCriteria();
+			cr.andUidEqualTo(user.getUid());
+			cr.andCidEqualTo(ord.getCid());
+			int a=cm.deleteByExample(ce);
+				System.out.println(list);
+				
+		
+			if(i>0&&a>0){
+				return new Result(1,temps);
+			}else{
+				return new Result(0,"");
+			}
 		}		
-	}
+		
+
 	@ModelAttribute
 	public void init(Model m){
 		m.addAttribute("variety",vm.selectByExample(null) );
