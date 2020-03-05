@@ -70,7 +70,7 @@
 				</div>
 				<p>
 					
-					<span id="item_price" class="item_price" th:text="|￥:${commodity.cprice}"></span>
+					<span id="item_price" class="item_price" th:text="|￥:${commodity.cprice*commodity.temp2/100}"></span>
 					<del id="price" th:text="|￥:${commodity.mprice}">$1300.00</del>
 					<label>免费送货</label>
 				</p>

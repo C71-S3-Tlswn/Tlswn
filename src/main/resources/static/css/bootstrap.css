@@ -108,6 +108,10 @@ sub {
 	width: 130px;
 	height: 130px;
 }
+#ig{
+	width: 80px;
+	height: 80px;
+}
 .page{
 	width: 800px;
 	height: 30px;
