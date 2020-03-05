@@ -5,41 +5,7 @@
     <link rel="stylesheet" href="../css/chat.css">
     <script src="../js/jquery-2.1.4.min.js"></script>
     
-    <script type="text/javascript">
-  
-    	var admin =$("input[name='admin']").val();
-	//创建webcocket 对象
-		var websocket;
-	
-		websocket=new WebSocket("ws://localhost/websocket/"+admin);
-		//连接发生错误的回调方法
-		websocket.onerror=function(event){
-			console.info("-------onerror------");
-		}
-		//连接成功建立的回调方法
-		websocket.onopen=function(event){
-			alert("连接成功！")
-			console.info("-------onopen------"+event);
-		}
-		//接收到消息的回调方法
-		websocket.onmessage=function(event){
-			text.innerHTML+=event.data+"<br>"
-			console.info("-------onmessage------"+msg);
-		}
-		//连接关闭的回调方法
-		websocket.onclose=function(event){
-			console.info("-------onclose------");
-		}
-		//关闭连接
-		function closeWebSocket(){
-			websocket.close();
-		} 
-		//发送消息
-		function send(){
-			websocket.send(msg.value);
-		}
-
-</script>
+   
 </head>
 <body lang="zh">
 
@@ -73,7 +39,7 @@
                             </div>
                         </div>
                         <!-- th:value="${session.admin.account}" -->
-                        <input type="hidden" value="account">
+                        <input type="hidden" name="admin" value="account">
                         <div class="abs br pnl-btn" id="submit" style="background-color: rgb(32, 196, 202); color: rgb(255, 255, 255);">
                         	<input type="button" onclick="send()" value="发送">
                         </div>
@@ -98,4 +64,45 @@
         </div>
     </div>
 </body>
+ <script type="text/javascript">
+  
+    	var admin =$("input[name='admin']").val();
+	//创建webcocket 对象
+		var websocket;
+	
+		websocket=new WebSocket("ws://localhost/websocket/"+admin);
+		//连接发生错误的回调方法
+		websocket.onerror=function(event){
+			console.info("-------onerror------");
+		}
+		//连接成功建立的回调方法
+		websocket.onopen=function(event){
+			alert("连接成功！")
+			console.info("-------onopen------"+event);
+		}
+		//接收到消息的回调方法
+		websocket.onmessage=function(event){
+			console.log(event);
+			show.innerHTML+='<div class="msg-left" worker='+event.data+'>'
+	           +'<div class="msg-host photo" style="background-image: url(../images/timg.jpg)"></div>'
+	            +'<div class="msg-ball" title="今天 17:52:06">'+event.data+'</div></div>';
+				
+			/* console.info("-------onmessage------"+msg); */
+		}
+		//连接关闭的回调方法
+		websocket.onclose=function(event){
+			console.info("-------onclose------");
+		}
+		//关闭连接
+		function closeWebSocket(){
+			websocket.close();
+		} 
+		//发送消息
+		function send(){
+			var msg=$('#text').val();
+			console.log(msg);
+			websocket.send(admin+":"+"清蒸"+":"+msg);
+		}
+
+</script>
 </html>

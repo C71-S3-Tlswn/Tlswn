@@ -5,60 +5,13 @@
     <link rel="stylesheet" href="css/chat.css">
     <script src="js/jquery-2.1.4.min.js"></script>
     
-    <script type="text/javascript">
-   
-    	
-    	var account =$("input[name='account']").val();
-    	var admin =$("input[name='admin']").val();
-		//创建webcocket 对象
-		var websocket;
-	
-		websocket=new WebSocket("ws://localhost/websocket/"+account);
-		//连接发生错误的回调方法
-		websocket.onerror=function(event){
-			console.info("-------onerror------");
-		}
-		//连接成功建立的回调方法
-		websocket.onopen=function(event){
-			alert("连接成功！")
-			console.info("-------onopen------"+event);
-		}
-		//接收到消息的回调方法
-		websocket.onmessage=function(event){
-			text.innerHTML+=event.data+"<br>"
-			console.info("-------onmessage------"+msg);
-		}
-		//连接关闭的回调方法
-		 websocket.onclose=function(event){
-			console.info("-------onclose------");
-		} 
-		
-		//关闭连接
-		function closeWebSocket(){
-			websocket.close();
-		} 
-		//发送消息
-		function send(){
-			var msg=$('#text').val();
-			console.log(msg);
-		
-			
-			var message = {
-		            "message":msg,
-		            "username":account,
-		            "to":admin
-		        };
-			websocket.send(message);
-		}
-		
-	
-</script>
+    
 </head>
 <body lang="zh">
 
     <div class="abs cover contaniner">
         <div class="abs cover pnl">
-            <div class="top pnl-head"></div>
+       
             <div class="abs cover pnl-body" id="pnlBody">
                 <div class="abs cover pnl-left">
                     <div class="abs cover pnl-msgs scroll" id="show">
@@ -88,8 +41,8 @@
                                 <ul class="atcom" id="atcom"></ul>
                             </div>
                         </div>
-                        <input type="hidden" name="admin"  value="account">
-                        <input type="hidden" name="account"  th:value="${session.User.uaccount}">
+                        <input type="hidden" name="admin"   id="admin" value="account">
+                        <input type="hidden" name="account" id="user" th:value="${session.User.uaccount}">
                         <div class="abs br pnl-btn" id="submit" style="background-color: rgb(32, 196, 202); color: rgb(255, 255, 255);">
                         <input type="button" onclick="send()" value="发送">
                         		</div>
@@ -114,4 +67,50 @@
         </div>
     </div>
 </body>
+<script type="text/javascript">
+   
+    	
+    	var account =$("input[name='account']").val();
+    	console.log(account);
+    	var admin =$("input[name='admin']").val();
+		//创建webcocket 对象
+		var websocket;
+		websocket=new WebSocket("ws://localhost/websocket/"+account);
+		//连接发生错误的回调方法
+		websocket.onerror=function(event){
+			console.info("-------onerror------");
+		}
+		//连接成功建立的回调方法
+		websocket.onopen=function(event){
+			alert("连接成功！")
+			console.info("-------onopen------"+event);
+		}
+		//接收到消息的回调方法
+		websocket.onmessage=function(event){
+			show.innerHTML+='<div class="msg-left" worker="在线客服">'
+	           +'<div class="msg-host photo" style="background-image: url(../images/timg.jpg)"></div>'
+	            +'<div class="msg-ball" title="今天 17:52:06">'+event.data+'</div></div>';
+		}
+		//连接关闭的回调方法
+		 websocket.onclose=function(event){
+			console.info("-------onclose------");
+		} 
+		
+		//关闭连接
+		function closeWebSocket(){
+			websocket.close();
+		} 
+		//发送消息
+		function send(){
+			var msg=$('#text').val();
+			websocket.send(account+":"+admin+":"+msg);
+			
+			show.innerHTML+='<div class="msg-left" worker='+account+'>'
+           +'<div class="msg-host photo" style="background-image: url(images/timg.jpg)"></div>'
+            +'<div class="msg-ball" title="今天 17:52:06">'+msg+'</div></div>';
+			$('#text').val("");
+		}
+		
+	
+</script>
 </html>

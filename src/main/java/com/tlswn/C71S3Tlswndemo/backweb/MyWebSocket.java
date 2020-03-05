@@ -36,14 +36,20 @@ public class MyWebSocket {
 	@OnMessage
 	public void onMessage(@PathParam("username") String username,String message,Session session) throws IOException{
 		String[] idAndMsg=message.split(":");
-		Session destSession =sessionTable.get(idAndMsg[0]);
-		 
+		System.out.println(message);
+		Session destSession =sessionTable.get(idAndMsg[1]);
 		if(destSession!=null){
-			destSession.getBasicRemote().sendText(message);
+			destSession.getBasicRemote().sendText(idAndMsg[0]+idAndMsg[2]);
 		}else{
-			System.out.println("目标用户不再线"+idAndMsg[0]);
+			System.out.println("目标用户不再线"+idAndMsg[1]);
 		}
 		System.out.println(message);
 	}
+	
+	/*public void sendMessageTo(String message,String from, String ToUserName) throws IOException {
+			
+		MyWebSocket
+		
+	    }*/
 	
 }

@@ -3,8 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	.abs{
+		height: 600px;
+		width: 500px;
+	}
+</style>
 </head>
 <body>
+	
+	<div class="modal fade user-select" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form action="/Admin/Index/login" method="post">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="loginModalLabel">登录</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="loginModalUserNmae" id="unameLabel">用户名</label>
+            <input type="text" class="form-control" id="loginModalUserNmae" placeholder="请输入用户名" autofocus maxlength="15" autocomplete="off" required>
+          </div>
+          <div class="form-group">
+            <label for="loginModalUserPwd" id="upassLabel">密码</label>
+            <input type="password" class="form-control" id="loginModalUserPwd" placeholder="请输入密码" maxlength="18" autocomplete="off" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" onclick="login()">登录</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+    
 	<div class="footer-top">
 		<div class="container-fluid">
 			<div class="col-xs-8 agile-leftmk">
