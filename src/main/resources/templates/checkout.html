@@ -130,6 +130,7 @@
 							</div>
 						</div>
 					</form>
+					
 					<div class="checkout-right-basket">
 						<a href="javascript:void(0)" class="pay">去支付
 							<span class="fa fa-hand-o-right" aria-hidden="true"></span>
@@ -224,7 +225,7 @@
 	</script>
 	<!-- //end-smooth-scrolling -->
 	<!-- smooth-scrolling-of-move-up -->
-	<script>
+	<script type="text/javascript">
 		$(document).ready(function () {
 			/*
 			var defaults = {
@@ -332,36 +333,54 @@
 				
 				
 			} 
-			//生成订单
-			$('.pay').click(function(){
-				var atel=$("input[name='atel'] ").val();
-				var addr=$("input[name='addr'] ").val();
-				var temp=$("input[name='temp'] ").val();
-				if(confirm("确认去支付？")){
-					var num;
-					var price;
-					var cid;
-					 $('.table-responsive table tbody tr').each(function(i){ //遍历tr                   
-				    	    num=parseInt($(this).find('td:eq(2)').text());
-				    	    price=parseInt($(this).find('td:eq(4)').text());
-				    	    cid=parseInt($(this).find('td:eq(6)').text());
-				    	    var oprice=num*price;
-				    	    $.post("doorder", {otel:atel,oaddr:addr,temp:temp,temp3:num,
-					    		   oprice:oprice,cid:cid},function(data){
-					    			   if(data.code==1){
-					    				   window.location.href ="payment";
-					    			   }else{
-					    				   alert("服务繁忙，稍后再试！");
-					    			   }
-					    		   });	   
-				   });	
-				}
-			});
+			//生成订单			 
+						 $('.pay').click(function(){
+							    var mk=1;
+								var atel=$("input[name='atel'] ").val();
+								var addr=$("input[name='addr'] ").val();
+								var temp=$("input[name='temp'] ").val();
+								if(confirm("确认去支付？")){
+									var temps=(new Date()).valueOf();
+									var num;
+									var price;
+									var name;
+									var cid;
+									var name;
+									var newArr = [];
+									 $('.table-responsive table tbody tr').each(function(i){ //遍历tr                   
+								    	    num=parseInt($(this).find('td:eq(2)').text());
+									 		name=$(this).find('td:eq(3)').text();
+								    	    price=parseInt($(this).find('td:eq(4)').text());
+								    	    cid=parseInt($(this).find('td:eq(6)').text());
+								    	    var oprice=num*price;								    	   
+								    	    var vote = {};
+								    	    vote.num = num;
+								            vote.totalprice = oprice;
+								            vote.cid=cid;
+								            newArr.push(vote);
+								   });	
+									 for(var i=0;i<=newArr.length;i++){
+										 var vvp=(newArr.length);
+										 $.post("doorder", {otel:atel,oaddr:addr,temp:temp,temp3:newArr[i].num,
+								    		   oprice:newArr[i].totalprice,cid:newArr[i].cid,temps:temps},function(data){
+								    			   mk=mk+1;
+								    			   if(data.code==1){							    												    															    					
+										    			window.location.href="pay?id="+data.msg;										    					
+								    			   }else{
+								    				   alert("服务繁忙，稍后再试！");
+								    			   }
+								    		   });	
+										
+									 }
+									
+								}
+							});	 
 			$().UItoTop({
 				easingType: 'easeOutQuart'
 			});
 
 		});
+		
 	</script>
 	
 	<script type="text/javascript">
