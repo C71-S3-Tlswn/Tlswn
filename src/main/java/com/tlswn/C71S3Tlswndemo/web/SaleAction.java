@@ -21,7 +21,7 @@ public class SaleAction {
 	@GetMapping("sale")
 	public String sale(Model m){
 		CommodityExample ce=new CommodityExample();
-		ce.createCriteria().andTemp2IsNotNull();
+		ce.createCriteria().andTemp2LessThan(100);
 		List<Commodity> list=cm.selectByExample(ce);
 		m.addAttribute("sale", list);
 		return "sale";
