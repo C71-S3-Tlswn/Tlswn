@@ -2,6 +2,7 @@ package com.tlswn.C71S3Tlswndemo.web;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -64,9 +65,9 @@ public class lookUpAction {
 		if(page==null|| page<=1){
 			page=1;
 		}
-		
 		plist=cm.selectByExample(ce);
 		m.addAttribute("lookUp",plist);
+		System.out.println(plist);
 		return "lookup::wrapper";	
 	}
 
