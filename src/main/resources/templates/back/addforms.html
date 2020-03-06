@@ -69,17 +69,16 @@
 									</div>
 									<div class="form-group">
 										<label for="largeSelect">选择大类</label>
-										<select class="form-control form-control-lg" id="vname" name="vname">
+										<select class="form-control form-control-lg" onchange="selecttype()" id="vname" name="vname">
 										    <option></option>
 											<option  th:each="var:${vari}" th:text="${var.vname}" th:value="${var.vname}">1</option>
 										</select>
 									</div>
 									<div class="form-group">
 										<label for="defaultSelect">选择小类</label>
-										<select class="form-control form-control" id="tname" name="tname">
+										<select class="form-control form-control"  id="tname" name="tname">
 											<option></option>
 											<option th:each="tap:${type}" th:text="${tap.tname}" th:value="${tap.tname}">2</option>
-											
 										</select>
 									</div>
 									<div class="form-group">
@@ -164,13 +163,17 @@
 	<!-- Azzara DEMO methods, don't include it in your project! -->
 	<script src="../../assets/js/setting-demo.js"></script>
 	<script type="text/javascript">
-	 
-	  /*  var cname=$("#cname").val();
-	   var cprice=$("#cprice").val();
-	   var mprice=$("#mprice").val();
-	   var cdescride=$("#cdescride").val();
-	   var c_etime=$("#c_etime").val();
-	   var cphoto=$("#cphoto").val(); */
+	 function selecttype(){
+		 //alert(1);
+		  var vname=$("#vname").val();
+		  alert(vname);
+		 $.post("type",{vname:vname}); 
+	 }
+	 $(function(){
+		 $.post("type",{vname:"智能手机"}); 
+	 });
+	
+	  
 	   $("#submit0").on('click',function (){
 		   var formData=new FormData(add);
 		   console.log(formData);
