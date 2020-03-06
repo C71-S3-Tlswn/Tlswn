@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+	<head >
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Azzara Bootstrap 4 Admin Dashboard</title>
+	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+	<link rel="icon" href="../../assets/img/icon.ico" type="image/x-icon"/>
+
+	<!-- Fonts and icons -->
+	<script src="../../assets/js/plugin/webfont/webfont.min.js"></script>
+	<script>
+		WebFont.load({
+			google: {"families":["Open+Sans:300,400,600,700"]},
+			custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands"], urls: ['../assets/css/fonts.css']},
+			active: function() {
+				sessionStorage.fonts = true;
+			}
+		});
+	</script>
+
+	<!-- CSS Files -->
+	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../assets/css/azzara.min.css">
+
+	<!-- CSS Just for demo purpose, don't include it in your project -->
+	<link rel="stylesheet" href="../../assets/css/demo.css">
+</head>
+<body>
+	<div class="wrapper">
+		<!--
+			Tip 1: You can change the background color of the main header using: data-background-color="blue | purple | light-blue | green | orange | red"
+		-->
+	
+		<div th:replace="back/headers::.main-header"></div>
+		<div th:replace="back/headers::.sidebar"></div>
+		<div class="main-panel">
+			<div class="content">
+				<div class="page-inner">
+					<h4 class="page-title">销售金额统计</h4>
+					<div class="page-category">在人生的道路上，只有播种才会有收获，只有付出才会有好结果。请做一个播种者吧！即使不会有收获，但播下的种子却带着希望的光芒。</div>
+					<div class="row">
+						<div id=show>
+							<h3 style="color: red">销量总额    <span style="color: green;">点击查看详情</span></h3>
+						<div id="show1"  >
+						</div>
+						<div id="show4">
+						</div>
+						</div>
+						<div id=show>
+						<h3 style="color: blue">近七天销量    <span style="color: green;">点击查看详情</span></h3>
+						<div id="show2" >
+						</div>
+						<div id="show3">
+						</div>
+						</div>
+						<div id=show>
+							<div id="show6" >
+						</div>
+						<div id="show5">
+						</div>
+						</div>
+						
+						
+						
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		
+		
+	</div>
+	<!--   Core JS Files   -->
+	<script src="../../js/jquery-2.1.4.min.js"></script>
+	<script src="../../assets/js/core/popper.min.js"></script>
+	<script src="../../assets/js/core/bootstrap.min.js"></script>
+	<!-- jQuery UI -->
+	<script src="../../assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+	<script src="../../assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+	<!-- Chart JS -->
+	<script src="../../assets/js/plugin/chart.js/chart.min.js"></script>
+	<!-- Bootstrap Toggle -->
+	<script src="../../assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+	<!-- jQuery Scrollbar -->
+	<script src="../../assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+	<!-- Azzara JS -->
+	<script src="../../assets/js/ready.min.js"></script>
+	<!-- Azzara DEMO methods, don't include it in your project! -->
+	<script src="../../assets/js/setting-demo.js"></script>
+	
+	
+	
+
+	<script src="https://cdn.bootcss.com/echarts/3.7.1/echarts.min.js"></script>
+
+       <script type="text/javascript">
+       $(document).ready(function () {
+    	   var MyChart =echarts.init(document.getElementById("show1"));
+			 option = null;
+    	   $.get("showorder",null,function(data){
+    		   console.log(data);
+			 option = data;
+			if (option && typeof option === "object") {
+		  	  MyChart.setOption(option, true);
+			} 
+    	   },'json');
+       });
+      
+       		
+       
+      </script>
+       <script type="text/javascript">
+       $(document).ready(function () {
+    	   var MyChart =echarts.init(document.getElementById("show2"));
+			 option = null;
+    	   $.get("nearSales",null,function(data){
+    		   console.log(data);
+			 option = data;
+			if (option && typeof option === "object") {
+		  	  MyChart.setOption(option, true);
+			} 
+    	   },'json');
+       });
+       		
+       
+      </script>
+      
+       <script type="text/javascript">
+       $(document).ready(function () {
+    	   var MyChart =echarts.init(document.getElementById("show3"));
+			 option = null;
+    	   $.get("fchart",null,function(data){
+    		   option = data;
+   			if (option && typeof option === "object") {
+   		  	  MyChart.setOption(option, true);
+   			} 
+    	   },'json');
+       });
+       		
+       
+      </script>
+       <script type="text/javascript">
+       $(document).ready(function () {
+    	   var MyChart =echarts.init(document.getElementById("show4"));
+			 option = null;
+    	   $.get("fAll",null,function(data){
+    		   option = data;
+   			if (option && typeof option === "object") {
+   		  	  MyChart.setOption(option, true);
+   			} 
+    	   },'json');
+       });
+       		
+       
+      </script>
+        <script type="text/javascript">
+       $(document).ready(function () {
+    	   var MyChart =echarts.init(document.getElementById("show6"));
+			 var arr1=[];
+			  var arr2=[];
+    	   $.get("YearTotal",null,function(data){
+    		   for(var i=0;i<data.length;i++){
+    	           arr1.push(data[i].ordertimes.substring(0,4));
+    	            arr2.push(data[i].count);
+    	        }
+    		   option = {
+    				   title: {
+    			        	text: '近七年销售量'
+    			   		 },
+    				    tooltip: {
+    				        trigger: 'axis',
+    				        axisPointer: {            
+    				            type: 'shadow'      
+    				        }
+    				    },
+    				    legend: {
+    				        data: '销售量'
+    				    },
+    				    grid: {
+    				        left: '3%',
+    				        right: '4%',
+    				        bottom: '9%',
+    				        containLabel: true
+    				    },
+    				    xAxis: {
+    				    	name:'件',
+    				        type: 'value'
+    				    },
+    				    yAxis: {
+    				    	name:'年',
+    				        type: 'category',
+    				        data: arr1
+    				    },
+    				    series: [
+    				        {
+    				            name: '销售量',
+    				            type: 'bar',
+    				            stack: '总量',
+    				            label: {
+    				                show: true,
+    				                position: 'insideRight'
+    				            },
+    				            data: arr2
+    				        }
+    				    ]
+    				};
+    		  
+   			if (option && typeof option === "object") {
+   		  	  MyChart.setOption(option, true);
+   			} 
+    	   });
+       });
+       		
+       
+      </script>
+        <script type="text/javascript">
+        $(document).ready(function () {
+     	   var MyChart =echarts.init(document.getElementById("show5"));
+ 			 var arr1=[];
+ 			  var arr2=[];
+     	   $.get("YearTotal",null,function(data){
+     		   for(var i=0;i<data.length;i++){
+     	           arr1.push(data[i].ordertimes.substring(0,4));
+     	            arr2.push(data[i].count);
+     	        }
+     		  option = {
+     				
+     				    tooltip: {
+     				        trigger: 'item',
+     				        formatter: '{a} <br/>{b}: {c} ({d}%)'
+     				    },
+     				    legend: {
+     				        orient: 'vertical',
+     				        left: 10,
+     				        data:arr1
+     				    },
+     				    series: [
+     				        {
+     				            name: '销售量',
+     				            type: 'pie',
+     				            selectedMode: 'single',
+     				            radius: [0, '30%'],
+
+     				            label: {
+     				                position: 'inner'
+     				            },
+     				            labelLine: {
+     				                show: false
+     				            },
+     				            data: [
+     				                {value: arr2[0], name:arr1[0], selected: true},
+     				                {value: arr2[1], name: arr1[1]},
+     				                {value: arr2[2], name: arr1[2]}
+     				            ]
+     				        },
+     				        {
+     				            name: '销售量',
+     				            type: 'pie',
+     				            radius: ['40%', '55%'],
+     				            label: {
+     				                formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+     				                backgroundColor: '#eee',
+     				                borderColor: '#aaa',
+     				                borderWidth: 1,
+     				                borderRadius: 4,
+     				               
+     				                rich: {
+     				                    a: {
+     				                        color: '#999',
+     				                        lineHeight: 22,
+     				                        align: 'center'
+     				                    },
+     				                  
+     				                    hr: {
+     				                        borderColor: '#aaa',
+     				                        width: '100%',
+     				                        borderWidth: 0.5,
+     				                        height: 0
+     				                    },
+     				                    b: {
+     				                        fontSize: 16,
+     				                        lineHeight: 33
+     				                    },
+     				                    per: {
+     				                        color: '#eee',
+     				                        backgroundColor: '#334455',
+     				                        padding: [2, 4],
+     				                        borderRadius: 2
+     				                    }
+     				                }
+     				            },
+     				            data: [
+     				                {value: arr2[0], name: arr1[0]},
+     				                {value: arr2[1], name: arr1[1]},
+     				                {value: arr2[2], name: arr1[2]},
+     				                {value: arr2[3], name: arr1[3]},
+     				                {value: arr2[4], name: arr1[4]},
+     				                {value: arr2[5], name: arr1[5]},
+     				                {value: arr2[6], name: arr1[6]}
+     				                
+     				            ]
+     				        }
+     				    ]
+     				};
+    			if (option && typeof option === "object") {
+    		  	  MyChart.setOption(option, true);
+    			} 
+     	   });
+        });
+        		
+       
+      </script>
+	
+</body>
+</html>

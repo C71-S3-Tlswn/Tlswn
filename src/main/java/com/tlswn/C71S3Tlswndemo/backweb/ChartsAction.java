@@ -45,16 +45,16 @@ public class ChartsAction {
 	@Resource
 	private OrderMapper orm;
 	
-	@GetMapping("back/charts/charts")
+	@GetMapping("back/charts")
 	public String Charts(){
 		
-		return "back/charts/charts";
+		return "back/charts";
 	}
 	
 	
 	
 	@ResponseBody
-	@GetMapping("back/charts/showorder")
+	@GetMapping("back/showorder")
 	public String init(){
 		
 		//查询数据
@@ -124,7 +124,7 @@ public class ChartsAction {
 	}
 	
 	@ResponseBody
-	@GetMapping("back/charts/fAll")
+	@GetMapping("back/fAll")
 	public String fAll(){
 		
 		List<StatisticsVo> list=om.selectStatistics();
@@ -199,7 +199,7 @@ public class ChartsAction {
 	
 	
 	@ResponseBody
-	@GetMapping("back/charts/nearSales")
+	@GetMapping("back/nearSales")
 	public String nearWeek(){
 
 		List<NearWeekVo> list=orm.selectStatistics();
@@ -260,7 +260,7 @@ public class ChartsAction {
 	}
 	
 	@ResponseBody
-	@GetMapping("back/charts/fchart")
+	@GetMapping("back/fchart")
 	public String Fchart(){
 		
 		List<NearWeekVo> list=orm.selectStatistics();
@@ -334,7 +334,7 @@ public class ChartsAction {
 		return r;
 	}
 	@ResponseBody
-	@GetMapping("back/charts/YearTotal")
+	@GetMapping("back/YearTotal")
 	public List<NearWeekVo> YearTotal(){
 		
 		List<NearWeekVo> list=new ArrayList<>();
