@@ -1,11 +1,13 @@
 package com.tlswn.C71S3Tlswndemo.util;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tlswn.C71S3Tlswndemo.backbiz.UserprofileBiz;
 import com.tlswn.C71S3Tlswndemo.bean.Admin;
 import com.tlswn.C71S3Tlswndemo.dao.AdminMapper;
 
@@ -15,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  
 @Component
 public class AdminLoginInterceptor implements HandlerInterceptor {
+	/*@Resource
+	UserprofileBiz ub;*/
 	
 	@Override
     //这个方法是在访问接口之前执行的，我们只需要在这里写验证登陆状态的业务逻辑，就可以在用户调用指定接口之前验证登陆状态了
@@ -27,8 +31,8 @@ public class AdminLoginInterceptor implements HandlerInterceptor {
         	response.sendRedirect("/back/login");
             return false;
         }else {
-        	
-        	
+        	/*Admin adminModel=ub.getProfile(request.getSession());
+        	m.addAttribute("admin",adminModel);*/
         	 //如果session里有user，表示该用户已经登陆，放行，用户即可继续调用自己需要的接口
             return true;   
         }
