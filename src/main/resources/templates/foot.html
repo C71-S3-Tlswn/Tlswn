@@ -12,29 +12,75 @@
 </head>
 <body>
 	
-	<div class="modal fade user-select" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <form action="/Admin/Index/login" method="post">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="loginModalLabel">登录</h4>
+	<div class="modal fade user-select" id="addCost" tabindex="-1" role="dialog" aria-labelledby="areDevelopingModalLabel"><!--必须要有---->
+ 	 	<div class="modal-dialog" role="document"><!--必须要有---->
+		<div class="modal-content"><!--必须要有---->
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <!--必须要有---->
+				<span aria-hidden="true" style="color: red;">&times;</span> <!--必须要有，关闭模态窜口的‘x’形按钮---->
+			  </button> 
+				<h4 class="modal-title" id="addVillage">在线客服</h4><!--模态窗口的功能提示部分--->
+	        </div>
+	        <div class="modal-body" >		<!----身体部分-----><!--必须要有---->
+		   	 <div class="abs cover contaniner">
+       			 <div class="abs cover pnl">
+            <div class="top pnl-head"></div>
+            <div class="abs cover pnl-body" id="pnlBody">
+                <div class="abs cover pnl-left" id="tom-left">
+                    <div class="abs cover pnl-msgs scroll" id="show">
+                        <div class="msg min time" id="histStart">加载历史消息</div>
+                        
+                        <div class="pnl-list" id="msgs">
+                            <div class="msg robot">
+                                <div class="msg-left" worker="在线客服">
+                                    <div class="msg-host photo"><img src="images/timg.jpg" style="width:100%;height:auto;"></div>
+                                    <div class="msg-ball" title="今天 17:52:06">你好，请问有什么能帮助你的吗</div>
+                                </div>
+                            </div>
+                            <div class="msg guest">                            
+                            </div>
+                        </div>
+                    </div>      
+                </div>           
+                <div class="abs right pnl-right" id="tom-right">
+                    <div class="pnl-right-content">
+                    
+                        <div class="pnl-tabs">
+                            <div class="tab-btn active" id="hot-tab">常见问题</div>
+                                                  </div>
+                        <div class="pnl-hot">
+                            <ul class="rel-list unselect" id="hots">
+                                <li class="rel-item">什么时候发货</li> 
+                                <li class="rel-item">什么时候发货 </li> 
+                                <li class="rel-item">什么时候发货 </li> 
+                                <li class="rel-item">什么时候发货 </li> 
+                                <li class="rel-item">什么时候发货 </li> 
+                                <li class="rel-item">什么时候发货 </li> 
+                            </ul>
+                        </div>
+                        	
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <label for="loginModalUserNmae" id="unameLabel">用户名</label>
-            <input type="text" class="form-control" id="loginModalUserNmae" placeholder="请输入用户名" autofocus maxlength="15" autocomplete="off" required>
-          </div>
-          <div class="form-group">
-            <label for="loginModalUserPwd" id="upassLabel">密码</label>
-            <input type="password" class="form-control" id="loginModalUserPwd" placeholder="请输入密码" maxlength="18" autocomplete="off" required>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-          <button type="button" class="btn btn-primary" onclick="login()">登录</button>
-        </div>
-      </form>
+    </div>
+</div>		
+	        <div class="modal-footer">  <!---脚部-----><!--必须要有---->
+	        	 <div class="abs bottom pnl-text">
+                        <div class="abs cover pnl-input">
+                            <textarea class="scroll" id="text" wrap="hard" placeholder="在此输入文字信息..."></textarea>
+                           
+                        </div>
+                        <input type="hidden" name="admin"   id="admin" value="account">
+                        <input type="hidden" name="account" id="user" th:value="${session.User!=null? session.User.uaccount:''}">
+                        <div class="abs br pnl-btn" id="submit" style="background-color: rgb(32, 196, 202); color: rgb(255, 255, 255);">
+                        	<input type="button"id="send" onclick="send()" value="发送" style="background-color: rgb(32, 196, 202); color: rgb(255, 255, 255);">
+                        		</div>
+                       
+                    </div>
+	        </div>
+	  
+	  
     </div>
   </div>
 </div>

@@ -88,7 +88,7 @@ public class SparklineAction {
 		List<String> data2=new ArrayList<>();
 			
 		//x轴  种类名称	
-		for(Variety v:vlist){		
+		for(StatisticsVo v:list){		
 			data1.add((""+v.getVname()));
 		}
 		//y轴 销售数量

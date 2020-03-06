@@ -517,7 +517,7 @@
 	</div>
 	<!-- //special offers -->
 	<!-- newsletter -->
-
+	 <div th:replace="foot::.user-select"></div> 
 	<div th:replace="foot::.footer-top"></div>
 	<div th:replace="foot::foot"></div>
 	
@@ -653,7 +653,7 @@
 	<!-- start-smooth-scrolling -->
 	<script src="js/move-top.js"></script>
 	<script src="js/easing.js"></script>
-	<script>
+<!-- 	<script>
 		jQuery(document).ready(function ($) {
 			$(".scroll").click(function (event) {
 				event.preventDefault();
@@ -663,7 +663,7 @@
 				}, 1000);
 			});
 		});
-	</script>
+	</script> -->
 	<!-- //end-smooth-scrolling -->
 
 	<!-- smooth-scrolling-of-move-up -->
@@ -683,12 +683,61 @@
 	<!-- //for bootstrap working -->
 	<!-- //js-files -->
 
-	<script type="text/javascript">
-		function tal(){
-			window.open ('talk', 'newwindow', 
-			'height=500, width=500, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
+	<!--  <script src="js/bootstrap.js"></script>  -->
+	<script>
+	function insert_village_info(){
+	$("#addCost").modal('show');	//启动模态窗口
+} 
+
+
+</script>
+<script type="text/javascript">
+   
+    	
+    	var account =$("input[name='account']").val();
+    	var admin =$("input[name='admin']").val();
+		//创建webcocket 对象
+		var websocket;
+		websocket=new WebSocket("ws://localhost/websocket/"+account);
+		//连接发生错误的回调方法
+		websocket.onerror=function(event){
+			console.info("-------onerror------");
 		}
-	</script>
+		//连接成功建立的回调方法
+		websocket.onopen=function(event){
+			
+			console.info("-------onopen------"+event);
+		}
+		//接收到消息的回调方法
+		websocket.onmessage=function(event){
+			 var str=event.data.split(":");
+			show.innerHTML+='<div class="msg-left" worker="在线客服">'
+	           +'<div class="msg-host photo"></div>'
+	            +'<div class="msg-ball" title="今天 17:52:06">'+str[1]+'</div></div>';
+			/* console.info("-------onmessage------"+msg); */
+		}
+		//连接关闭的回调方法
+		 websocket.onclose=function(event){
+			console.info("-------onclose------");
+		} 
+		
+		//关闭连接
+		function closeWebSocket(){
+			websocket.close();
+		} 
+		//发送消息
+		function send(){
+			var msg=$('#text').val();
+			websocket.send(account+":"+admin+":"+msg);
+			
+			show.innerHTML+='<div class="msg-left" worker='+account+'>'
+           +'<div class="msg-host photo" style="background-image:url(images/timg.jpg)"></div>'
+            +'<div class="msg-ball" title="今天 17:52:06">'+msg+'</div></div>';
+			$('#text').val("");
+		}
+		
+	
+</script>
 </body>
 
 </html>

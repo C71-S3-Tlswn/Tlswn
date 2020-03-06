@@ -5987,10 +5987,10 @@ button.close {
 }
 .modal-body {
   position: relative;
-  padding: 15px;
+  padding: 0px;
 }
 .modal-footer {
-  padding: 15px;
+  padding: 0px;
   text-align: right;
   border-top: 1px solid #e5e5e5;
 }

@@ -3,11 +3,18 @@
 <head>
 	<meta charset="UTF-8">
     <link rel="stylesheet" href="../css/chat.css">
-    <script src="../js/jquery-2.1.4.min.js"></script>
-    
-   
+    <script src="../js/jquery-2.1.4.min.js"></script>  
 </head>
 <body lang="zh">
+<a href="javascript:;" onclick="insert_village_info()" >在线客服</a>
+<script src="../js/bootstrap.js"></script>
+<script>
+	function insert_village_info(){
+	$("#addCost").modal('show');	//启动模态窗口
+}
+
+
+</script>
 
     <div class="abs cover contaniner">
         <div class="abs cover pnl">
@@ -69,7 +76,7 @@
     	var admin =$("input[name='admin']").val();
 	//创建webcocket 对象
 		var websocket;
-	
+		var str=[];
 		websocket=new WebSocket("ws://localhost/websocket/"+admin);
 		//连接发生错误的回调方法
 		websocket.onerror=function(event){
@@ -77,15 +84,16 @@
 		}
 		//连接成功建立的回调方法
 		websocket.onopen=function(event){
-			alert("连接成功！")
+		
 			console.info("-------onopen------"+event);
 		}
 		//接收到消息的回调方法
 		websocket.onmessage=function(event){
-			console.log(event);
-			show.innerHTML+='<div class="msg-left" worker='+event.data+'>'
+			
+			str=event.data.split(":");
+			show.innerHTML+='<div class="msg-left" worker='+str[0]+'>'
 	           +'<div class="msg-host photo" style="background-image: url(../images/timg.jpg)"></div>'
-	            +'<div class="msg-ball" title="今天 17:52:06">'+event.data+'</div></div>';
+	            +'<div class="msg-ball" title="今天 17:52:06">'+str[1]+'</div></div>';
 				
 			/* console.info("-------onmessage------"+msg); */
 		}
@@ -100,8 +108,8 @@
 		//发送消息
 		function send(){
 			var msg=$('#text').val();
-			console.log(msg);
-			websocket.send(admin+":"+"清蒸"+":"+msg);
+			websocket.send(admin+":"+str[0]+":"+msg);
+			$('#text').val("");
 		}
 
 </script>
