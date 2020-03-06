@@ -92,6 +92,7 @@ public class AddrAction {
 		c.andUnameEqualTo(uname);
 	   Integer cc= us.selectByExample(ue).get(0).getUid();
 	   addr.setUid(cc);
+	   addr.setAstatus(1);
 	  int v= ad.insert(addr);
 		System.out.println("........"+v);
 		return "index";
