@@ -121,6 +121,7 @@ public class GoodAction {
 			stock.setCid(commodity.get(i).getCid());
 		}*/
 		comm.setCnum(0);
+		comm.setTemp2(100);
 		int cl=cm.insertSelective(comm);
 		//int sl=sm.insertSelective(stock);
 		if(cl==1){
