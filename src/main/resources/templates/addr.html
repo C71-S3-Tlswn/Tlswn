@@ -15,7 +15,7 @@ html { -webkit-text-size-adjust: none; text-size-adjust: none; }
 html, body {height:99%;width:99%; }
 .wrap{width:464px;height:34px;margin:20px auto;border:0;position:relative;}
 .input{position:absolute;top:0;left:0;width:457px;margin:0;padding-left:5px;height:30px;line-height:30px;font-size:12px;border:1px solid #c9cacb;}
-s{position:absolute;top:1px;right:0;width:32px;height:32px;background:url("img/arrow.png") no-repeat;}
+s{position:absolute;top:1px;right:0;width:600px;height:32px;background:url("img/arrow.png") no-repeat;}
 ._citys { width: 450px; display: inline-block; border: 2px solid #eee; padding: 5px; position: relative; }
 ._citys span { color: #05920a; height: 15px; width: 15px; line-height: 15px; text-align: center; border-radius: 3px; position: absolute; right: 10px; top: 10px; border: 1px solid #05920a; cursor: pointer; }
 ._citys0 { width: 95%; height: 34px; line-height: 34px; display: inline-block; border-bottom: 2px solid #05920a; padding: 0px 5px; font-size:14px; font-weight:bold; margin-left:6px; }
@@ -37,17 +37,17 @@ s{position:absolute;top:1px;right:0;width:32px;height:32px;background:url("img/a
 	<div th:replace="header::#myModal1"></div>
 	<div th:replace="header::#myModal2"></div>
 	<div th:replace="header::.ban-top"></div>
+	<div style="width: 100%;height: 600px;">
 	<h3 class="agileinfo_sign">完善地址</h3>
 	<p style="margin-left: 37%">完善您的收货地址，方便您能及时收到商品！</p>
-	<div class="modal-body modal-body-sub_agile">
-	<div class="modal_body_left modal_body_left1">
+	<div class="modal-body modal-body-sub_agile" style="width: 100%">
+	<div class="modal_body_left modal_body_left1" style="width: 100%">
 	<form action="bh.do" method="post">
-	<div class="styled-input agile-styled-input-top"><input name="addr" id="city" type="text" placeholder="请选择" autocomplete="off" readonly="true"></div><br/>
+	<div class="styled-input agile-styled-input-top" style="width: 100%"><input name="addr" id="city" type="text" placeholder="请选择" autocomplete="off" readonly="true" style="width: 100%;"></div><br/>
 	<div class="styled-input"><input type="text" placeholder="姓名" name="uname"></div><br/>
 	<div class="styled-input"><input type="text"  placeholder="电话号" name="atel"></div><br/>
 	<div class="styled-input"><input type="text" placeholder="收货名" name="aname" required=""></div><br/>
-	<div class="styled-input"><td>是否为默认收货地址:<input type="radio" name="astatus" value="1" style="margin-left: 70px;"><span style="color: orange;">是</span><input type="radio" name="astatus" value="0" style="margin-left: 80px;"><span style="color: orange;">否</span>
-	</td></div><br/>
+	</div><br/>
 	<input type="submit" value="确定" style="width: 100px;height: 40px;margin-left: 46%;">
 	</form>
 	</div></div>
