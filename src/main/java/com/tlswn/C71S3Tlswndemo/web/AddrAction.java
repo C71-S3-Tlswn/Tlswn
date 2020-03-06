@@ -92,6 +92,7 @@ public class AddrAction {
 		c.andUnameEqualTo(uname);
 	   Integer cc= us.selectByExample(ue).get(0).getUid();
 	   addr.setUid(cc);
+	   addr.setAstatus(1);
 	  int v= ad.insert(addr);
 		System.out.println("........"+v);
 		return "index";
@@ -265,12 +266,11 @@ public class AddrAction {
 		OrderExample or=new OrderExample();
 		com.tlswn.C71S3Tlswndemo.bean.OrderExample.Criteria c=or.createCriteria();
 		 c.andUidEqualTo(user.getUid());
-		 c.andTemp2EqualTo("1");
+		 c.andTempEqualTo("1");
 		System.out.println("-------------------------------------------------------------------------------------");
       list= om.selectByExample(or);
 		System.out.println("=======================================================================================");
-		for(int i=0;i<list.size();i++){
-
+for(int i=0;i<list.size();i++){
    list.get(i).setTemp(cm.selectByPrimaryKey(list.get(i).getCid()).getCname());
    list.get(i).setTemp2(cm.selectByPrimaryKey(list.get(i).getCid()).getCphoto());
 	m.addAttribute("li", list);
@@ -285,7 +285,7 @@ public class AddrAction {
 	OrderExample or=new OrderExample();
 	com.tlswn.C71S3Tlswndemo.bean.OrderExample.Criteria c=or.createCriteria();
 	c.andOidEqualTo(ord.getOid());
-	ord.setTemp2("0");
+	ord.setTemp("0");
 	System.out.println(ord.getOid());
 	int cs=om.updateByExampleSelective(ord, or);
 	if(cs==1){

@@ -46,14 +46,14 @@ public class SparklineAction {
 	@Resource
 	private CommodityMapper cm;
 	
-	@GetMapping("back/charts/sparkline")
+	@GetMapping("back/sparkline")
 	public String Sparkline(){
-		return "back/charts/sparkline";
+		return "back/sparkline";
 	}
 	
 
 	@ResponseBody
-	@GetMapping("back/charts/SalesVolumer")
+	@GetMapping("back/SalesVolumer")
 	public String init(){
 		
 		//查询数据
@@ -88,7 +88,7 @@ public class SparklineAction {
 		List<String> data2=new ArrayList<>();
 			
 		//x轴  种类名称	
-		for(Variety v:vlist){		
+		for(StatisticsVo v:list){		
 			data1.add((""+v.getVname()));
 		}
 		//y轴 销售数量
@@ -124,7 +124,7 @@ public class SparklineAction {
 	}
 	
 	@ResponseBody
-	@GetMapping("back/charts/totalSales")
+	@GetMapping("back/totalSales")
 	public String fAll(){
 		
 		List<StatisticsVo> list=om.selectStatistics();
@@ -197,7 +197,7 @@ public class SparklineAction {
 		return r;
 	}
 	@ResponseBody
-	@GetMapping("back/charts/WeekSales")
+	@GetMapping("back/WeekSales")
 	public List<NearWeekVo> NearSales(){
 		
 		List<NearWeekVo> list=orm.selectStatistics();
@@ -206,7 +206,7 @@ public class SparklineAction {
 	}
 	
 	@ResponseBody
-	@GetMapping("back/charts/YearSales")
+	@GetMapping("back/YearSales")
 	public List<NearWeekVo> YearSales(){
 		
 		List<NearWeekVo> list=new ArrayList<>();

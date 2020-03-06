@@ -51,7 +51,7 @@ public String order(Model m){
 		if(li.get(i).getStatus()==0){
 			Order oov=new Order();
 			oov.setTemp(us.selectByPrimaryKey(li.get(i).getUid()).getUname());
-			oov.setTemp2(cm.selectByPrimaryKey(li.get(i).getCid()).getCname());
+		oov.setTemp2(cm.selectByPrimaryKey(li.get(i).getCid()).getCname());
 			oov.setOaddr(li.get(i).getOaddr());
 			oov.setOtel(li.get(i).getOtel());
 			oov.setOprice(li.get(i).getOprice());

@@ -8,7 +8,6 @@
 	<div th:replace="header::.header-bot"></div>
 	<div th:replace="header::.mfp-hide"></div>
 	<div th:replace="header::.ban-top"></div>
-
 	<!-- top Products -->
 	<div class="ads-grid">
 		<div class="container">
@@ -31,6 +30,18 @@
 					</form>
 				</div>
 				<!-- price range -->
+				<div class="range">
+					<h3 class="agileits-sear-head">价格范围</h3>
+					<ul class="dropdown-menu6">
+						<li>
+
+							<div id="slider-range"></div>
+							<input type="text" id="amount" style="border: 0; color: #ffffff; font-weight: normal;" />
+						</li>
+					</ul>
+				</div>
+				<!-- //price range -->
+				<!-- food preference -->
 				<div class="left-side">
 					<h3 class="agileits-sear-head">优惠区</h3>
 					<ul>
@@ -41,21 +52,6 @@
 						<li>
 							<input type="checkbox" name="hot" class="checked" value="1">
 							<span class="span">热卖商品</span>
-						</li>
-					</ul>
-				</div>
-				<!-- //price range -->
-				<!-- food preference -->
-				<div class="left-side">
-					<h3 class="agileits-sear-head">食物偏好</h3>
-					<ul>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">素食主义者</span>
-						</li>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">非素食主义者</span>
 						</li>
 					</ul>
 				</div>
@@ -164,10 +160,10 @@
 			<!-- //product left -->
 			<!-- product right -->
 			<div class="agileinfo-ads-display col-md-9">
-				<div class="wrapper">
+				<div class="wrapper" th:fragment="wrapper">
 					<div class="product-sec1">
 						<h3 class="heading-tittle" >Foods</h3>
-						<div class="col-md-4 product-men" th:each="w:${wlist}">
+						<div class="col-md-4 product-men" th:each="w:${lookUp}">
 							<div class="men-pro-item simpleCart_shelfItem">
 								<div class="men-thumb-item">
 									<img th:src="${w.cphoto}" alt="" id="imagess">
@@ -190,15 +186,7 @@
 									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 										<form action="" method="post">
 											<fieldset>
-												<input type="hidden" name="cmd" value="_cart" />
-												<input type="hidden" name="add" value="1" />
-												<input type="hidden" name="business" value=" " />
-												<input type="hidden" name="item_name" value="Almonds, 100g" />
-												<input type="hidden" name="amount" value="149.00" />
-												<input type="hidden" name="discount_amount" value="1.00" />
-												<input type="hidden" name="currency_code" value="USD" />
-												<input type="hidden" name="return" value=" " />
-												<input type="hidden" name="cancel_return" value=" " />
+												
 												<input type="submit" name="submit" value="添加购物车" class="button" />
 											</fieldset>
 										</form>
@@ -207,20 +195,10 @@
 								</div>
 							</div>
 						</div>
-
 						<div class="clearfix"></div>
 					</div>										
 			</div>	
 		</div>
-		<div class="page">
-						<ul>
-							<li><a href="?page=1" class="paging">首页</a></li>
-							<li><a th:href="|?page=${prepage}" class="paging">上一页</a></li>
-							<li><a th:href="|?page=${nextpage}" class="paging">下一页</a></li>
-							<li><a th:href="|?page=${pages}" class="paging">尾页</a></li>
-						</ul>
-			</div>	
-			<!-- //product right -->
 		</div>
 	</div>
 	<!-- //top products -->
@@ -301,9 +279,11 @@
 			var search=$("input[name='search']").val();
 			var newpro= $("input[name='new']:checked").val();
 			var hot= $("input[name='hot']:checked").val();
-
+			 console.log(newpro);
+			 console.log(hot);
 			$.post("dofind",{newpro:newpro,hot:hot,search:search,bprice:bprice,eprice,eprice},
 					function(date){
+				console.log(date);
 						 $('.wrapper').html(date);
 			});
 		}

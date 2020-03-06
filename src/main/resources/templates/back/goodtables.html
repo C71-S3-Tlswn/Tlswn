@@ -90,7 +90,7 @@
 											<tbody >
 												<tr th:each="com:${comm}">
 													<td th:text="${com.cname}">Tiger Nixon</td>
-													<td><img th:src="${com.cphoto}" id="ig"></td>
+													<td><img th:src="|../${com.cphoto}" style="width: 40px;height: 40px;" id="ig"></td>
 													<td th:text="${com.mprice}">Edinburgh</td>
 													<td th:text="${com.cdescride}">61</td>
 													<td th:text="${com.cnum}">2011/04/25</td>

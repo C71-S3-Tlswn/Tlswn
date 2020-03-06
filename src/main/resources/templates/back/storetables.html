@@ -68,7 +68,7 @@
 											<tbody>
 												<tr th:each="sto:${store}">
 													<td th:text="${sto.commodity.cname}">Tiger Nixon</td>
-													<td><img th:src="${sto.commodity.cphoto}"></td>
+													<td><img th:src="|../${sto.commodity.cphoto}" style="width: 40px;height: 40px;"></td>
 													<td th:text="${sto.specs}">Edinburgh</td>
 													<td th:text="${sto.color}">61</td>
 													<td th:text="${sto.num}">2011/04/25</td>
