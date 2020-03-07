@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.tlswn.C71S3Tlswndemo.bean.Addr;
+import com.tlswn.C71S3Tlswndemo.bean.AddrExample;
 import com.tlswn.C71S3Tlswndemo.bean.Commodity;
 import com.tlswn.C71S3Tlswndemo.bean.CommodityExample;
 import com.tlswn.C71S3Tlswndemo.bean.Favorite;
@@ -83,19 +84,60 @@ public class AddrAction {
 	
 		return "myself";
 	}
+	@ResponseBody
 	@PostMapping("bh.do")
-	public String dizi( Addr addr,String uname){
-	    
+	public Result dizi(@Valid Addr addr,String uname){
+	    List<Addr> list=new ArrayList<>();
 		UserExample ue=new UserExample();
+		AddrExample add=new AddrExample();
+		Integer cc;
+		int v;
+		//Addr ar=new Addr();
+		Addr ar1=new Addr();
 		//构建条件e
 		com.tlswn.C71S3Tlswndemo.bean.UserExample.Criteria c=ue.createCriteria();
 		c.andUnameEqualTo(uname);
-	   Integer cc= us.selectByExample(ue).get(0).getUid();
+	   cc= us.selectByExample(ue).get(0).getUid();//查出对应uid
 	   addr.setUid(cc);
-	   addr.setAstatus(1);
-	  int v= ad.insert(addr);
-		System.out.println("........"+v);
-		return "index";
+	 /*  com.tlswn.C71S3Tlswndemo.bean.AddrExample.Criteria ca=add.createCriteria();
+	   ca.andUidEqualTo(cc);
+	   list=ad.selectByExample(add);
+	   for(int i=0;i<list.size();i++){
+		   if(list.get(i).getAstatus()==1){
+//			   com.tlswn.C71S3Tlswndemo.bean.AddrExample.Criteria cav=add.createCriteria();
+//			   cav.andAidEqualTo(list.get(i).getAid());
+			ar= ad.selectByPrimaryKey(list.get(i).getAid());			
+		   }
+		   	}*/
+	   System.out.println(addr.getAstatus());
+	   if(addr.getAstatus()==1){
+		   com.tlswn.C71S3Tlswndemo.bean.AddrExample.Criteria ca=add.createCriteria();
+		   ca.andUidEqualTo(cc);
+		   list=ad.selectByExample(add);
+		   if(!list.isEmpty()){
+			   ar1.setAstatus(0);
+			   com.tlswn.C71S3Tlswndemo.bean.AddrExample.Criteria cav=add.createCriteria();
+			   cav.andUidEqualTo(cc);
+			   ad.updateByExampleSelective(ar1, add);			
+			   v=ad.insert(addr);
+		   }else{
+				 v=ad.insert(addr);
+		   }
+		   
+	
+		 if(v==1){
+			   return new Result(1, "更改默认地址成功");
+		   }else{
+			   return new Result(2, "地址操作失败");
+		   }
+	   }else{
+		   v= ad.insert(addr);
+		  if(v==1){
+			   return new Result(1, "地址操作成功");
+		   }else{
+			   return new Result(2, "地址操作失败");		   
+	   }			
+	   }	   
 	}
 	/*@Value("${file.upload.path}")
 	private String filePath;*/
