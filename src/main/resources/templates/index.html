@@ -713,7 +713,7 @@
 		websocket.onmessage=function(event){
 			 var str=event.data.split(":");
 			show.innerHTML+='<div class="msg-left" worker="在线客服">'
-	           +'<div class="msg-host photo"></div>'
+	           +'<div class="msg-host photo"  style="width:30px;height:30px;background-size: cover;background-image:url(images/timg.jpg)"></div>'
 	            +'<div class="msg-ball" title="今天 17:52:06">'+str[1]+'</div></div>';
 			/* console.info("-------onmessage------"+msg); */
 		}
@@ -732,7 +732,7 @@
 			websocket.send(account+":"+admin+":"+msg);
 			
 			show.innerHTML+='<div class="msg-left" worker='+account+'>'
-           +'<div class="msg-host photo" style="background-image:url(images/timg.jpg)"></div>'
+           +'<div class="msg-host photo" style="width:30px;height:30px;background-image:url(images/chat.jpg);background-size: cover;"></div>'
             +'<div class="msg-ball" title="今天 17:52:06">'+msg+'</div></div>';
 			$('#text').val("");
 		}

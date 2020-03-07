@@ -2,14 +2,17 @@
     color: blueviolet;
     margin-left: 250px;
     }
-.modal-body{
-   width: 600px;
+.modal-body1{
+   width: 500px;
    height: 300px;
 }
 .contaniner{
    width: 100%;
    height: 100%;
   }
+  #showb{
+ 	overflow: auto;
+ }
     	#histStart{
     		width:100px;
     		height: 20px;
@@ -17,25 +20,25 @@
     	}
     	.pnl,#pnlBody{
     		width: 100%;
-    		height: 100%;
+    		height: 98%;
     	}
-    	.modal-footer{
+    	.modal-footer1{
     		width: 100%;
     		height: 100px;
     	}
     	#tom-left{
-    		width: 380px;
-    		height: 300px;
+    		width: 180px;
+    		height: 290px;
     		float: left;
     	}
-    	#show{
+    	#showa{
     		width: 100%;
     		height: 100%;
     		overflow-y:auto;
     		
     	}
     	.msg-left .msg-ball {
-			margin:.5em .2em .1em 1.2em
+			overflow-x: auto;
 		}
 		.msg-left {
 			overflow:hidden;
@@ -81,22 +84,22 @@
     		margin-top: 0;
     	}
     	#tom-right{
-    		margin-left: 382px;
-    		width: 220px;
-    		height: 300px;
+    		margin-left: 180px;
+    		width: 320px;
+    		height: 290px;
     		border-left: 1px solid black;  
     	}
     	#submit{
     		width: 44px;
     		height: 30px;
-    		margin-left: 530px;
+    		margin-left: 450px;
     	}
     	#send{
     		width: 45px;
     		height: 30px;
     	}
     	.pnl-input{
-    		width: 100%;
+    		width: 99%;
     		height: 70px;
     	}
     	.msg-ball{
@@ -122,5 +125,9 @@
     	}
     	#hot-tab{
     		margin-top: 10px;
-    		margin-left: 50px;
+    		margin-left: 180px;
+    	}
+    	.pml-text1{
+    		width: 100%;
+    		height: 100%;
     	}
