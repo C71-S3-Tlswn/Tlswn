@@ -277,7 +277,7 @@
 						$.post("updatepwd",{apass:newapass},function(result){
 							if(result==1){
 								alert("修改密码成功");
-								window.location.href = "/update";
+								window.location.href = "/back/login";
 							}else{
 								alert("修改密码失败");
 							}
