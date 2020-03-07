@@ -553,8 +553,15 @@ function postData(id){
 		var color=$("#txt_color option:selected").text();
 		var specs=$("#txt_sp option:selected").text();
 	    $("#store").load("/selectNum",{cid: cid,specs: specs,color:color},function(data){
-	    	console.log(data);
-	    	 $("#store").append("<h3>"+data.list[0].num+"</h3>"); 
+	    	//console.info(data[0].num);
+	    	
+	    	var obj=$.parseJSON(data);
+	    	console.info(obj.data[0].num);
+	    	/* for(var i=0;i<data.length;i++){
+	    		console.info(data[i].num);
+	    	} */
+	    	$("#store").html(obj.data[0].num);
+	    	  /* $("#store").append("${cnum.num}");   */
 	    })
 	}  
 	 /* function show(arr){

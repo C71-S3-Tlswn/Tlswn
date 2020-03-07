@@ -98,6 +98,7 @@ public class CheckAction {
 			ord.setUid(user.getUid()); 
 			 ord.setOrdertime(new Date());// new Date()为获取当前系统时间
 			 ord.setStatus(0);	
+			 ord.setTemp("1");
 			// String temps=String.valueOf(System.currentTimeMillis()+new Random().nextInt(1000));
 			 ord.setTemp2(temps);
 			list.add(temps);

@@ -25,13 +25,12 @@
 	<!-- price range -->
 	<link rel="stylesheet" type="text/css" th:href="@{css/jquery-ui1.css}">
 	<!-- fonts -->
-	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
- 
- 
- <script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/Popt.js"></script>
-<script type="text/javascript" src="js/city.json.js"></script>
-<script type="text/javascript" src="js/citySet.js"></script>
+	<!-- <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet"> -->
+    <link rel="stylesheet" href="css/chat.css" />
+ 	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/Popt.js"></script>
+	<script type="text/javascript" src="js/city.json.js"></script>
+	<script type="text/javascript" src="js/citySet.js"></script>
 
 <style type="text/css">
 * { -ms-word-wrap: break-word; word-wrap: break-word; }
@@ -101,9 +100,10 @@ margin-left: -60px;
 				<!-- header lists -->
 				<ul>
 					<li>
-						<a class="play-icon popup-with-zoom-anim" href="#small-dialog1">
-							<span class="fa fa-map-marker" aria-hidden="true"></span> 店铺 定位器</a>
-					</li>
+						 <a href="javascript:;" onclick="insert_village_info()" > 
+						<span class="fa fa-phone" aria-hidden="true"></span>在线客服</a>
+													
+					</li> 
 					<li>
 						<a href="#" data-toggle="modal" data-target="#myModal1">
 							<span class="fa fa-truck" aria-hidden="true"></span>订单  跟踪</a>
@@ -118,7 +118,7 @@ margin-left: -60px;
 					<li>
 						<a href="/reg" >
 							<span class="fa fa-pencil-square-o" aria-hidden="true"></span> 注册 </a>
-					
+	
 				</ul>
 				<!-- //header lists -->
 				<!-- search -->
@@ -167,13 +167,7 @@ margin-left: -60px;
 						
 													<li>
 														<a href="zhuxiao">退出登录</a>
-													</li>
-													<li>
-													<a href="#" id="talk" onclick="tal()">
-															 在线客服 </a>
-													
-													</li>
-												
+													</li>																				
 									</ul>
 								</ul>
 								

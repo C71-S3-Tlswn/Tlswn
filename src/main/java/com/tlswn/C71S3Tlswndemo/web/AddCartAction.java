@@ -33,7 +33,7 @@ public class AddCartAction {
 			@SessionAttribute("User") User user,
 			Error error,Model m){
 		CartExample ce=new CartExample();
-		if(user.getUid()==null&&user.getUid().equals("")){
+		if(user.getUid()==null||user.getUid().equals("")){
 			return new Result(0, "您尚未登录，请登录");
 		}
 		System.out.println(user.getUid());
@@ -45,9 +45,9 @@ public class AddCartAction {
 		System.out.println(old);
 		if(old==null || old.isEmpty()){
 			
-			 if(cart.getCount()==null&&cart.getCount().equals("")){
+			 if(cart.getCount()==null||cart.getCount().equals("")){
 				return new Result(2,"添加失败，请选择数量");
-			}else if(cart.getCtemp()==null&&cart.getCtemp().equals("")){
+			}else if((cart.getCtemp()==null&&cart.getCtemp().equals(""))){
 				return new Result(0, "您没有选择尺码，请选择尺码");
 			}else{
 				cart.setUid(user.getUid());

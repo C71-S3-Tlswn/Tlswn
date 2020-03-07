@@ -85,6 +85,28 @@ public class GoodAction {
 	}
 	
 	@ResponseBody
+	@PostMapping("back/type")
+	public void type(Variety var,Type type,Model m3){
+		VarietyExample ve=new VarietyExample();
+		ve.createCriteria().andVnameEqualTo(var.getVname());
+		List<Variety> list=vm.selectByExample(ve);
+		System.out.println(list.size());
+		for (int i = 0; i < list.size(); i++) {
+			type.setVid(list.get(i).getVid());
+		}
+		//System.out.println(type.getVid());
+		TypeExample te=new TypeExample();
+		te.createCriteria().andVidEqualTo(type.getVid());
+		List<Type> tt=tm.selectByExample(te);
+		System.out.println("--------------------"+tt.size());
+		m3.addAttribute("types", tt);
+		List<Type> tt1=(List<Type>) m3.getAttribute("types");
+		System.out.println(tt1.size());
+		//return tt;
+		/*return "back/addforms";*/
+	}
+	
+	@ResponseBody
 	@PostMapping("back/add")
 	public Result adds(String cname, String tname,String vname,
 			Commodity comm,Stock stock,
@@ -121,6 +143,7 @@ public class GoodAction {
 			stock.setCid(commodity.get(i).getCid());
 		}*/
 		comm.setCnum(0);
+		comm.setTemp2(100);
 		int cl=cm.insertSelective(comm);
 		//int sl=sm.insertSelective(stock);
 		if(cl==1){
