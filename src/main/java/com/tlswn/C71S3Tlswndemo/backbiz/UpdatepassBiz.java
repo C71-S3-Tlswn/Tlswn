@@ -35,6 +35,7 @@ public class UpdatepassBiz {
 		admin.setApass(Md5.getMD5(admin.getApass()));
 		admin.setAaid(((Admin) sess.getAttribute("admin")).getAaid());
 		int re=am.updateByPrimaryKeySelective(admin);
+		sess.removeAttribute("admin");
 		return re;
 		
 	}
