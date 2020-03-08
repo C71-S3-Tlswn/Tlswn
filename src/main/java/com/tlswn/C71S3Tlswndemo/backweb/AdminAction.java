@@ -33,7 +33,7 @@ public class AdminAction {
 	}
 	
 	@ResponseBody
-	@PostMapping("back/toadminlogin")
+	@PostMapping({"back/toadminlogin","toadminlogin"})
 	public Result login(@Valid Admin admin,Errors errors,Model m,HttpSession hs){
 		try {
 			if(errors.hasErrors()){
