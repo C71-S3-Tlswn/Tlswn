@@ -9,6 +9,7 @@
 		-->
 		<div th:replace="back/headers::.main-header"></div>
 		<div th:replace="back/headers::.sidebar"></div>
+		<div th:replace="back/headers::#addCost"></div>
 
 		<div class="main-panel">
 			<div class="content">
@@ -314,4 +315,63 @@
 <script src="../assets/js/setting-demo.js"></script>
 <script src="../assets/js/demo.js"></script>
 </body>
+<script>
+	function insert_village_info(){
+	$("#addCost").modal('show');	//启动模态窗口
+}
+</script>
+<script type="text/javascript">
+  
+    	var admin =$("input[name='admin']").val();
+	//创建webcocket 对象
+		var websocket;
+		var str=[];
+		websocket=new WebSocket("ws://localhost/websocket/"+admin);
+		//连接发生错误的回调方法
+		websocket.onerror=function(event){
+			console.info("-------onerror------");
+		}
+		//连接成功建立的回调方法
+		websocket.onopen=function(event){
+		
+			console.info("-------onopen------"+event);
+		}
+		//接收到消息的回调方法
+		websocket.onmessage=function(event){
+			
+			str=event.data.split(":");
+			robot.innerHTML+='<p id="b"><span class="uer">'+str[0]+'</span>：<br><span>'+str[1]+'</span></p>';
+			/* console.info("-------onmessage------"+msg); */
+		}
+		//连接关闭的回调方法
+		websocket.onclose=function(event){
+			console.info("-------onclose------");
+		}
+		//关闭连接
+		function closeWebSocket(){
+			websocket.close();
+		} 
+		var user ;
+		$('body').on("click", "#b", function () {
+			var d=$(this).html();
+			showb.innerHTML=d;
+			user=$(this).children(".uer").text();
+			console.log(user);
+		});
+		//发送消息
+		function send(){
+			/* var user=$(".uer").text(); */
+			console.log(user);
+			var msg=$('#text').val();
+			websocket.send(admin+":"+user+":"+msg);
+			showb.innerHTML+='<p class="b"><span>'+admin+'</span>：<br><span>'+msg+'</span></p>'; 
+			$('#text').val("");
+		}
+		
+		
+
+</script>
+<script type="text/javascript">
+	
+</script>
 </html>

@@ -21,6 +21,7 @@
 	<!-- CSS Files -->
 	<link rel="stylesheet" href="../assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../assets/css/azzara.min.css">
+	<link rel="stylesheet" href="../assets/css/chat.css">
 
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link rel="stylesheet" href="../assets/css/demo.css">
@@ -218,7 +219,7 @@
 									<a class="dropdown-item" href="/profile">个人资料</a>
 									<a class="dropdown-item" href="/add">添加管理员</a>
 									<a class="dropdown-item" href="/update">修改密码</a>
-									<a class="dropdown-item" href="#">消息</a>
+									<a   class="dropdown-item" href="javascript:;" onclick="insert_village_info()" >消息</a>
 									<div class="dropdown-divider"></div>
 									<!-- <a class="dropdown-item" href="#">Account Setting</a> -->
 									<!-- <div class="dropdown-divider"></div> -->
@@ -530,6 +531,75 @@
 			</div>
 		</div>
 		<!-- End Sidebar -->
+		
+		<!-- 客服 -->
+		
+		
+	<div class="modal fade user-select" id="addCost" tabindex="-1" role="dialog" aria-labelledby="areDevelopingModalLabel"><!--必须要有---->
+ 	 	<div class="modal-dialog" role="document"><!--必须要有---->
+		<div class="modal-content"><!--必须要有---->
+	        <div class="modal-header">
+	        <h4 class="modal-title" id="addVillage">消息中心</h4><!--模态窗口的功能提示部分--->
+	          <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <!--必须要有---->
+				<span aria-hidden="true" style="color: red;">&times;</span> <!--必须要有，关闭模态窜口的‘x’形按钮---->
+			  </button> 
+				
+	        </div>
+	        <div class="modal-body1" >		<!----身体部分-----><!--必须要有---->
+		   	 <div class="abs cover contaniner">
+       			 <div class="abs cover pnl">
+            <div class="top pnl-head"></div>
+            <div class="abs cover pnl-body" id="pnlBody">
+                <div class="abs cover pnl-left" id="tom-left">
+                    <div class="abs cover pnl-msgs scroll" id="showa">
+                        <div class="msg min time" id="histStart">历史消息</div>                     
+                        <div class="pnl-list" id="msgs">
+                            <div class="msg robot" id="robot">  
+                               <!-- <p class="a"><span>在线客服d</span>：<br><span>nihao4</span></p>                          -->
+                            </div>
+                            <div class="msg guest">                            
+                            </div>
+                        </div>
+                    </div>      
+                </div>           
+                <div class="abs right pnl-right" id="tom-right">
+                    <div class="pnl-right-content" id="showb">
+                    
+                        <div class="pnl-tabs">
+                            <div class="tab-btn active" id="hot-tab">消息</div>
+                            <!---->
+                         </div>
+                        <div class="pnl-hot" id="pnl-hot">
+                            
+                        </div>
+                        	
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>		
+	        <div class="modal-footer1">  <!---脚部-----><!--必须要有---->
+	        	 <div class="abs bottom pnl-text1">
+                        <div class="abs cover pnl-input">
+                            <textarea class="scroll" id="text" wrap="hard" placeholder="在此输入文字信息..."></textarea>
+                           
+                        </div>
+                        <input type="hidden" name="admin"   id="admin" th:value="${session.admin!=null ? session.admin.accounnt:'account'}">
+                        <input type="hidden" name="account" id="user" th:value="${session.User!=null? session.User.uaccount:''}">
+                        <div class="abs br pnl-btn" id="submit" style="background-color: rgb(32, 196, 202); color: rgb(255, 255, 255);">
+                        	<input type="button" id="send" onclick="send()" value="发送" style="background-color: rgb(32, 196, 202); color: rgb(255, 255, 255);">
+                        		</div>
+                       
+                    </div>
+	        </div>
+	  
+	  
+    </div>
+  </div>
+</div>
+
+
 
 </body>
 </html>
