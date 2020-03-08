@@ -323,11 +323,17 @@ public class AddrAction {
       list= om.selectByExample(or);
 		System.out.println("=======================================================================================");
 for(int i=0;i<list.size();i++){
+	if(list.get(i).getArrivetime()!=null){
+		list.get(i).setPs("已送达");
+	}else if(list.get(i).getDelivetime()!=null&&list.get(i).getArrivetime()==null){
+		list.get(i).setPs("已发货");
+	}else if(list.get(i).getOrdertime()!=null&&list.get(i).getDelivetime()==null&&list.get(i).getArrivetime()==null){
+		list.get(i).setPs("未发货");
+	}
    list.get(i).setTemp(cm.selectByPrimaryKey(list.get(i).getCid()).getCname());
    list.get(i).setTemp2(cm.selectByPrimaryKey(list.get(i).getCid()).getCphoto());
-	m.addAttribute("li", list);
 		}
-		
+		m.addAttribute("li", list);
 		return "order";
 	}
 	
