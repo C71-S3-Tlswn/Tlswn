@@ -21,6 +21,7 @@
 	<!-- CSS Files -->
 	<link rel="stylesheet" href="../assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../assets/css/azzara.min.css">
+	<link rel="stylesheet" href="../assets/css/chat.css">
 
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link rel="stylesheet" href="../assets/css/demo.css">
@@ -69,11 +70,12 @@
 								<i class="fa fa-search"></i>
 							</a>
 						</li>
-						<li class="nav-item dropdown hidden-caret">
+						<li class="nav-item dropdown hidden-caret" style="height: 40px;width: 30px;">
 							<a class="nav-link dropdown-toggle" href="#" id="messageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<i class="fa fa-envelope"></i>
 							</a>
-							<ul class="dropdown-menu messages-notif-box animated fadeIn" aria-labelledby="messageDropdown">
+							<ul class="dropdown-menu messages-notif-box animated fadeIn" aria-labelledby="messageDropdown" style="width: 200px;height: 35
+							0px;">
 								<li>
 									<div class="dropdown-title d-flex justify-content-between align-items-center">
 										Messages 									
@@ -139,12 +141,12 @@
 								</li>
 							</ul>
 						</li>
-						<li class="nav-item dropdown hidden-caret">
+						<li class="nav-item dropdown hidden-caret" style="height: 40px;width: 40px;">
 							<a class="nav-link dropdown-toggle" href="#" id="notifDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<i class="fa fa-bell"></i>
 								<span class="notification">4</span>
 							</a>
-							<ul class="dropdown-menu notif-box animated fadeIn" aria-labelledby="notifDropdown">
+							<ul class="dropdown-menu notif-box animated fadeIn" aria-labelledby="notifDropdown" style="width: 200px;height: 380px;">
 								<li>
 									<div class="dropdown-title">You have 4 new notification</div>
 								</li>
@@ -197,16 +199,16 @@
 								</li>
 							</ul>
 						</li>
-						<li class="nav-item dropdown hidden-caret">
+						<li class="nav-item dropdown hidden-caret" style="height: 45px;">
 							<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
 								<div class="avatar-sm">
-									<img src="../assets/img/profile.jpg"  alt="..." class="avatar-img rounded-circle">
+									<img src="../assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
 								</div>
 							</a>
-							<ul class="dropdown-menu dropdown-user animated fadeIn">
+							<ul class="dropdown-menu dropdown-user animated fadeIn" style="height: 270px;width: 200px;">
 								<li>
 									<div class="user-box">
-										<div class="avatar-lg"><img src="../assets/img/profile.jpg"  alt="image profile" class="avatar-img rounded"></div>
+										<div class="avatar-lg"><img src="../assets/img/profile.jpg"   alt="image profile" class="avatar-img rounded"></div>
 										<div class="u-text">
 											<h4>Hizrian</h4>
 											<p class="text-muted">hello@example.com</p><!-- <a href="/profile" class="btn btn-rounded btn-danger btn-sm">View Profile</a> -->
@@ -218,7 +220,7 @@
 									<a class="dropdown-item" href="/profile">个人资料</a>
 									<a class="dropdown-item" href="/add">添加管理员</a>
 									<a class="dropdown-item" href="/update">修改密码</a>
-									<a class="dropdown-item" href="#">消息</a>
+									<a   class="dropdown-item" href="javascript:;" onclick="insert_village_info()" >消息</a>
 									<div class="dropdown-divider"></div>
 									<!-- <a class="dropdown-item" href="#">Account Setting</a> -->
 									<!-- <div class="dropdown-divider"></div> -->
@@ -239,15 +241,19 @@
 				<div class="sidebar-content">
 					<div class="user">
 						<div class="avatar-sm float-left mr-2">
-							<img src="../assets/img/profile.jpg"  alt="..." class="avatar-img rounded-circle">
+						
+							<img th:src="${session.admin.photo!=null? session.admin.photo:'../assets/img/profile.jpg' }"  alt="..." class="avatar-img rounded-circle">
 						</div>
 						<div class="info">
 							<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
-								<span>
-									(显示人名)
-									<span class="user-level">（管理员身份）</span>
-									<span class="caret"></span>
+								<span  th:text="${session.admin.accounnt}">
+									
+									
 								</span>
+								<!-- 身份 暂时未处理 -->
+								<span class="user-level" style="position: relative;left: -9px;font-weight: bold;"></span>
+								<span class="caret" ></span>
+								
 							</a>
 							<div class="clearfix"></div>
 
@@ -263,11 +269,7 @@
 											<span class="link-collapse">（编辑个人资料）</span>
 										</a>
 									</li>
-									<li>
-										<a href="#settings">
-											<span class="link-collapse">(设定值，没用可删)</span>
-										</a>
-									</li>
+									
 								</ul>
 							</div>
 						</div>
@@ -286,62 +288,7 @@
 							</span>
 							<h4 class="text-section">组件</h4>
 						</li>
-						<li class="nav-item">
-							<a data-toggle="collapse" href="#base">
-								<i class="fas fa-layer-group"></i>
-								<p>基础形式（参考的显示方法可以）</p>
-								<span class="caret"></span>
-							</a>
-							<div class="collapse" id="base">
-								<ul class="nav nav-collapse">
-									<li>
-										<a href="components/avatars">
-											<span class="sub-item">头像</span>
-										</a>
-									</li>
-									<li>
-										<a href="components/buttons">
-											<span class="sub-item">按钮</span>
-										</a>
-									</li>
-									<li>
-										<a href="components/gridsystem">
-											<span class="sub-item">网格</span>
-										</a>
-									</li>
-									<li>
-										<a href="components/panels">
-											<span class="sub-item">面板导航带目录</span>
-										</a>
-									</li>
-									<li>
-										<a href="components/notifications">
-											<span class="sub-item">通知事项</span>
-										</a>
-									</li>
-									<li>
-										<a href="components/sweetalert">
-											<span class="sub-item">彩色弹窗方法</span>
-										</a>
-									</li>
-									<li>
-										<a href="components/font-awesome-icons">
-											<span class="sub-item">字体图标</span>
-										</a>
-									</li>
-									<li>
-										<a href="components/flaticons">
-											<span class="sub-item">平面图标</span>
-										</a>
-									</li>
-									<li>
-										<a href="components/typography">
-											<span class="sub-item">版式</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
+						
 						<li class="nav-item">
 							<a data-toggle="collapse" href="#forms">
 								<i class="fas fa-pen-square"></i>
@@ -386,32 +333,7 @@
 								</ul>
 							</div>
 						</li>
-						<li class="nav-item">
-							<a data-toggle="collapse" href="#maps">
-								<i class="fas fa-map-marker-alt"></i>
-								<p>地图</p>
-								<span class="caret"></span>
-							</a>
-							<div class="collapse" id="maps">
-								<ul class="nav nav-collapse">
-									<li>
-										<a href="maps/googlemaps.html">
-											<span class="sub-item">谷歌地图</span>
-										</a>
-									</li>
-									<li>
-										<a href="maps/fullscreenmaps.html">
-											<span class="sub-item">全屏地图</span>
-										</a>
-									</li>
-									<li>
-										<a href="maps/jqvmap.html">
-											<span class="sub-item">JQV地图</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
+					
 						<li class="nav-item">
 							<a data-toggle="collapse" href="#charts">
 								<i class="far fa-chart-bar"></i>
@@ -434,100 +356,81 @@
 							</div>
 						</li>
 						
-						<li class="nav-item">
-							<a href="widgets.html">
-								<i class="fas fa-desktop"></i>
-								<p>小部件</p>
-								<span class="badge badge-count badge-success">4</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a data-toggle="collapse" href="#custompages">
-								<i class="fas fa-paint-roller"></i>
-								<p>自定义</p>
-								<span class="caret"></span>
-							</a>
-							<div class="collapse" id="custompages">
-								<ul class="nav nav-collapse">
-									<li>
-										<a href="login.html">
-											<span class="sub-item">Login & Register 1</span>
-										</a>
-									</li>
-									<li>
-										<a href="login2.html">
-											<span class="sub-item">Login & Register 2</span>
-										</a>
-									</li>
-									<li>
-										<a href="userprofile.html">
-											<span class="sub-item">User Profile</span>
-										</a>
-									</li>
-									<li>
-										<a href="404.html">
-											<span class="sub-item">404</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li class="nav-item">
-							<a data-toggle="collapse" href="#submenu">
-								<i class="fas fa-bars"></i>
-								<p>Menu Levels</p>
-								<span class="caret"></span>
-							</a>
-							<div class="collapse" id="submenu">
-								<ul class="nav nav-collapse">
-									<li>
-										<a data-toggle="collapse" href="#subnav1">
-											<span class="sub-item">Level 1</span>
-											<span class="caret"></span>
-										</a>
-										<div class="collapse" id="subnav1">
-											<ul class="nav nav-collapse subnav">
-												<li>
-													<a href="#">
-														<span class="sub-item">Level 2</span>
-													</a>
-												</li>
-												<li>
-													<a href="#">
-														<span class="sub-item">Level 2</span>
-													</a>
-												</li>
-											</ul>
-										</div>
-									</li>
-									<li>
-										<a data-toggle="collapse" href="#subnav2">
-											<span class="sub-item">Level 1</span>
-											<span class="caret"></span>
-										</a>
-										<div class="collapse" id="subnav2">
-											<ul class="nav nav-collapse subnav">
-												<li>
-													<a href="#">
-														<span class="sub-item">Level 2</span>
-													</a>
-												</li>
-											</ul>
-										</div>
-									</li>
-									<li>
-										<a href="#">
-											<span class="sub-item">Level 1</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
+					
 					</ul>
 				</div>
 			</div>
 		</div>
 		<!-- End Sidebar -->
+		
+		<!-- 客服 -->
+		
+		
+	<div class="modal fade user-select" id="addCost" tabindex="-1" role="dialog" aria-labelledby="areDevelopingModalLabel"><!--必须要有---->
+ 	 	<div class="modal-dialog" role="document"><!--必须要有---->
+		<div class="modal-content"><!--必须要有---->
+	        <div class="modal-header">
+	        <h4 class="modal-title" id="addVillage">消息中心</h4><!--模态窗口的功能提示部分--->
+	          <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <!--必须要有---->
+				<span aria-hidden="true" style="color: red;">&times;</span> <!--必须要有，关闭模态窜口的‘x’形按钮---->
+			  </button> 
+				
+	        </div>
+	        <div class="modal-body1" >		<!----身体部分-----><!--必须要有---->
+		   	 <div class="abs cover contaniner">
+       			 <div class="abs cover pnl">
+            <div class="top pnl-head"></div>
+            <div class="abs cover pnl-body" id="pnlBody">
+                <div class="abs cover pnl-left" id="tom-left">
+                    <div class="abs cover pnl-msgs scroll" id="showa">
+                        <div class="msg min time" id="histStart">历史消息</div>                     
+                        <div class="pnl-list" id="msgs">
+                            <div class="msg robot" id="robot">  
+                               <!-- <p class="a"><span>在线客服d</span>：<br><span>nihao4</span></p>                          -->
+                            </div>
+                            <div class="msg guest">                            
+                            </div>
+                        </div>
+                    </div>      
+                </div>           
+                <div class="abs right pnl-right" id="tom-right">
+                    <div class="pnl-right-content" id="showb">
+                    
+                        <div class="pnl-tabs">
+                            <div class="tab-btn active" id="hot-tab">消息</div>
+                            <!---->
+                         </div>
+                        <div class="pnl-hot" id="pnl-hot">
+                            
+                        </div>
+                        	
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>		
+	        <div class="modal-footer1">  <!---脚部-----><!--必须要有---->
+	        	 <div class="abs bottom pnl-text1">
+                        <div class="abs cover pnl-input">
+                            <textarea class="scroll" id="text" wrap="hard" placeholder="在此输入文字信息..."></textarea>
+                           
+                        </div>
+                        <input type="hidden" name="admin"   id="admin" th:value="${session.admin!=null ? session.admin.accounnt:'account'}">
+                        <input type="hidden" name="account" id="user" th:value="${session.User!=null? session.User.uaccount:''}">
+                        <div class="abs br pnl-btn" id="submit" style="background-color: rgb(32, 196, 202); color: rgb(255, 255, 255);">
+                        	<input type="button" id="send" onclick="send()" value="发送" style="background-color: rgb(32, 196, 202); color: rgb(255, 255, 255);">
+                        		</div>
+                       
+                    </div>
+	        </div>
+	  
+	  
+    </div>
+  </div>
+</div>
+
+
 
 </body>
 </html>

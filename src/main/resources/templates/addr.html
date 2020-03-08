@@ -44,20 +44,37 @@ s{position:absolute;top:1px;right:0;width:600px;height:32px;background:url("img/
 	<div class="modal_body_left modal_body_left1" style="width: 100%">
 	<form action="bh.do" method="post">
 	<div class="styled-input agile-styled-input-top" style="width: 100%"><input name="addr" id="city" type="text" placeholder="请选择" autocomplete="off" readonly="true" style="width: 100%;"></div><br/>
-	<div class="styled-input"><input type="text" placeholder="姓名" name="uname"></div><br/>
-	<div class="styled-input"><input type="text"  placeholder="电话号" name="atel"></div><br/>
-	<div class="styled-input"><input type="text" placeholder="收货名" name="aname" required=""></div><br/>
+	<div class="styled-input"><input type="text" placeholder="真实姓名" name="uname" id="uname"></div><br/>
+	<div class="styled-input"><input type="text"  placeholder="电话号" name="atel" id="atel"></div><br/>
+	<div class="styled-input"><input type="text" placeholder="收货名" name="aname" required="" id="aname"></div><br/>
+	<div class="styled-input"><td>是否为默认收货地址:<input class="astatus" type="radio" name="astatus" value="1" style="margin-left: 70px;" checked="checked"><span style="color: orange;">是</span><input class="astatus" type="radio" name="astatus" value="0" style="margin-left: 80px;"><span style="color: orange;">否</span>
 	</div><br/>
-	<input type="submit" value="确定" style="width: 100px;height: 40px;margin-left: 46%;">
+	<input type="button" value="确定" style="width: 100px;height: 40px;margin-left: 46%;" onclick="pp()">
 	</form>
 	</div></div>
-		<div th:replace="foot::.footer-top"></div>
-	<div th:replace="foot::foot"></div>
+	]
 	
 	<!-- js-files -->
 	<!-- jquery -->
 	<script src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+function pp(){
+var addr=$('#city').val();
+var uname=$('#uname').val();
+var atel=$('#atel').val();
+var aname=$('#aname').val();
+var astatus=$("input:radio[name='astatus']:checked").val();
 
+$.post("bh.do",{addr:addr,uname:uname,atel:atel,aname:aname,astatus:astatus},function (result){
+	if(result.code==1){
+		alert(result.msg);
+		window.location.href="index";
+	}else{
+		alert(result.msg);
+	}
+});
+}
+</script>
 
 
 <script type="text/javascript">
@@ -96,46 +113,11 @@ $("s").click(function (e) {
 
 	<!-- cart-js -->
 	<script src="js/minicart.js"></script>
-	<script>
-		paypalm.minicartk.render(); //use only unique class names other than paypalm.minicartk.Also Replace same class name in css and minicart.min.js
 
-		paypalm.minicartk.cart.on('checkout', function (evt) {
-			var items = this.items(),
-				len = items.length,
-				total = 0,
-				i;
-
-			// Count the number of each item in the cart
-			for (i = 0; i < len; i++) {
-				total += items[i].get('quantity');
-			}
-
-			if (total < 3) {
-				alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
-				evt.preventDefault();
-			}
-		});
-	</script>
-	<!-- //cart-js -->
 
 	<!-- price range (top products) -->
 	<script src="js/jquery-ui.js"></script>
-	<script>
-		//<![CDATA[ 
-		$(window).load(function () {
-			$("#slider-range").slider({
-				range: true,
-				min: 0,
-				max: 9000,
-				values: [50, 6000],
-				slide: function (event, ui) {
-					$("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-				}
-			});
-			$("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
 
-		}); //]]>
-	</script>
 	<!-- //price range (top products) -->
 
 	<!-- flexisel (for special offers) -->
@@ -169,23 +151,7 @@ $("s").click(function (e) {
 	</script>
 	<!-- //flexisel (for special offers) -->
 
-	<!-- password-script -->
-	<script>
-		window.onload = function () {
-			document.getElementById("password1").onchange = validatePassword;
-			document.getElementById("password2").onchange = validatePassword;
-		}
-
-		function validatePassword() {
-			var pass2 = document.getElementById("password2").value;
-			var pass1 = document.getElementById("password1").value;
-			if (pass1 != pass2)
-				document.getElementById("password2").setCustomValidity("Passwords Don't Match");
-			else
-				document.getElementById("password2").setCustomValidity('');
-			//empty string means no validation error
-		}
-	</script>
+	
 	<!-- //password-script -->
 
 	<!-- smoothscroll -->

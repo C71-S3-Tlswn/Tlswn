@@ -12,6 +12,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
@@ -19,12 +20,19 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.tlswn.C71S3Tlswndemo.bean.Commodity;
 import com.tlswn.C71S3Tlswndemo.bean.CommodityExample;
-
+import com.tlswn.C71S3Tlswndemo.bean.TypeExample;
 import com.tlswn.C71S3Tlswndemo.bean.CommodityExample.Criteria;
 import com.tlswn.C71S3Tlswndemo.dao.CommodityMapper;
+import com.tlswn.C71S3Tlswndemo.dao.TypeMapper;
+import com.tlswn.C71S3Tlswndemo.dao.VarietyMapper;
 
 @Controller
 public class lookUpAction {
+	
+	@Resource
+	private VarietyMapper vm;
+	@Resource
+	private TypeMapper tm;
 
 	
 	@Resource
@@ -78,5 +86,19 @@ public class lookUpAction {
 	       SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
 	       String result = format.format(today);  
 	       return result;  
-	   }  
+	   } 
+	
+	@ModelAttribute
+	public void init(Model m){
+		m.addAttribute("variety",vm.selectByExample(null) );
+		
+		TypeExample te=new TypeExample();
+		te.createCriteria().andVidEqualTo(1);
+		m.addAttribute("type", tm.selectByExample(te));
+		
+		TypeExample t=new TypeExample();
+		t.createCriteria().andVidEqualTo(5);
+		m.addAttribute("types", tm.selectByExample(t));
+	}
+	
 }

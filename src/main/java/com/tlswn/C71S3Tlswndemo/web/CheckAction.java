@@ -17,12 +17,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tlswn.C71S3Tlswndemo.bean.AddrExample;
 import com.tlswn.C71S3Tlswndemo.bean.CartExample;
+import com.tlswn.C71S3Tlswndemo.bean.TypeExample;
 import com.tlswn.C71S3Tlswndemo.bean.CartExample.Criteria;
 import com.tlswn.C71S3Tlswndemo.bean.User;
 import com.tlswn.C71S3Tlswndemo.bean.Cart;
 import com.tlswn.C71S3Tlswndemo.dao.AddrMapper;
 import com.tlswn.C71S3Tlswndemo.dao.CartMapper;
 import com.tlswn.C71S3Tlswndemo.dao.OrderMapper;
+import com.tlswn.C71S3Tlswndemo.dao.TypeMapper;
 import com.tlswn.C71S3Tlswndemo.dao.VarietyMapper;
 import com.tlswn.C71S3Tlswndemo.vo.Result;
 
@@ -38,6 +40,8 @@ public class CheckAction {
 	private OrderMapper om;
 	@Resource
 	private VarietyMapper vm;
+	@Resource
+	private TypeMapper tm;
 	
 	
 	@GetMapping("checkout")
@@ -119,8 +123,16 @@ public class CheckAction {
 		}		
 		
 
-	@ModelAttribute
-	public void init(Model m){
-		m.addAttribute("variety",vm.selectByExample(null) );
-	}
+		@ModelAttribute
+		public void init(Model m){
+			m.addAttribute("variety",vm.selectByExample(null) );
+			
+			TypeExample te=new TypeExample();
+			te.createCriteria().andVidEqualTo(1);
+			m.addAttribute("type", tm.selectByExample(te));
+			
+			TypeExample t=new TypeExample();
+			t.createCriteria().andVidEqualTo(5);
+			m.addAttribute("types", tm.selectByExample(t));
+		}
 }

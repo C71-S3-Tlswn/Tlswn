@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,19 +32,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.tlswn.C71S3Tlswndemo.bean.Addr;
+import com.tlswn.C71S3Tlswndemo.bean.AddrExample;
 import com.tlswn.C71S3Tlswndemo.bean.Commodity;
 import com.tlswn.C71S3Tlswndemo.bean.CommodityExample;
 import com.tlswn.C71S3Tlswndemo.bean.Favorite;
 import com.tlswn.C71S3Tlswndemo.bean.FavoriteExample;
 import com.tlswn.C71S3Tlswndemo.bean.Order;
 import com.tlswn.C71S3Tlswndemo.bean.OrderExample;
+import com.tlswn.C71S3Tlswndemo.bean.TypeExample;
 import com.tlswn.C71S3Tlswndemo.bean.User;
 import com.tlswn.C71S3Tlswndemo.bean.UserExample;
 import com.tlswn.C71S3Tlswndemo.dao.AddrMapper;
 import com.tlswn.C71S3Tlswndemo.dao.CommodityMapper;
 import com.tlswn.C71S3Tlswndemo.dao.FavoriteMapper;
 import com.tlswn.C71S3Tlswndemo.dao.OrderMapper;
+import com.tlswn.C71S3Tlswndemo.dao.TypeMapper;
 import com.tlswn.C71S3Tlswndemo.dao.UserMapper;
+import com.tlswn.C71S3Tlswndemo.dao.VarietyMapper;
 import com.tlswn.C71S3Tlswndemo.vo.Result;
 
 
@@ -60,6 +65,12 @@ public class AddrAction {
 	private CommodityMapper cm;
 	@Resource
 	private OrderMapper om;
+	
+	@Resource
+	private VarietyMapper vm;
+	@Resource
+	private TypeMapper tm;
+	
 	@GetMapping({"addr","addr.do"})
 	public String dizhi(){
 		return "addr";
@@ -83,19 +94,60 @@ public class AddrAction {
 	
 		return "myself";
 	}
+	@ResponseBody
 	@PostMapping("bh.do")
-	public String dizi( Addr addr,String uname){
-	    
+	public Result dizi(@Valid Addr addr,String uname){
+	    List<Addr> list=new ArrayList<>();
 		UserExample ue=new UserExample();
+		AddrExample add=new AddrExample();
+		Integer cc;
+		int v;
+		//Addr ar=new Addr();
+		Addr ar1=new Addr();
 		//构建条件e
 		com.tlswn.C71S3Tlswndemo.bean.UserExample.Criteria c=ue.createCriteria();
 		c.andUnameEqualTo(uname);
-	   Integer cc= us.selectByExample(ue).get(0).getUid();
+	   cc= us.selectByExample(ue).get(0).getUid();//查出对应uid
 	   addr.setUid(cc);
-	   addr.setAstatus(1);
-	  int v= ad.insert(addr);
-		System.out.println("........"+v);
-		return "index";
+	 /*  com.tlswn.C71S3Tlswndemo.bean.AddrExample.Criteria ca=add.createCriteria();
+	   ca.andUidEqualTo(cc);
+	   list=ad.selectByExample(add);
+	   for(int i=0;i<list.size();i++){
+		   if(list.get(i).getAstatus()==1){
+//			   com.tlswn.C71S3Tlswndemo.bean.AddrExample.Criteria cav=add.createCriteria();
+//			   cav.andAidEqualTo(list.get(i).getAid());
+			ar= ad.selectByPrimaryKey(list.get(i).getAid());			
+		   }
+		   	}*/
+	   System.out.println(addr.getAstatus());
+	   if(addr.getAstatus()==1){
+		   com.tlswn.C71S3Tlswndemo.bean.AddrExample.Criteria ca=add.createCriteria();
+		   ca.andUidEqualTo(cc);
+		   list=ad.selectByExample(add);
+		   if(!list.isEmpty()){
+			   ar1.setAstatus(0);
+			   com.tlswn.C71S3Tlswndemo.bean.AddrExample.Criteria cav=add.createCriteria();
+			   cav.andUidEqualTo(cc);
+			   ad.updateByExampleSelective(ar1, add);			
+			   v=ad.insert(addr);
+		   }else{
+				 v=ad.insert(addr);
+		   }
+		   
+	
+		 if(v==1){
+			   return new Result(1, "更改默认地址成功");
+		   }else{
+			   return new Result(2, "地址操作失败");
+		   }
+	   }else{
+		   v= ad.insert(addr);
+		  if(v==1){
+			   return new Result(1, "地址操作成功");
+		   }else{
+			   return new Result(2, "地址操作失败");		   
+	   }			
+	   }	   
 	}
 	/*@Value("${file.upload.path}")
 	private String filePath;*/
@@ -271,11 +323,17 @@ public class AddrAction {
       list= om.selectByExample(or);
 		System.out.println("=======================================================================================");
 for(int i=0;i<list.size();i++){
+	if(list.get(i).getArrivetime()!=null){   
+		list.get(i).setPs("已送达"); 
+	}else if(list.get(i).getDelivetime()!=null&&list.get(i).getArrivetime()==null){
+		list.get(i).setPs("已发货");
+	}else if(list.get(i).getOrdertime()!=null&&list.get(i).getDelivetime()==null&&list.get(i).getArrivetime()==null){
+		list.get(i).setPs("未发货");
+	}
    list.get(i).setTemp(cm.selectByPrimaryKey(list.get(i).getCid()).getCname());
    list.get(i).setTemp2(cm.selectByPrimaryKey(list.get(i).getCid()).getCphoto());
-	m.addAttribute("li", list);
 		}
-		
+		m.addAttribute("li", list);
 		return "order";
 	}
 	
@@ -293,5 +351,18 @@ for(int i=0;i<list.size();i++){
 	}else{
 		return new Result(0, "删除失败");
 	}}
+	
+	@ModelAttribute
+	public void init(Model m){
+		m.addAttribute("variety",vm.selectByExample(null) );
+		
+		TypeExample te=new TypeExample();
+		te.createCriteria().andVidEqualTo(1);
+		m.addAttribute("type", tm.selectByExample(te));
+		
+		TypeExample t=new TypeExample();
+		t.createCriteria().andVidEqualTo(5);
+		m.addAttribute("types", tm.selectByExample(t));
+	}
 	
 }

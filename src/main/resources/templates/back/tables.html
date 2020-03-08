@@ -12,10 +12,10 @@
 		<div class="main-panel">
 			<div class="content">
 				<div class="page-inner">
-					<div class="page-header">
+					<div class="page-header">  
 						<h4 class="page-title">查看订单</h4>
 						<ul class="breadcrumbs">
-							<li class="nav-home">
+							<li class="nav-home"> 
 								<a href="#">
 									<i class="flaticon-home"></i>
 								</a>
@@ -44,7 +44,7 @@
 									<div class="card-sub">									
 										已支付，并未发货的订单:
 									</div>
-									<table class="table mt-3">
+									<table class="table mt-3"> 
 										<thead>
 											<tr>
 												<th scope="col" style="width: 80px">姓名</th>
@@ -55,7 +55,6 @@
 												<th scope="col">价格</th>
 												<th scope="col">是否使用优惠券</th>
 												<th scope="col">数目</th>
-												<th scope="col">备注</th>
 												<th scope="col" style="width: 80px">操作</th>
 											</tr>
 										</thead>
@@ -69,7 +68,6 @@
 												<td th:text="${user.oprice}"></td>
 												<td th:text="${user.pstatus}==1?'是':'否'"></td>
 												<td th:text="${user.temp3}"></td>
-												<td th:text="${user.ps}"></td>
 												<td><a href="javascript:;"  th:onclick="|javascript:postData('${user.oid}')|">商品发货</a></td>
 											</tr>
 										</tbody>
@@ -96,7 +94,7 @@
 												<th scope="col">是否使用优惠券</th>
 												<th scope="col">发货时间</th>
 												<th scope="col">数目</th>
-												<th scope="col">备注</th>
+											
 												<th scope="col" style="width: 80px">操作</th>
 											</tr>
 										</thead>
@@ -111,7 +109,7 @@
 												<td th:text="${users.pstatus}==1?'是':'否'"></td>
 												<td th:text="${#dates.format(users.delivetime,'yyyy-MM-dd HH:mm:ss')}"></td>
 												<td th:text="${users.temp3}"></td>
-												<td th:text="${users.ps}"></td>
+											
 												<td><a href="javascript:;"  th:onclick="|javascript:shouhuo('${users.oid}')|">确认收货</a></td>
 											</tr>
 										</tbody>
@@ -137,7 +135,7 @@
 												<th scope="col">发货时间</th>
 												<th scope="col">收货时间</th>
 												<th scope="col">数目</th>
-												<th scope="col">备注</th>
+											
 											</tr>
 										</thead>
 										<tbody>
@@ -152,7 +150,7 @@
 												<td th:text="${#dates.format(use.delivetime,'yyyy-MM-dd HH:mm:ss')}"></td>
 												<td th:text="${#dates.format(use.arrivetime,'yyyy-MM-dd HH:mm:ss')}"></td>
 												<td th:text="${use.temp3}"></td>
-												<td th:text="${use.ps}"></td>
+											
 											</tr>
 										</tbody>
 									</table>
@@ -177,7 +175,7 @@
 												<th scope="col">是否使用优惠券</th>
 											   <th scope="col">是否支付</th>
 												<th scope="col">数目</th>
-												<th scope="col">备注</th>
+												
 											</tr>
 										</thead>
 										<tbody>
@@ -190,7 +188,7 @@
 												<td th:text="${usem.pstatus}==1?'是':'否'"></td>	
 												<td th:text="${usem.status}==1?'是':'否'"></td>	
 												<td th:text="${usem.temp3}"></td>
-												<td th:text="${usem.ps}"></td>
+												
 											</tr>
 										</tbody>
 									</table>

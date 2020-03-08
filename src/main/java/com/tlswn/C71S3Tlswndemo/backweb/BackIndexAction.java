@@ -7,12 +7,15 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import com.tlswn.C71S3Tlswndemo.backbiz.UserprofileBiz;
+import com.tlswn.C71S3Tlswndemo.bean.Admin;
 import com.tlswn.C71S3Tlswndemo.bean.Commodity;
 import com.tlswn.C71S3Tlswndemo.bean.Order;
 import com.tlswn.C71S3Tlswndemo.bean.OrderExample;
@@ -36,7 +39,7 @@ public class BackIndexAction {
 	
 	
 	@GetMapping("back/index")
-	public String BackIndex(){
+	public String BackIndex(HttpSession sess,Model m){
 		return "back/index";
 	}
 	

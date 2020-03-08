@@ -112,8 +112,8 @@ margin-left: -60px;
 						<span class="fa fa-phone" aria-hidden="true"></span> 001 234 5678
 					</li>
 					<li>
-						<a href="/login">
-							<span class="fa fa-unlock-alt" aria-hidden="true"></span> 登录</a>
+						<a href="/login" >
+							<span class="fa fa-unlock-alt" aria-hidden="true"></span> <span th:text=" |欢迎你！${session.User!=null? session.User.uaccount:'登录'}">登录</span></a>
 					</li>
 					<li>
 						<a href="/reg" >
