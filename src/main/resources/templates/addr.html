@@ -44,9 +44,8 @@ s{position:absolute;top:1px;right:0;width:600px;height:32px;background:url("img/
 	<div class="modal_body_left modal_body_left1" style="width: 100%">
 	<form action="bh.do" method="post">
 	<div class="styled-input agile-styled-input-top" style="width: 100%"><input name="addr" id="city" type="text" placeholder="请选择" autocomplete="off" readonly="true" style="width: 100%;"></div><br/>
-	<div class="styled-input"><input type="text" placeholder="真实姓名" name="uname" id="uname"></div><br/>
+	<div class="styled-input"><input type="text" placeholder="收货人昵称" name="aname" required="" id="aname"></div><br/>
 	<div class="styled-input"><input type="text"  placeholder="电话号" name="atel" id="atel"></div><br/>
-	<div class="styled-input"><input type="text" placeholder="收货名" name="aname" required="" id="aname"></div><br/>
 	<div class="styled-input"><td>是否为默认收货地址:<input class="astatus" type="radio" name="astatus" value="1" style="margin-left: 70px;" checked="checked"><span style="color: orange;">是</span><input class="astatus" type="radio" name="astatus" value="0" style="margin-left: 80px;"><span style="color: orange;">否</span>
 	</div><br/>
 	<input type="button" value="确定" style="width: 100px;height: 40px;margin-left: 46%;" onclick="pp()">
@@ -60,12 +59,11 @@ s{position:absolute;top:1px;right:0;width:600px;height:32px;background:url("img/
 <script type="text/javascript">
 function pp(){
 var addr=$('#city').val();
-var uname=$('#uname').val();
 var atel=$('#atel').val();
 var aname=$('#aname').val();
 var astatus=$("input:radio[name='astatus']:checked").val();
 
-$.post("bh.do",{addr:addr,uname:uname,atel:atel,aname:aname,astatus:astatus},function (result){
+$.post("bh.do",{addr:addr,atel:atel,aname:aname,astatus:astatus},function (result){
 	if(result.code==1){
 		alert(result.msg);
 		window.location.href="index";
