@@ -240,15 +240,17 @@
 				<div class="sidebar-content">
 					<div class="user">
 						<div class="avatar-sm float-left mr-2">
-							<img src="../assets/img/profile.jpg"  alt="..." class="avatar-img rounded-circle">
+						
+							<img th:src="${session.admin.photo!=null? session.admin.photo:'../assets/img/profile.jpg' }"  alt="..." class="avatar-img rounded-circle">
 						</div>
 						<div class="info">
 							<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
-								<span >
-									(显示人名)
+								<span  th:text="${session.admin.accounnt}">
+									
 									
 								</span>
-								<span class="user-level" style="position: relative;left: -9px;font-weight: bold;">（管理员身份）</span>
+								<!-- 身份 暂时未处理 -->
+								<span class="user-level" style="position: relative;left: -9px;font-weight: bold;"></span>
 								<span class="caret" ></span>
 								
 							</a>
@@ -266,11 +268,7 @@
 											<span class="link-collapse">（编辑个人资料）</span>
 										</a>
 									</li>
-									<li>
-										<a href="#settings">
-											<span class="link-collapse">(设定值，没用可删)</span>
-										</a>
-									</li>
+									
 								</ul>
 							</div>
 						</div>
@@ -289,62 +287,7 @@
 							</span>
 							<h4 class="text-section">组件</h4>
 						</li>
-						<li class="nav-item">
-							<a data-toggle="collapse" href="#base">
-								<i class="fas fa-layer-group"></i>
-								<p>基础形式（参考的显示方法可以）</p>
-								<span class="caret"></span>
-							</a>
-							<div class="collapse" id="base">
-								<ul class="nav nav-collapse">
-									<li>
-										<a href="components/avatars">
-											<span class="sub-item">头像</span>
-										</a>
-									</li>
-									<li>
-										<a href="components/buttons">
-											<span class="sub-item">按钮</span>
-										</a>
-									</li>
-									<li>
-										<a href="components/gridsystem">
-											<span class="sub-item">网格</span>
-										</a>
-									</li>
-									<li>
-										<a href="components/panels">
-											<span class="sub-item">面板导航带目录</span>
-										</a>
-									</li>
-									<li>
-										<a href="components/notifications">
-											<span class="sub-item">通知事项</span>
-										</a>
-									</li>
-									<li>
-										<a href="components/sweetalert">
-											<span class="sub-item">彩色弹窗方法</span>
-										</a>
-									</li>
-									<li>
-										<a href="components/font-awesome-icons">
-											<span class="sub-item">字体图标</span>
-										</a>
-									</li>
-									<li>
-										<a href="components/flaticons">
-											<span class="sub-item">平面图标</span>
-										</a>
-									</li>
-									<li>
-										<a href="components/typography">
-											<span class="sub-item">版式</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
+						
 						<li class="nav-item">
 							<a data-toggle="collapse" href="#forms">
 								<i class="fas fa-pen-square"></i>
@@ -389,32 +332,7 @@
 								</ul>
 							</div>
 						</li>
-						<li class="nav-item">
-							<a data-toggle="collapse" href="#maps">
-								<i class="fas fa-map-marker-alt"></i>
-								<p>地图</p>
-								<span class="caret"></span>
-							</a>
-							<div class="collapse" id="maps">
-								<ul class="nav nav-collapse">
-									<li>
-										<a href="maps/googlemaps.html">
-											<span class="sub-item">谷歌地图</span>
-										</a>
-									</li>
-									<li>
-										<a href="maps/fullscreenmaps.html">
-											<span class="sub-item">全屏地图</span>
-										</a>
-									</li>
-									<li>
-										<a href="maps/jqvmap.html">
-											<span class="sub-item">JQV地图</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
+					
 						<li class="nav-item">
 							<a data-toggle="collapse" href="#charts">
 								<i class="far fa-chart-bar"></i>
@@ -437,95 +355,7 @@
 							</div>
 						</li>
 						
-						<li class="nav-item">
-							<a href="widgets.html">
-								<i class="fas fa-desktop"></i>
-								<p>小部件</p>
-								<span class="badge badge-count badge-success">4</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a data-toggle="collapse" href="#custompages">
-								<i class="fas fa-paint-roller"></i>
-								<p>自定义</p>
-								<span class="caret"></span>
-							</a>
-							<div class="collapse" id="custompages">
-								<ul class="nav nav-collapse">
-									<li>
-										<a href="login.html">
-											<span class="sub-item">Login & Register 1</span>
-										</a>
-									</li>
-									<li>
-										<a href="login2.html">
-											<span class="sub-item">Login & Register 2</span>
-										</a>
-									</li>
-									<li>
-										<a href="userprofile.html">
-											<span class="sub-item">User Profile</span>
-										</a>
-									</li>
-									<li>
-										<a href="404.html">
-											<span class="sub-item">404</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li class="nav-item">
-							<a data-toggle="collapse" href="#submenu">
-								<i class="fas fa-bars"></i>
-								<p>Menu Levels</p>
-								<span class="caret"></span>
-							</a>
-							<div class="collapse" id="submenu">
-								<ul class="nav nav-collapse">
-									<li>
-										<a data-toggle="collapse" href="#subnav1">
-											<span class="sub-item">Level 1</span>
-											<span class="caret"></span>
-										</a>
-										<div class="collapse" id="subnav1">
-											<ul class="nav nav-collapse subnav">
-												<li>
-													<a href="#">
-														<span class="sub-item">Level 2</span>
-													</a>
-												</li>
-												<li>
-													<a href="#">
-														<span class="sub-item">Level 2</span>
-													</a>
-												</li>
-											</ul>
-										</div>
-									</li>
-									<li>
-										<a data-toggle="collapse" href="#subnav2">
-											<span class="sub-item">Level 1</span>
-											<span class="caret"></span>
-										</a>
-										<div class="collapse" id="subnav2">
-											<ul class="nav nav-collapse subnav">
-												<li>
-													<a href="#">
-														<span class="sub-item">Level 2</span>
-													</a>
-												</li>
-											</ul>
-										</div>
-									</li>
-									<li>
-										<a href="#">
-											<span class="sub-item">Level 1</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
+					
 					</ul>
 				</div>
 			</div>
