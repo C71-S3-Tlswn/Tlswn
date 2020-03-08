@@ -59,7 +59,8 @@ text-align:center;
 <td style="text-align:center;" width="190px" height="80px"><b style="color: orange;">是否支付</b></td>
 <td style="text-align:center;" width="190px" height="80px"><b style="color: orange;">订单操作</b></td>
 </tr></thead>
-<tr th:each="user:${li}">    
+<tr th:each="user:${li}">
+<td style="display: none;" th:text="${user.cid}" id="cid"></td>
 <td th:text="${user.temp}" style="text-align:center;" height="80px"></td>
 <td height="80px" style="text-align:center;"> <img th:src="${user.temp2}" width="140px" height="74px" ></td>
 <td th:text="${user.oaddr}" style="text-align:center;" height="80px"></td>
@@ -67,11 +68,11 @@ text-align:center;
 <td th:text="${#dates.format(user.ordertime,'yyyy-MM-dd HH:mm:ss')}" style="text-align:center;" height="80px"></td>
 <td th:text="${#dates.format(user.delivetime,'yyyy-MM-dd HH:mm:ss')}" style="text-align:center;" height="80px"></td>
 <td th:text="${#dates.format(user.arrivetime,'yyyy-MM-dd HH:mm:ss')}" style="text-align:center;" height="80px"></td>
-<td th:text="${user.ps}" style="text-align:center;" height="80px"></td>
+<td th:text="${user.ps}" style="text-align:center;" height="80px" id="ps"></td>
 <td th:text="${user.oprice}" style="text-align:center;" height="80px"></td>
 <td th:text="${user.pstatus}==1?'是':'否'" style="text-align:center;" height="80px"></td>
 <td th:text="${user.status}==1?'已支付':'未支付'" style="text-align:center;" height="80px"></td>
-<td style="text-align:center;" height="80px" th:value="${user.oid}" id="df"><a href="javascript:;"  th:onclick="|javascript:postData('${user.oid}')|" >删除</a></td>
+<td style="text-align:center;" height="80px" th:value="${user.oid}" id="df"><a href="javascript:;"  th:onclick="|javascript:postData('${user.oid}')|" th:text="${user.ps}=='已送达'?'评论':'删除'" >删除</a></td>
 </tr>
 </table>
 
@@ -82,14 +83,27 @@ text-align:center;
 <script type="text/javascript">
 
 	function postData(id){
-		$.get("shan",{oid:id},function(result){
-			if(result.code==1){
-				alert(result.msg);
-				window.location.reload();
-			}else{
-				alert(result.msg);
-			}
-		});
+		var ps=$("#ps").text();
+		var cid=$("#cid").text();
+		if(ps=="已送达"){
+			window.location.href = "/evaluate_"+cid;
+		}else{
+			$.get("shan",{oid:id},function(result){
+				if(result.code==1){
+					alert(result.msg);
+					window.location.reload();
+				}else{
+					alert(result.msg);
+				}
+			});
+		}
+		
+	}
+</script>
+<script type="text/javascript">
+
+	function post(){
+		alert(1);
 	}
 </script>
 <script src="js/jquery.magnific-popup.js"></script>
