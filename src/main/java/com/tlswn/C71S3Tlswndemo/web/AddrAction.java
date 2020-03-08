@@ -324,7 +324,7 @@ public class AddrAction {
 		System.out.println("=======================================================================================");
 for(int i=0;i<list.size();i++){
 	if(list.get(i).getArrivetime()!=null){
-		list.get(i).setPs("已送达");
+		list.get(i).setPs("已送达"); 
 	}else if(list.get(i).getDelivetime()!=null&&list.get(i).getArrivetime()==null){
 		list.get(i).setPs("已发货");
 	}else if(list.get(i).getOrdertime()!=null&&list.get(i).getDelivetime()==null&&list.get(i).getArrivetime()==null){
