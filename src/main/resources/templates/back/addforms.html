@@ -69,7 +69,7 @@
 									</div>
 									<div class="form-group">
 										<label for="largeSelect">选择大类</label>
-										<select class="form-control form-control-lg" onchange="selecttype()" id="vname" name="vname">
+										<select class="form-control form-control-lg"  id="vname" name="vname">
 										    <option></option>
 											<option  th:each="var:${vari}" th:text="${var.vname}" th:value="${var.vname}">1</option>
 										</select>
@@ -163,7 +163,8 @@
 	<!-- Azzara DEMO methods, don't include it in your project! -->
 	<script src="../../assets/js/setting-demo.js"></script>
 	<script type="text/javascript">
-	 function selecttype(){
+	 /* function selecttype(){
+		 onchange="selecttype()"
 		 //alert(1);
 		  var vname=$("#vname").val();
 		  alert(vname);
@@ -171,7 +172,7 @@
 	 }
 	 $(function(){
 		 $.post("type",{vname:"智能手机"}); 
-	 });
+	 }); */
 	
 	  
 	   $("#submit0").on('click',function (){
