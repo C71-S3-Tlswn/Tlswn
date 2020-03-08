@@ -83,7 +83,7 @@ public class GoodAction {
 		m.addAttribute("change", comm);
 		return "back/changforms";
 	}
-	
+	/*
 	@ResponseBody
 	@PostMapping("back/type")
 	public void type(Variety var,Type type,Model m3){
@@ -103,8 +103,8 @@ public class GoodAction {
 		List<Type> tt1=(List<Type>) m3.getAttribute("types");
 		System.out.println(tt1.size());
 		//return tt;
-		/*return "back/addforms";*/
-	}
+		return "back/addforms";
+	}*/
 	
 	@ResponseBody
 	@PostMapping("back/add")

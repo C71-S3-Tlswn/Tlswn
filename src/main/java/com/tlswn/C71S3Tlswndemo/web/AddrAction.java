@@ -72,7 +72,11 @@ public class AddrAction {
 	private TypeMapper tm;
 	
 	@GetMapping({"addr","addr.do"})
-	public String dizhi(){
+	public String dizhi(HttpSession hs){
+		User user=(User) hs.getAttribute("User");
+		if(user==null){
+			return "login";
+		}
 		return "addr";
 	}
 	@GetMapping("myself")
@@ -96,19 +100,18 @@ public class AddrAction {
 	}
 	@ResponseBody
 	@PostMapping("bh.do")
-	public Result dizi(@Valid Addr addr,String uname){
+	public Result dizi(@Valid Addr addr,HttpSession hs){
+		User user=(User) hs.getAttribute("User");
 	    List<Addr> list=new ArrayList<>();
-		UserExample ue=new UserExample();
 		AddrExample add=new AddrExample();
-		Integer cc;
 		int v;
 		//Addr ar=new Addr();
 		Addr ar1=new Addr();
 		//构建条件e
-		com.tlswn.C71S3Tlswndemo.bean.UserExample.Criteria c=ue.createCriteria();
-		c.andUnameEqualTo(uname);
-	   cc= us.selectByExample(ue).get(0).getUid();//查出对应uid
-	   addr.setUid(cc);
+//		com.tlswn.C71S3Tlswndemo.bean.UserExample.Criteria c=ue.createCriteria();
+//		c.andUnameEqualTo(uname);
+//	   cc= us.selectByExample(ue).get(0).getUid();//查出对应uid
+	   addr.setUid(user.getUid());
 	 /*  com.tlswn.C71S3Tlswndemo.bean.AddrExample.Criteria ca=add.createCriteria();
 	   ca.andUidEqualTo(cc);
 	   list=ad.selectByExample(add);
@@ -122,12 +125,12 @@ public class AddrAction {
 	   System.out.println(addr.getAstatus());
 	   if(addr.getAstatus()==1){
 		   com.tlswn.C71S3Tlswndemo.bean.AddrExample.Criteria ca=add.createCriteria();
-		   ca.andUidEqualTo(cc);
+		   ca.andUidEqualTo(user.getUid());
 		   list=ad.selectByExample(add);
 		   if(!list.isEmpty()){
 			   ar1.setAstatus(0);
 			   com.tlswn.C71S3Tlswndemo.bean.AddrExample.Criteria cav=add.createCriteria();
-			   cav.andUidEqualTo(cc);
+			   cav.andUidEqualTo(user.getUid());
 			   ad.updateByExampleSelective(ar1, add);			
 			   v=ad.insert(addr);
 		   }else{
