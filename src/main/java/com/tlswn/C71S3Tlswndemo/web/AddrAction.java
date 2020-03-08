@@ -323,7 +323,7 @@ public class AddrAction {
       list= om.selectByExample(or);
 		System.out.println("=======================================================================================");
 for(int i=0;i<list.size();i++){
-	if(list.get(i).getArrivetime()!=null){ 
+	if(list.get(i).getArrivetime()!=null){  
 		list.get(i).setPs("已送达"); 
 	}else if(list.get(i).getDelivetime()!=null&&list.get(i).getArrivetime()==null){
 		list.get(i).setPs("已发货");
