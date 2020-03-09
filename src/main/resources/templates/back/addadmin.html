@@ -27,7 +27,7 @@
 								</div> -->
 								<div class="card-body" >
 									<div class="row mt-3">
-										<img alt="" id="getimg" src="motou.png" class="avatar-img rounded-circle" style="height: 100px;width: 100px;position: relative;left: 15px;">
+										<img alt="" id="getimg" src="../motou.png" class="avatar-img rounded-circle" style="height: 100px;width: 100px;position: relative;left: 15px;">
 									</div>
 									<!-- <div class="row mt-3">
 										<form id="ff" action="upload" method="post" enctype="multipart/form-data" style="position: absolute;top: 135px;left: 25px;">
@@ -257,7 +257,7 @@
 	 		$.post("insert",{photo:photo,aname:aname,email:email,temp:temp,tel:tel,temp2:temp2},function(result){
 				if(result==1){
 					alert("添加成功");
-					window.location.href = "/add";
+					window.location.href = "/back/add";
 				}else{
 					alert("添加失败");
 				}	

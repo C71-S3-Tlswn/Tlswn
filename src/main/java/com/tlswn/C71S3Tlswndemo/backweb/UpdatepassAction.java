@@ -24,21 +24,21 @@ public class UpdatepassAction {
 	@Resource
 	UpdatepassBiz ub;
 
-	@GetMapping("update")
+	@GetMapping("back/update")
 	public String toProfile(HttpSession sess,Model m){
 		return "back/updatepwd";
 	}
 	
 	
 	@ResponseBody
-	@PostMapping("selectpwd")
+	@PostMapping("back/selectpwd")
 	public int select(Admin admin) {
 		int result=ub.selectApass(admin);
 		return result;
 	}
 	
 	@ResponseBody
-	@PostMapping("updatepwd")
+	@PostMapping("back/updatepwd")
 	public int update(Admin admin, HttpSession sess) {
 		int result=ub.updateApass(admin, sess);
 		return result;
