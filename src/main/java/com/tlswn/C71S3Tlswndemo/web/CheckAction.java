@@ -51,10 +51,10 @@ public class CheckAction {
 	//取消商品
 	@ResponseBody
 	@PostMapping("dodelet")
-	public Result delet(Integer ccid){
+	public Result delet(Integer cid){
 		CartExample ce=new CartExample();
 		Criteria c=ce.createCriteria();
-		c.andCcidEqualTo(ccid);
+		c.andCidEqualTo(cid);
 		 int i=cm.deleteByExample(ce);
 		if(i>0){
 			return new Result(1, "取消成功!!!");
