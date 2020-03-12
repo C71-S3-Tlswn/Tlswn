@@ -517,6 +517,8 @@
 	</div>
 	<!-- //special offers -->
 	<!-- newsletter -->
+	<div th:replace="foot::.addr"></div> 
+	<div th:replace="foot::.Myaddr"></div> 
 	 <div th:replace="foot::.user-select"></div> 
 	<div th:replace="foot::.footer-top"></div>
 	<div th:replace="foot::foot"></div>
@@ -684,11 +686,54 @@
 	<!--  <script src="js/bootstrap.js"></script>  -->
 	<script>
 	function insert_village_info(){
-	$("#addCost").modal('show');	//启动模态窗口
-} 
-
-
+		$("#addCost").modal('show');	//启动模态窗口
+	} 
 </script>
+<script>
+	function addr(){
+		$("#addr").modal('show');	//启动模态窗口
+	} 
+	function myaddr(){
+		$("#Myaddr").modal('show');
+	}
+	function Add(){
+		$("#Myaddr").modal('hide');
+		$("#addr").modal('show');	
+	}
+</script>
+<script type="text/javascript">
+$("#city").click(function (e) {
+	SelCity(this,e);
+});
+$("s").click(function (e) {
+	SelCity(document.getElementById("city"),e);
+});
+</script>
+
+<script type="text/javascript">
+	function pp(){
+		var addr=$('#city').val();
+		var atel=$('#atel').val();
+		var aname=$('#aname').val();
+		var astatus=$("input:radio[name='astatus']:checked").val();
+		
+		$.post("bh.do",{addr:addr,atel:atel,aname:aname,astatus:astatus},function (result){
+			if(result.code==1){
+				alert(result.msg);
+				window.location.href="index";
+			}else{
+				alert(result.msg);
+			}
+		});
+	}
+</script>
+<script type="text/javascript">
+	/* $("#ad").click(function(){
+		alert(1);
+	});
+ */
+</script>
+
 <script type="text/javascript">
    
     	
