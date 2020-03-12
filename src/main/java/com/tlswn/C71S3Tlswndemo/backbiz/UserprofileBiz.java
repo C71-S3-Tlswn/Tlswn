@@ -45,6 +45,9 @@ public class UserprofileBiz {
 		int aid=((Admin) sess.getAttribute("admin")).getAaid();
 		admin.setAaid(aid);
 		int re=am.updateByPrimaryKeySelective(admin);
+		
+		sess.removeAttribute("admin");
+		sess.setAttribute("admin", am.selectByPrimaryKey(aid));
 		return re;
 	}
 }
