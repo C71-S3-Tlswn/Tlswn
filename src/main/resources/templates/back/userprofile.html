@@ -27,7 +27,7 @@
 								</div> -->
 								<div class="card-body">
 									<div class="row mt-3">
-										<img alt="" id="getimg" th:src="${admin.photo}!=null?${admin.photo}:'images/motou.png'" class="avatar-img rounded-circle" style="height: 100px;width: 100px;position: relative;left: 15px;">
+										<img alt="" id="getimg" th:src="${admin.photo}" class="avatar-img rounded-circle" style="height: 100px;width: 100px;position: relative;left: 15px;">
 									</div>
 									<div class="row mt-3">
 										<form id="ff" action="upload" method="post" enctype="multipart/form-data" style="position: absolute;top: 135px;left: 25px;">
@@ -102,7 +102,7 @@
 								<div class="card-header" style="background-image: url('../assets/img/blogpost.jpg')">
 									<div class="profile-picture">
 										<div class="avatar avatar-xl">
-											<img id="fu" src="../assets/img/profile.jpg" th:src="${admin.photo}!=null?${admin.photo}:'images/motou.png'" alt="..." class="avatar-img rounded-circle">
+											<img id="fu" src="../assets/img/profile.jpg" th:src="|../${admin.photo}" alt="..." class="avatar-img rounded-circle">
 										</div>
 									</div>
 								</div>
@@ -259,7 +259,7 @@
 	 		$.post("update",{photo:photo,aname:aname,email:email,temp:temp,tel:tel,temp2:temp2},function(result){
 				if(result==1){
 					alert("保存成功");
-					window.location.href = "/profile";
+					window.location.href = "/back/profile";
 				}else{
 					alert("保存失败");
 				}	

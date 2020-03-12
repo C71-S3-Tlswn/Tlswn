@@ -22,7 +22,7 @@ public class UserprofileAction {
 	@Resource
 	UserprofileBiz ub;
 
-	@GetMapping("profile")
+	@GetMapping("back/profile")
 	public String toProfile(HttpSession sess,Model m){
 		Admin admin=ub.getProfile(sess);
 		m.addAttribute("admin", admin);
@@ -30,14 +30,14 @@ public class UserprofileAction {
 	}
 	
 	@ResponseBody
-	@PostMapping("save")
+	@PostMapping("back/save")
 	public String save(MultipartFile img,@Value("${user.file.path}") String filePath) {
 		String fileName=ub.save(img, filePath);
-		return fileName;
+		return "../"+fileName;
 	}
 	
 	@ResponseBody
-	@PostMapping("update")
+	@PostMapping("back/update")
 	public int update(Admin admin,HttpSession sess) {
 		int result=ub.update(admin, sess);
 		return result;

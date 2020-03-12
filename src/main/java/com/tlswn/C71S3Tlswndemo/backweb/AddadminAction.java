@@ -23,14 +23,14 @@ public class AddadminAction {
 	@Resource
 	AddadminBiz ab;
 
-	@GetMapping("add")
+	@GetMapping("back/add")
 	public String toProfile(HttpSession sess,Model m){
 		return "back/addadmin";
 	}
 	
 	
 	@ResponseBody
-	@PostMapping("insert")
+	@PostMapping("back/insert")
 	public int insert(Admin admin) {
 		int result=ab.insert(admin);
 		return result;

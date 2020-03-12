@@ -67,8 +67,8 @@ text-align:center;
 <td th:text="${user.otel}" style="text-align:center;" height="80px"></td>
 <td th:text="${#dates.format(user.ordertime,'yyyy-MM-dd HH:mm:ss')}" style="text-align:center;" height="80px"></td>
 <td th:text="${#dates.format(user.delivetime,'yyyy-MM-dd HH:mm:ss')}" style="text-align:center;" height="80px"></td>
-<td th:text="${#dates.format(user.arrivetime,'yyyy-MM-dd HH:mm:ss')}" style="text-align:center;" height="80px"></td>
-<td th:text="${user.ps}" style="text-align:center;" height="80px" id="ps"></td>
+<td th:text="${#dates.format(user.arrivetime,'yyyy-MM-dd HH:mm:ss')}" style="text-align:center;" height="80px" id="ps"></td>
+<td th:text="${user.ps}" style="text-align:center;" height="80px" ></td>
 <td th:text="${user.oprice}" style="text-align:center;" height="80px"></td>
 <td th:text="${user.pstatus}==1?'是':'否'" style="text-align:center;" height="80px"></td>
 <td th:text="${user.status}==1?'已支付':'未支付'" style="text-align:center;" height="80px"></td>
@@ -83,22 +83,19 @@ text-align:center;
 <script type="text/javascript">
 
 	function postData(id){
-		var ps=$("#ps").text();
-		var cid=$("#cid").text();
-		if(ps=="已送达"){
-			window.location.href = "/evaluate_"+cid;
-		}else{
 			$.get("shan",{oid:id},function(result){
 				if(result.code==1){
 					alert(result.msg);
 					window.location.reload();
+				}else if(result.code==3){
+					window.location.href="/evaluate_"+result.data;					
 				}else{
 					alert(result.msg);
 				}
 			});
 		}
 		
-	}
+	
 </script>
 <script type="text/javascript">
 

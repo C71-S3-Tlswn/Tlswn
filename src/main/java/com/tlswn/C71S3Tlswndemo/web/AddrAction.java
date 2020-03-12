@@ -343,7 +343,12 @@ for(int i=0;i<list.size();i++){
 	@ResponseBody
 	@GetMapping("shan")
 	public Result shan(@Valid Order ord,Model m) throws IOException{
+	Order oi=new Order();
 	OrderExample or=new OrderExample();
+	oi=om.selectByPrimaryKey(ord.getOid());
+	if(oi.getArrivetime()!=null){
+		return new Result(3,"",oi.getCid());
+	}else{
 	com.tlswn.C71S3Tlswndemo.bean.OrderExample.Criteria c=or.createCriteria();
 	c.andOidEqualTo(ord.getOid());
 	ord.setTemp("0");
@@ -353,7 +358,7 @@ for(int i=0;i<list.size();i++){
 			return new Result(1, "删除成功");
 	}else{
 		return new Result(0, "删除失败");
-	}}
+	}}}
 	
 	@ModelAttribute
 	public void init(Model m){
