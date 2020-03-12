@@ -253,7 +253,19 @@ h3.agileinfo_sign span {
 }
 .modal-body.modal-body-sub_agile {
     padding:0 2em 2em;
-    margin-top: 1em;
+    margin-top: 0em;
+}
+#ad{
+	width: 200px;height: 150px;
+	margin-right:20px;
+	float: left;
+	margin-top: 20px;
+}
+#ad p{
+	line-height: 1em;
+	font-size: 13px;
+	margin-top: -7px;
+	margin-bottom: 0px;
 }
 /*-- //model_signin --*/
 /*-- navigation --*/

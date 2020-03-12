@@ -4,11 +4,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>我的订单</title>
 
+
+ <link rel="stylesheet" type="text/css" href="assets/waifu.css"/>
+ <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+ 
+ 
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/Popt.js"></script>
 <script type="text/javascript" src="js/city.json.js"></script>
 <script type="text/javascript" src="js/citySet.js"></script>
-
 <style type="text/css">
 * { -ms-word-wrap: break-word; word-wrap: break-word; }
 html { -webkit-text-size-adjust: none; text-size-adjust: none; }
@@ -33,7 +37,6 @@ text-align:center;
  display:none;
 }
 </style>
-
 </head>
 <body>
 	<div th:replace="header::.header-most-top"></div>
@@ -43,9 +46,11 @@ text-align:center;
 	<div th:replace="header::#myModal2"></div>
 	<div th:replace="header::.ban-top"></div>
 
-<div style="width: 100%;height: 400px;">
-<table border="1" align="center">
-<thead><tr>
+<div style="width: 100%;height: 400px;" >
+<input type="hidden" th:value="${li}" id="dda">
+<table border="2" style="border:outset;">
+<caption style="text-align:center;"><h3 style="color: orange;">我的订单</h3></caption>
+<thead><tr style="background:FloralWhite;">
 <td style="text-align:center;" width="150px" height="80px"><b style="color: orange;">商品名称</b></td>
 <td style="text-align:center;" width="150px" height="80px"><b style="color: orange;">商品图片</b></td>
 <td style="text-align:center;" width="190px" height="80px"><b style="color: orange;">收货地址</b></td>
@@ -59,10 +64,10 @@ text-align:center;
 <td style="text-align:center;" width="190px" height="80px"><b style="color: orange;">是否支付</b></td>
 <td style="text-align:center;" width="190px" height="80px"><b style="color: orange;">订单操作</b></td>
 </tr></thead>
-<tr th:each="user:${li}">
-<td style="display: none;" th:text="${user.cid}" id="cid"></td>
+<tr th:each="user:${li}" style="background: Seashell;">
+<td style="display: none;" th:text="${user.cid}" id="cid"></td> 
 <td th:text="${user.temp}" style="text-align:center;" height="80px"></td>
-<td height="80px" style="text-align:center;"> <img th:src="${user.temp2}" width="140px" height="74px" ></td>
+<td height="80px" style="text-align:center; background-repeat: repeat;"> <img th:src="${user.temp2}" width="60px" style="text-align:center;"></td>
 <td th:text="${user.oaddr}" style="text-align:center;" height="80px"></td>
 <td th:text="${user.otel}" style="text-align:center;" height="80px"></td>
 <td th:text="${#dates.format(user.ordertime,'yyyy-MM-dd HH:mm:ss')}" style="text-align:center;" height="80px"></td>
@@ -75,13 +80,24 @@ text-align:center;
 <td style="text-align:center;" height="80px" th:value="${user.oid}" id="df"><a href="javascript:;"  th:onclick="|javascript:postData('${user.oid}')|" th:text="${user.ps}=='已送达'?'评论':'删除'" >删除</a></td>
 </tr>
 </table>
-
+ <canvas id="live2d" width="260" height="220" class="live2d"></canvas><div style="margin-top: -100px;margin-left:44%;"><h2 style="color: orange;">您的订单都在这里哦</h2></div>
 </div>
-
 <div style="margin-top: 40px;"></div>
+
+
+ 
+       
+       
+    <script src="assets/waifu-tips.js"></script>
+    <script src="assets/live2d.js"></script>
+    <script type="text/javascript">initModel("assets/")</script>
+
+
+
 <script src="js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript">
-
+	
+	}
 	function postData(id){
 			$.get("shan",{oid:id},function(result){
 				if(result.code==1){

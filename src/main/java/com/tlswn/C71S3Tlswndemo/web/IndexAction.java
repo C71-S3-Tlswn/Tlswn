@@ -1,6 +1,7 @@
 package com.tlswn.C71S3Tlswndemo.web;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.tlswn.C71S3Tlswndemo.bean.Addr;
-
+import com.tlswn.C71S3Tlswndemo.bean.AddrExample;
 import com.tlswn.C71S3Tlswndemo.bean.UserExample;
 
 import com.tlswn.C71S3Tlswndemo.dao.AddrMapper;
@@ -35,6 +36,8 @@ public class IndexAction {
 	private VarietyMapper vm;
 	@Resource
 	private TypeMapper tm;
+	@Resource
+	private AddrMapper am;
 	
 	
 	
@@ -80,7 +83,7 @@ public class IndexAction {
 		return "index";
 	}*/
 	@ModelAttribute
-	public void init(Model m){
+	public void init(Model m,HttpServletRequest ht){
 		m.addAttribute("variety",vm.selectByExample(null) );
 		
 		TypeExample te=new TypeExample();
@@ -90,6 +93,10 @@ public class IndexAction {
 		TypeExample t=new TypeExample();
 		t.createCriteria().andVidEqualTo(5);
 		m.addAttribute("types", tm.selectByExample(t));
+		User user= (User) ht.getSession().getAttribute("User");
+		AddrExample ae=new AddrExample();
+		ae.createCriteria().andUidEqualTo(user.getUid());
+		m.addAttribute("Uaddr",am.selectByExample(ae));
 	}
 	
 	
