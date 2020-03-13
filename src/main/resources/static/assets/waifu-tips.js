@@ -96,7 +96,7 @@ $('.waifu-tool .fui-photo').click(function (){
             referrer.href = document.referrer;
             var domain = referrer.hostname.split('.')[1];
             if (window.location.hostname == referrer.hostname) {
-                text = '欢迎阅读<span style="color:#0099cc;">『' + document.title.split(' - ')[0] + '』</span>';
+                text = '欢迎查看<span style="color:#0099cc;">我的订单哦</span>';
             } else if (domain == 'baidu') {
                 text = 'Hello! 来自 百度搜索 的朋友<br>你是搜索 <span style="color:#0099cc;">' + referrer.search.split('&wd=')[1].split('&')[0] + '</span> 找到的我吗？';
             } else if (domain == 'so') {
