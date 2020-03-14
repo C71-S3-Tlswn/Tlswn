@@ -75,7 +75,6 @@ public class lookUpAction {
 		}
 		plist=cm.selectByExample(ce);
 		m.addAttribute("lookUp",plist);
-		System.out.println(plist);
 		return "lookup::wrapper";	
 	}
 

@@ -1,5 +1,8 @@
 package com.tlswn.C71S3Tlswndemo.web;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -7,11 +10,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import com.tlswn.C71S3Tlswndemo.bean.CommodityExample;
+import com.tlswn.C71S3Tlswndemo.bean.Favorite;
+import com.tlswn.C71S3Tlswndemo.bean.FavoriteExample;
 import com.tlswn.C71S3Tlswndemo.bean.CommodityExample.Criteria;
 import com.tlswn.C71S3Tlswndemo.bean.Order;
 import com.tlswn.C71S3Tlswndemo.bean.TypeExample;
 import com.tlswn.C71S3Tlswndemo.bean.User;
 import com.tlswn.C71S3Tlswndemo.dao.CommodityMapper;
+import com.tlswn.C71S3Tlswndemo.dao.FavoriteMapper;
 import com.tlswn.C71S3Tlswndemo.dao.OrderMapper;
 import com.tlswn.C71S3Tlswndemo.dao.TypeMapper;
 import com.tlswn.C71S3Tlswndemo.dao.VarietyMapper;
@@ -22,6 +28,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.tlswn.C71S3Tlswndemo.bean.Addr;
 import com.tlswn.C71S3Tlswndemo.bean.AddrExample;
+import com.tlswn.C71S3Tlswndemo.bean.Commodity;
 import com.tlswn.C71S3Tlswndemo.bean.UserExample;
 
 import com.tlswn.C71S3Tlswndemo.dao.AddrMapper;
@@ -38,6 +45,8 @@ public class IndexAction {
 	private TypeMapper tm;
 	@Resource
 	private AddrMapper am;
+	@Resource
+	private FavoriteMapper fa;
 	
 	
 	
@@ -97,6 +106,22 @@ public class IndexAction {
 		AddrExample ae=new AddrExample();
 		ae.createCriteria().andUidEqualTo(user.getUid());
 		m.addAttribute("Uaddr",am.selectByExample(ae));
+		
+		FavoriteExample fac=new FavoriteExample();
+		CommodityExample co=new CommodityExample();
+		List<Favorite> list=new ArrayList<Favorite>();
+		List<Commodity> li=new ArrayList<Commodity>();
+		
+		com.tlswn.C71S3Tlswndemo.bean.FavoriteExample.Criteria c=fac.createCriteria();
+		c.andUidEqualTo(user.getUid());
+		list=fa.selectByExample(fac);
+		for(int i=0;i<list.size();i++){
+			int cid=0;
+			cid=list.get(i).getTemp3();
+			li.add(i, cm.selectByPrimaryKey(cid));//根据 id查商品
+			li.get(i).setCid(cid);
+		}
+		m.addAttribute("li", li);
 	}
 	
 	

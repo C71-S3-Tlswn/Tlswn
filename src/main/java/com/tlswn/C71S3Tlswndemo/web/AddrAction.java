@@ -301,16 +301,18 @@ public class AddrAction {
 	@ResponseBody
 	@GetMapping("dele.do")
 	public Result dele(@Valid Commodity com,Model m) throws IOException{
-	FavoriteExample fac=new FavoriteExample();
-	com.tlswn.C71S3Tlswndemo.bean.FavoriteExample.Criteria c=fac.createCriteria();
-	c.andTemp3EqualTo(com.getCid());
-	System.out.println(com.getCid());
-	int cs=fa.deleteByExample(fac);
-	if(cs==1){
-			return new Result(1, "删除成功");
-	}else{
-		return new Result(0, "删除失败");
-	}}
+		FavoriteExample fac=new FavoriteExample();
+		com.tlswn.C71S3Tlswndemo.bean.FavoriteExample.Criteria c=fac.createCriteria();
+		c.andTemp3EqualTo(com.getCid());
+		System.out.println(com.getCid());
+		int cs=fa.deleteByExample(fac);
+		if(cs==1){
+				return new Result(1, "删除成功");
+		}else{
+			return new Result(0, "删除失败");
+		}
+		/*return "index::favorite";*/
+	}
 	
 	
 	@GetMapping("order")

@@ -270,7 +270,7 @@
 						+'<td class="invert" id="cprice">'+arr.data[i].commodity.cprice+'</td>'
 						+'<td class="invert"><div class="rem">'
 						+'<div class="close1"></div></div></td>'
-						+'<td style="visibility: hidden;">'+arr.data[i].cid+'</td></tr>';
+						+'<td style="visibility: hidden;">'+arr.data[i].ccid+'</td></tr>';
 			}
 				$('.table-responsive table tbody').html(str);
 				//显示总价格
@@ -287,7 +287,7 @@
 					if(confirm("确认取消该商品？")){
 						 var id=$(this).closest("tr");
 						 var cid=id.find('td:eq(6)').text();
-						$.post("dodelet",{cid:cid},
+						$.post("dodelet",{ccid:ccid},
 								function(result){
 									if(result.code==0){
 										alert(result.msg);
