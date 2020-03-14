@@ -27,6 +27,8 @@
 	<!-- fonts -->
 	<!-- <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet"> -->
     <link rel="stylesheet" href="css/chat.css" />
+    
+    <link href="enjoyhint/enjoyhint.css" rel="stylesheet">
  	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/Popt.js"></script>
 	<script type="text/javascript" src="js/city.json.js"></script>
@@ -73,7 +75,7 @@ transition: opacity .3s,transform .4s,-webkit-transform .4s;
  float:left;
  padding-left:-50px;
 margin-top: -87px;
-margin-left: -60px;
+margin-left: 74px;
  }
 
  </style>
@@ -100,6 +102,11 @@ margin-left: -60px;
 			<div class="col-md-8 header">
 				<!-- header lists -->
 				<ul>
+					<li>
+						<a id="help">
+						<span class="fa fa-pencil-square-o" aria-hidden="true"></span>帮助中心</a>
+													
+					</li> 
 					<li>
 						 <a href="javascript:;" onclick="insert_village_info()" > 
 						<span class="fa fa-phone" aria-hidden="true"></span>在线客服</a>
@@ -136,7 +143,7 @@ margin-left: -60px;
 				
 				<div class="top_nav_right">
 							<a class="w3view-cart" href="checkout" id="checkout">
-								<img src="images/checkout.jpg" style="width: 70px;height: 70px;">
+								<img src="images/checkout.jpg" style="width: 70px;height: 70px;" id="chec">
 							</a>
 				</div> 
 				<!-- //cart details -->

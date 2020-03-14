@@ -738,6 +738,46 @@ $("s").click(function (e) {
  */
 </script>
 
+<script src="enjoyhint/enjoyhint.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script type="text/javascript">
+	$("#help").click(function(){
+		var enjoyhint_instance = new EnjoyHint({});
+		var enjoyhint_script_steps = [
+		  {
+		  	'next .logo_agile' : '欢迎来到筐筐商场！让我来引导你了解它的特点。',
+		  	'nextButton' : {className: "myNext", text: "可以"},
+		  	'skipButton' : {className: "mySkip", text: "不了!"}
+		  },
+		  {
+		  	'key .agileits_search' : "请输入关键词搜索，并按“Enter”进去下一步",
+		  	'keyCode' : 13
+		  },
+		  {
+		  	'click #kkl' : '点击设置你的个人信息'
+		  },
+		  {
+		  	'next #chec' : '这里是你的购物车',
+		  	'shape': 'circle'
+		  },
+		  {
+		  	'next .agileits-navi_search' : '这是商品分类，你可以找到喜欢的商品。',
+		  	'shape': 'circle',
+		  	'radius': 90,
+		  	'showSkip' : false,
+		  	'nextButton' : {className: "myNext", text: "知道了!"}
+		  }
+		
+		];
+		
+			enjoyhint_instance.set(enjoyhint_script_steps);
+			enjoyhint_instance.run();	
+	});
+
+	
+	
+</script>
+
 <script type="text/javascript">
    
     	

@@ -1,6 +1,8 @@
 package com.tlswn.C71S3Tlswndemo.web;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -31,7 +33,7 @@ public class RegAction {
 	}
 	@ResponseBody
 	@PostMapping("SingUp")
-	public Result SingUp(@Valid User user,Errors errors) throws BizException{
+	public Result SingUp(@Valid User user,Errors errors,HttpServletResponse response) throws BizException{
 		try {
 			if(errors.hasErrors()){
 				return new Result(2, "表单验证错误",errors.getFieldErrors());
@@ -39,6 +41,9 @@ public class RegAction {
 			user.setUpass(Md5.getMD5(user.getUpass()));
 			int i=um.insert(user);
 			if(i>0){
+				/*Cookie cookie=new Cookie("user",user.getUaccount());
+				cookie.setMaxAge(1);
+				response.addCookie(cookie);*/
 				return new Result(1, "注册成功!");
 			}else{
 				return new Result(0,"业务繁忙，稍后再试");

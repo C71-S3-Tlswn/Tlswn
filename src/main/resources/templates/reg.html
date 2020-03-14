@@ -231,14 +231,12 @@
 
 <script type="text/javascript">
 	function SingUp(){
-		alert(1);
 		var uaccount=$("#account").val();
 		var utel=$("#phone").val();	
 		var upass=$("#password").val();
 		var uemail=$("#email").val();
 		var  usex=$("input[name='sex']:checked").val();
 		var uname=$("#name").val();
-		alert(1);
 		$.post("SingUp",
 				{uaccount:uaccount,
 					utel:utel,
