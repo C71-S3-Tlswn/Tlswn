@@ -196,7 +196,8 @@
 												<input type="hidden" name="currency_code" value="USD" />
 												<input type="hidden" name="return" value=" " />
 												<input type="hidden" name="cancel_return" value=" " />
-												<input type="submit" name="submit" value="添加购物车" class="button" />
+												<!-- <input type="submit" name="submit" value="添加购物车" class="button" /> -->
+												<span class="button" style="color: orange;font-weight: bold;font-size: 18px;" th:text="|浏览量：${m.temp==null?0:m.temp}">12</span>
 											</fieldset>
 										</form>
 									</div>
