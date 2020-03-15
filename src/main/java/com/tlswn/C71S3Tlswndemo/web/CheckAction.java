@@ -56,6 +56,7 @@ public class CheckAction {
 		Criteria c=ce.createCriteria();
 		c.andCcidEqualTo(ccid);
 		 int i=cm.deleteByExample(ce);
+		 System.out.println(i);
 		if(i>0){
 			return new Result(1, "取消成功!!!");
 		}else{

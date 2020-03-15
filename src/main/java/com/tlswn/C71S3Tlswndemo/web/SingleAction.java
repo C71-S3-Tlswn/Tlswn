@@ -74,6 +74,8 @@ public class SingleAction {
 		se.createCriteria().andCidEqualTo(id);
 		List<Stock> sto= sm.selectByExample(se);
 		m.addAttribute("size", sto);
+		
+		m.addAttribute("ce5",cm.selectBySix(null));
 		return "single";
 		
 	}

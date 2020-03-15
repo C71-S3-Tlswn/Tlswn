@@ -227,14 +227,7 @@
 	<!-- smooth-scrolling-of-move-up -->
 	<script type="text/javascript">
 		$(document).ready(function () {
-			/*
-			var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 1200,
-				easingType: 'linear' 
-			};
-			*/
+		
 			//查看购物车数据
 			showCart();
 			function showCart(){
@@ -245,9 +238,9 @@
 					}else if(null==arr.data||arr.data.length==0){
 						alert('购物车为空，请浏览商品');
 						/* window.location.href="index"; */
-					}else{
 						showCartTable(arr);
-						
+					}else{
+						showCartTable(arr);						
 					}
 				});
 			}
@@ -270,7 +263,7 @@
 						+'<td class="invert" id="cprice">'+arr.data[i].commodity.cprice+'</td>'
 						+'<td class="invert"><div class="rem">'
 						+'<div class="close1"></div></div></td>'
-						+'<td style="visibility: hidden;">'+arr.data[i].ccid+'</td></tr>';
+						+'<td style="visibility: hidden;">'+arr.data[i].cid+'</td><td style="visibility: hidden;">'+arr.data[i].ccid+'</td></tr>';
 			}
 				$('.table-responsive table tbody').html(str);
 				//显示总价格
@@ -286,7 +279,8 @@
 				$('.close1').on('click', function () {
 					if(confirm("确认取消该商品？")){
 						 var id=$(this).closest("tr");
-						 var cid=id.find('td:eq(6)').text();
+						 var ccid=id.find('td:eq(7)').text();
+						 alert(ccid);
 						$.post("dodelet",{ccid:ccid},
 								function(result){
 									if(result.code==0){
@@ -294,8 +288,7 @@
 									}else{
 										alert(result.msg);
 										/* window.location.reload(); */
-										showCart();
-										
+										showCart();			
 									}
 						});
 					}

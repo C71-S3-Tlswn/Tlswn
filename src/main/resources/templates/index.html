@@ -721,7 +721,8 @@ $("s").click(function (e) {
 
 	function postData(id){
 		$.get("dele.do",{cid:id},function(result){	
-			 if(result.code==1){				
+			 if(result.code==1){
+				 alert(result.msg);
 				window.location.reload();
 			}else{
 				alert(result.msg);

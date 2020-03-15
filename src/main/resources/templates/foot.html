@@ -180,7 +180,7 @@
                             <textarea class="scroll" id="text" wrap="hard" placeholder="在此输入文字信息..."></textarea>
                            
                         </div>
-                        <input type="hidden" name="admin"   id="admin" th:value="${session.admin!=null ? session.admin.accounnt:'宋鲍勃'}">
+                        <input type="hidden" name="admin"   id="admin" th:value="${session.admin!=null ? session.admin.accounnt:'清空'}">
                         <input type="hidden" name="account" id="user" th:value="${session.User!=null? session.User.uaccount:''}">
                         <div class="abs br pnl-btn" id="submit" style="background-color: rgb(32, 196, 202); color: rgb(255, 255, 255);">
                         	<input type="button"id="send" onclick="send()" value="发送" style="background-color: rgb(32, 196, 202); color: rgb(255, 255, 255);">

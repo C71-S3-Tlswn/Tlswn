@@ -307,9 +307,9 @@ public class AddrAction {
 		System.out.println(com.getCid());
 		int cs=fa.deleteByExample(fac);
 		if(cs==1){
-				return new Result(1, "删除成功");
+				return new Result(1, "取消成功");
 		}else{
-			return new Result(0, "删除失败");
+			return new Result(0, "取消失败");
 		}
 		/*return "index::favorite";*/
 	}
