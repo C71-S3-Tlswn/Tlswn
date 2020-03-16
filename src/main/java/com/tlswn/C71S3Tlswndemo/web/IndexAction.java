@@ -21,10 +21,12 @@ import com.tlswn.C71S3Tlswndemo.dao.FavoriteMapper;
 import com.tlswn.C71S3Tlswndemo.dao.OrderMapper;
 import com.tlswn.C71S3Tlswndemo.dao.TypeMapper;
 import com.tlswn.C71S3Tlswndemo.dao.VarietyMapper;
+import com.tlswn.C71S3Tlswndemo.vo.Result;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tlswn.C71S3Tlswndemo.bean.Addr;
 import com.tlswn.C71S3Tlswndemo.bean.AddrExample;
@@ -47,7 +49,8 @@ public class IndexAction {
 	private AddrMapper am;
 	@Resource
 	private FavoriteMapper fa;
-	
+	@Resource
+	private UserMapper ua;
 	
 	
 	@GetMapping({"/","index","index.do"})
@@ -77,7 +80,26 @@ public class IndexAction {
 		
 		return "index";
 	}
-	
+	@ResponseBody
+	@GetMapping("panduan")
+	public Result panduan(HttpServletRequest ht){
+		User user= (User) ht.getSession().getAttribute("User");
+	    User li=new User();
+	    User li2=new User();
+		UserExample ue=new UserExample();
+		li=ua.selectByPrimaryKey(user.getUid());
+		System.out.println(li.getTemp3());
+		int c=li.getTemp3();
+		 li2.setTemp3(0);
+		 com.tlswn.C71S3Tlswndemo.bean.UserExample.Criteria cb=ue.createCriteria();
+		 cb.andUidEqualTo(user.getUid());
+		int x=ua.updateByExampleSelective(li2, ue);
+		if(c==1&&x==1){
+			return new Result(1,"");
+		}else{
+			return new Result(0,"");
+		}		
+	}
 	/*@PostMapping("bh.do")
 	public String dizi( Addr addr,String uname){
 	    

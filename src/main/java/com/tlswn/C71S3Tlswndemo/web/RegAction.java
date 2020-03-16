@@ -39,6 +39,7 @@ public class RegAction {
 				return new Result(2, "表单验证错误",errors.getFieldErrors());
 			}
 			user.setUpass(Md5.getMD5(user.getUpass()));
+			user.setTemp3(1);
 			int i=um.insert(user);
 			if(i>0){
 				/*Cookie cookie=new Cookie("user",user.getUaccount());
